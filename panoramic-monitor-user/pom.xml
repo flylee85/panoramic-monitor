@@ -6,7 +6,6 @@
         <artifactId>panoramic-monitor-parent</artifactId>
         <groupId>com.it.sunder</groupId>
         <version>1.0-SNAPSHOT</version>
-        <relativePath>../panoramic-monitor-parent/pom.xml</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -18,7 +17,7 @@
         <module>../panoramic-monitor-user-api</module>
         <module>../panoramic-monitor-user-service</module>
         <module>../panoramic-monitor-user-dao</module>
-        <module>../panoramic-monitor-user-common</module>
+        <module>../panoramic-monitor-common</module>
     </modules>
 
 </project>
