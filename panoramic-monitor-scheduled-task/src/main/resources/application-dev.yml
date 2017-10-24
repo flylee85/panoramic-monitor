@@ -1,0 +1,35 @@
+server:
+  port: 9000
+  servlet-path: /
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://root:password@discovery-eureka:8761/eureka/   # 指定注册中心的地址
+  instance:
+    preferIpAddress: true
+#    hostname : discovery   # 指定主机名时候通过主机名访问,否则通过ip地址
+spring:
+  application:
+    name: panoramic-monitor-scheduled-task    # 项目名称尽量用小写
+
+# 日志配置
+logging:
+  level:
+    root: INFO
+    org.hibernate: INFO
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+    org.hibernate.type.descriptor.sql.BasicExtractor: TRACE
+    com.itmuch.youran.persistence: ERROR
+
+# 热发布插件
+
+spring:
+    devtools:
+        restart:
+            #热部署生效
+          enabled: true
+            #设置重启的目录
+            #additional-paths: src/main/java
+            #classpath目录下的WEB-INF文件夹内容修改不重启
+          exclude: WEB-INF/**
+
