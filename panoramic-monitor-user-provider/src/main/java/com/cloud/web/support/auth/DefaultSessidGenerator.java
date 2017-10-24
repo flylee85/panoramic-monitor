@@ -1,6 +1,6 @@
 //package com.cloud.web.support.auth;
 //
-//import com.icloud.util.StringUtil;
+//import com.cloud.util.StringUtil;
 //import org.springframework.security.core.Authentication;
 //
 //public class DefaultSessidGenerator implements SessidGenerator{
