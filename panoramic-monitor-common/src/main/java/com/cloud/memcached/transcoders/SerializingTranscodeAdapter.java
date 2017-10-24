@@ -43,7 +43,6 @@ public class SerializingTranscodeAdapter extends SerializingTranscoder {
 	@Override
 	protected Object deserialize(byte[] in) {
 		if (in == null || serialization == null || !(serialization instanceof Serialization)) {
-			// TODO Auto-generated method stub
 			return super.deserialize(in);
 		}
 
