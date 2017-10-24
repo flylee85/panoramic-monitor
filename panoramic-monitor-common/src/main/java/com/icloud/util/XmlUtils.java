@@ -66,7 +66,7 @@ public class XmlUtils {
 		return sb.toString();
 	}
 	/**
-	 * @see xpath syntax: http://www.w3schools.com/xpath/default.asp
+	 * @see  syntax: http://www.w3schools.com/xpath/default.asp
 	 * @param xml
 	 * @param xpath
 	 * @return
@@ -75,7 +75,7 @@ public class XmlUtils {
 		return getNodeText(getDocument(xml), xpath);
 	}
 	/**
-	 * @see xpath syntax: http://www.w3schools.com/xpath/default.asp
+	 * @see  syntax: http://www.w3schools.com/xpath/default.asp
 	 * @param document
 	 * @param xpath
 	 * @return

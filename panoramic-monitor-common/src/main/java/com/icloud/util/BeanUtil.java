@@ -39,7 +39,7 @@ public class BeanUtil implements Util4Script{
 	/***
 	 * 只返回有fields的数据，不返回
 	 * @param bean
-	 * @param nested
+	 * @param
 	 * @return
 	 */
 	public static Map getBeanFieldMap(final Object bean, String... otherProps) {
@@ -55,7 +55,7 @@ public class BeanUtil implements Util4Script{
 	/**
 	 * 获取Bean数组的Primitive属性的值（只包含有Field的数据）
 	 * @param beanList
-	 * @param nested
+	 * @param
 	 * @return
 	 */
 	public static List getBeanFieldMapList(final Collection beanList, String... otherProps) {
@@ -106,7 +106,7 @@ public class BeanUtil implements Util4Script{
 	}
 	/**
 	 * array,collection,map
-	 * @param list
+	 * @param
 	 * @return <code>true</code> if the List/array/map is null or empty.
 	 */
 	public final static boolean isEmptyContainer(Object container) {

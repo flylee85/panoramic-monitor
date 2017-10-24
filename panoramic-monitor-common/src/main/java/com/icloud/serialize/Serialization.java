@@ -22,7 +22,7 @@ public interface Serialization {
 
 	/**
 	 * create serializer
-	 * @param url 
+	 * @param
 	 * @param output
 	 * @return serializer
 	 * @throws IOException
@@ -31,7 +31,7 @@ public interface Serialization {
 
 	/**
 	 * create deserializer
-	 * @param url 
+	 * @param
 	 * @param input
 	 * @return deserializer
 	 * @throws IOException

@@ -337,7 +337,7 @@ public class HttpUtils {
 	 *           上传的URL
 	 * @param params
 	 *           其他参数
-	 * @param is
+	 * @param
 	 * @param inputName
 	 *           <input name="xxxx"../>
 	 * @param fileName

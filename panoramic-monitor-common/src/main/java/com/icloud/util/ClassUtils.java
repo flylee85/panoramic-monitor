@@ -14,8 +14,8 @@ import java.util.*;
  * @author Rob Harrop
  * @author Sam Brannen
  * @since 1.1
- * @see TypeUtils
- * @see ReflectionUtils
+ * @see
+ * @see
  */
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~copy from spring for reduce dependency~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 @SuppressWarnings("unchecked")
@@ -657,7 +657,7 @@ public abstract class ClassUtils {
 	 * @param lhsType the target type
 	 * @param rhsType the value type that should be assigned to the target type
 	 * @return if the target type is assignable from the value type
-	 * @see TypeUtils#isAssignable
+	 * @see
 	 */
 	public static boolean isAssignable(Class<?> lhsType, Class<?> rhsType) {
 		Assert.notNull(lhsType, "Left-hand side type must not be null");

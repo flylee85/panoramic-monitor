@@ -78,7 +78,7 @@ public class DateUtil implements Util4Script {
 
 	/**
 	 * 当前timestamp <br>
-	 * 字符串类型返回，参见{@link #currentTimestampStr()}
+	 * 字符串类型返回，参见{@link #}
 	 *
 	 * @return
 	 */
@@ -158,7 +158,7 @@ public class DateUtil implements Util4Script {
 
 	/**
 	 * @param strDate
-	 * @param format
+	 * @param pattern
 	 * @return
 	 */
 	public static final Timestamp parseTimestamp(String strDate, String pattern) {
@@ -613,7 +613,7 @@ public class DateUtil implements Util4Script {
 	/**
 	 * 获取日期所在月份的最后一天
 	 *
-	 * @param days
+	 * @param
 	 * @return
 	 */
 	public static <T extends Date> T getMonthLastDay(T date) {

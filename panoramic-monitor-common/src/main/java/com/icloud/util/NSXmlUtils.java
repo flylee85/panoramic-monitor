@@ -20,7 +20,7 @@ public class NSXmlUtils {
 	 * example: nameSpaceMap.put("gm", "http://earth.google.com/kml/2.0");
 	 * Xpath like: /gm:root/gm:sub
 	 * @param xml
-	 * @param nameSpaceMap
+	 * @param
 	 * @return
 	 */
 	public Document getDocument(String xml){
