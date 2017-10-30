@@ -572,6 +572,7 @@
         <module>../panoramic-monitor-config-client</module>
         <module>../panoramic-monitor-user</module>
         <module>../panoramic-monitor-scheduled-task</module>
+        <module>../panoramic-monitor-risk-warning</module>
     </modules>
 
     <build>
