@@ -573,6 +573,7 @@
         <module>../panoramic-monitor-user</module>
         <module>../panoramic-monitor-scheduled-task</module>
         <module>../panoramic-monitor-risk-warning</module>
+        <module>../panoramic-monitor-manage</module>
     </modules>
 
     <build>
