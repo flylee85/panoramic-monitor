@@ -1,7 +1,7 @@
 package com.cloud.configurer;
 
+import com.cloud.constant.MybatisConstant;
 import com.cloud.core.Mapper;
-import com.cloud.core.ProjectConstant;
 import com.github.pagehelper.PageHelper;
 import org.apache.ibatis.plugin.Interceptor;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -29,7 +29,7 @@ public class MybatisConfigurer {
     public SqlSessionFactory sqlSessionFactoryBean() throws Exception {
         SqlSessionFactoryBean bean = new SqlSessionFactoryBean();
         bean.setDataSource(dataSource);
-        bean.setTypeAliasesPackage(ProjectConstant.MODEL_PACKAGE);
+        bean.setTypeAliasesPackage(MybatisConstant.MODEL_PACKAGE);
         //分页插件
         PageHelper pageHelper = new PageHelper();
         Properties properties = new Properties();
@@ -65,7 +65,7 @@ public class MybatisConfigurer {
         public MapperScannerConfigurer mapperScannerConfigurer() {
             MapperScannerConfigurer mapperScannerConfigurer = new MapperScannerConfigurer();
             mapperScannerConfigurer.setSqlSessionFactoryBeanName("sqlSessionFactoryBean");
-            mapperScannerConfigurer.setBasePackage(ProjectConstant.MAPPER_PACKAGE);
+            mapperScannerConfigurer.setBasePackage(MybatisConstant.MAPPER_PACKAGE);
             //配置通用mappers(tk通用mapper)
             Properties properties = new Properties();
             properties.setProperty("mappers", Mapper.class.getName());
