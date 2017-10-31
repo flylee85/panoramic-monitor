@@ -1,4 +1,4 @@
-package com.cloud.configurer;//package com.cloud.configurer;
+package com.cloud.configure;//package com.cloud.configure;
 
 
 import com.alibaba.fastjson.JSON;

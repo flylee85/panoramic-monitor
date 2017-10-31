@@ -1,4 +1,4 @@
-package com.cloud.configurer;
+package com.cloud.configure;
 
 import com.alibaba.druid.pool.DruidDataSource;
 import org.slf4j.Logger;
@@ -11,11 +11,14 @@ import org.springframework.context.annotation.Primary;
 import javax.sql.DataSource;
 import java.sql.SQLException;
 
+/**
+ * @author sunder
+ * <p>
+ * 可以直接在yml中配置 @PropertySource(value = "classpath:db.properties",ignoreResourceNotFound = true,encoding = "utf-8")
+ */
 @Configuration
-/**可以直接在yml中配置*/
-//@PropertySource(value = "classpath:db.properties",ignoreResourceNotFound = true,encoding = "utf-8")
-public class DruidDBConfig {
-    private Logger logger = LoggerFactory.getLogger(DruidDBConfig.class);
+public class DruidDbConfig {
+    private Logger logger = LoggerFactory.getLogger(DruidDbConfig.class);
 
     @Value("${dev.spring.datasource.url}")
     private String dbUrl;
@@ -71,8 +74,12 @@ public class DruidDBConfig {
     @Value("{dev.spring.datasource.connectionProperties}")
     private String connectionProperties;
 
-    @Bean     //声明其为Bean实例
-    @Primary  //在同样的DataSource中，首先使用被标注的DataSource
+    /**
+     * @return 声明其为Bean实例
+     * 在同样的DataSource中，首先使用被标注的DataSource
+     */
+    @Bean
+    @Primary
     public DataSource dataSource() {
         DruidDataSource datasource = new DruidDataSource();
         datasource.setUrl(dbUrl);

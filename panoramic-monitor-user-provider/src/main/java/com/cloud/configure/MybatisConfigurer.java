@@ -1,4 +1,4 @@
-package com.cloud.configurer;
+package com.cloud.configure;
 
 import com.cloud.constant.MybatisConstant;
 import com.cloud.core.Mapper;
