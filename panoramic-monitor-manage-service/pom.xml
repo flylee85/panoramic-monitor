@@ -12,6 +12,12 @@
 
     <groupId>com.it.sunder</groupId>
     <artifactId>panoramic-monitor-manage-service</artifactId>
-
+<dependencies>
+    <dependency>
+        <groupId>com.it.sunder</groupId>
+        <artifactId>panoramic-monitor-manage-api</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </dependency>
+</dependencies>
 
 </project>
