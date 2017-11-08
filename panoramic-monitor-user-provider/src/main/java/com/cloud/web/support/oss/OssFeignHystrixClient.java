@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 /**
  * 必须配置开启断路器,默认是false
  */
-@FeignClient(name = "taotao-oss-provider", fallback = OssFeignHystrixClient.HystrixClientFallback.class)
+@FeignClient(name = "oss-provider", fallback = OssFeignHystrixClient.HystrixClientFallback.class)
 public interface OssFeignHystrixClient {
 
     @GetMapping("/aliyun/oss/policy")

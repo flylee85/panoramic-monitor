@@ -1,6 +1,6 @@
 package com.cloud.web.controller;
 
-import com.monitor.user.service.UserService;
+import com.panoramic.user.acl.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;

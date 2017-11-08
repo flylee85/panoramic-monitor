@@ -1,6 +1,6 @@
-package com.monitor.user.service.impl;
+package com.panoramic.user.impl;
 
-import com.monitor.user.service.UserService;
+import com.panoramic.user.acl.UserService;
 import org.springframework.stereotype.Service;
 
 @Service("userService")

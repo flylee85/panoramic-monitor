@@ -1,4 +1,4 @@
-package com.monitor.user.service;
+package com.panoramic.user.acl;
 
 /**
  * @author sunder

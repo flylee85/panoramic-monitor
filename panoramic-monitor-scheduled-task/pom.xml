@@ -6,7 +6,6 @@
         <artifactId>panoramic-monitor-parent</artifactId>
         <groupId>com.it.sunder</groupId>
         <version>1.0-SNAPSHOT</version>
-        <relativePath>../panoramic-monitor-parent/pom.xml</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -62,11 +61,6 @@
             <artifactId>mysql-connector-java</artifactId>
         </dependency>
 
-        <!-- log4j 日志模块 -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-log4j</artifactId>
-        </dependency>
         <!-- quartz 模块 -->
         <dependency>
             <groupId>org.quartz-scheduler</groupId>

@@ -15,7 +15,7 @@ public class LoggerUtils {
 	static{
 		notUseJson = new File("/notUseJson.txt").exists();
 	}
-	private static final String tracePackage = "com.gewara";
+	private static final String tracePackage = "com.panoramic";
 	private static int singleMax = 0;			//最大异常次数
 	private static AtomicInteger criticalCount = new AtomicInteger();		//关键异常
 	private static String singleMaxName = "";	//最大异常名称

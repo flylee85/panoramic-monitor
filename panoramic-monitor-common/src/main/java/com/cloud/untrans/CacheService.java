@@ -11,7 +11,7 @@ public interface CacheService extends CacheTools {
     String REGION_TENMIN = "tenMin";
     String REGION_ONEHOUR = "oneHour";
     String REGION_LOGINAUTH = "loginAuth"; // 2hour
-    String REGION_SERVICE = "service"; // 12 hour
+    String REGION_SERVICE = "acl"; // 12 hour
     String REGION_FIVEDAY = "fiveDay"; // 5day
     String REGION_LOGINKEY = "loginKey";
 
