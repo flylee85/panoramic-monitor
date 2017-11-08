@@ -149,11 +149,11 @@ public class LoggerUtils {
 		}
 		return tracedMethod;
 	}
-	public static void main(String[] args) throws IOException {
-		File file = new File("/notUseJson.txt");
-		if(!file.exists()){
-			file.createNewFile();
-			System.out.println("notUseJson File create:" + file.exists());
-		}
-	}
+//	public static void main(String[] args) throws IOException {
+//		File file = new File("/notUseJson.txt");
+//		if(!file.exists()){
+//			file.createNewFile();
+//			System.out.println("notUseJson File create:" + file.exists());
+//		}
+//	}
 }

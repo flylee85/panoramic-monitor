@@ -172,14 +172,14 @@ public class SnowflakeIdWorker {
 	/**
 	 * 测试
 	 */
-	public static void main(String[] args) {
-		long start = System.currentTimeMillis();
-		SnowflakeIdWorker idWorker0 = new SnowflakeIdWorker(0, 0);
-		for (int i = 0; i < 10000000; i++) {
-			long id = idWorker0.nextId();
-			//System.out.println(id);
-		}
-		System.out.println("耗时：" + (System.currentTimeMillis() - start));
-	}
+//	public static void main(String[] args) {
+//		long start = System.currentTimeMillis();
+//		SnowflakeIdWorker idWorker0 = new SnowflakeIdWorker(0, 0);
+//		for (int i = 0; i < 10000000; i++) {
+//			long id = idWorker0.nextId();
+//			//System.out.println(id);
+//		}
+//		System.out.println("耗时：" + (System.currentTimeMillis() - start));
+//	}
 
 }
