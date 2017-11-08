@@ -1,5 +1,5 @@
 server:
-  port: 8000
+  port: 9000
   servlet-path: /
 eureka:
   client:
@@ -25,7 +25,7 @@ dev:
     datasource:
       url: jdbc:mysql://dbserver:3306/panoramic?useUnicode=true&characterEncoding=utf-8
       username: root
-      password: 123
+      password: root
       driverClassName: com.mysql.jdbc.Driver
        # 参数
       initialSize: 5
@@ -50,16 +50,16 @@ logging:
     org.hibernate.type.descriptor.sql.BasicBinder: TRACE
     org.hibernate.type.descriptor.sql.BasicExtractor: TRACE
     com.itmuch.youran.persistence: ERROR
-
-# 热发布插件
-
-spring:
-    devtools:
-        restart:
-            #热部署生效
-          enabled: true
-            #设置重启的目录
-            #additional-paths: src/main/java
-            #classpath目录下的WEB-INF文件夹内容修改不重启
-          exclude: WEB-INF/**
+#
+## 热发布插件
+#
+#spring:
+#    devtools:
+#        restart:
+#            #热部署生效
+#          enabled: true
+#            #设置重启的目录
+#            #additional-paths: src/main/java
+#            #classpath目录下的WEB-INF文件夹内容修改不重启
+#          exclude: WEB-INF/**
 
