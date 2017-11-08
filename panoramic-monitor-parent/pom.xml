@@ -590,85 +590,61 @@
 
 	<build>
 		<finalName>${project.artifactId}</finalName>
-			<plugins>
-				<!-- docker的maven插件，官网：https://github.com/spotify/docker-maven-plugin -->
-				<plugin>
-					<groupId>com.spotify</groupId>
-					<artifactId>docker-maven-plugin</artifactId>
-					<version>0.4.12</version>
-					<configuration>
-						<!-- 注意imageName一定要是符合正则[a-z0-9-_.]的，否则构建不会成功 -->
-						<!-- 详见：https://github.com/spotify/docker-maven-plugin Invalid repository 
-							name ... only [a-z0-9-_.] are allowed -->
-						<imageName>${project.artifactId}</imageName>
-						<baseImage>java</baseImage>
-						<entryPoint>["java", "-jar", "/${project.build.finalName}.jar"]</entryPoint>
-						<resources>
-							<resource>
-								<targetPath>/</targetPath>
-								<directory>${project.build.directory}</directory>
-								<include>${project.build.finalName}.jar</include>
-							</resource>
-						</resources>
-					</configuration>
-				</plugin>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-jar-plugin</artifactId>
-				</plugin>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-war-plugin</artifactId>
-				</plugin>
-
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-compiler-plugin</artifactId>
-					<version>3.2</version>
-					<configuration>
-						<compilerArgument>-parameters</compilerArgument>
-						<source>${java.version}</source>
-						<target>${java.version}</target>
-						<encoding>UTF-8</encoding>
-						<compilerArgument>-proc:none</compilerArgument>
-					</configuration>
-				</plugin>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-install-plugin</artifactId>
-					<version>2.5.2</version>
-				</plugin>
-				<!--<plugin>-->
-					<!--<groupId>org.springframework.boot</groupId>-->
-					<!--<artifactId>spring-boot-maven-plugin</artifactId>-->
-					<!--<configuration>-->
-						<!--<fork>true</fork>-->
-					<!--</configuration>-->
-					<!--<executions>-->
-						<!--<execution>-->
-							<!--<goals>-->
-								<!--<goal>repackage</goal>-->
-							<!--</goals>-->
-						<!--</execution>-->
-					<!--</executions>-->
-				<!--</plugin>-->
-				<plugin>
-					<groupId>org.springframework.boot</groupId>
-					<artifactId>spring-boot-maven-plugin</artifactId>
-					<configuration>
-						<fork>true</fork>
-					</configuration>
-					<!--<dependencies> -->
-					<!--&lt;!&ndash; spring热部署&ndash;&gt; -->
-					<!--&lt;!&ndash; https://mvnrepository.com/artifact/org.springframework/springloaded 
-						&ndash;&gt; -->
-					<!--<dependency> -->
-					<!--<groupId>org.springframework</groupId> -->
-					<!--<artifactId>springloaded</artifactId> -->
-					<!--<version>1.2.4.RELEASE</version> -->
-					<!--</dependency> -->
-					<!--</dependencies> -->
-				</plugin>
-			</plugins>
+		<plugins>
+			<!-- docker的maven插件，官网：https://github.com/spotify/docker-maven-plugin -->
+			<plugin>
+				<groupId>com.spotify</groupId>
+				<artifactId>docker-maven-plugin</artifactId>
+				<version>0.4.12</version>
+				<configuration>
+					<!-- 注意imageName一定要是符合正则[a-z0-9-_.]的，否则构建不会成功 -->
+					<!-- 详见：https://github.com/spotify/docker-maven-plugin    Invalid repository name ... only [a-z0-9-_.] are allowed-->
+					<imageName>${project.artifactId}</imageName>
+					<baseImage>java</baseImage>
+					<entryPoint>["java", "-jar", "/${project.build.finalName}.jar"]</entryPoint>
+					<resources>
+						<resource>
+							<targetPath>/</targetPath>
+							<directory>${project.build.directory}</directory>
+							<include>${project.build.finalName}.jar</include>
+						</resource>
+					</resources>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+			</plugin>
+			<!--<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<fork>true</fork>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>repackage</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>-->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.2</version>
+				<configuration>
+					<compilerArgument>-parameters</compilerArgument>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
+					<encoding>UTF-8</encoding>
+					<compilerArgument>-proc:none</compilerArgument>
+				</configuration>
+			</plugin>
+		</plugins>
 	</build>
 </project>

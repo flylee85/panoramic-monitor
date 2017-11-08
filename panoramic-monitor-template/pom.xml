@@ -11,9 +11,9 @@
 
     <groupId>com.it.sunder</groupId>
     <artifactId>panoramic-monitor-template</artifactId>
-
     <properties>
         <java.version>1.8</java.version>
+        <encoding.version>UTF-8</encoding.version>
         <spring.boot.version>1.5.4.RELEASE</spring.boot.version>
     </properties>
 
@@ -56,11 +56,11 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>com.it.sunder</groupId>
-            <artifactId>panoramic-monitor-common</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>com.it.sunder</groupId>-->
+            <!--<artifactId>panoramic-monitor-common</artifactId>-->
+            <!--<version>1.0-SNAPSHOT</version>-->
+        <!--</dependency>-->
         <!--常用库依赖-->
         <!-- https://mvnrepository.com/artifact/org.springframework/spring-jms -->
         <dependency>

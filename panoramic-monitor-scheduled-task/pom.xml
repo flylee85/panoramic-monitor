@@ -11,7 +11,10 @@
 
     <groupId>com.it.sunder</groupId>
     <artifactId>panoramic-monitor-scheduled-task</artifactId>
-
+    <properties>
+        <java.version>1.8</java.version>
+        <encoding.version>UTF-8</encoding.version>
+    </properties>
     <dependencies>
         <dependency>
             <groupId>com.it.sunder</groupId>

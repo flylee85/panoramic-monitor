@@ -8,7 +8,10 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-
+    <properties>
+        <java.version>1.8</java.version>
+        <encoding.version>UTF-8</encoding.version>
+    </properties>
     <groupId>com.it.sunder</groupId>
     <artifactId>panoramic-monitor-manage</artifactId>
     <packaging>pom</packaging>
