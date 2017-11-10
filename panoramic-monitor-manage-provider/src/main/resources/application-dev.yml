@@ -1,5 +1,5 @@
 server:
-  port: 7000
+  port: 8000
   servlet-path: /
 eureka:
   client:
@@ -37,23 +37,23 @@ dev:
       filters: stat,wall,log4j
       connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
 # 日志配置
-logging:
-  level:
-    root: INFO
-    org.hibernate: INFO
-    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
-    org.hibernate.type.descriptor.sql.BasicExtractor: TRACE
-    com.itmuch.youran.persistence: ERROR
+#logging:
+#  level:
+#    root: INFO
+#    org.hibernate: INFO
+#    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+#    org.hibernate.type.descriptor.sql.BasicExtractor: TRACE
+#    com.itmuch.youran.persistence: ERROR
 
 # 热发布插件
 
-spring:
-    devtools:
-        restart:
-            #热部署生效
-          enabled: true
-            #设置重启的目录
-            #additional-paths: src/main/java
-            #classpath目录下的WEB-INF文件夹内容修改不重启
-          exclude: WEB-INF/**
+#spring:
+#    devtools:
+#        restart:
+#            #热部署生效
+#          enabled: true
+#            #设置重启的目录
+#            #additional-paths: src/main/java
+#            #classpath目录下的WEB-INF文件夹内容修改不重启
+#          exclude: WEB-INF/**
 
