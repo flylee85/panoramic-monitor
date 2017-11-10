@@ -594,7 +594,7 @@
         <module>../panoramic-monitor-risk-warning</module>
         <module>../panoramic-monitor-manage</module>
         <module>../panoramic-monitor-invoke</module>
-        <module>../panoramic-monitor-template</module>
+        
     </modules>
 
     <build>

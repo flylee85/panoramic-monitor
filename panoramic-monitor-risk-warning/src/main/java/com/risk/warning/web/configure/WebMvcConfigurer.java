@@ -1,15 +1,15 @@
 package com.risk.warning.web.configure;//package com.cloud.configure;
 
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.serializer.SerializerFeature;
-import com.alibaba.fastjson.support.config.FastJsonConfig;
-import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter4;
-import com.cloud.api.vo.ResultCode;
-import com.cloud.constant.IpTypeConstants;
-import com.cloud.constant.MarkConstant;
-import com.cloud.constant.ProfilesConstant;
-import com.cloud.core.ServiceException;
+import java.io.IOException;
+import java.nio.charset.Charset;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -27,13 +27,15 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.nio.charset.Charset;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.serializer.SerializerFeature;
+import com.alibaba.fastjson.support.config.FastJsonConfig;
+import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter4;
+import com.cloud.api.vo.ResultCode;
+import com.cloud.constant.IpTypeConstants;
+import com.cloud.constant.MarkConstant;
+import com.cloud.constant.ProfilesConstant;
+import com.cloud.core.ServiceException;
 
 /**
  * @author sunder

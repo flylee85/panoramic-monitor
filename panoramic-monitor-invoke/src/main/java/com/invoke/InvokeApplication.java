@@ -10,7 +10,7 @@ import org.springframework.context.annotation.ComponentScan;
  */
 @SpringBootApplication
 @EnableDiscoveryClient
-@ComponentScan(basePackages = {"com.cloud", "com.invoke", "com"})
+@ComponentScan(basePackages = { "com.invoke", "com"})
 public class InvokeApplication {
     public static void main(String[] args) {
         SpringApplication.run(InvokeApplication.class, args);
