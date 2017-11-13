@@ -3,54 +3,66 @@ package com.invoke.model.material;
 import java.math.BigDecimal;
 import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
  * @author sunder
  * 物料消耗DTO
  */
+@Table(name = "hr_material_consumption_mid")
 public class MaterialConsumption {
 	@Id
     @Column(name = "ID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @Column(name = "TAGNAME")
     private String tagname;
 
+    @Column(name = "MAT_CODE")
     private String matCode;
 
+    @Column(name = "MAT_NAME")
     private String matName;
 
+    @Column(name = "CON_WEIGHT")
     private BigDecimal conWeight;
 
+    @Column(name = "CON_UNIT")
     private String conUnit;
 
+    @Column(name = "CON_TIME")
     private Date conTime;
 
+    @Column(name = "SYS_TIME")
     private Date sysTime;
 
+    @Column(name = "NOTES")
     private String notes;
 
+    @Column(name = "DELETE_FLAG")
     private Integer deleteFlag;
 
+    @Column(name = "RESERVED_INTEGER_1")
     private Integer reservedInteger1;
 
+    @Column(name = "RESERVED_INTEGER_2")
     private Integer reservedInteger2;
 
+    @Column(name = "RESERVED_DATE_1")
     private Date reservedDate1;
 
+    @Column(name = "RESERVED_DATE_2")
     private Date reservedDate2;
 
+    @Column(name = "OP_NAME")
     private String opName;
 
+    @Column(name = "RESERVED_VARCHAR_2")
     private String reservedVarchar2;
 
+    @Column(name = "RESERVED_VARCHAR_3")
     private String reservedVarchar3;
-
-    private String factoryId;
 
     /**
      * @return ID
@@ -290,17 +302,4 @@ public class MaterialConsumption {
         this.reservedVarchar3 = reservedVarchar3;
     }
 
-    /**
-     * @return FACTORY_ID
-     */
-    public String getFactoryId() {
-        return factoryId;
-    }
-
-    /**
-     * @param factoryId
-     */
-    public void setFactoryId(String factoryId) {
-        this.factoryId = factoryId;
-    }
 }

@@ -17,7 +17,7 @@
 		
 		<dependency>
 			<groupId>com.it.sunder</groupId>
-			<artifactId>data-platform-common</artifactId>
+			<artifactId>panoramic-monitor-common</artifactId>
 			<version>1.0-SNAPSHOT</version>
 		</dependency>
         <dependency>
@@ -76,6 +76,11 @@
 			<artifactId>spring-boot-devtools</artifactId>
 			<optional>true</optional> 这个需要为 true 热部署才有效
 		</dependency> -->
+	<dependency>
+		<groupId>mysql</groupId>
+		<artifactId>mysql-connector-java</artifactId>
+		<scope>runtime</scope>
+	</dependency>
 	</dependencies>
 	<build>
 		<plugins>

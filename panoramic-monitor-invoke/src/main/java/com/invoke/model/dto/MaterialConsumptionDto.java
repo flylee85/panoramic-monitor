@@ -42,7 +42,6 @@ public class MaterialConsumptionDto {
 
     private String reservedVarchar3;
 
-    private String factoryId;
 
     /**
      * @return ID
@@ -282,17 +281,4 @@ public class MaterialConsumptionDto {
         this.reservedVarchar3 = reservedVarchar3;
     }
 
-    /**
-     * @return FACTORY_ID
-     */
-    public String getFactoryId() {
-        return factoryId;
-    }
-
-    /**
-     * @param factoryId
-     */
-    public void setFactoryId(String factoryId) {
-        this.factoryId = factoryId;
-    }
 }
