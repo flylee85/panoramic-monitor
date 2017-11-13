@@ -152,9 +152,5 @@
 			<artifactId>dom4j</artifactId>
 		</dependency>
 		<!-- 基础依赖 end -->
-		 <!-- <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>servlet-api</artifactId>
-        </dependency> -->
 	</dependencies>
 </project>

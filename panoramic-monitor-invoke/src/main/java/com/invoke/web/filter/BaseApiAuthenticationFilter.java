@@ -21,7 +21,7 @@ import java.io.IOException;
 /**
  * API2.0身份过滤器
  *
- * @author taiqichao
+ * @author sunder
  */
 public abstract class BaseApiAuthenticationFilter extends GenericFilterBean {
     private static ThreadLocal<ApiAuth> apiAuthLocal = new ThreadLocal<ApiAuth>();
@@ -31,6 +31,7 @@ public abstract class BaseApiAuthenticationFilter extends GenericFilterBean {
         return apiAuthLocal.get();
     }
 
+    @Override
     public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws IOException, ServletException {
         Long cur = System.currentTimeMillis();
         HttpServletRequest request = (HttpServletRequest) req;
