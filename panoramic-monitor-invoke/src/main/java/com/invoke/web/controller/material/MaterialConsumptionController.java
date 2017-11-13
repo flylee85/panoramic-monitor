@@ -34,18 +34,18 @@ public class MaterialConsumptionController {
         return ResultCode.getSuccessReturn(materialConsumption);
     }
 
-    @GetMapping
-    public ResultCode<PageInfo> listAll(Integer page, Integer size) {
-        PageHelper.startPage(page, size);
-        List<MaterialConsumption> list = materialConsumptionService.findAll();
-        PageInfo pageInfo = new PageInfo(list);
-        return ResultCode.getSuccessReturn(pageInfo);
-    }
-
-    @GetMapping
-    public ResultCode<List<MaterialConsumptionDto>> listByDate(String matCode, Date conTime) {
-        List<MaterialConsumptionDto> list = materialConsumptionService.listByDate(matCode, conTime);
-        return ResultCode.getSuccessReturn(list);
-    }
+//    @GetMapping
+//    public ResultCode<PageInfo> listAll(Integer page, Integer size) {
+//        PageHelper.startPage(page, size);
+//        List<MaterialConsumption> list = materialConsumptionService.findAll();
+//        PageInfo pageInfo = new PageInfo(list);
+//        return ResultCode.getSuccessReturn(pageInfo);
+//    }
+//
+//    @GetMapping
+//    public ResultCode<List<MaterialConsumptionDto>> listByDate(String matCode, Date conTime) {
+//        List<MaterialConsumptionDto> list = materialConsumptionService.listByDate(matCode, conTime);
+//        return ResultCode.getSuccessReturn(list);
+//    }
 
 }

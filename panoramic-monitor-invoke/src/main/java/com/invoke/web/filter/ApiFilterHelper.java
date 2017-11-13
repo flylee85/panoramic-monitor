@@ -1,7 +1,7 @@
 package com.invoke.web.filter;
 
-import com.cloud.util.BaseWebUtils;
-import com.cloud.util.WebUtils;
+//import com.cloud.util.BaseWebUtils;
+//import com.cloud.util.WebUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 
@@ -51,16 +51,16 @@ public class ApiFilterHelper {
      * @param
      */
     public void apiLog(HttpServletRequest request, Long calltime, boolean success) {
-        Map<String, String> params = WebUtils.getRequestMap(request);
-        BaseWebUtils.removeSensitiveInfo(params);
-        if (params.containsKey("encryptCode")) {
-            params.put("encryptCode", "****");
-        } else {
-            params.put("encryptCode", "none");
-        }
-        params.put("remoteip", WebUtils.getRemoteIp(request));
-        params.put("uri", request.getRequestURI());
-        params.put("callSuccess", "" + success);
+//        Map<String, String> params = WebUtils.getRequestMap(request);
+//        BaseWebUtils.removeSensitiveInfo(params);
+//        if (params.containsKey("encryptCode")) {
+//            params.put("encryptCode", "****");
+//        } else {
+//            params.put("encryptCode", "none");
+//        }
+//        params.put("remoteip", WebUtils.getRemoteIp(request));
+//        params.put("uri", request.getRequestURI());
+//        params.put("callSuccess", "" + success);
 //		monitorService.addApiLog(params, calltime);
     }
 

@@ -3,11 +3,19 @@ package com.invoke.model.material;
 import java.math.BigDecimal;
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 /**
  * @author sunder
  * 物料消耗DTO
  */
 public class MaterialConsumption {
+	@Id
+    @Column(name = "ID")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     private String tagname;

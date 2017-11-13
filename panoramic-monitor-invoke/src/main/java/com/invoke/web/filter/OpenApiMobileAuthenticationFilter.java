@@ -2,7 +2,7 @@ package com.invoke.web.filter;
 
 import com.cloud.commons.api.ApiSysParamConstants;
 import com.cloud.constant.api.ApiConstant;
-import com.cloud.util.WebUtils;
+//import com.cloud.util.WebUtils;
 import com.invoke.api.acl.ApiMobileService;
 import com.invoke.model.api.ApiUser;
 import com.invoke.model.member.Member;
@@ -41,7 +41,7 @@ public class OpenApiMobileAuthenticationFilter extends GenericFilterBean {
     public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws IOException, ServletException {
         HttpServletRequest request = (HttpServletRequest) req;
         HttpServletResponse response = (HttpServletResponse) res;
-        String callIp = WebUtils.getRemoteIp(request);
+        String callIp ="";// WebUtils.getRemoteIp(request);
         if (!isInnerIp(callIp)) {
             response.sendError(403, "只能内部调用！");
             return;

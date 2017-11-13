@@ -15,7 +15,7 @@ import tk.mybatis.mapper.entity.Condition;
  */
 public abstract class AbstractService<T> implements Service<T> {
 
-	@Autowired
+	@Autowired(required=false)
 	protected Mapper<T> mapper;
 
 	private Class<T> clazz; // 当前泛型真实类型的Class
