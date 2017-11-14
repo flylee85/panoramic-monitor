@@ -10,10 +10,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 /**
  * @author summer
  */
-@Api(value = "pet", description = "the pet API")
+@Api(value = "materialConsumption", description = "the materialConsumption API")
 public interface MaterialConsumptionApi {
     //option的value的内容是这个method的描述，notes是详细描述，response是最终返回的json model。其他可以忽略
-    @ApiOperation(value = "Add a new pet to the store", notes = "", response = Void.class, authorizations = {
+    @ApiOperation(value = "Add a new materialConsumption to the DB", notes = "", response = Void.class, authorizations = {
             @Authorization(value = "petstore_auth", scopes = {
                     @AuthorizationScope(scope = "write:materialConsumptions", description = "modify materialConsumptions in your account"),
                     @AuthorizationScope(scope = "read:materialConsumptions", description = "read your materialConsumptions")

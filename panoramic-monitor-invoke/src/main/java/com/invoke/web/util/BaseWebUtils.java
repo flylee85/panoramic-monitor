@@ -41,7 +41,7 @@ public class BaseWebUtils {
                 ip = StringUtils.trim(ip);
                 if (IpConfig.isGewaServerIp(ip)) {
                     gewaip = ip;
-                } else if (!ip.equals("127.0.0.1") && !ip.equals("localhost")) {
+                } else if (!"127.0.0.1".equals(ip) && !"localhost".equals(ip)) {
                     return ip;
                 }
             }

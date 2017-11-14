@@ -115,6 +115,10 @@
 			<artifactId>slf4j-log4j12</artifactId>
 		</dependency>
 		<!-- log 依赖包 end -->
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpmime</artifactId>
+		</dependency>
 	</dependencies>
 	<build>
 		<plugins>

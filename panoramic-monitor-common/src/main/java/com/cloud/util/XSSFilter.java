@@ -458,7 +458,7 @@ public class XSSFilter {
 	}
 
 	protected String checkEntity(String preamble, String term) {
-		if (!term.equals(";")) {
+		if (!";".equals(term)) {
 			return "&amp;" + preamble;
 		}
 
