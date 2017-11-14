@@ -7,6 +7,10 @@ import com.github.pagehelper.PageInfo;
 import com.invoke.api.material.MaterialConsumptionService;
 import com.invoke.model.dto.MaterialConsumptionDto;
 import com.invoke.model.material.MaterialConsumption;
+
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,13 +25,15 @@ import java.util.List;
  * @author sunder
  * 物料接口
  */
+@Api
 @RestController
 @RequestMapping("/material/consumption")
 public class MaterialConsumptionController {
     @Autowired
     @Qualifier("materialConsumptionService")
     private MaterialConsumptionService materialConsumptionService;
-
+    
+    @ApiOperation(value="测试接口", notes="获取物料详细信息")
     @GetMapping("/{id}")
     public ResultCode<MaterialConsumption> detail(@PathVariable Integer id) {
         MaterialConsumption materialConsumption = materialConsumptionService.findById(id);
@@ -41,9 +47,9 @@ public class MaterialConsumptionController {
         PageInfo pageInfo = new PageInfo(list);
         return ResultCode.getSuccessReturn(pageInfo);
     }
-//
-//    @GetMapping
-//    public ResultCode<List<MaterialConsumptionDto>> listByDate(String matCode, Date conTime) {
+
+//    @GetMapping("/{matCode}/{conTime}")
+//    public ResultCode<List<MaterialConsumptionDto>> listByDate(@PathVariable String matCode, @PathVariable Date conTime) {
 //        List<MaterialConsumptionDto> list = materialConsumptionService.listByDate(matCode, conTime);
 //        return ResultCode.getSuccessReturn(list);
 //    }
