@@ -46,16 +46,26 @@ public abstract class Wrapper
 	private static final String[] OBJECT_METHODS = new String[]{"getClass", "hashCode", "toString", "equals"};
 
 	private static final Wrapper OBJECT_WRAPPER = new Wrapper(){
-		public String[] getMethodNames(){ return OBJECT_METHODS; }
-		public String[] getDeclaredMethodNames(){ return OBJECT_METHODS; }
-		public String[] getReadPropertyNames(){ return EMPTY_STRING_ARRAY; }
-		public String[] getFieldPropertyNames(){return EMPTY_STRING_ARRAY;}
-		public String[] getWritePropertyNames(){ return EMPTY_STRING_ARRAY; }
-		public Class<?> getPropertyType(String pn){ return null; }
-		public Object getPropertyValue(Object instance, String pn) throws NoSuchPropertyException{ throw new NoSuchPropertyException("Property [" + pn + "] not found."); }
-		public void setPropertyValue(Object instance, String pn, Object pv) throws NoSuchPropertyException{ throw new NoSuchPropertyException("Property [" + pn + "] not found."); }
-		public boolean hasProperty(String name){ return false; }
-		public Object invokeMethod(Object instance, String mn, Class<?>[] types, Object[] args) throws NoSuchMethodException
+		@Override
+        public String[] getMethodNames(){ return OBJECT_METHODS; }
+		@Override
+        public String[] getDeclaredMethodNames(){ return OBJECT_METHODS; }
+		@Override
+        public String[] getReadPropertyNames(){ return EMPTY_STRING_ARRAY; }
+		@Override
+        public String[] getFieldPropertyNames(){return EMPTY_STRING_ARRAY;}
+		@Override
+        public String[] getWritePropertyNames(){ return EMPTY_STRING_ARRAY; }
+		@Override
+        public Class<?> getPropertyType(String pn){ return null; }
+		@Override
+        public Object getPropertyValue(Object instance, String pn) throws NoSuchPropertyException{ throw new NoSuchPropertyException("Property [" + pn + "] not found."); }
+		@Override
+        public void setPropertyValue(Object instance, String pn, Object pv) throws NoSuchPropertyException{ throw new NoSuchPropertyException("Property [" + pn + "] not found."); }
+		@Override
+        public boolean hasProperty(String name){ return false; }
+		@Override
+        public Object invokeMethod(Object instance, String mn, Class<?>[] types, Object[] args) throws NoSuchMethodException
 		{
 			if( "getClass".equals(mn) ) {
                 return instance.getClass();

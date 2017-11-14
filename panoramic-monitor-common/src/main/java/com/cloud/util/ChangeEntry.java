@@ -19,12 +19,16 @@ public class ChangeEntry {
 		if(oldObj!=null) {
 			oldMap = BeanUtil.getBeanMap(oldObj);
 		}
-		if(oldMap==null) oldMap = new HashMap<String, Object>();
+		if(oldMap==null) {
+            oldMap = new HashMap<String, Object>();
+        }
 	}
 	public Map<String, String> getChangeMap(Object newObj){
 		Map<String, ?> tmpMap = new HashMap<String, Object>(oldMap);
 		Map<String, ?> newMap = BeanUtil.getBeanMap(newObj);
-		if(newMap ==null) newMap = new HashMap<String, Object>();
+		if(newMap ==null) {
+            newMap = new HashMap<String, Object>();
+        }
 		Map<String, String> changeMap = new HashMap<String, String>();
 		List<String> keySet = new ArrayList<String>();
 		keySet.addAll(tmpMap.keySet());
@@ -41,16 +45,28 @@ public class ChangeEntry {
 		return changeMap;
 	}
 	public String getChangeMap(Map<String, String> changeMap){
-		if(changeMap.isEmpty()) return "";
+		if(changeMap.isEmpty()) {
+            return "";
+        }
 		String change = changeMap.toString();
 		return change;
 	}
 	public String getStringValue(Object value){
-		if(value==null) return "";
-		if(value instanceof String) return (String) value;
-		if(ClassUtils.isPrimitiveOrWrapper(value.getClass())) return ""+value;
-		if(value instanceof Timestamp) return DateUtil.formatTimestamp((Timestamp) value);
-		if(value instanceof Date) return DateUtil.formatDate((Date)value);
+		if(value==null) {
+            return "";
+        }
+		if(value instanceof String) {
+            return (String) value;
+        }
+		if(ClassUtils.isPrimitiveOrWrapper(value.getClass())) {
+            return "" + value;
+        }
+		if(value instanceof Timestamp) {
+            return DateUtil.formatTimestamp((Timestamp) value);
+        }
+		if(value instanceof Date) {
+            return DateUtil.formatDate((Date) value);
+        }
 		return ""+value;
 	}
 }

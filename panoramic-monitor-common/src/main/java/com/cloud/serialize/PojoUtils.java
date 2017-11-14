@@ -199,6 +199,7 @@ public class PojoUtils {
             this.map = map;
         }
 
+        @Override
         @SuppressWarnings("unchecked")
         public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
             if (method.getDeclaringClass() == Object.class) {

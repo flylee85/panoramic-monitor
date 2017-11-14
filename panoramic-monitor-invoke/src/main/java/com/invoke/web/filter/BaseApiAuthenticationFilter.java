@@ -3,10 +3,13 @@ package com.invoke.web.filter;
 import com.cloud.commons.api.ApiSysParamConstants;
 import com.cloud.commons.sign.Sign;
 import com.cloud.constant.api.ApiConstant;
+import com.invoke.api.acl.ApiMobileService;
 import com.invoke.model.api.ApiUser;
 import com.invoke.web.controller.api.ApiAuth;
 import org.apache.commons.lang.StringUtils;
 import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.filter.GenericFilterBean;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
@@ -26,7 +29,9 @@ import java.io.IOException;
 public abstract class BaseApiAuthenticationFilter extends GenericFilterBean {
     private static ThreadLocal<ApiAuth> apiAuthLocal = new ThreadLocal<ApiAuth>();
     protected ApiFilterHelper apiFilterHelper;
-
+    @Autowired
+    @Qualifier("apiMobileService")
+    private ApiMobileService apiMobileService;
     public static ApiAuth getApiAuth() {
         return apiAuthLocal.get();
     }
@@ -42,8 +47,7 @@ public abstract class BaseApiAuthenticationFilter extends GenericFilterBean {
         }
         String appkey = request.getParameter(ApiSysParamConstants.APPKEY);
         //用户身份校验
-//        ApiUser apiUser = apiMobileService.getApiUserByAppkey(appkey);
-        ApiUser apiUser = new ApiUser();
+        ApiUser apiUser = apiMobileService.getApiUserByAppkey(appkey);
         if (apiUser == null) {
             ApiFilterHelper.writeErrorResponse(response, ApiConstant.CODE_PARTNER_NOT_EXISTS, "用户不存在");
             apiFilterHelper.apiLog(request, cur, false);//记录失败日志

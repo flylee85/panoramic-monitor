@@ -3,7 +3,6 @@ package com.invoke.web.filter;
 import com.cloud.commons.api.ApiSysParamConstants;
 import com.cloud.commons.sign.Sign;
 import com.cloud.constant.api.ApiConstant;
-//import com.cloud.util.WebUtils;
 import com.invoke.model.api.ApiUser;
 import com.invoke.web.controller.api.ApiAuth;
 import org.apache.commons.lang.StringUtils;
@@ -19,6 +18,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+
+/**
+ * @author summer
+ */
 public class InnerApiAuthFilter extends GenericFilterBean {
     private static ThreadLocal<ApiAuth> apiAuthLocal = new ThreadLocal<ApiAuth>();
     private String[] innerIpList;

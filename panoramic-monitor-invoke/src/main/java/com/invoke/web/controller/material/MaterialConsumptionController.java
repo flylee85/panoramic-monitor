@@ -33,13 +33,13 @@ public class MaterialConsumptionController {
     @Qualifier("materialConsumptionService")
     private MaterialConsumptionService materialConsumptionService;
     
-    @ApiOperation(value="测试接口", notes="获取物料详细信息")
+    @ApiOperation(value="测试接口-物料详情", notes="获取物料详细信息")
     @GetMapping("/{id}")
     public ResultCode<MaterialConsumption> detail(@PathVariable Integer id) {
         MaterialConsumption materialConsumption = materialConsumptionService.findById(id);
         return ResultCode.getSuccessReturn(materialConsumption);
     }
-
+    @ApiOperation(value="测试接口-物料分页查询", notes="获取物料分页查询")
     @GetMapping("/{page}/{size}")
     public ResultCode<PageInfo> listAll(@PathVariable Integer page, @PathVariable Integer size) {
         PageHelper.startPage(page, size);

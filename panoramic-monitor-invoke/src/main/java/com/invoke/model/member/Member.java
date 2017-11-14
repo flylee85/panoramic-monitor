@@ -23,7 +23,9 @@ public class Member extends BaseUser {
     private List<GrantedAuthority> tmpAuth;
     @Override
     public final List<GrantedAuthority> getAuthorities() {
-        if(tmpAuth!=null) return tmpAuth;
+        if(tmpAuth!=null) {
+            return tmpAuth;
+        }
         tmpAuth = new ArrayList<GrantedAuthority>();
         tmpAuth.addAll(AuthorityUtils.createAuthorityList(roles.split(",")));
         return tmpAuth;
@@ -44,6 +46,7 @@ public class Member extends BaseUser {
         this.nickname = nickname;
         this.bindStatus = "N";
     }
+    @Override
     public Long getId() {
         return id;
     }
@@ -62,6 +65,7 @@ public class Member extends BaseUser {
     public void setEmail(String email) {
         this.email = email;
     }
+    @Override
     public String getPassword() {
         return password;
     }
@@ -103,8 +107,9 @@ public class Member extends BaseUser {
         return StringUtils.isBlank(email)?mobile:email;
     }
     public String getSmobile() {
-        if(StringUtils.isNotBlank(mobile)&&mobile.length()==11)
+        if(StringUtils.isNotBlank(mobile)&&mobile.length()==11) {
             return mobile.substring(0, 3) + "****" + mobile.substring(7, 11);
+        }
         return "";
     }
     @Override

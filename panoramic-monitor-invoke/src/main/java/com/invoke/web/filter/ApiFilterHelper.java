@@ -1,7 +1,8 @@
 package com.invoke.web.filter;
 
-//import com.cloud.util.BaseWebUtils;
-//import com.cloud.util.WebUtils;
+
+import com.invoke.web.util.BaseWebUtils;
+import com.invoke.web.util.WebUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 
@@ -11,7 +12,9 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Map;
 import java.util.TreeMap;
-
+/**
+ * @author summer
+ */
 public class ApiFilterHelper {
     public ApiFilterHelper() {
     }
@@ -51,16 +54,16 @@ public class ApiFilterHelper {
      * @param
      */
     public void apiLog(HttpServletRequest request, Long calltime, boolean success) {
-//        Map<String, String> params = WebUtils.getRequestMap(request);
-//        BaseWebUtils.removeSensitiveInfo(params);
-//        if (params.containsKey("encryptCode")) {
-//            params.put("encryptCode", "****");
-//        } else {
-//            params.put("encryptCode", "none");
-//        }
-//        params.put("remoteip", WebUtils.getRemoteIp(request));
-//        params.put("uri", request.getRequestURI());
-//        params.put("callSuccess", "" + success);
+        Map<String, String> params = WebUtils.getRequestMap(request);
+        BaseWebUtils.removeSensitiveInfo(params);
+        if (params.containsKey("encryptCode")) {
+            params.put("encryptCode", "****");
+        } else {
+            params.put("encryptCode", "none");
+        }
+        params.put("remoteip", WebUtils.getRemoteIp(request));
+        params.put("uri", request.getRequestURI());
+        params.put("callSuccess", "" + success);
 //		monitorService.addApiLog(params, calltime);
     }
 
