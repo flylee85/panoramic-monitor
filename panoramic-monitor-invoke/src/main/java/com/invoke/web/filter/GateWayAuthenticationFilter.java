@@ -35,8 +35,11 @@ public class GateWayAuthenticationFilter extends GenericFilterBean {
 			throws IOException, ServletException {
 		HttpServletRequest request = (HttpServletRequest) req;
 		HttpServletResponse response = (HttpServletResponse) res;
-		Map<String, String> params = Maps.newHashMap();
+		Map<String, String> params = null;
 		params = (Map<String, String>) request.getAttribute("params");
+		if (null == params) {
+			params = Maps.newHashMap();
+		}
 		String sign = params.get("sign") + "";
 		String mehtod = params.get("method") + "";
 		// 移除sign再进行验签，原始数据验签

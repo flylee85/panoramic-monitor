@@ -36,5 +36,5 @@ public interface ApiConfigure {
             "k+HV5C7qQMbjMQURB2/1slQexiVAS0wJXEv9aCyhjA2YM36pESMWt+0qcpB3Z3Qf\n" +
             "sDL+SMAVKbgpJQ==";
     String GATEWAY = "http://localhost:8000/gateway";
-    String QUERYURL = "GET /material/consumption/";
+    String QUERYURL = "http://localhost:8000/material/consumption/";
 }

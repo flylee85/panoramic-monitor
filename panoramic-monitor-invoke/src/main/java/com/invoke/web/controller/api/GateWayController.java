@@ -1,6 +1,19 @@
 package com.invoke.web.controller.api;
 
-import com.cloud.util.*;
+import java.util.Map;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.cloud.util.DateUtil;
+import com.cloud.util.HttpResult;
+import com.cloud.util.HttpUtils;
+import com.cloud.util.JsonUtils;
+import com.cloud.util.LoggerUtils;
+import com.cloud.util.TLogger;
 import com.google.common.collect.Maps;
 import com.invoke.api.api.ApiConfigure;
 import com.invoke.util.SignUtil;
@@ -8,14 +21,6 @@ import com.invoke.web.util.WebUtils;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-
-import java.util.Map;
 
 /**
  * @author summer api对外接口网关
@@ -27,7 +32,7 @@ public class GateWayController {
 	protected static final transient TLogger dbLogger = LoggerUtils.getLogger(GateWayController.class);
 
 	@ApiOperation(value = "GET 请求网关", notes = "GET 请求网关授权验证")
-	@GetMapping
+	@PostMapping
 	public HttpResult getApiAuth(@RequestParam Map<String, String> params) {
 		String sign = params.get("sign") + "";
 		String mehtod = params.get("method") + "";
@@ -61,7 +66,7 @@ public class GateWayController {
 		params.put("biz_content", JsonUtils.writeMapToJson(bizMap));
 		String sign = SignUtil.getSign(params, ApiConfigure.PRIVATEKEY);
 		params.put("sign", sign);
-		HttpResult httpResult = HttpUtils.getUrlAsString(ApiConfigure.GATEWAY, params);
+		HttpResult httpResult = HttpUtils.postUrlAsString(ApiConfigure.GATEWAY, params);
 		return httpResult;
 	}
 }
