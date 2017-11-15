@@ -1,6 +1,10 @@
 server:
   port: 9000
   servlet-path: /
+security:
+    user:
+        name: root
+        password: password
 eureka:
   client:
     serviceUrl:
