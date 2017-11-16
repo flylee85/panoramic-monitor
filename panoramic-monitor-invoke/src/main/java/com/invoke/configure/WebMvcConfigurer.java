@@ -1,21 +1,24 @@
 package com.invoke.configure;//package com.cloud.configure;
 
-import java.io.IOException;
-import java.nio.charset.Charset;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.serializer.SerializerFeature;
+import com.alibaba.fastjson.support.config.FastJsonConfig;
+import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter4;
+import com.cloud.api.vo.ResultCode;
+import com.cloud.constant.IpTypeConstants;
+import com.cloud.constant.MarkConstant;
+import com.cloud.constant.ProfilesConstant;
+import com.cloud.core.ServiceException;
+import com.invoke.web.interceptor.GateWayAuthenticationInterceptor;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.converter.HttpMessageConverter;
+import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerExceptionResolver;
 import org.springframework.web.servlet.ModelAndView;
@@ -26,15 +29,14 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.serializer.SerializerFeature;
-import com.alibaba.fastjson.support.config.FastJsonConfig;
-import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter4;
-import com.cloud.api.vo.ResultCode;
-import com.cloud.constant.IpTypeConstants;
-import com.cloud.constant.MarkConstant;
-import com.cloud.constant.ProfilesConstant;
-import com.cloud.core.ServiceException;
+import javax.servlet.Filter;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.nio.charset.Charset;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 /**
  * @author sunder Spring MVC 配置
@@ -62,6 +64,14 @@ public class WebMvcConfigurer extends WebMvcConfigurerAdapter {
 		converter.setFastJsonConfig(config);
 		converter.setDefaultCharset(Charset.forName("UTF-8"));
 		converters.add(converter);
+	}
+
+	@Bean
+	public Filter characterEncodingFilter() {
+		CharacterEncodingFilter characterEncodingFilter = new CharacterEncodingFilter();
+		characterEncodingFilter.setEncoding("UTF-8");
+		characterEncodingFilter.setForceEncoding(true);
+		return characterEncodingFilter;
 	}
 
 	// 统一异常处理
@@ -106,7 +116,7 @@ public class WebMvcConfigurer extends WebMvcConfigurerAdapter {
 	// 解决跨域问题
 	@Override
 	public void addCorsMappings(CorsRegistry registry) {
-		// registry.addMapping("/**");
+		registry.addMapping("/**").maxAge(3000).allowCredentials(false);
 	}
 
 	@Override
@@ -114,6 +124,8 @@ public class WebMvcConfigurer extends WebMvcConfigurerAdapter {
 		registry.addResourceHandler("/img/**").addResourceLocations("classpath:/static/img/");
 		registry.addResourceHandler("/css/**").addResourceLocations("classpath:/static/css/");
 		registry.addResourceHandler("/js/**").addResourceLocations("classpath:/static/js/");
+		registry.addResourceHandler("swagger-ui.html").addResourceLocations("classpath:/META-INF/resources/");
+		registry.addResourceHandler("/webjars/**").addResourceLocations("classpath:/META-INF/resources/webjars/");
 		super.addResourceHandlers(registry);
 	}
 
@@ -141,6 +153,13 @@ public class WebMvcConfigurer extends WebMvcConfigurerAdapter {
 				}
 			});
 		}
+		registry.addInterceptor(new GateWayAuthenticationInterceptor()).addPathPatterns("/**")
+				.excludePathPatterns("/configuration/**").excludePathPatterns("/v2/api-docs/**")
+				.excludePathPatterns("/webjars/**").excludePathPatterns("/swagger-ui/**")
+				.excludePathPatterns("/swagger-resources/**")
+				//测试模拟请求，生成sign，暂时不拦截，不需要验签
+				.excludePathPatterns("/gateway/test/**");
+		super.addInterceptors(registry);
 	}
 
 	private void responseResult(HttpServletResponse response, ResultCode result) {
@@ -177,7 +196,6 @@ public class WebMvcConfigurer extends WebMvcConfigurerAdapter {
 		}
 
 		linkString = linkString.substring(0, linkString.length() - 1);
-		// 自己修改
 		String key = "Potato";
 		String sign = DigestUtils.md5Hex(linkString + key);
 

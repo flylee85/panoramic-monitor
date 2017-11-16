@@ -51,10 +51,7 @@ import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.util.*;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
+import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -128,8 +125,6 @@ public class HttpUtils {
         cm.setMaxTotal(MAX_TOTAL_CONNECTIONS);
         cm.setDefaultMaxPerRoute(MAX_ROUTE_CONNECTIONS);
         scheduExec = Executors.newScheduledThreadPool(3);
-//		scheduExec = new ThreadPoolExecutor(1, 2, EXECUTOR_KEEP_ALIVE_TIME,
-//				TimeUnit.MILLISECONDS, new LinkedBlockingQueue(), new TExecutorThreadFactory(threadNamePre));
         scheduExec.scheduleWithFixedDelay(new LogHostCountCommand(), 1, 1200, TimeUnit.SECONDS);// 每20分钟执行
         scheduExec.scheduleWithFixedDelay(new IdleConnectionEvictorCommand(), 1, 300, TimeUnit.SECONDS);// 每5分钟执行
     }

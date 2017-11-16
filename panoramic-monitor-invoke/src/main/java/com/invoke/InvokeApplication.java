@@ -1,5 +1,7 @@
 package com.invoke;
 
+import javax.servlet.DispatcherType;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
@@ -20,14 +22,15 @@ public class InvokeApplication {
 		SpringApplication.run(InvokeApplication.class, args);
 	}
 
-//	@Bean
-//	public FilterRegistrationBean gateWayAuthenticationFilter() {
-//		FilterRegistrationBean registration = new FilterRegistrationBean();
-//		registration.setFilter(new GateWayAuthenticationFilter());
-//		registration.addUrlPatterns("/gateway/*");
-//		registration.addInitParameter("params", "paramValues");
-//		registration.setName("GateWayAuthenticationFilter");
-//		registration.setOrder(1);
-//		return registration;
-//	}
+	@Bean
+	public FilterRegistrationBean gateWayAuthenticationFilter() {
+		FilterRegistrationBean registration = new FilterRegistrationBean();
+		registration.setFilter(new GateWayAuthenticationFilter());
+		registration.addUrlPatterns("/*");
+		registration.setDispatcherTypes(DispatcherType.REQUEST);
+		registration.addInitParameter("params", "paramValues");
+		registration.setName("GateWayAuthenticationFilter");
+		registration.setOrder(1);
+		return registration;
+	}
 }
