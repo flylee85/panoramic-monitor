@@ -31,29 +31,17 @@ public class GateWayAuthenticationInterceptor implements HandlerInterceptor {
 		if (ApiConfigure.GATEWAY_CALL_BACK.equals(req.getServletPath())) {
 			return true;
 		}
-		if (WebUtils.HTTP_REQUEST_METHOD.equalsIgnoreCase(req.getMethod())) {
-			DB_LOGGER.error("验证签名失败:" + JsonUtils.writeMapToJson(params));
-			res.sendRedirect(BaseWebUtils.getRequestNamePortPath(req) + ApiConfigure.GATEWAY_CALL_BACK);
-			return false;
-		} else {
-			// post封装请求你参数
-			params = WebUtils.getRequestMap(req);
-		}
+		params = WebUtils.getRequestMap(req);
 		if (null == params) {
 			params = Maps.newHashMap();
 		}
-		//验签通过生成token，用于内部请求转发使用，一次失效
-		if (StringUtils.isNotBlank(params.get(WebUtils.HTTP_REQUEST_TOKEN))) {
-			String token = params.get(WebUtils.HTTP_REQUEST_TOKEN);
-			String sessionToken = (String) req.getSession().getAttribute(WebUtils.HTTP_REQUEST_TOKEN);
-			if (StringUtils.equalsIgnoreCase(token, sessionToken)) {
-				req.getSession().invalidate();
-				return true;
-			}
+		// 验签通过生成token，用于内部请求转发使用，一次失效
+		String sessionToken = (String) req.getSession().getAttribute(WebUtils.HTTP_REQUEST_TOKEN);
+		if (StringUtils.isNotBlank(sessionToken)) {
+			req.getSession().invalidate();
+			return true;
 		}
-
 		String sign = params.get("sign") + "";
-		String mehtod = params.get("method") + "";
 		// 移除sign再进行验签，原始数据验签
 		params.remove("sign");
 		String content = WebUtils.joinParams(params, true);
@@ -64,8 +52,7 @@ public class GateWayAuthenticationInterceptor implements HandlerInterceptor {
 			return false;
 		}
 		String token = UUID.randomUUID().toString();
-		req.setAttribute(WebUtils.HTTP_REQUEST_TOKEN, token);
-		//后期采用redis优化
+		// 后期采用redis优化
 		req.getSession().setAttribute(WebUtils.HTTP_REQUEST_TOKEN, token);
 		return true;
 	}

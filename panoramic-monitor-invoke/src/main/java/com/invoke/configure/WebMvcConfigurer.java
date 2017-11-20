@@ -158,7 +158,7 @@ public class WebMvcConfigurer extends WebMvcConfigurerAdapter {
 				.excludePathPatterns("/webjars/**").excludePathPatterns("/swagger-ui/**")
 				.excludePathPatterns("/swagger-resources/**")
 				//测试模拟请求，生成sign，暂时不拦截，不需要验签
-				.excludePathPatterns("/gateway/test/**");
+				.excludePathPatterns("/gateway/sign/**");
 		super.addInterceptors(registry);
 	}
 

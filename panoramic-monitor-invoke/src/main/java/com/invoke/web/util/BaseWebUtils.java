@@ -23,7 +23,8 @@ public class BaseWebUtils {
 	private static final List<String> DEFAULT_SENSITIVE = Arrays.asList("mobile", "pass", "sign", "encode", "token",
 			"check", "card");
 	private static final List<String> IGNORE_KEYS = Arrays.asList("mobileType");
-	public static final String HTTP_REQUEST_METHOD = "get";
+	public static final String HTTP_REQUEST_METHOD_GET = "get";
+	public static final String HTTP_REQUEST_METHOD_POST = "post";
 	public static final String HTTP_REQUEST_TOKEN = "token";
 	private static Pattern QUERY_MAP_PATTERN = Pattern.compile("&?([^=&]+)=");
 
@@ -33,6 +34,7 @@ public class BaseWebUtils {
 	public static HttpSession getSession(HttpServletRequest request) {
 		return request.getSession();
 	}
+
 	public static final String getRemoteIp(HttpServletRequest request) {
 		String xfwd = request.getHeader("X-Forwarded-For");
 		String result = getRemoteIpFromXfwd(xfwd);
@@ -61,10 +63,14 @@ public class BaseWebUtils {
 	/**
 	 * 
 	 * @param req
-	 * @return http://localhost:8080/Example
+	 * @return http://localhost:8080/Example/
 	 */
 	public static final String getRequestNamePortPath(HttpServletRequest req) {
-		return "http://" + req.getServerName() + ":" + req.getServerPort() + req.getContextPath();
+		String contextPath = req.getContextPath();
+		if (!StringUtils.endsWith(contextPath, "/")) {
+			contextPath = contextPath + "/";
+		}
+		return "http://" + req.getServerName() + ":" + req.getServerPort() + contextPath;
 	}
 
 	/**
@@ -79,6 +85,21 @@ public class BaseWebUtils {
 	public static final boolean isLocalRequest(HttpServletRequest request) {
 		String ip = getRemoteIp(request);
 		return IpConfig.isLocalIp(ip);
+	}
+
+	/**
+	 * 是否是 GET 请求
+	 * 
+	 * @param request
+	 * @return
+	 */
+	public static final boolean isGetRequest(HttpServletRequest request) {
+		String method = request.getMethod();
+		return HTTP_REQUEST_METHOD_GET.equalsIgnoreCase(method);
+	}
+	public static final boolean isPostRequest(HttpServletRequest request) {
+		String method = request.getMethod();
+		return HTTP_REQUEST_METHOD_POST.equalsIgnoreCase(method);
 	}
 
 	public static final void writeJsonResponse(HttpServletResponse res, boolean success, String retval) {
