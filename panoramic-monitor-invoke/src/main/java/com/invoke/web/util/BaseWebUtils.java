@@ -18,8 +18,11 @@ import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * @author summer
+ */
 public class BaseWebUtils {
-	protected static final transient TLogger dbLogger = LoggerUtils.getLogger(BaseWebUtils.class);
+	protected static final transient TLogger DB_LOGGER = LoggerUtils.getLogger(BaseWebUtils.class);
 	private static final List<String> DEFAULT_SENSITIVE = Arrays.asList("mobile", "pass", "sign", "encode", "token",
 			"check", "card");
 	private static final List<String> IGNORE_KEYS = Arrays.asList("mobileType");
@@ -376,7 +379,7 @@ public class BaseWebUtils {
 							map.put(key, value);
 						}
 					} catch (UnsupportedEncodingException var9) {
-						dbLogger.error("", var9);
+						DB_LOGGER.error("", var9);
 					}
 				}
 
@@ -391,7 +394,7 @@ public class BaseWebUtils {
 						map.put(key, value);
 					}
 				} catch (UnsupportedEncodingException var8) {
-					dbLogger.error("", var8);
+					DB_LOGGER.error("", var8);
 				}
 			}
 

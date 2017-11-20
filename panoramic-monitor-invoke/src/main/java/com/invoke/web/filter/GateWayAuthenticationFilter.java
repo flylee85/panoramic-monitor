@@ -23,7 +23,7 @@ import java.util.Map;
  * @author summer 签名验签过滤器
  */
 public class GateWayAuthenticationFilter extends GenericFilterBean {
-    protected static final transient TLogger dbLogger = LoggerUtils.getLogger(GateWayController.class);
+    protected static final transient TLogger DB_LOGGER = LoggerUtils.getLogger(GateWayController.class);
 
     @Override
     public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain)

@@ -35,7 +35,7 @@ public interface ApiConfigure {
             "xrZRxFL7H1vFSVweWjSUoF8hGO5iD3FmcWYh2b/gwflobsV3jF3YxwJAeAujTHoT\n" +
             "k+HV5C7qQMbjMQURB2/1slQexiVAS0wJXEv9aCyhjA2YM36pESMWt+0qcpB3Z3Qf\n" +
             "sDL+SMAVKbgpJQ==";
-    String GATEWAY = "/gateway";//http://localhost:8000/gateway/apiAuthFailure
-    String GATEWAY_CALL_BACK = "gateway/apiAuthFailure";
-    String QUERYURL = "material/consumption";
+    String GATEWAY = "/gateway";
+    String GATEWAY_CALL_BACK = "/gateway/apiAuthFailure";
+    String QUERYURL = "/material/consumption";
 }

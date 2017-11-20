@@ -19,7 +19,7 @@ public class Config implements InitializingBean {
     private static boolean isHoutai = false;
     private static boolean isPreEnv = false;
     private static boolean isTestEnv = false;
-    private static final Properties props = new Properties();
+    private static final Properties PROPS = new Properties();
     private Map<String, String> configMap = new HashMap();
     private Map<String, Object> pageMap = new HashMap();
     private static Map pageTools;
@@ -28,15 +28,15 @@ public class Config implements InitializingBean {
 
     static {
         try {
-            props.load(Config.class.getClassLoader().getResourceAsStream("gewa-global.properties"));
+            PROPS.load(Config.class.getClassLoader().getResourceAsStream("gewa-global.properties"));
         } catch (IOException var1) {
             throw new TraceErrorException("", var1);
         }
 
-        SYSTEMID = props.getProperty("systemid");
+        SYSTEMID = PROPS.getProperty("systemid");
         DEPLOYID = SYSTEMID + "-" + SystemUtils.getShortHostname(IpConfig.getHostname());
-        if (StringUtils.isNotBlank(props.getProperty("sessionCookieName"))) {
-            SESSION_COOKIE_NAME = props.getProperty("sessionCookieName");
+        if (StringUtils.isNotBlank(PROPS.getProperty("sessionCookieName"))) {
+            SESSION_COOKIE_NAME = PROPS.getProperty("sessionCookieName");
         } else {
             SESSION_COOKIE_NAME = SYSTEMID.toLowerCase() + "_uskey_";
         }
@@ -79,7 +79,7 @@ public class Config implements InitializingBean {
     }
 
     public String getGlobalProp(String key) {
-        return props.getProperty(key);
+        return PROPS.getProperty(key);
     }
 
     public String getString(String key) {

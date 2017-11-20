@@ -12,8 +12,6 @@ import java.security.Signature;
 import java.security.spec.PKCS8EncodedKeySpec;
 import java.security.spec.X509EncodedKeySpec;
 import java.util.Map;
-import java.security.spec.PKCS8EncodedKeySpec;
-import java.security.spec.X509EncodedKeySpec;
 
 /**
  * @author summer
@@ -21,7 +19,7 @@ import java.security.spec.X509EncodedKeySpec;
 public class SignUtil {
 	public static final String SIGN_ALGORITHMS = "SHA1WithRSA";
 	public static final String CHARSET = "utf-8";
-	private static final transient TLogger dbLogger = LoggerUtils.getLogger(SignUtil.class);
+	private static final transient TLogger DB_LOGGER = LoggerUtils.getLogger(SignUtil.class);
 	private static final String RSA = "RSA";
 
 	/**
@@ -62,7 +60,7 @@ public class SignUtil {
 			signature.update(content.getBytes(encoding));
 			return signature.verify(Base64.decodeBase64(sign));
 		} catch (Exception e) {
-			dbLogger.warn("校验签名出错", e);
+			DB_LOGGER.warn("校验签名出错", e);
 		}
 		return false;
 	}
@@ -90,7 +88,7 @@ public class SignUtil {
 			byte[] signed = signature.sign();
 			return new String(Base64.encodeBase64(signed));
 		} catch (Exception e) {
-			dbLogger.error("", e);
+			DB_LOGGER.error("", e);
 			return "";
 		}
 	}
@@ -112,7 +110,7 @@ public class SignUtil {
 			byte[] signed = signature.sign();
 			return new String(Base64.encodeBase64(signed));
 		} catch (Exception e) {
-			dbLogger.error("", e);
+			DB_LOGGER.error("", e);
 			return "";
 		}
 	}
