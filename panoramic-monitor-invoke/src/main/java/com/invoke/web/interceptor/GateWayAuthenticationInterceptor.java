@@ -33,14 +33,14 @@ public class GateWayAuthenticationInterceptor implements HandlerInterceptor {
         if (null == params) {
             params = Maps.newHashMap();
         }
+        String sign = params.get("sign") + "";
         // 验签通过生成token，用于内部请求转发使用，一次失效
         // 后期优化，需要通过传参进行双重检验
-        String sessionToken = (String) req.getSession().getAttribute(WebUtils.HTTP_REQUEST_TOKEN);
+        String sessionToken = (String) req.getSession().getAttribute(sign);
         if (StringUtils.isNotBlank(sessionToken)) {
-            req.getSession().invalidate();
+            req.getSession().setAttribute(sign, null);
             return true;
         }
-        String sign = params.get("sign") + "";
         // 移除sign再进行验签，原始数据验签
         params.remove("sign");
         String content = WebUtils.joinParams(params, true);
@@ -52,7 +52,7 @@ public class GateWayAuthenticationInterceptor implements HandlerInterceptor {
         }
         String token = UUID.randomUUID().toString();
         // 后期采用redis优化
-        req.getSession().setAttribute(WebUtils.HTTP_REQUEST_TOKEN, token);
+        req.getSession().setAttribute(sign, token);
         return true;
     }
 

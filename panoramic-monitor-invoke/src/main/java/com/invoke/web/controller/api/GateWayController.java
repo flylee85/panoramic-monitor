@@ -1,5 +1,6 @@
 package com.invoke.web.controller.api;
 
+import com.alibaba.fastjson.JSON;
 import com.cloud.util.*;
 import com.google.common.collect.Maps;
 import com.invoke.api.api.ApiConfigure;
@@ -32,7 +33,7 @@ public class GateWayController {
             params = WebUtils.getRequestMap(req);
         }
         StringBuffer sb = new StringBuffer();
-        final String method = params.get("method") + "";
+        String method = params.get("method") + "";
         String biz_content = params.get("biz_content");
         Map bizMap = JsonUtils.readJsonToMap(biz_content);
         if (null != bizMap && bizMap.size() > 0) {
@@ -50,7 +51,9 @@ public class GateWayController {
     }
 
     @RequestMapping("/gateway/apiAuthFailure")
-    public HttpResult getApiAuthFailure(@RequestParam Map<String, String> params) {
+    public HttpResult getApiAuthFailure(@RequestParam Map<String, String> params, HttpServletRequest req, HttpServletResponse resp) {
+        DB_LOGGER.warn("签名认证失败，请求接口：{}，请求IP：{}，请求参数：{}" + req.getRequestURI() + WebUtils.getIpAddress(req) +
+                JSON.toJSONString(req.getParameterMap()));
         return HttpResult.getFailure("签名验证失败", 401, JsonUtils.writeMapToJson(params));
     }
 
