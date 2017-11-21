@@ -1,5 +1,4 @@
-package com.cloud.model.acl;
-
+package com.monitor.model.acl;
 
 import com.cloud.model.BaseObject;
 import org.springframework.security.core.GrantedAuthority;
@@ -10,9 +9,11 @@ import java.util.List;
 /**
  * @author summer
  */
-public abstract class BaseUser extends BaseObject implements UserDetails {
-    public static final String USER_TYPE_MEMBER = "user_type_member";
+public abstract class AbstractUser extends BaseObject implements UserDetails {
     private static final long serialVersionUID = 6078080839080249253L;
+
+    public AbstractUser() {
+    }
 
     @Override
     public final boolean isAccountNonExpired() {
@@ -29,10 +30,9 @@ public abstract class BaseUser extends BaseObject implements UserDetails {
         return true;
     }
 
-    @Override
     public abstract List<GrantedAuthority> getAuthorities();
 
-    public abstract boolean isRole(String rolename);
+    public abstract boolean isRole(String var1);
 
     public abstract String getRolesString();
 
@@ -41,4 +41,5 @@ public abstract class BaseUser extends BaseObject implements UserDetails {
     public abstract Long getId();
 
     public abstract String getUsertype();
+
 }
