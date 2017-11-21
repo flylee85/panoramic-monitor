@@ -4,6 +4,7 @@ import com.cloud.api.vo.ResultCode;
 import com.monitor.api.exceptionrecord.PanoramicExceptionRecordService;
 import com.monitor.model.exceptionrecord.PanoramicExceptionRecord;
 
+import com.monitor.web.controller.base.AbstractAnnotationController;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
@@ -21,7 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Api
 @RestController
 @RequestMapping("/exception/record")
-public class PanoramicExceptionRecordController {
+public class PanoramicExceptionRecordController extends AbstractAnnotationController {
     @Autowired
     @Qualifier("panoramicExceptionRecordService")
     private PanoramicExceptionRecordService panoramicExceptionRecordService;
