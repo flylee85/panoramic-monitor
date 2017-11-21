@@ -1,19 +1,43 @@
 package com.cloud.api.vo;
 
 
+import com.google.common.collect.Maps;
 import org.apache.commons.lang.StringUtils;
 
 import java.io.Serializable;
-import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * @param <T>
+ * @author summer
+ * 返回查询结果及状态码封装类
+ */
 public class ResultCode<T> implements Serializable {
-    public static final String CODE_SUCCESS = "0000"; // 成功
-    public static final String CODE_UNKNOWN_ERROR = "9999"; //未知错误
-    public static final String CODE_DATA_ERROR = "4005";  //数据异常
-    public static final String NOT_FOUND = "4000";  //服务器资源存在
-    public static final String INTERNAL_SERVER_ERROR = "5000"; //服务器内部异常
-    public static final String UNAUTHORIZED = "1000"; //授权错误
+
+    /**
+     * 成功
+     */
+    public static final String CODE_SUCCESS = "0000";
+    /**
+     * 未知错误
+     */
+    public static final String CODE_UNKNOWN_ERROR = "9999";
+    /**
+     * 数据异常
+     */
+    public static final String CODE_DATA_ERROR = "4005";
+    /**
+     * 服务器资源找不到
+     */
+    public static final String NOT_FOUND = "4000";
+    /**
+     * 服务器内部异常
+     */
+    public static final String INTERNAL_SERVER_ERROR = "5000";
+    /**
+     * 授权错误
+     */
+    public static final String UNAUTHORIZED = "1000";
 
     private static final long serialVersionUID = 4418416282894231647L;
     public static ResultCode SUCCESS = new ResultCode(CODE_SUCCESS, "操作成功！", null);
@@ -47,7 +71,7 @@ public class ResultCode<T> implements Serializable {
     }
 
     public static ResultCode getSuccessMap() {
-        return new ResultCode(CODE_SUCCESS, null, new HashMap());
+        return new ResultCode(CODE_SUCCESS, null, Maps.newHashMap());
     }
 
     public static <T> ResultCode getFailureReturn(T retval) {
