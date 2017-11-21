@@ -10,8 +10,11 @@ import io.swagger.annotations.ApiOperation;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -34,23 +37,22 @@ public class PanoramicExceptionRecordController extends AbstractAnnotationContro
         return ResultCode.getSuccessReturn(panoramicExceptionRecord);
     }
 
-//    @PostMapping
-//    public ResultCode<panoramicExceptionRecord> add(PanoramicExceptionRecord panoramicExceptionRecord) {
-//        panoramicExceptionRecordService.save(panoramicExceptionRecord);
-//        return ResultCode.getSuccessReturn(panoramicExceptionRecord);
-//    }
-//
-//    @DeleteMapping("/{id}")
-//    public ResultCode<panoramicExceptionRecord> delete(@PathVariable Integer id) {
-//        userService.deleteById(id);
-//        return ResultCode.getSuccessReturn(panoramicExceptionRecord);
-//    }
-//
-//    @PutMapping
-//    public ResultCode<panoramicExceptionRecord> update(PanoramicExceptionRecord panoramicExceptionRecord) {
-//        panoramicExceptionRecordService.update(panoramicExceptionRecord);
-//        return ResultCode.getSuccessReturn(panoramicExceptionRecord);
-//    }
+    @PostMapping
+    public ResultCode<PanoramicExceptionRecord> add(PanoramicExceptionRecord panoramicExceptionRecord) {
+        panoramicExceptionRecordService.save(panoramicExceptionRecord);
+        return ResultCode.getSuccessReturn(panoramicExceptionRecord);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResultCode<Void> delete(@PathVariable Integer id) {
+        return ResultCode.SUCCESS;
+    }
+
+    @PutMapping
+    public ResultCode<PanoramicExceptionRecord> update(PanoramicExceptionRecord panoramicExceptionRecord) {
+        panoramicExceptionRecordService.update(panoramicExceptionRecord);
+        return ResultCode.getSuccessReturn(panoramicExceptionRecord);
+    }
 //
 //    @GetMapping
 //    public ResultCode<PageInfo> list(Integer page, Integer size) {
