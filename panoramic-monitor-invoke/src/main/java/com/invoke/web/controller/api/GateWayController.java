@@ -25,7 +25,6 @@ import java.util.Map;
 public class GateWayController {
     protected static final transient TLogger DB_LOGGER = LoggerUtils.getLogger(GateWayController.class);
 
-    @ApiOperation(value = "接口 请求网关（只能POST）", notes = "请求网关授权验证，POST方式请求，统一的请求网关")
     @RequestMapping("/gateway")
     public HttpResult getApiAuth(@RequestParam Map<String, String> params, HttpServletRequest req,
                                  HttpServletResponse resp) {
