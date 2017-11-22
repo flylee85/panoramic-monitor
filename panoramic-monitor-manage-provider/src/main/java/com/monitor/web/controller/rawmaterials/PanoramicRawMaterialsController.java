@@ -19,7 +19,7 @@ import java.util.List;
  */
 @Api
 @RestController
-@RequestMapping("/panoramic/raw/materials")
+@RequestMapping("/raw/materials")
 public class PanoramicRawMaterialsController extends AbstractAnnotationController {
     @Autowired
     @Qualifier("panoramicRawMaterialsService")

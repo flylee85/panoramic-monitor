@@ -595,6 +595,7 @@
         <module>../panoramic-monitor-manage</module>
         <module>../panoramic-monitor-invoke</module>
         <module>../panoramic-monitor-doc</module>
+        <module>../panoramic-monitor-gateway-zuul</module>
 
     </modules>
 

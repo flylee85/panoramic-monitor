@@ -17,7 +17,7 @@ public class PanoramicProductMaterials {
     private Integer id;
 
     /**
-     * 产品名
+     * 产品料名
      */
     private String name;
 
@@ -25,17 +25,6 @@ public class PanoramicProductMaterials {
      * 值
      */
     private String value;
-
-    /**
-     * 净重
-     */
-    @Column(name = "net_weight")
-    private String netWeight;
-
-    /**
-     * 扣重
-     */
-    private String tare;
 
     /**
      * 物料编码
@@ -58,24 +47,6 @@ public class PanoramicProductMaterials {
      */
     @Column(name = "delete_flag")
     private Integer deleteFlag;
-
-    /**
-     * 车牌号
-     */
-    @Column(name = "car_num")
-    private String carNum;
-
-    /**
-     * 进厂时间
-     */
-    @Column(name = "in_time")
-    private Date inTime;
-
-    /**
-     * 出厂时间
-     */
-    @Column(name = "out_time")
-    private Date outTime;
 
     /**
      * 创建时间
@@ -122,18 +93,18 @@ public class PanoramicProductMaterials {
     }
 
     /**
-     * 获取产品名
+     * 获取原料名
      *
-     * @return name - 产品名
+     * @return name - 原料名
      */
     public String getName() {
         return name;
     }
 
     /**
-     * 设置产品名
+     * 设置原料名
      *
-     * @param name 产品名
+     * @param name 原料名
      */
     public void setName(String name) {
         this.name = name;
@@ -155,42 +126,6 @@ public class PanoramicProductMaterials {
      */
     public void setValue(String value) {
         this.value = value;
-    }
-
-    /**
-     * 获取净重
-     *
-     * @return net_weight - 净重
-     */
-    public String getNetWeight() {
-        return netWeight;
-    }
-
-    /**
-     * 设置净重
-     *
-     * @param netWeight 净重
-     */
-    public void setNetWeight(String netWeight) {
-        this.netWeight = netWeight;
-    }
-
-    /**
-     * 获取扣重
-     *
-     * @return tare - 扣重
-     */
-    public String getTare() {
-        return tare;
-    }
-
-    /**
-     * 设置扣重
-     *
-     * @param tare 扣重
-     */
-    public void setTare(String tare) {
-        this.tare = tare;
     }
 
     /**
@@ -263,60 +198,6 @@ public class PanoramicProductMaterials {
      */
     public void setDeleteFlag(Integer deleteFlag) {
         this.deleteFlag = deleteFlag;
-    }
-
-    /**
-     * 获取车牌号
-     *
-     * @return car_num - 车牌号
-     */
-    public String getCarNum() {
-        return carNum;
-    }
-
-    /**
-     * 设置车牌号
-     *
-     * @param carNum 车牌号
-     */
-    public void setCarNum(String carNum) {
-        this.carNum = carNum;
-    }
-
-    /**
-     * 获取进厂时间
-     *
-     * @return in_time - 进厂时间
-     */
-    public Date getInTime() {
-        return inTime;
-    }
-
-    /**
-     * 设置进厂时间
-     *
-     * @param inTime 进厂时间
-     */
-    public void setInTime(Date inTime) {
-        this.inTime = inTime;
-    }
-
-    /**
-     * 获取出厂时间
-     *
-     * @return out_time - 出厂时间
-     */
-    public Date getOutTime() {
-        return outTime;
-    }
-
-    /**
-     * 设置出厂时间
-     *
-     * @param outTime 出厂时间
-     */
-    public void setOutTime(Date outTime) {
-        this.outTime = outTime;
     }
 
     /**
