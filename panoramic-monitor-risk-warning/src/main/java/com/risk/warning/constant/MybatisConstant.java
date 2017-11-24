@@ -1,5 +1,8 @@
 package com.risk.warning.constant;
 
+/**
+ * @author summer
+ */
 public class MybatisConstant {
     public static final String BASE_PACKAGE = "com.risk.warning";//项目基础包名称，根据自己的公司项目修改
     public static final String MAPPER_PACKAGE = BASE_PACKAGE + ".mapper";//Mapper所在包
