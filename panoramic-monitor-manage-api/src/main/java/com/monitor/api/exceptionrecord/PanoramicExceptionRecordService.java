@@ -6,7 +6,7 @@ import com.monitor.model.exceptionrecord.PanoramicExceptionRecord;
 import java.util.List;
 
 
-/** 异常信息
+/** 异常信息服务
  * @author summer
  * 2017/11/21.
  */

@@ -3,10 +3,10 @@ package com.monitor.api.dailyinventorysummary;
 import com.cloud.core.Service;
 import com.monitor.model.dailyinventorysummary.PanoramicDailyInventorySummary;
 
-import java.util.Date;
-
 
 /**
+ * 库存服务
+ *
  * @author summer
  * 2017/11/21.
  */
