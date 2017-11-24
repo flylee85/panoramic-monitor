@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -23,12 +22,12 @@ import java.util.List;
 @RequestMapping("/raw/materials")
 public class PanoramicRawMaterialsController extends AbstractAnnotationController {
     @Autowired
-    @Qualifier("panoramicRawMaterialsService")
-    private PanoramicRawMaterialsService panoramicRawMaterialsService;
+    @Qualifier("rawMaterialsService")
+    private PanoramicRawMaterialsService rawMaterialsService;
 
     @PostMapping
     public ResultCode<PanoramicRawMaterials> add(PanoramicRawMaterials panoramicRawMaterials) {
-        panoramicRawMaterialsService.save(panoramicRawMaterials);
+        rawMaterialsService.save(panoramicRawMaterials);
         return ResultCode.getSuccessReturn(panoramicRawMaterials);
     }
 
@@ -39,21 +38,21 @@ public class PanoramicRawMaterialsController extends AbstractAnnotationControlle
 
     @PutMapping
     public ResultCode<PanoramicRawMaterials> update(PanoramicRawMaterials panoramicRawMaterials) {
-        panoramicRawMaterialsService.update(panoramicRawMaterials);
+        rawMaterialsService.update(panoramicRawMaterials);
         return ResultCode.getSuccessReturn(panoramicRawMaterials);
     }
 
     @GetMapping("/{id}")
     public ResultCode<PanoramicRawMaterials> detail(@PathVariable Integer id) {
-        PanoramicRawMaterials panoramicRawMaterials = panoramicRawMaterialsService.findById(id);
+        PanoramicRawMaterials panoramicRawMaterials = rawMaterialsService.findById(id);
         return ResultCode.getSuccessReturn(panoramicRawMaterials);
     }
 
-//    @GetMapping
-//    public ResultCode<PageInfo> list(Integer page, Integer size) {
-//        PageHelper.startPage(page, size);
-//        List<PanoramicRawMaterials> list = panoramicRawMaterialsService.findAll();
-//        PageInfo pageInfo = new PageInfo(list);
-//        return ResultCode.getSuccessReturn(pageInfo);
-//    }
+    @GetMapping("/{date}/{page}/{size}")
+    public ResultCode<PageInfo> list(@PathVariable String date, @PathVariable Integer page, @PathVariable Integer size) {
+        PageHelper.startPage(page, size);
+        List<PanoramicRawMaterials> list = rawMaterialsService.findAll();
+        PageInfo pageInfo = new PageInfo(list);
+        return ResultCode.getSuccessReturn(pageInfo);
+    }
 }

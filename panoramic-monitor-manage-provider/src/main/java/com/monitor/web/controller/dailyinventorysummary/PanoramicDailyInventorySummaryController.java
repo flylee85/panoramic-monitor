@@ -22,8 +22,8 @@ import java.util.List;
 @RequestMapping("/daily/inventory/summary")
 public class PanoramicDailyInventorySummaryController extends AbstractAnnotationController {
 	@Autowired
-	@Qualifier("panoramicDailyInventorySummaryService")
-	private PanoramicDailyInventorySummaryService panoramicDailyInventorySummaryService;
+	@Qualifier("dailyInventorySummaryService")
+	private PanoramicDailyInventorySummaryService dailyInventorySummaryService;
 
 	/**
 	 * 根据时间和物料编码查询库存
@@ -36,7 +36,7 @@ public class PanoramicDailyInventorySummaryController extends AbstractAnnotation
 	@GetMapping("/{date}/{code}")
 	public ResultCode<PanoramicDailyInventorySummary> queryByDateAndCode(@PathVariable String date,
 			@PathVariable String code) {
-		PanoramicDailyInventorySummary dailyInventorySummary = panoramicDailyInventorySummaryService
+		PanoramicDailyInventorySummary dailyInventorySummary = dailyInventorySummaryService
 				.queryByDateAndCode(code, date);
 		return ResultCode.getSuccessReturn(dailyInventorySummary);
 	}
@@ -44,7 +44,7 @@ public class PanoramicDailyInventorySummaryController extends AbstractAnnotation
 	@PostMapping
 	public ResultCode<PanoramicDailyInventorySummary> add(
 			PanoramicDailyInventorySummary panoramicDailyInventorySummary) {
-		panoramicDailyInventorySummaryService.save(panoramicDailyInventorySummary);
+		dailyInventorySummaryService.save(panoramicDailyInventorySummary);
 		return ResultCode.getSuccessReturn(panoramicDailyInventorySummary);
 	}
 
@@ -56,13 +56,13 @@ public class PanoramicDailyInventorySummaryController extends AbstractAnnotation
 	@PutMapping
 	public ResultCode<PanoramicDailyInventorySummary> update(
 			PanoramicDailyInventorySummary panoramicDailyInventorySummary) {
-		panoramicDailyInventorySummaryService.update(panoramicDailyInventorySummary);
+		dailyInventorySummaryService.update(panoramicDailyInventorySummary);
 		return ResultCode.getSuccessReturn(panoramicDailyInventorySummary);
 	}
 
 	@GetMapping("/{id}")
 	public ResultCode<PanoramicDailyInventorySummary> detail(@PathVariable Integer id) {
-		PanoramicDailyInventorySummary panoramicDailyInventorySummary = panoramicDailyInventorySummaryService
+		PanoramicDailyInventorySummary panoramicDailyInventorySummary = dailyInventorySummaryService
 				.findById(id);
 		return ResultCode.getSuccessReturn(panoramicDailyInventorySummary);
 	}
@@ -71,7 +71,7 @@ public class PanoramicDailyInventorySummaryController extends AbstractAnnotation
 	public ResultCode<PageInfo<PanoramicDailyInventorySummary>> list(@PathVariable String date,
 			@PathVariable Integer page, @PathVariable Integer size) {
 		PageHelper.startPage(page, size);
-		List<PanoramicDailyInventorySummary> list = panoramicDailyInventorySummaryService.findAll();
+		List<PanoramicDailyInventorySummary> list = dailyInventorySummaryService.findAll();
 		PageInfo<PanoramicDailyInventorySummary> pageInfo = new PageInfo<>(list);
 		return ResultCode.getSuccessReturn(pageInfo);
 	}

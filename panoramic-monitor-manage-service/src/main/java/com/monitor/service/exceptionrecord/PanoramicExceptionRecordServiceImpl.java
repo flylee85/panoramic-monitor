@@ -21,12 +21,12 @@ import tk.mybatis.mapper.entity.Condition;
  * @author summer
  * 2017/11/21.
  */
-@Service("panoramicExceptionRecordService")
+@Service("exceptionRecordService")
 @Transactional(readOnly = true, rollbackFor = ServiceException.class)
 public class PanoramicExceptionRecordServiceImpl extends AbstractService<PanoramicExceptionRecord> implements PanoramicExceptionRecordService {
     @Autowired
-    @Qualifier("panoramicExceptionRecordMapper")
-    private PanoramicExceptionRecordMapper panoramicExceptionRecordMapper;
+    @Qualifier("exceptionRecordMapper")
+    private PanoramicExceptionRecordMapper exceptionRecordMapper;
 
     /**
      * 方法上不需要事务
@@ -38,7 +38,7 @@ public class PanoramicExceptionRecordServiceImpl extends AbstractService<Panoram
         condition.createCriteria().andCondition(" alarm_time >'" +date+ "' and status=0 and alarm_item = '" + category + "'");
         condition.setOrderByClause(" status asc ");
         condition.setOrderByClause(" alarm_time desc ");
-        List<PanoramicExceptionRecord> recordList = panoramicExceptionRecordMapper.selectByCondition(condition);
+        List<PanoramicExceptionRecord> recordList = exceptionRecordMapper.selectByCondition(condition);
         return recordList;
     }
 
@@ -49,7 +49,7 @@ public class PanoramicExceptionRecordServiceImpl extends AbstractService<Panoram
         condition.createCriteria().andCondition(" status=0 and alarm_time >'" + date + "'");
         condition.setOrderByClause(" status asc ");
         condition.setOrderByClause(" alarm_time desc ");
-        List<PanoramicExceptionRecord> recordList = panoramicExceptionRecordMapper.selectByCondition(condition);
+        List<PanoramicExceptionRecord> recordList = exceptionRecordMapper.selectByCondition(condition);
         return recordList;
     }
 }

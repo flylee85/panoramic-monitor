@@ -3,6 +3,11 @@ package com.monitor.model.task;
 import com.cloud.model.BaseObject;
 
 import javax.persistence.*;
+
+import org.quartz.Job;
+import org.quartz.JobExecutionContext;
+import org.quartz.JobExecutionException;
+
 import java.io.Serializable;
 
 /**
@@ -24,6 +29,8 @@ public class ScheduleTrigger extends BaseObject {
     private String status;
     //任务名称
     private String jobName;
+    //描述
+    private String content;
     //任务分组
     private String jobGroup;
 
@@ -72,4 +79,13 @@ public class ScheduleTrigger extends BaseObject {
     public Serializable realId() {
         return null;
     }
+
+	public String getContent() {
+		return content;
+	}
+
+	public void setContent(String content) {
+		this.content = content;
+	}
+
 }

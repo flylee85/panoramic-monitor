@@ -1,6 +1,7 @@
 package com.monitor.service.productionefficiency;
 
 import com.cloud.core.AbstractService;
+import com.cloud.core.ServiceException;
 import com.monitor.api.productionefficiency.PanoramicProductionEfficiencyService;
 import com.monitor.mapper.productionefficiency.PanoramicProductionEfficiencyMapper;
 import com.monitor.model.productionefficiency.PanoramicProductionEfficiency;
@@ -15,7 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
  * 2017/11/21
  */
 @Service("panoramicProductionEfficiencyService")
-@Transactional
+@Transactional(readOnly = true, rollbackFor = ServiceException.class)
 public class PanoramicProductionEfficiencyServiceImpl extends AbstractService<PanoramicProductionEfficiency> implements PanoramicProductionEfficiencyService {
     @Autowired
     @Qualifier("panoramicProductionEfficiencyMapper")

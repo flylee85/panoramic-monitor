@@ -25,7 +25,9 @@ public class ScheduleTriggerServiceImpl extends AbstractService<ScheduleTrigger>
 
     @Autowired
     private ScheduleTriggerMapper scheduleTriggerMapper;
-
+    /**
+     * 定时刷新扫描配置表
+     */
     @Scheduled(fixedRate = 5000)
     @Override
     public void refreshTrigger() {

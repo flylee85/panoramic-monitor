@@ -24,12 +24,12 @@ import java.util.List;
  * @author summer
  * 2017/11/21.
  */
-@Service("panoramicDailyInventorySummaryService")
+@Service("dailyInventorySummaryService")
 @Transactional(readOnly = true, rollbackFor = ServiceException.class)
 public class PanoramicDailyInventorySummaryServiceImpl extends AbstractService<PanoramicDailyInventorySummary> implements PanoramicDailyInventorySummaryService {
     @Autowired
-    @Qualifier("panoramicDailyInventorySummaryMapper")
-    private PanoramicDailyInventorySummaryMapper panoramicDailyInventorySummaryMapper;
+    @Qualifier("dailyInventorySummaryMapper")
+    private PanoramicDailyInventorySummaryMapper dailyInventorySummaryMapper;
 
     @Override
     @Transactional(propagation = Propagation.NOT_SUPPORTED, rollbackFor = Exception.class)
@@ -37,7 +37,7 @@ public class PanoramicDailyInventorySummaryServiceImpl extends AbstractService<P
         Condition condition = new Condition(PanoramicDailyInventorySummary.class, false);
         condition.createCriteria().andCondition(" code ='" +code+ "' and f_id=2 and delete_flag=1 and utime > '"+DateUtil.parseTimestamp(date,"yyyy-MM-dd")+"' and  utime < '" + DateUtil.parseTimestamp(DateUtil.getSpecifiedDayBefor(date,-1),"yyyy-MM-dd") + "'");
         condition.setOrderByClause(" utime desc ");
-        List<PanoramicDailyInventorySummary> recordList = panoramicDailyInventorySummaryMapper.selectByCondition(condition);
+        List<PanoramicDailyInventorySummary> recordList = dailyInventorySummaryMapper.selectByCondition(condition);
         return (null==recordList||recordList.size()==0)?null:recordList.get(0);
     }
 }

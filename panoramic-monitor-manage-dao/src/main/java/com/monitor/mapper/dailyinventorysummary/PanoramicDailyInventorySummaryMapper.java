@@ -7,6 +7,6 @@ import org.springframework.stereotype.Repository;
 /**
  * @author summer
  */
-@Repository("panoramicDailyInventorySummaryMapper")
+@Repository("dailyInventorySummaryMapper")
 public interface PanoramicDailyInventorySummaryMapper extends Mapper<PanoramicDailyInventorySummary> {
 }

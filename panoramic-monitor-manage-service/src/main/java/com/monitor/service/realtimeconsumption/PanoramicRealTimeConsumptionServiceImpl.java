@@ -1,6 +1,7 @@
 package com.monitor.service.realtimeconsumption;
 
 import com.cloud.core.AbstractService;
+import com.cloud.core.ServiceException;
 import com.monitor.api.realtimeconsumption.PanoramicRealTimeConsumptionService;
 import com.monitor.mapper.realtimeconsumption.PanoramicRealTimeConsumptionMapper;
 import com.monitor.model.realtimeconsumption.PanoramicRealTimeConsumption;
@@ -15,7 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
  * 2017/11/21.
  */
 @Service("panoramicRealTimeConsumptionService")
-@Transactional
+@Transactional(readOnly = true, rollbackFor = ServiceException.class)
 public class PanoramicRealTimeConsumptionServiceImpl extends AbstractService<PanoramicRealTimeConsumption> implements PanoramicRealTimeConsumptionService {
     @Autowired
     @Qualifier("panoramicRealTimeConsumptionMapper")

@@ -24,19 +24,19 @@ import java.util.List;
 @RequestMapping("/exception/record")
 public class PanoramicExceptionRecordController extends AbstractAnnotationController {
     @Autowired
-    @Qualifier("panoramicExceptionRecordService")
-    private PanoramicExceptionRecordService panoramicExceptionRecordService;
+    @Qualifier("exceptionRecordService")
+    private PanoramicExceptionRecordService exceptionRecordService;
 
     @ApiOperation(value = "异常信息接口-获取异常详情", notes = "获取异常详情")
     @GetMapping("/{id}")
     public ResultCode<PanoramicExceptionRecord> detail(@PathVariable Integer id) {
-        PanoramicExceptionRecord panoramicExceptionRecord = panoramicExceptionRecordService.findById(id);
+        PanoramicExceptionRecord panoramicExceptionRecord = exceptionRecordService.findById(id);
         return ResultCode.getSuccessReturn(panoramicExceptionRecord);
     }
 
     @PostMapping
     public ResultCode<PanoramicExceptionRecord> add(PanoramicExceptionRecord panoramicExceptionRecord) {
-        panoramicExceptionRecordService.save(panoramicExceptionRecord);
+        exceptionRecordService.save(panoramicExceptionRecord);
         return ResultCode.getSuccessReturn(panoramicExceptionRecord);
     }
 
@@ -47,7 +47,7 @@ public class PanoramicExceptionRecordController extends AbstractAnnotationContro
 
     @PutMapping
     public ResultCode<PanoramicExceptionRecord> update(PanoramicExceptionRecord panoramicExceptionRecord) {
-        panoramicExceptionRecordService.update(panoramicExceptionRecord);
+        exceptionRecordService.update(panoramicExceptionRecord);
         return ResultCode.getSuccessReturn(panoramicExceptionRecord);
     }
 
@@ -56,7 +56,7 @@ public class PanoramicExceptionRecordController extends AbstractAnnotationContro
     @GetMapping("/{date}/{page}/{size}")
     public ResultCode<PageInfo<PanoramicExceptionRecord>> list(@PathVariable String date,@PathVariable Integer page, @PathVariable Integer size) {
         PageHelper.startPage(page, size);
-        List<PanoramicExceptionRecord> list = panoramicExceptionRecordService.queryAll(date);
+        List<PanoramicExceptionRecord> list = exceptionRecordService.queryAll(date);
         PageInfo<PanoramicExceptionRecord> pageInfo = new PageInfo<>(list);
         return ResultCode.getSuccessReturn(pageInfo);
     }
@@ -65,7 +65,7 @@ public class PanoramicExceptionRecordController extends AbstractAnnotationContro
     @GetMapping("/{date}/{category}/{page}/{size}")
     public ResultCode<PageInfo<PanoramicExceptionRecord>> listByCategory(@PathVariable String date,@PathVariable String category, @PathVariable Integer page, @PathVariable Integer size) {
         PageHelper.startPage(page, size);
-        List<PanoramicExceptionRecord> list = panoramicExceptionRecordService.listByCategory(category,date);
+        List<PanoramicExceptionRecord> list = exceptionRecordService.listByCategory(category,date);
         PageInfo<PanoramicExceptionRecord> pageInfo = new PageInfo<>(list);
         return ResultCode.getSuccessReturn(pageInfo);
     }

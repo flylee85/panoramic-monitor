@@ -1,6 +1,7 @@
 package com.monitor.service.productionmonitoring;
 
 import com.cloud.core.AbstractService;
+import com.cloud.core.ServiceException;
 import com.monitor.api.productionmonitoring.PanoramicProductionMonitoringService;
 import com.monitor.mapper.productionmonitoring.PanoramicProductionMonitoringMapper;
 import com.monitor.model.productionmonitoring.PanoramicProductionMonitoring;
@@ -16,7 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
  * 2017/11/21.
  */
 @Service("panoramicProductionMonitoringService")
-@Transactional
+@Transactional(readOnly = true, rollbackFor = ServiceException.class)
 public class PanoramicProductionMonitoringServiceImpl extends AbstractService<PanoramicProductionMonitoring> implements PanoramicProductionMonitoringService {
     @Autowired
     @Qualifier("panoramicProductionMonitoringMapper")

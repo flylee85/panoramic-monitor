@@ -1,6 +1,7 @@
 package com.monitor.service.productmaterials;
 
 import com.cloud.core.AbstractService;
+import com.cloud.core.ServiceException;
 import com.monitor.api.productmaterials.PanoramicProductMaterialsService;
 import com.monitor.mapper.productmaterials.PanoramicProductMaterialsMapper;
 import com.monitor.model.productmaterials.PanoramicProductMaterials;
@@ -15,7 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
  * 2017/11/21.
  */
 @Service("panoramicProductMaterialsService")
-@Transactional
+@Transactional(readOnly = true, rollbackFor = ServiceException.class)
 public class PanoramicProductMaterialsServiceImpl extends AbstractService<PanoramicProductMaterials> implements PanoramicProductMaterialsService {
     @Autowired
     @Qualifier("panoramicProductMaterialsMapper")

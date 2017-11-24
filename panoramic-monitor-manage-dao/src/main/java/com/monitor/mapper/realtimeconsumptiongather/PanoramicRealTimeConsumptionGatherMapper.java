@@ -7,6 +7,6 @@ import org.springframework.stereotype.Repository;
 /**
  * @author summer
  */
-@Repository("panoramicRealTimeConsumptionGatherMapper")
+@Repository("realTimeConsumptionGatherMapper")
 public interface PanoramicRealTimeConsumptionGatherMapper extends Mapper<PanoramicRealTimeConsumptionGather> {
 }

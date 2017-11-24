@@ -1,10 +1,16 @@
 package com.monitor.configure;
 
 import com.monitor.model.task.MyJobFactory;
+
+import java.io.IOException;
+import java.util.Properties;
+
 import org.quartz.Scheduler;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.config.PropertiesFactoryBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.scheduling.quartz.SchedulerFactoryBean;
 
 /**
@@ -20,7 +26,7 @@ public class QuartzConfigration {
     public SchedulerFactoryBean schedulerFactoryBean() {
         SchedulerFactoryBean schedulerFactoryBean = new SchedulerFactoryBean();
         try {
-//            schedulerFactoryBean.setQuartzProperties(quartzProperties());
+            schedulerFactoryBean.setQuartzProperties(quartzProperties());
             schedulerFactoryBean.setJobFactory(myJobFactory);
             // 用于quartz集群,QuartzScheduler 启动时更新己存在的Job
             schedulerFactoryBean.setOverwriteExistingJobs(true);
@@ -31,13 +37,13 @@ public class QuartzConfigration {
         return schedulerFactoryBean;
     }
 
-//    @Bean
-//    public Properties quartzProperties() throws IOException {
-//        PropertiesFactoryBean propertiesFactoryBean = new PropertiesFactoryBean();
-//        propertiesFactoryBean.setLocation(new ClassPathResource("/quartz.properties"));
-//        propertiesFactoryBean.afterPropertiesSet();
-//        return propertiesFactoryBean.getObject();
-//    }
+    @Bean
+    public Properties quartzProperties() throws IOException {
+        PropertiesFactoryBean propertiesFactoryBean = new PropertiesFactoryBean();
+        propertiesFactoryBean.setLocation(new ClassPathResource("/quartz.properties"));
+        propertiesFactoryBean.afterPropertiesSet();
+        return propertiesFactoryBean.getObject();
+    }
 
     @Bean
     public Scheduler scheduler() {

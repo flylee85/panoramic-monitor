@@ -1,6 +1,7 @@
 package com.monitor.service.systemconfiguration;
 
 import com.cloud.core.AbstractService;
+import com.cloud.core.ServiceException;
 import com.monitor.api.systemconfiguration.PanoramicSystemConfigurationService;
 import com.monitor.mapper.systemconfiguration.PanoramicSystemConfigurationMapper;
 import com.monitor.model.systemconfiguration.PanoramicSystemConfiguration;
@@ -15,7 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
  * 2017/11/21.
  */
 @Service("panoramicSystemConfigurationService")
-@Transactional
+@Transactional(readOnly = true, rollbackFor = ServiceException.class)
 public class PanoramicSystemConfigurationServiceImpl extends AbstractService<PanoramicSystemConfiguration> implements PanoramicSystemConfigurationService {
     @Autowired
     @Qualifier("panoramicSystemConfigurationMapper")

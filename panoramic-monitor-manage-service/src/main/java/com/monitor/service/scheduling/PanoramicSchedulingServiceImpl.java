@@ -1,6 +1,7 @@
 package com.monitor.service.scheduling;
 
 import com.cloud.core.AbstractService;
+import com.cloud.core.ServiceException;
 import com.monitor.api.scheduling.PanoramicSchedulingService;
 import com.monitor.mapper.scheduling.PanoramicSchedulingMapper;
 import com.monitor.model.scheduling.PanoramicScheduling;
@@ -15,7 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
  * 2017/11/21.
  */
 @Service("panoramicSchedulingService")
-@Transactional
+@Transactional(readOnly = true, rollbackFor = ServiceException.class)
 public class PanoramicSchedulingServiceImpl extends AbstractService<PanoramicScheduling> implements PanoramicSchedulingService {
 
     @Autowired
