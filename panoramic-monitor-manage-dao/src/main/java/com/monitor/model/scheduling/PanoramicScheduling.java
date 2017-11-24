@@ -1,13 +1,20 @@
 package com.monitor.model.scheduling;
 
+import com.cloud.model.BaseObject;
+
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * @author summer
  */
 @Table(name = "panoramic_scheduling")
-public class PanoramicScheduling {
+public class PanoramicScheduling extends BaseObject {
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
     /**
      * ID
      */
@@ -240,5 +247,10 @@ public class PanoramicScheduling {
      */
     public void setOperator(String operator) {
         this.operator = operator;
+    }
+
+    @Override
+    public Serializable realId() {
+        return null;
     }
 }

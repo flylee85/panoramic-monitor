@@ -1,13 +1,21 @@
 package com.monitor.model.dailyinventorysummary;
 
+import com.cloud.model.BaseObject;
+
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * @author summer
+ * 库存
  */
 @Table(name = "panoramic_daily_inventory_summary")
-public class PanoramicDailyInventorySummary {
+public class PanoramicDailyInventorySummary extends BaseObject {
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
     /**
      * ID
      */
@@ -263,5 +271,10 @@ public class PanoramicDailyInventorySummary {
      */
     public void setfId(String fId) {
         this.fId = fId;
+    }
+
+    @Override
+    public Serializable realId() {
+        return null;
     }
 }

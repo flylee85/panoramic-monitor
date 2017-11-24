@@ -1,12 +1,19 @@
 package com.monitor.model.task;
 
+import com.cloud.model.BaseObject;
+
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * @author summer
  */
 @Table(name = "schedule_triggers")
-public class ScheduleTrigger {
+public class ScheduleTrigger extends BaseObject {
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -61,4 +68,8 @@ public class ScheduleTrigger {
     }
 
 
+    @Override
+    public Serializable realId() {
+        return null;
+    }
 }

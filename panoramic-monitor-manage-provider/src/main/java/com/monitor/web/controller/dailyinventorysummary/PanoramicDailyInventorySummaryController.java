@@ -6,6 +6,8 @@ import com.github.pagehelper.PageInfo;
 import com.monitor.api.dailyinventorysummary.PanoramicDailyInventorySummaryService;
 import com.monitor.model.dailyinventorysummary.PanoramicDailyInventorySummary;
 import com.monitor.web.controller.base.AbstractAnnotationController;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
@@ -13,44 +15,64 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 /**
- * @author summer
- * 2017/11/21.
+ * @author summer 2017/11/21.
  */
+@Api
 @RestController
 @RequestMapping("/daily/inventory/summary")
 public class PanoramicDailyInventorySummaryController extends AbstractAnnotationController {
-    @Autowired
-    @Qualifier("panoramicDailyInventorySummaryService")
-    private PanoramicDailyInventorySummaryService panoramicDailyInventorySummaryService;
+	@Autowired
+	@Qualifier("panoramicDailyInventorySummaryService")
+	private PanoramicDailyInventorySummaryService panoramicDailyInventorySummaryService;
 
-    @PostMapping
-    public ResultCode<PanoramicDailyInventorySummary> add(PanoramicDailyInventorySummary panoramicDailyInventorySummary) {
-        panoramicDailyInventorySummaryService.save(panoramicDailyInventorySummary);
-        return ResultCode.getSuccessReturn(panoramicDailyInventorySummary);
-    }
+	/**
+	 * 根据时间和物料编码查询库存
+	 *
+	 * @param code
+	 * @param date
+	 * @return
+	 */
+	@ApiOperation(value = "库存查询接口", notes = "根据时间和物料编码查询库存")
+	@GetMapping("/{date}/{code}")
+	public ResultCode<PanoramicDailyInventorySummary> queryByDateAndCode(@PathVariable String date,
+			@PathVariable String code) {
+		PanoramicDailyInventorySummary dailyInventorySummary = panoramicDailyInventorySummaryService
+				.queryByDateAndCode(code, date);
+		return ResultCode.getSuccessReturn(dailyInventorySummary);
+	}
 
-    @DeleteMapping("/{id}")
-    public ResultCode<PanoramicDailyInventorySummary> delete(@PathVariable Integer id) {
-        return ResultCode.SUCCESS;
-    }
+	@PostMapping
+	public ResultCode<PanoramicDailyInventorySummary> add(
+			PanoramicDailyInventorySummary panoramicDailyInventorySummary) {
+		panoramicDailyInventorySummaryService.save(panoramicDailyInventorySummary);
+		return ResultCode.getSuccessReturn(panoramicDailyInventorySummary);
+	}
 
-    @PutMapping
-    public ResultCode<PanoramicDailyInventorySummary> update(PanoramicDailyInventorySummary panoramicDailyInventorySummary) {
-        panoramicDailyInventorySummaryService.update(panoramicDailyInventorySummary);
-        return ResultCode.getSuccessReturn(panoramicDailyInventorySummary);
-    }
+	@DeleteMapping("/{id}")
+	public ResultCode<PanoramicDailyInventorySummary> delete(@PathVariable Integer id) {
+		return ResultCode.SUCCESS;
+	}
 
-    @GetMapping("/{id}")
-    public ResultCode<PanoramicDailyInventorySummary> detail(@PathVariable Integer id) {
-        PanoramicDailyInventorySummary panoramicDailyInventorySummary = panoramicDailyInventorySummaryService.findById(id);
-        return ResultCode.getSuccessReturn(panoramicDailyInventorySummary);
-    }
+	@PutMapping
+	public ResultCode<PanoramicDailyInventorySummary> update(
+			PanoramicDailyInventorySummary panoramicDailyInventorySummary) {
+		panoramicDailyInventorySummaryService.update(panoramicDailyInventorySummary);
+		return ResultCode.getSuccessReturn(panoramicDailyInventorySummary);
+	}
 
-//    @GetMapping
-//    public ResultCode<PageInfo> list(Integer page, Integer size) {
-//        PageHelper.startPage(page, size);
-//        List<PanoramicDailyInventorySummary> list = panoramicDailyInventorySummaryService.findAll();
-//        PageInfo pageInfo = new PageInfo(list);
-//        return ResultCode.getSuccessReturn(pageInfo);
-//    }
+	@GetMapping("/{id}")
+	public ResultCode<PanoramicDailyInventorySummary> detail(@PathVariable Integer id) {
+		PanoramicDailyInventorySummary panoramicDailyInventorySummary = panoramicDailyInventorySummaryService
+				.findById(id);
+		return ResultCode.getSuccessReturn(panoramicDailyInventorySummary);
+	}
+
+	@GetMapping("/{date}/{page}/{size}")
+	public ResultCode<PageInfo<PanoramicDailyInventorySummary>> list(@PathVariable String date,
+			@PathVariable Integer page, @PathVariable Integer size) {
+		PageHelper.startPage(page, size);
+		List<PanoramicDailyInventorySummary> list = panoramicDailyInventorySummaryService.findAll();
+		PageInfo<PanoramicDailyInventorySummary> pageInfo = new PageInfo<>(list);
+		return ResultCode.getSuccessReturn(pageInfo);
+	}
 }

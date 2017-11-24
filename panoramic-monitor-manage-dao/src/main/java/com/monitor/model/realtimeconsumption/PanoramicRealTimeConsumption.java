@@ -1,13 +1,20 @@
 package com.monitor.model.realtimeconsumption;
 
+import com.cloud.model.BaseObject;
+
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * @author summer
  */
 @Table(name = "panoramic_real_time_consumption")
-public class PanoramicRealTimeConsumption {
+public class PanoramicRealTimeConsumption extends BaseObject {
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
     /**
      * ID
      */
@@ -263,5 +270,10 @@ public class PanoramicRealTimeConsumption {
      */
     public void setfId(String fId) {
         this.fId = fId;
+    }
+
+    @Override
+    public Serializable realId() {
+        return null;
     }
 }

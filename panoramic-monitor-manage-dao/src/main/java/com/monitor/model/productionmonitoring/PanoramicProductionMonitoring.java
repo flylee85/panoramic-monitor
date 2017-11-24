@@ -1,13 +1,20 @@
 package com.monitor.model.productionmonitoring;
 
+import com.cloud.model.BaseObject;
+
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * @author summer
  */
 @Table(name = "panoramic_production_monitoring")
-public class PanoramicProductionMonitoring {
+public class PanoramicProductionMonitoring extends BaseObject {
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
     /**
      * ID
      */
@@ -243,5 +250,10 @@ public class PanoramicProductionMonitoring {
      */
     public void setOperator(String operator) {
         this.operator = operator;
+    }
+
+    @Override
+    public Serializable realId() {
+        return null;
     }
 }

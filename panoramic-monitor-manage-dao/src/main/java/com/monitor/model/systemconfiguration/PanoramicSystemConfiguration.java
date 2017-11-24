@@ -1,13 +1,20 @@
 package com.monitor.model.systemconfiguration;
 
+import com.cloud.model.BaseObject;
+
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * @author summer
  */
 @Table(name = "panoramic_system_configuration")
-public class PanoramicSystemConfiguration {
+public class PanoramicSystemConfiguration extends BaseObject {
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
     /**
      * ID
      */
@@ -354,5 +361,10 @@ public class PanoramicSystemConfiguration {
      */
     public void setMemo(String memo) {
         this.memo = memo;
+    }
+
+    @Override
+    public Serializable realId() {
+        return null;
     }
 }

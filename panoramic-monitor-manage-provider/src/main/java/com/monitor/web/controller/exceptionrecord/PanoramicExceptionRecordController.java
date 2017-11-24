@@ -1,22 +1,19 @@
 package com.monitor.web.controller.exceptionrecord;
 
 import com.cloud.api.vo.ResultCode;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.monitor.api.exceptionrecord.PanoramicExceptionRecordService;
 import com.monitor.model.exceptionrecord.PanoramicExceptionRecord;
-
 import com.monitor.web.controller.base.AbstractAnnotationController;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import tk.mybatis.mapper.entity.Condition;
+
+import java.util.List;
 
 /**
  * @author summer
@@ -29,7 +26,7 @@ public class PanoramicExceptionRecordController extends AbstractAnnotationContro
     @Autowired
     @Qualifier("panoramicExceptionRecordService")
     private PanoramicExceptionRecordService panoramicExceptionRecordService;
-    
+
     @ApiOperation(value = "异常信息接口-获取异常详情", notes = "获取异常详情")
     @GetMapping("/{id}")
     public ResultCode<PanoramicExceptionRecord> detail(@PathVariable Integer id) {
@@ -53,12 +50,23 @@ public class PanoramicExceptionRecordController extends AbstractAnnotationContro
         panoramicExceptionRecordService.update(panoramicExceptionRecord);
         return ResultCode.getSuccessReturn(panoramicExceptionRecord);
     }
-//
-//    @GetMapping
-//    public ResultCode<PageInfo> list(Integer page, Integer size) {
-//        PageHelper.startPage(page, size);
-//        List<PanoramicExceptionRecord> list = panoramicExceptionRecordService.findAll();
-//        PageInfo pageInfo = new PageInfo(list);
-//        return ResultGenerator.genSuccessResult(pageInfo);
-//    }
+
+    //
+    @ApiOperation(value = "异常信息查询接口", notes = "分页查询所有异常信息")
+    @GetMapping("/{date}/{page}/{size}")
+    public ResultCode<PageInfo<PanoramicExceptionRecord>> list(@PathVariable String date,@PathVariable Integer page, @PathVariable Integer size) {
+        PageHelper.startPage(page, size);
+        List<PanoramicExceptionRecord> list = panoramicExceptionRecordService.queryAll(date);
+        PageInfo<PanoramicExceptionRecord> pageInfo = new PageInfo<>(list);
+        return ResultCode.getSuccessReturn(pageInfo);
+    }
+
+    @ApiOperation(value = "异常信息查询接口", notes = "根据指定分类分页查询异常信息")
+    @GetMapping("/{date}/{category}/{page}/{size}")
+    public ResultCode<PageInfo<PanoramicExceptionRecord>> listByCategory(@PathVariable String date,@PathVariable String category, @PathVariable Integer page, @PathVariable Integer size) {
+        PageHelper.startPage(page, size);
+        List<PanoramicExceptionRecord> list = panoramicExceptionRecordService.listByCategory(category,date);
+        PageInfo<PanoramicExceptionRecord> pageInfo = new PageInfo<>(list);
+        return ResultCode.getSuccessReturn(pageInfo);
+    }
 }

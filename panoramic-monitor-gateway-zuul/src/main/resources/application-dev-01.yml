@@ -1,36 +1,40 @@
 server:
   port: 8888         # 指定该zuul实例的端口
+security:
+  user:
+    name: user
+    password: user
+spring:
+  application:
+    name: panoramic-monitor-zuul    # 项目名称尽量用小写
 zuul:
-　　ignoredServices: '*'
-  stripPrefix: true
   routes:
+    manages:
+      path: /manage/**
+      serviceId: panoramic-monitor-manage
+      sensitive-headers: Cookie,Set-Cookie
+    invokes:
+      path: /invoke/**
+      serviceId: panoramic-monitor-invoke
+      sensitive-headers: Cookie,Set-Cookie
     users:
       path: /user/**
-      serviceId: panoramic-monitor-user-provider
+      serviceId: panoramic-monitor-user
+      sensitive-headers: Cookie,Set-Cookie
+    risks:
+      path: /risk/warning/**
+      serviceId: panoramic-monitor-risk-warning
+      sensitive-headers: Cookie,Set-Cookie
 eureka:
-  instance:
-    lease-expiration-duration-in-seconds: 30
-    lease-renewal-interval-in-seconds: 10
-    hostname: zuul    # 指定该zuul实例的主机名
-  server:
-    enable-self-preservation: false			# 设为false，关闭自我保护
-    eviction-interval-timer-in-ms: 4000    # 清理间隔（单位毫秒，默认是60*1000）
   client:
-    healthcheck:
-          enabled: true
-    registerWithEureka: false
-    fetchRegistry: false
     serviceUrl:
-      defaultZone: http://root:password@${eureka.instance.hostname}:${server.port}/eureka/
-security:
-    basic:
-       enabled: true
-    user:
-       name: root
-       password: password
-spring:
- devtools:
-    restart:
-      additional-paths: src/main/java
+      defaultZone: http://user:user@discovery-eureka:8761/eureka/   # 指定注册中心的地址
+  instance:
+    preferIpAddress: true
+#    hostname : discovery   # 指定主机名时候通过主机名访问,否则通过ip地址
+#spring:
+# devtools:
+#    restart:
+#      additional-paths: src/main/java
 # 参考文档：http://projects.spring.io/spring-cloud/docs/1.0.3/spring-cloud.html#_standalone_mode
 # 参考文档：http://my.oschina.net/buwei/blog/618756

@@ -1,14 +1,20 @@
 package com.monitor.model.exceptionrecord;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * @author summer
  */
 @Table(name = "panoramic_exception_record")
-public class PanoramicExceptionRecord {
+public class PanoramicExceptionRecord implements Serializable {
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
      * ID
      */
     @Id
@@ -22,7 +28,7 @@ public class PanoramicExceptionRecord {
     private String alarmItem;
 
     /**
-     * 报警状态
+     * 报警状态（1：正常；0：报警）
      */
     private Integer status;
 
@@ -291,4 +297,5 @@ public class PanoramicExceptionRecord {
     public void setRelatedPersonLog(byte[] relatedPersonLog) {
         this.relatedPersonLog = relatedPersonLog;
     }
+
 }

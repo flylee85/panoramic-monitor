@@ -3,8 +3,8 @@
 <mapper namespace="com.monitor.mapper.exceptionrecord.PanoramicExceptionRecordMapper">
   <resultMap id="BaseResultMap" type="com.monitor.model.exceptionrecord.PanoramicExceptionRecord">
     <!--
-      WARNING - @mbg.generated
-    -->
+       WARNING - @mbg.generated
+     -->
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="alarm_item" jdbcType="VARCHAR" property="alarmItem" />
     <result column="status" jdbcType="INTEGER" property="status" />

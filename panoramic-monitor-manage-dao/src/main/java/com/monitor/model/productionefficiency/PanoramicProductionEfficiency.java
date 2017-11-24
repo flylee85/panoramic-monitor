@@ -1,13 +1,20 @@
 package com.monitor.model.productionefficiency;
 
+import com.cloud.model.BaseObject;
+
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * @author summer
  */
 @Table(name = "panoramic_production_efficiency")
-public class PanoramicProductionEfficiency {
+public class PanoramicProductionEfficiency extends BaseObject {
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
     /**
      * ID
      */
@@ -266,5 +273,10 @@ public class PanoramicProductionEfficiency {
      */
     public void setOperator(String operator) {
         this.operator = operator;
+    }
+
+    @Override
+    public Serializable realId() {
+        return null;
     }
 }

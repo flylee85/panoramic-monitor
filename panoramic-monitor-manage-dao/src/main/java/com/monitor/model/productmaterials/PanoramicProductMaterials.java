@@ -1,13 +1,20 @@
 package com.monitor.model.productmaterials;
 
+import com.cloud.model.BaseObject;
+
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * @author summer
  */
 @Table(name = "panoramic_product_materials")
-public class PanoramicProductMaterials {
+public class PanoramicProductMaterials extends BaseObject {
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
     /**
      * ID
      */
@@ -288,5 +295,10 @@ public class PanoramicProductMaterials {
      */
     public void setfId(String fId) {
         this.fId = fId;
+    }
+
+    @Override
+    public Serializable realId() {
+        return null;
     }
 }

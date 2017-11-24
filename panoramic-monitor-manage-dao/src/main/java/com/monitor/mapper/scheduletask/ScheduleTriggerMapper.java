@@ -1,4 +1,4 @@
-package com.monitor.api.task;
+package com.monitor.mapper.scheduletask;
 
 import com.cloud.core.Mapper;
 import com.monitor.model.task.ScheduleTrigger;
