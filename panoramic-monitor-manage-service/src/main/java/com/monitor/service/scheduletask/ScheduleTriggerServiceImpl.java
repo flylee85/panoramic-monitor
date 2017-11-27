@@ -28,7 +28,7 @@ public class ScheduleTriggerServiceImpl extends AbstractService<ScheduleTrigger>
     /**
      * 定时刷新扫描配置表
      */
-    @Scheduled(fixedRate = 5000)
+    @Scheduled(fixedRate = 1000*60*5)
     @Override
     public void refreshTrigger() {
         try {

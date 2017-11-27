@@ -20,4 +20,5 @@ public interface Mapper<T>
         ExampleMapper<T>,
         RowBoundsMapper<T>,
         Marker  {
+
 }

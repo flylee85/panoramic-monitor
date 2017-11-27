@@ -15,12 +15,12 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/real/time/consumption")
 public class PanoramicRealTimeConsumptionController {
    @Autowired
-   @Qualifier("panoramicRealTimeConsumptionService")
-    private PanoramicRealTimeConsumptionService panoramicRealTimeConsumptionService;
+   @Qualifier("realTimeConsumptionService")
+    private PanoramicRealTimeConsumptionService realTimeConsumptionService;
 
     @PostMapping
     public ResultCode<PanoramicRealTimeConsumption> add(PanoramicRealTimeConsumption panoramicRealTimeConsumption) {
-        panoramicRealTimeConsumptionService.save(panoramicRealTimeConsumption);
+    	realTimeConsumptionService.save(panoramicRealTimeConsumption);
         return ResultCode.getSuccessReturn(panoramicRealTimeConsumption);
     }
 
@@ -31,19 +31,19 @@ public class PanoramicRealTimeConsumptionController {
 
     @PutMapping
     public ResultCode<PanoramicRealTimeConsumption> update(PanoramicRealTimeConsumption panoramicRealTimeConsumption) {
-        panoramicRealTimeConsumptionService.update(panoramicRealTimeConsumption);
+    	realTimeConsumptionService.update(panoramicRealTimeConsumption);
         return ResultCode.getSuccessReturn(panoramicRealTimeConsumption);
     }
     @GetMapping("/{id}")
     public ResultCode<PanoramicRealTimeConsumption> detail(@PathVariable Integer id) {
-        PanoramicRealTimeConsumption panoramicRealTimeConsumption = panoramicRealTimeConsumptionService.findById(id);
+        PanoramicRealTimeConsumption panoramicRealTimeConsumption = realTimeConsumptionService.findById(id);
         return ResultCode.getSuccessReturn(panoramicRealTimeConsumption);
     }
 
 //    @GetMapping
 //    public ResultCode<PageInfo> list(Integer page, Integer size) {
 //        PageHelper.startPage(page, size);
-//        List<PanoramicRealTimeConsumption> list = panoramicRealTimeConsumptionService.findAll();
+//        List<PanoramicRealTimeConsumption> list = realTimeConsumptionService.findAll();
 //        PageInfo pageInfo = new PageInfo(list);
 //        return ResultCode.getSuccessReturn(pageInfo);
 //    }

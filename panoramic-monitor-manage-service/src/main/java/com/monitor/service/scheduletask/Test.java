@@ -1,7 +1,5 @@
 package com.monitor.service.scheduletask;
 
-import java.util.List;
-
 import org.quartz.Job;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
@@ -10,28 +8,27 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import com.cloud.util.DateUtil;
+import com.cloud.util.LoggerUtils;
+import com.cloud.util.TLogger;
 import com.monitor.api.exceptionrecord.PanoramicExceptionRecordService;
-import com.monitor.model.exceptionrecord.PanoramicExceptionRecord;
+
 /**
  * 
- * @author summer
- * 定时任务必须实现Job接口
+ * @author summer 定时任务必须实现Job接口
  *
  */
 @Component
-public class Test implements Job{
+public class Test implements Job {
+	private static final transient TLogger DB_LOGGER = LoggerUtils.getLogger(Test.class);
 	@Autowired
 	@Qualifier("exceptionRecordService")
 	private PanoramicExceptionRecordService exceptionRecordService;
 
 	@Override
 	public void execute(JobExecutionContext context) throws JobExecutionException {
-		List<PanoramicExceptionRecord> list = exceptionRecordService.findAll();
-		list.forEach(  record ->{
-			System.out.println(DateUtil.currentTimeStr());
-		});
-		System.out.println("哈哈，执行了定时任务"+list);
-		
+		DB_LOGGER.warn(DateUtil.currentTimeStr());
+		DB_LOGGER.warn("哈哈，执行了定时任务");
+
 	}
-	
+
 }
