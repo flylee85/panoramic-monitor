@@ -6,13 +6,33 @@ import com.cloud.support.CachePair;
 import java.util.Collection;
 import java.util.Map;
 
+/**
+ * @author summer
+ */
 public interface CacheService extends CacheTools {
-    // 固定区域
+    /**
+     * 固定区域
+     */
     String REGION_TENMIN = "tenMin";
+    /**
+     *
+     */
     String REGION_ONEHOUR = "oneHour";
-    String REGION_LOGINAUTH = "loginAuth"; // 2hour
-    String REGION_SERVICE = "acl"; // 12 hour
-    String REGION_FIVEDAY = "fiveDay"; // 5day
+    /**
+     * 2hour
+     */
+    String REGION_LOGINAUTH = "loginAuth";
+    /**
+     * 12 hour
+     */
+    String REGION_SERVICE = "acl";
+    /**
+     * 5day
+     */
+    String REGION_FIVEDAY = "fiveDay";
+    /**
+     *
+     */
     String REGION_LOGINKEY = "loginKey";
 
     /**

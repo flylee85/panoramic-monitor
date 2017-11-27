@@ -11,7 +11,7 @@ import javax.annotation.Resource;
 
 
 /**
- * @author sunder
+ * @author sunmer
  * on 2017/11/06.
  */
 @Service("panoramicRoleService")

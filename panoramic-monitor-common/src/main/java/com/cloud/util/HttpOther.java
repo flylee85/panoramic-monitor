@@ -28,7 +28,9 @@
 package com.cloud.util;
 
 import org.apache.http.client.methods.HttpEntityEnclosingRequestBase;
-
+/**
+ * @author summer
+ */
 public class HttpOther extends HttpEntityEnclosingRequestBase {
     private String method;
     public HttpOther(HttpMethod method) {

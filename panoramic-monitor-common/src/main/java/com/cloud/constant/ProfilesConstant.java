@@ -1,7 +1,7 @@
 package com.cloud.constant;
 
 /**
- * @author sudner
+ * @author summer
  * profiles环境配置
  */
 public class ProfilesConstant {

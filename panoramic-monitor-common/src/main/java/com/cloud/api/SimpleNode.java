@@ -1,7 +1,9 @@
 package com.cloud.api;
 
 import com.cloud.util.BeanUtil;
-
+/**
+ * @author summer
+ */
 public class SimpleNode extends ApiNode{
 	private Object simpleValue;
 	public SimpleNode(String nodeName, Object simpleValue, boolean ignoreEmpty){

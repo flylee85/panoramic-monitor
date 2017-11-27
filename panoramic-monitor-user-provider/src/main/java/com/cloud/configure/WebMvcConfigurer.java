@@ -37,7 +37,7 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * @author sunder
+ * @author sunmer
  * Spring MVC 配置
  */
 @Configuration

@@ -18,7 +18,7 @@ import java.util.*;
  * @since 2016年9月19日下午4:59:38
  */
 public abstract class IpConfig {
-	private static final transient TLogger dbLogger = LoggerUtils.getLogger(IpConfig.class);
+	private static final transient TLogger DB_LOGGER = LoggerUtils.getLogger(IpConfig.class);
 
 	private static final String serverIp;
 	private static final String hostname;
@@ -74,7 +74,7 @@ public abstract class IpConfig {
 
 		String[] host = IpConfig.getServerAddr();
 		serverIp = host[0];
-		dbLogger.warn("GetServerIP:" + serverIp);
+		DB_LOGGER.warn("GetServerIP:" + serverIp);
 		//hostname = host[1];
 		String h = "";
 		try {
@@ -179,7 +179,7 @@ public abstract class IpConfig {
 			}
 		}catch(Exception e){
 		}
-		dbLogger.warn("SERVER-IP:" + hostMap);
+		DB_LOGGER.warn("SERVER-IP:" + hostMap);
 		return hostMap;
 	}
 	public static String getServerip() {

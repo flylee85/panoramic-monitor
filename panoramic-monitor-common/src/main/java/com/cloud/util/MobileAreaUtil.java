@@ -12,7 +12,7 @@ import java.util.Map;
 
 public class MobileAreaUtil {
 	private static Map<String, String> mobileAreaMap = new HashMap<String, String>();
-	private final static transient TLogger dbLogger = LoggerUtils.getLogger(MobileAreaUtil.class);
+	private final static transient TLogger DB_LOGGER = LoggerUtils.getLogger(MobileAreaUtil.class);
 	static{
 		init();
 	}
@@ -25,9 +25,9 @@ public class MobileAreaUtil {
 				mobileAreaMap.put(tmp[0], tmp[1] + "," + tmp[2]);
 			}
 		}catch(Exception e){
-			dbLogger.warn("MobileAreaUtil init error:" + e.getMessage());
+			DB_LOGGER.warn("MobileAreaUtil init error:" + e.getMessage());
 		}
-		dbLogger.warn("MobileAreaUtil init size:" + mobileAreaMap.size());
+		DB_LOGGER.warn("MobileAreaUtil init size:" + mobileAreaMap.size());
 	}
 	public static String getMobileCitycode(String mobile){
 		if(!ValidateUtil.isMobile(mobile)){
@@ -36,7 +36,7 @@ public class MobileAreaUtil {
 		String smobile = mobile.substring(0, 7);
 		String res = mobileAreaMap.get(smobile);
 		if(StringUtils.isBlank(res)){
-			dbLogger.warn("unfind mobile area:" + mobile);
+			DB_LOGGER.warn("unfind mobile area:" + mobile);
 			return "";
 		}
 		return StringUtils.split(res, ",")[0];
@@ -48,7 +48,7 @@ public class MobileAreaUtil {
 		String smobile = mobile.substring(0, 7);
 		String res = mobileAreaMap.get(smobile);
 		if(StringUtils.isBlank(res)){
-			dbLogger.warn("unfind mobile area:" + mobile);
+			DB_LOGGER.warn("unfind mobile area:" + mobile);
 			return "";
 		}
 		return StringUtils.split(res, ",")[1];

@@ -9,7 +9,7 @@ import java.io.CharArrayReader;
 import java.util.Map;
 
 public class NSXmlUtils {
-	private static final transient TLogger dbLogger = LoggerUtils.getLogger(NSXmlUtils.class);
+	private static final transient TLogger DB_LOGGER = LoggerUtils.getLogger(NSXmlUtils.class);
 	private DocumentFactory factory;
 	public NSXmlUtils(Map<String, String> nameSpaceMap){
 		factory = new DocumentFactory();
@@ -29,7 +29,7 @@ public class NSXmlUtils {
 		try {
 			document = reader.read(new CharArrayReader(xml.toCharArray()));
 		} catch (DocumentException e) {
-			dbLogger.error(LoggerUtils.getExceptionTrace(e, 100));
+			DB_LOGGER.error(LoggerUtils.getExceptionTrace(e, 100));
 		}// 读取XML文件
 		return document;
 

@@ -1,7 +1,7 @@
 package com.invoke.web.util;
 
 import com.cloud.util.StringUtil;
-import com.invoke.constant.CityConstant;
+import com.invoke.constant.AbstractCityConstant;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.util.ObjectUtils;
@@ -14,17 +14,20 @@ import java.lang.reflect.Array;
 import java.net.URLEncoder;
 import java.util.*;
 
+/**
+ * @author summer
+ */
 public class WebUtils extends BaseWebUtils {
 
     public static String removeFourChar(String content) {
-        if(StringUtils.isBlank(content)){
+        if (StringUtils.isBlank(content)) {
             return "";
         }
         byte[] conbyte = content.getBytes();
         for (int i = 0; i < conbyte.length; i++) {
             if ((conbyte[i] & 0xF8) == 0xF0) {
                 for (int j = 0; j < 4; j++) {
-                    conbyte[i+j]=0x30;
+                    conbyte[i + j] = 0x30;
                 }
                 i += 3;
             }
@@ -33,17 +36,17 @@ public class WebUtils extends BaseWebUtils {
         return content.replaceAll("0000", "");
     }
 
-    public static String getShopingCartMemberKey(HttpServletRequest request, HttpServletResponse response){
+    public static String getShopingCartMemberKey(HttpServletRequest request, HttpServletResponse response) {
         Cookie cookie = WebUtils.getCookie(request, "memberKey");
         String memberKey = null;
-        if(cookie != null){
+        if (cookie != null) {
             memberKey = cookie.getValue();
-        }else{
+        } else {
             String key = StringUtil.getRandomString(24);
             String ukey = key + StringUtil.md5(key + "ShopingCartMemberKey", 8);
             memberKey = ukey;
         }
-        WebUtils.addCookie(response, "memberKey", memberKey, "/", 60*60*24);
+        WebUtils.addCookie(response, "memberKey", memberKey, "/", 60 * 60 * 24);
         return memberKey;
     }
 
@@ -52,33 +55,33 @@ public class WebUtils extends BaseWebUtils {
         String citycode = null;
         if (cookie != null) {
             citycode = cookie.getValue();
-            if (isValidCitycode(citycode)){
+            if (isValidCitycode(citycode)) {
                 return citycode;
             }
         }
-        citycode = CityConstant.CITYCODE_SH;
+        citycode = AbstractCityConstant.CITYCODE_SH;
         WebUtils.addCookie(response, "citycode", citycode, "/", 60 * 60 * 24 * 7);
         return citycode;
     }
 
     public static boolean isValidCitycode(String citycode) {
-        return CityConstant.ALLCITY.contains(citycode);
+        return AbstractCityConstant.ALLCITY.contains(citycode);
     }
 
-    public static String getCitycodeByIp(String ip){
-        if(StringUtils.isBlank(ip)){
+    public static String getCitycodeByIp(String ip) {
+        if (StringUtils.isBlank(ip)) {
             return null;
         }
         String citycode = findCitycodeByIp();
-        if(StringUtils.isBlank(citycode)){
-            citycode = CityConstant.CITYCODE_SH;
+        if (StringUtils.isBlank(citycode)) {
+            citycode = AbstractCityConstant.CITYCODE_SH;
         }
         return citycode;
     }
 
     //没有默认值，特殊情况下使用
-    public static String findCitycodeByIp(){
-        return CityConstant.CITYCODE_SH;
+    public static String findCitycodeByIp() {
+        return AbstractCityConstant.CITYCODE_SH;
     }
 
     public static void appendQueryProperties(StringBuilder targetUrl, LinkedHashMap<String, Object> model, String encoding) {
@@ -88,11 +91,9 @@ public class WebUtils extends BaseWebUtils {
             Iterator valueIter = null;
             if (rawValue != null && rawValue.getClass().isArray()) {
                 valueIter = Arrays.asList(ObjectUtils.toObjectArray(rawValue)).iterator();
-            }
-            else if (rawValue instanceof Collection) {
+            } else if (rawValue instanceof Collection) {
                 valueIter = ((Collection) rawValue).iterator();
-            }
-            else {
+            } else {
                 valueIter = Collections.singleton(rawValue).iterator();
             }
             while (valueIter.hasNext()) {
@@ -100,8 +101,7 @@ public class WebUtils extends BaseWebUtils {
                 if (first) {
                     targetUrl.append('?');
                     first = false;
-                }
-                else {
+                } else {
                     targetUrl.append('&');
                 }
                 String encodedKey = urlEncode(entry.getKey(), encoding);
@@ -159,6 +159,7 @@ public class WebUtils extends BaseWebUtils {
 
         return false;
     }
+
     private static String urlEncode(String input, String charsetName) {
         try {
             return (input != null ? URLEncoder.encode(input, charsetName) : null);
@@ -166,6 +167,7 @@ public class WebUtils extends BaseWebUtils {
             return null;
         }
     }
+
     private static boolean isEligibleValue(Object value) {
         return (value != null && BeanUtils.isSimpleValueType(value.getClass()));
     }

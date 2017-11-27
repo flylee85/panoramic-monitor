@@ -2,96 +2,85 @@ package com.cloud.model;
 
 import java.io.Serializable;
 
+/**
+ * @author summer
+ */
 public class Log implements Serializable {
+    private static final long serialVersionUID = 1L;
     /**
      * 编号
      *
      * @mbg.generated
      */
     private Integer logId;
-
     /**
      * 操作描述
      *
      * @mbg.generated
      */
     private String description;
-
     /**
      * 操作用户
      *
      * @mbg.generated
      */
     private String username;
-
     /**
      * 操作时间
      *
      * @mbg.generated
      */
     private Long startTime;
-
     /**
      * 消耗时间
      *
      * @mbg.generated
      */
     private Integer spendTime;
-
     /**
      * 根路径
      *
      * @mbg.generated
      */
     private String basePath;
-
     /**
      * URI
      *
      * @mbg.generated
      */
     private String uri;
-
     /**
      * URL
      *
      * @mbg.generated
      */
     private String url;
-
     /**
      * 请求类型
      *
      * @mbg.generated
      */
     private String method;
-
     /**
      * 用户标识
      *
      * @mbg.generated
      */
     private String userAgent;
-
     /**
      * IP地址
      *
      * @mbg.generated
      */
     private String ip;
-
     /**
      * 权限值
      *
      * @mbg.generated
      */
     private String permissions;
-
     private String parameter;
-
     private String result;
-
-    private static final long serialVersionUID = 1L;
 
     public Integer getLogId() {
         return logId;
@@ -242,19 +231,19 @@ public class Log implements Serializable {
         }
         Log other = (Log) that;
         return (this.getLogId() == null ? other.getLogId() == null : this.getLogId().equals(other.getLogId()))
-            && (this.getDescription() == null ? other.getDescription() == null : this.getDescription().equals(other.getDescription()))
-            && (this.getUsername() == null ? other.getUsername() == null : this.getUsername().equals(other.getUsername()))
-            && (this.getStartTime() == null ? other.getStartTime() == null : this.getStartTime().equals(other.getStartTime()))
-            && (this.getSpendTime() == null ? other.getSpendTime() == null : this.getSpendTime().equals(other.getSpendTime()))
-            && (this.getBasePath() == null ? other.getBasePath() == null : this.getBasePath().equals(other.getBasePath()))
-            && (this.getUri() == null ? other.getUri() == null : this.getUri().equals(other.getUri()))
-            && (this.getUrl() == null ? other.getUrl() == null : this.getUrl().equals(other.getUrl()))
-            && (this.getMethod() == null ? other.getMethod() == null : this.getMethod().equals(other.getMethod()))
-            && (this.getUserAgent() == null ? other.getUserAgent() == null : this.getUserAgent().equals(other.getUserAgent()))
-            && (this.getIp() == null ? other.getIp() == null : this.getIp().equals(other.getIp()))
-            && (this.getPermissions() == null ? other.getPermissions() == null : this.getPermissions().equals(other.getPermissions()))
-            && (this.getParameter() == null ? other.getParameter() == null : this.getParameter().equals(other.getParameter()))
-            && (this.getResult() == null ? other.getResult() == null : this.getResult().equals(other.getResult()));
+                && (this.getDescription() == null ? other.getDescription() == null : this.getDescription().equals(other.getDescription()))
+                && (this.getUsername() == null ? other.getUsername() == null : this.getUsername().equals(other.getUsername()))
+                && (this.getStartTime() == null ? other.getStartTime() == null : this.getStartTime().equals(other.getStartTime()))
+                && (this.getSpendTime() == null ? other.getSpendTime() == null : this.getSpendTime().equals(other.getSpendTime()))
+                && (this.getBasePath() == null ? other.getBasePath() == null : this.getBasePath().equals(other.getBasePath()))
+                && (this.getUri() == null ? other.getUri() == null : this.getUri().equals(other.getUri()))
+                && (this.getUrl() == null ? other.getUrl() == null : this.getUrl().equals(other.getUrl()))
+                && (this.getMethod() == null ? other.getMethod() == null : this.getMethod().equals(other.getMethod()))
+                && (this.getUserAgent() == null ? other.getUserAgent() == null : this.getUserAgent().equals(other.getUserAgent()))
+                && (this.getIp() == null ? other.getIp() == null : this.getIp().equals(other.getIp()))
+                && (this.getPermissions() == null ? other.getPermissions() == null : this.getPermissions().equals(other.getPermissions()))
+                && (this.getParameter() == null ? other.getParameter() == null : this.getParameter().equals(other.getParameter()))
+                && (this.getResult() == null ? other.getResult() == null : this.getResult().equals(other.getResult()));
     }
 
     @Override

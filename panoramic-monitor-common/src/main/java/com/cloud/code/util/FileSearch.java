@@ -14,7 +14,9 @@ import java.util.List;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang.StringUtils;
-
+/**
+ * @author summer
+ */
 public class FileSearch {
 	public static void searchFile(Writer writer, String path, boolean onlyGen, Date date) throws IOException{
 		FilenameFilter filter = new GenFileFilter(onlyGen, date);

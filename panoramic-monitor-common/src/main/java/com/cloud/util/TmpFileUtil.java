@@ -5,7 +5,7 @@ import com.cloud.support.TraceErrorException;
 import java.io.File;
 
 public class TmpFileUtil {
-	private static final transient TLogger dbLogger = LoggerUtils.getLogger(HttpUtils.class);
+	private static final transient TLogger DB_LOGGER = LoggerUtils.getLogger(HttpUtils.class);
 	public static void deleteFile(File file){
 		if(file.exists()){
 			if(file.isFile()){
@@ -14,7 +14,7 @@ public class TmpFileUtil {
 				throw new TraceErrorException("can't delete directory:" + file);
 			}
 		}else{
-			dbLogger.warn("fileNotExists:" + file);
+			DB_LOGGER.warn("fileNotExists:" + file);
 		}
 	}
 

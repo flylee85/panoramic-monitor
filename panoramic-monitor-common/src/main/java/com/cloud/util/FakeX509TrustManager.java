@@ -5,7 +5,9 @@ import javax.net.ssl.X509ExtendedTrustManager;
 import java.net.Socket;
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
-
+/**
+ * @author summer
+ */
 public class FakeX509TrustManager extends X509ExtendedTrustManager{
 
 	private static final X509Certificate[] _AcceptedIssuers = new X509Certificate[] {};

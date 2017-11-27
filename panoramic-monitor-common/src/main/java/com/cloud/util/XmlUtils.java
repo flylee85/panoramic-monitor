@@ -13,7 +13,7 @@ import java.io.Writer;
 import java.util.*;
 
 public class XmlUtils {
-	private static final transient TLogger dbLogger = LoggerUtils.getLogger(XmlUtils.class);
+	private static final transient TLogger DB_LOGGER = LoggerUtils.getLogger(XmlUtils.class);
 	public static String formatXml(String str, String encoding) {
 		try {
 			StringWriter writer = new StringWriter();
@@ -21,7 +21,7 @@ public class XmlUtils {
 			writer.close();
 			return writer.toString();
 		} catch (Exception e) {
-			dbLogger.warn(str + LoggerUtils.getExceptionTrace(e, 100));
+			DB_LOGGER.warn(str + LoggerUtils.getExceptionTrace(e, 100));
 			return str;
 		}
 	}
@@ -40,7 +40,7 @@ public class XmlUtils {
 			org.dom4j.Document document = DocumentHelper.parseText(str);
 			xmlWriter.write(document);
 		} catch (DocumentException e) {
-			dbLogger.warn(str + LoggerUtils.getExceptionTrace(e, 100));
+			DB_LOGGER.warn(str + LoggerUtils.getExceptionTrace(e, 100));
 		}
 
 	}
@@ -50,7 +50,7 @@ public class XmlUtils {
 		try {
 			document = reader.read(new CharArrayReader(xml.toCharArray()));
 		} catch (DocumentException e) {
-			dbLogger.error(LoggerUtils.getExceptionTrace(e, 100));
+			DB_LOGGER.error(LoggerUtils.getExceptionTrace(e, 100));
 		}// 读取XML文件
 		return document;
 	}
@@ -91,7 +91,7 @@ public class XmlUtils {
             }
 			return getText(nodeList.get(0));
 		}catch(Exception e){
-			dbLogger.error(document.getText() + LoggerUtils.getExceptionTrace(e, 100));
+			DB_LOGGER.error(document.getText() + LoggerUtils.getExceptionTrace(e, 100));
 			return null;
 		}
 	}
@@ -112,7 +112,7 @@ public class XmlUtils {
                 }
 			}
 		}catch(Exception e){
-			dbLogger.error(document.getText() + LoggerUtils.getExceptionTrace(e, 100));
+			DB_LOGGER.error(document.getText() + LoggerUtils.getExceptionTrace(e, 100));
 		}
 		return result;
 	}
@@ -140,7 +140,7 @@ public class XmlUtils {
 				}
 			}
 		} catch (DocumentException e1) {
-			dbLogger.warn(e1, 20);
+			DB_LOGGER.warn(e1, 20);
 		}
 		return map;
 	}
@@ -154,15 +154,15 @@ public class XmlUtils {
 //				"</bookstore>";
 //
 //		xml = "<notify><trade_status>TRADE_FINISHED</trade_status><total_fee>0.90</total_fee><subject>123456</subject><out_trade_no>1118060201-7555</out_trade_no><notify_reg_time>2010-11-18 14:02:43.000</notify_reg_time><trade_no>2010111800209965</trade_no></notify>";
-//		//dbLogger.warn(getNodeText(document, "/bookstore/book[1]"));
-//		//dbLogger.warn(getNodeText(document, "/bookstore/book[1]/price"));
-//		//dbLogger.warn(getNodeText(document, "/bookstore/book[2]/title/@lang"));
-//		//dbLogger.warn(getNodeText(document, "/bookstore/book[2]/description"));
-//		//dbLogger.warn("xx"+getNodeText(document, "/bookstore/book[1]/price22"));
+//		//DB_LOGGER.warn(getNodeText(document, "/bookstore/book[1]"));
+//		//DB_LOGGER.warn(getNodeText(document, "/bookstore/book[1]/price"));
+//		//DB_LOGGER.warn(getNodeText(document, "/bookstore/book[2]/title/@lang"));
+//		//DB_LOGGER.warn(getNodeText(document, "/bookstore/book[2]/description"));
+//		//DB_LOGGER.warn("xx"+getNodeText(document, "/bookstore/book[1]/price22"));
 //		//printNode(document, "//*");//所有Element节点
 //		//printNode(document, "//node()");//所有节点
 //		//printNode(document, "//title | //price");//所有节点
-//		//dbLogger.warngetNodeTextList(document, "/bookstore/book/price", true));
+//		//DB_LOGGER.warngetNodeTextList(document, "/bookstore/book/price", true));
 //		Map<String, Object> map = xml2Map(xml);
 //		System.out.println(map);
 //	}

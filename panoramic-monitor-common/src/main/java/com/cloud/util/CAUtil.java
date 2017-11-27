@@ -25,7 +25,7 @@ import java.util.Enumeration;
  * @since Jun 14, 2013 6:25:19 PM
  */
 public class CAUtil {
-	private static final transient TLogger dbLogger = LoggerUtils.getLogger(CAUtil.class);
+	private static final transient TLogger DB_LOGGER = LoggerUtils.getLogger(CAUtil.class);
 	public static final String MD5withRSA = "MD5withRSA";
 	public static final String SHA1WithRSA = "SHA1WithRSA";
 	public static PrivateKey getFirstPvkfromPfx(String pfxFile, String password) {
@@ -35,11 +35,11 @@ public class CAUtil {
 		try {
 			prikey = (PrivateKey) ks.getKey(ks.aliases().nextElement(), nPassword);
 		} catch (UnrecoverableKeyException e) {
-			dbLogger.error("", e);
+			DB_LOGGER.error("", e);
 		} catch (KeyStoreException e) {
-			dbLogger.error("", e);
+			DB_LOGGER.error("", e);
 		} catch (NoSuchAlgorithmException e) {
-			dbLogger.error("", e);
+			DB_LOGGER.error("", e);
 		}
 		return prikey;
 	}
@@ -52,11 +52,11 @@ public class CAUtil {
 		try {
 			prikey = (PrivateKey) ks.getKey(alias, nPassword);
 		} catch (UnrecoverableKeyException e) {
-			dbLogger.error("", e);
+			DB_LOGGER.error("", e);
 		} catch (KeyStoreException e) {
-			dbLogger.error("", e);
+			DB_LOGGER.error("", e);
 		} catch (NoSuchAlgorithmException e) {
-			dbLogger.error("", e);
+			DB_LOGGER.error("", e);
 		}
 		return prikey;
 	}
@@ -71,13 +71,13 @@ public class CAUtil {
 			ks.load(fis, password.toCharArray());
 			return ks;
 		} catch (Exception e) {
-			dbLogger.error("", e);
+			DB_LOGGER.error("", e);
 		} finally {
 			if (null != fis) {
 				try {
 					fis.close();
 				} catch (IOException e) {
-					dbLogger.error("", e);
+					DB_LOGGER.error("", e);
 				}
 			}
 		}
@@ -93,7 +93,7 @@ public class CAUtil {
 				keyAlias = enumas.nextElement();
 			}
 		} catch (KeyStoreException e) {
-			dbLogger.error("", e);
+			DB_LOGGER.error("", e);
 		}
 		return keyAlias;
 	}
@@ -106,15 +106,15 @@ public class CAUtil {
 			ism = new FileInputStream(certFile);
 			x509Certificate = (X509Certificate) cf.generateCertificate(ism);
 		} catch (CertificateException e) {
-			dbLogger.error("", e);
+			DB_LOGGER.error("", e);
 		} catch (FileNotFoundException e) {
-			dbLogger.error("", e);
+			DB_LOGGER.error("", e);
 		} finally {
 			if (null != ism) {
 				try {
 					ism.close();
 				} catch (IOException e) {
-					dbLogger.error("", e);
+					DB_LOGGER.error("", e);
 				}
 			}
 		}
@@ -127,7 +127,7 @@ public class CAUtil {
 			KeyStore ks = getKsfromPfx(certFile, password);
 			cert = ks.getCertificate(alias);
 		} catch (KeyStoreException e) {
-			dbLogger.error("", e);
+			DB_LOGGER.error("", e);
 		}
 		return cert;
 	}
@@ -192,7 +192,7 @@ public class CAUtil {
 			byte[] signed = signature.sign();
 			return new String(Base64.encodeBase64(signed));
 		} catch (Exception e) {
-			dbLogger.warn(e, 20);
+			DB_LOGGER.warn(e, 20);
 			return "";
 		}
 	}
@@ -204,7 +204,7 @@ public class CAUtil {
 			byte[] signed = signature.sign();
 			return new String(Base64.encodeBase64(signed));
 		} catch (Exception e) {
-			dbLogger.warn(e, 20);
+			DB_LOGGER.warn(e, 20);
 			return "";
 		}
 	}
@@ -216,7 +216,7 @@ public class CAUtil {
 			byte[] signed = signature.sign();
 			return signed;
 		} catch (Exception e) {
-			dbLogger.warn(e, 20);
+			DB_LOGGER.warn(e, 20);
 			return null;
 		}
 	}

@@ -25,9 +25,6 @@ public class QcDataController {
     @Autowired
     @Qualifier("qcDataService")
     private QcDataService qcDataService;
-    @Autowired
-    @Qualifier("materialThresholdConfigurationService")
-    private PanoramicMaterialThresholdConfigurationService materialThresholdConfigurationService;
 
     @PostMapping("/{id}")
     public ResultCode<QcData> add(QcData qcData) {
@@ -50,6 +47,11 @@ public class QcDataController {
     public ResultCode<QcData> detail(@PathVariable Integer id) {
         QcData qcData = qcDataService.findById(id);
         return ResultCode.getSuccessReturn(qcData);
+    }
+    @GetMapping("/{date}")
+    public ResultCode<Double> passRate(@PathVariable String date) {
+        Double passRate = qcDataService.passRate(date);
+        return ResultCode.getSuccessReturn(passRate);
     }
 
     @ApiOperation(value = "分页查询质检详情查询接口", notes = "根据时间分页查询质检详情数据列表")

@@ -487,7 +487,7 @@ public class XSSFilter {
 	 */
 	public static String filterSpecStr(String str){
 		//全角转半角
-		str = BCConvert.SBC2DBC(str);
+		str = BcConvert.sbc2Dbc(str);
 		Pattern p = Pattern.compile(regExp);
 		Matcher m = p.matcher(str);
 		return m.replaceAll("").trim();

@@ -11,7 +11,9 @@ import com.fasterxml.jackson.databind.deser.std.DateDeserializers.TimestampDeser
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-
+/**
+ * @author summer
+ */
 public class TDateSerializers {
 	public static final GewaDateDeserializer dateDeserializer= new GewaDateDeserializer();
 	public static final GewaTimestampDeserializer timestampDeserializer= new GewaTimestampDeserializer();

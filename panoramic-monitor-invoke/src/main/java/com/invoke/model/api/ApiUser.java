@@ -7,27 +7,87 @@ import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Arrays;
 
+/**
+ * @author summer
+ */
 public class ApiUser extends BaseObject {
-    public static final String STATUS_OPEN = "open";    //正常使用
-    public static final String STATUS_PAUSE = "pause";    //暂停使用
-    public static final String STATUS_STOP = "stop";    //停止使用
+    /**
+     * 正常使用
+     */
+    public static final String STATUS_OPEN = "open";
+    /**
+     * 暂停使用
+     */
+    public static final String STATUS_PAUSE = "pause";
+    /**
+     * 停止使用
+     */
+    public static final String STATUS_STOP = "stop";
     private static final long serialVersionUID = -6800394265547863600L;
+    /**
+     *
+     */
     private Long id;
-    private String usertype;        //用户类型：partner
-    private String category;        //分类：ticket,sport....
-    private String partnername;        //合作伙伴名称
-    private String briefname;        //简称
-    private String partnerip;        //合作伙伴IP
-    private String partnerkey;        //验证身份密码
-    private String privatekey;        //数据加密key
-    private String content;            //描述
-    private Timestamp updatetime;    //更新时间
-    private Long clerk;                //操作人
-    private String status;            //当前状态：暂停使用、禁用、正常使用
-    private String roles;            //分配的角色
-    private String partnerpath;        //公司Path
-    private String secretKey;        //3DES加密key Hex
-    private String otherinfo;        //json数据，其他信息
+    /**
+     * 用户类型：partner
+     */
+    private String usertype;
+    /**
+     * 分类：ticket,sport....
+     */
+    private String category;
+    /**
+     * 合作伙伴名称
+     */
+    private String partnername;
+    /**
+     * 简称
+     */
+    private String briefname;
+    /**
+     * 合作伙伴IP
+     */
+    private String partnerip;
+    /**
+     * 验证身份密码
+     */
+    private String partnerkey;
+    /**
+     * 数据加密key
+     */
+    private String privatekey;
+    /**
+     * 描述
+     */
+    private String content;
+    /**
+     * 更新时间
+     */
+    private Timestamp updatetime;
+    /**
+     * 操作人
+     */
+    private Long clerk;
+    /**
+     * 当前状态：暂停使用、禁用、正常使用
+     */
+    private String status;
+    /**
+     * 分配的角色
+     */
+    private String roles;
+    /**
+     * 公司Path
+     */
+    private String partnerpath;
+    /**
+     * 3DES加密key Hex
+     */
+    private String secretKey;
+    /**
+     * json数据，其他信息
+     */
+    private String otherinfo;
 
     public ApiUser() {
     }

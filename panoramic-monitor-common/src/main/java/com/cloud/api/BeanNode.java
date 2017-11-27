@@ -1,7 +1,9 @@
 package com.cloud.api;
 
 import java.util.Map;
-
+/**
+ * @author summer
+ */
 public class BeanNode extends ApiNode{
 	private Object nodeBean;
 	private Map dataMap;

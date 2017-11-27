@@ -26,7 +26,7 @@ import com.monitor.web.controller.api.ApiAuth;
 /**
  * API2.0身份过滤器
  *
- * @author sunder
+ * @author sunmer
  */
 public abstract class BaseApiAuthenticationFilter extends GenericFilterBean {
     private static ThreadLocal<ApiAuth> apiAuthLocal = new ThreadLocal<ApiAuth>();

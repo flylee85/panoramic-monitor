@@ -13,7 +13,9 @@ import java.util.concurrent.Callable;
 import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
-
+/**
+ * @author summer
+ */
 public class Gcache<K, V> implements Cache<K, V>, Serializable{
 
 	private static final long serialVersionUID = -231460062536441961L;

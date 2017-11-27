@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.Map;
 
 public class VoCopyUtil {
-	private static final transient TLogger dbLogger = LoggerUtils.getLogger(VoCopyUtil.class);
+	private static final transient TLogger DB_LOGGER = LoggerUtils.getLogger(VoCopyUtil.class);
 	public static Map<String/*srcClass+dstClass*/, List<String>> copyPropsMap = new FastHashMap();
 	public static <K, V> VoMap<K, V> toVoMap(Map<K, V> map){
 		VoMap result = new VoMap(map.size());
@@ -51,7 +51,7 @@ public class VoCopyUtil {
 				voItemList.add(itemVo);
 			}
 		}catch(Exception e){
-			dbLogger.warn(e, 10);
+			DB_LOGGER.warn(e, 10);
 		}
 		return ResultCode.getSuccessReturn(voItemList);
 	}
@@ -68,7 +68,7 @@ public class VoCopyUtil {
 			copyInternal(itemVo, item, srcWrapper, destWrapper, props);
 			return ResultCode.getSuccessReturn(itemVo);
 		} catch (Exception e) {
-			dbLogger.warn(e, 10);
+			DB_LOGGER.warn(e, 10);
 			return ResultCode.getFailure(ResultCode.CODE_UNKNOWN_ERROR, "未知错误！");
 		}
 	}
@@ -130,7 +130,7 @@ public class VoCopyUtil {
 			try{
 				destWrapper.setPropertyValue(dst, name, srcWrapper.getPropertyValue(src, name));
 			}catch(Throwable e){
-				dbLogger.warn(name, e, 10);
+				DB_LOGGER.warn(name, e, 10);
 			}
 		}
 	}
@@ -153,7 +153,7 @@ public class VoCopyUtil {
 			try{
 				destWrapper.setPropertyValue(dst, entry.getKey(), entry.getValue());
 			}catch(Throwable e){
-				dbLogger.warn(entry.getKey(), e, 10);
+				DB_LOGGER.warn(entry.getKey(), e, 10);
 			}
 		}
 	}

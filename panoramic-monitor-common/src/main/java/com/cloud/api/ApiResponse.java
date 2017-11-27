@@ -9,7 +9,9 @@ import java.io.StringWriter;
 import java.io.Writer;
 import java.util.LinkedHashMap;
 import java.util.Map;
-
+/**
+ * @author summer
+ */
 public class ApiResponse {
 	private String errorCode;
 	private String msg;

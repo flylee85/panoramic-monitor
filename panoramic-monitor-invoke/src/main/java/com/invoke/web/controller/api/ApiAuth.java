@@ -4,7 +4,7 @@ package com.invoke.web.controller.api;
 import com.invoke.model.api.ApiUser;
 
 /**
- * @author sunder
+ * @author sunmer
  * Api授权
  */
 public class ApiAuth {

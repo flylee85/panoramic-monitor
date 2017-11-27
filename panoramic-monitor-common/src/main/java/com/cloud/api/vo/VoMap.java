@@ -14,7 +14,7 @@ import com.cloud.util.LoggerUtils;
 
 public class VoMap<K, V> implements Map<K, V>, Serializable{
 	private static final long serialVersionUID = -6947799462487517862L;
-	private static TLogger dbLogger = LoggerUtils.getLogger(VoMap.class);
+	private static TLogger DB_LOGGER = LoggerUtils.getLogger(VoMap.class);
 	private Map<K, V> _underline;
 	public VoMap() {
 		_underline = new LinkedHashMap<K, V>(0);
@@ -71,7 +71,7 @@ public class VoMap<K, V> implements Map<K, V>, Serializable{
 			}
 		}
 
-		dbLogger.warn("InvalidVoMapData:" + value);
+		DB_LOGGER.warn("InvalidVoMapData:" + value);
 		return false;
 	}
 	private boolean checkMap(Map value, int deep){
@@ -84,7 +84,7 @@ public class VoMap<K, V> implements Map<K, V>, Serializable{
 			Object v = it.next();
 			boolean c = checkValue(v, deep);
 			if(!c) {
-				dbLogger.warn("InvalidVoMapData:" + v);
+				DB_LOGGER.warn("InvalidVoMapData:" + v);
 				return c;
 			}
 		}
@@ -100,7 +100,7 @@ public class VoMap<K, V> implements Map<K, V>, Serializable{
 			Object v = it.next();
 			boolean c = checkValue(v, deep);
 			if(!c) {
-				dbLogger.warn("InvalidVoMapData:" + v);
+				DB_LOGGER.warn("InvalidVoMapData:" + v);
 				return c;
 			}
 		}

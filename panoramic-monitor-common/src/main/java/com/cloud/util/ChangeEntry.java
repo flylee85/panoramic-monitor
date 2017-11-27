@@ -4,7 +4,9 @@ import org.apache.commons.lang.StringUtils;
 
 import java.sql.Timestamp;
 import java.util.*;
-
+/**
+ * @author summer
+ */
 public class ChangeEntry {
 	public ChangeEntry(){
 	}

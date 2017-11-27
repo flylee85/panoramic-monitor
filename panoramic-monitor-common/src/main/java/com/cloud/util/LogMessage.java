@@ -2,7 +2,9 @@ package com.cloud.util;
 import java.io.Serializable;
 import java.util.LinkedHashMap;
 import java.util.Map;
-
+/**
+ * @author summer
+ */
 public class LogMessage implements Serializable{
 	private static final long serialVersionUID = -1449397931879372657L;
 	private Map data = new LinkedHashMap();

@@ -5,6 +5,8 @@ import com.monitor.model.materialthresholdconfiguration.PanoramicMaterialThresho
 
 
 /**
+ * 物料上下线配置
+ *
  * @author summer
  * 2017/11/27
  */

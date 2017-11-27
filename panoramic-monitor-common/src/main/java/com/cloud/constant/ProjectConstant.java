@@ -1,7 +1,7 @@
 package com.cloud.constant;
 
 /**
- * 项目常量
+ * @author summer
  */
 public final class ProjectConstant {
 

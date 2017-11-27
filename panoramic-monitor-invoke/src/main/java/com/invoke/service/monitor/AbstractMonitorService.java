@@ -29,7 +29,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  */
 public abstract class AbstractMonitorService implements MonitorService {
     protected static String FLAG_ADMIN = "admin";
-    protected final transient TLogger dbLogger = LoggerUtils.getLogger(BaseWebUtils.class);
+    protected final transient TLogger DB_LOGGER = LoggerUtils.getLogger(BaseWebUtils.class);
     protected Map<String, AtomicInteger> callcountMap = new HashMap();
     protected ThreadPoolExecutor executor;
 
@@ -47,7 +47,7 @@ public abstract class AbstractMonitorService implements MonitorService {
     protected void setupConsumerThread(int threadSize) {
         this.executor = new ThreadPoolExecutor(threadSize, threadSize, 300L, TimeUnit.SECONDS, new LinkedBlockingQueue(), new TExecutorThreadFactory(this.getClass().getSimpleName()));
         this.executor.allowCoreThreadTimeOut(false);
-        this.dbLogger.warn("MonitorThread started!");
+        this.DB_LOGGER.warn("MonitorThread started!");
     }
 
     protected void destroyConsumerThread() {

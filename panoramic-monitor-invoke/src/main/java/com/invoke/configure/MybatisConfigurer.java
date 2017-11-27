@@ -8,6 +8,7 @@ import javax.sql.DataSource;
 import org.apache.ibatis.plugin.Interceptor;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -22,10 +23,11 @@ import tk.mybatis.spring.mapper.MapperScannerConfigurer;
 
 /**
  * Mybatis & Mapper & PageHelper 配置
+ * @author summer
  */
 @Configuration
 public class MybatisConfigurer {
-    @Resource
+    @Autowired
     private DataSource dataSource;
 
     @Bean

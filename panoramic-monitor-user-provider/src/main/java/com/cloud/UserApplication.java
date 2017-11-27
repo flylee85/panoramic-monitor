@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 /**
- * @author sunder
+ * @author sunmer
  * 启动类
  * 在classpath 下 两种格式是相同的
  * @EnableEurekaClient 更依赖于eureka注册中心

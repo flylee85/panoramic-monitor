@@ -23,7 +23,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * @date 2011-04-11 10:28:07
  */
 public class BeanUtil implements Util4Script{
-	private static final transient TLogger dbLogger = LoggerUtils.getLogger(BeanUtil.class);
+	private static final transient TLogger DB_LOGGER = LoggerUtils.getLogger(BeanUtil.class);
 	private static Map<Class, List<String>> writeListPropertyMap = new ConcurrentHashMap<Class, List<String>>();
 	public static Class<?> getFieldType(Class clazz, String property) {
 
@@ -32,7 +32,7 @@ public class BeanUtil implements Util4Script{
 			Class<?> v = wrap.getPropertyType(property);
 			return v;
 		} catch (Exception e) {
-			dbLogger.warn(e, 2);
+			DB_LOGGER.warn(e, 2);
 		}
 		return null;
 	}
@@ -143,7 +143,7 @@ public class BeanUtil implements Util4Script{
 			Wrapper wrap = Wrapper.getWrapper(bean.getClass());
 			return wrap.getPropertyValue(bean, property);
 		} catch (Exception e) {
-			dbLogger.warn(e, 2);
+			DB_LOGGER.warn(e, 2);
 		}
 		return null;
 	}
@@ -434,7 +434,7 @@ public class BeanUtil implements Util4Script{
 			}
 			beanMap.remove("class");//class属性去除
 		} catch (Exception e) {
-			dbLogger.warn(e, 20);
+			DB_LOGGER.warn(e, 20);
 			return null;
 		}
 		return beanMap;
@@ -450,7 +450,7 @@ public class BeanUtil implements Util4Script{
 			try {
 				result.put(pn, wrap.getPropertyValue(bean, pn));
 			} catch (Exception e) {
-				dbLogger.warn(e, 2);
+				DB_LOGGER.warn(e, 2);
 			}
 		}
 		return result;

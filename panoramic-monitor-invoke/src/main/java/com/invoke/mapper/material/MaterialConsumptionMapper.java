@@ -10,10 +10,10 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * @author sunder
+ * @author sunmer
  */
 @Repository("materialConsumptionMapper")
 public interface MaterialConsumptionMapper extends Mapper<MaterialConsumption> {
-    @Select("SELECT * FROM hr_material_consumption_mid AS m WHERE m.MAT_CODE = #{matCode} and m.CON_TIME >=#{conTime}")
+    @Select("SELECT * FROM HR_MATERIAL_CONSUMPTION_MID AS m WHERE m.MAT_CODE = #{matCode} and m.CON_TIME >=#{conTime}")
     List<MaterialConsumptionDto> listByDate(String matCode, Date conTime);
 }

@@ -3,7 +3,9 @@ package com.cloud.serialize;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * @author summer
+ */
 public class IOUtils {
 	private static final int BUFFER_SIZE = 1024 * 8;
 

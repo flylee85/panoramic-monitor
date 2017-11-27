@@ -1,7 +1,7 @@
 package com.cloud.constant;
 
 /**
- * @author sunder
+ * @author sunmer
  * 权限校验
  */
 public class SercurityConstants {

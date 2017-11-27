@@ -10,7 +10,9 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.apache.commons.collections.map.UnmodifiableMap;
-
+/**
+ * @author summer
+ */
 public abstract class IDCardUtil {
     private static final String[] ValCodeArr = { "1", "0", "x", "9", "8", "7", "6", "5", "4",
             "3", "2" };

@@ -6,7 +6,7 @@ import java.util.Date;
 import javax.persistence.*;
 
 /**
- * @author sunder
+ * @author sunmer
  * 物料消耗DTO
  */
 @Table(name = "hr_material_consumption_mid")

@@ -9,7 +9,9 @@ import org.jsoup.select.Elements;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-
+/**
+ * @author summer
+ */
 public class HtmlParser {
 	public static List<String> getNodeAttrList(String html, String nodename, String attrName) {
 		List<String> result = new ArrayList<String>();

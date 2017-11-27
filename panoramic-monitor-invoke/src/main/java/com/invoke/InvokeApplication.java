@@ -12,7 +12,7 @@ import org.springframework.context.annotation.ComponentScan;
 import com.invoke.web.filter.GateWayAuthenticationFilter;
 
 /**
- * @author sunder
+ * @author sunmer
  */
 @SpringBootApplication
 @EnableDiscoveryClient

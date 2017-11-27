@@ -1,7 +1,9 @@
 package com.cloud.util;
 
 import org.apache.commons.lang.StringUtils;
-
+/**
+ * @author summer
+ */
 public class SystemUtils {
 	public static final String getShortHostname(String hostname){
 		int idx = StringUtils.indexOf(hostname, '.');

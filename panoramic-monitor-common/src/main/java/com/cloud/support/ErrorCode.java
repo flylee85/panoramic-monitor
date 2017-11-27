@@ -6,12 +6,34 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * @param <T>
+ * @author summer
+ */
 public class ErrorCode<T> implements Serializable {
     private static final long serialVersionUID = 4418416282894231647L;
+    private static final String CODE_SUCCESS = "0000";
+    private static final String CODE_UNKNOWN_ERROR = "9999";
+    public static ErrorCode SUCCESS = new ErrorCode(CODE_SUCCESS, "操作成功！", null);
+    /**
+     * 返回状态码 code
+     */
     private String errcode;
+    /**
+     * 返回信息
+     */
     private String msg;
-    private String syscode;    //内部代码
-    private String sysmsg;    //内部消息
+    /**
+     * //内部代码
+     */
+    private String syscode;
+    /**
+     * //内部消息
+     */
+    private String sysmsg;
+    /**
+     * 封装的返回数据
+     */
     private T retval;
     private boolean success = false;
 
@@ -26,23 +48,6 @@ public class ErrorCode<T> implements Serializable {
         this.sysmsg = msg;
         this.retval = retval;
         this.success = StringUtils.equals(code, CODE_SUCCESS);
-    }
-
-    private static final String CODE_SUCCESS = "0000";
-    private static final String CODE_UNKNOWN_ERROR = "9999";
-
-    public static ErrorCode SUCCESS = new ErrorCode(CODE_SUCCESS, "操作成功！", null);
-
-    @Override
-    public boolean equals(Object another) {
-        if (another == null || !(another instanceof ErrorCode)) {
-            return false;
-        }
-        return this.errcode == ((ErrorCode) another).errcode;
-    }
-
-    public boolean isSuccess() {
-        return success;
     }
 
     public static ErrorCode getFailure(String msg) {
@@ -75,6 +80,18 @@ public class ErrorCode<T> implements Serializable {
 
     public static ErrorCode getFullErrorCode(String code, String msg, Object retval) {
         return new ErrorCode(code, msg, retval);
+    }
+
+    @Override
+    public boolean equals(Object another) {
+        if (another == null || !(another instanceof ErrorCode)) {
+            return false;
+        }
+        return this.errcode == ((ErrorCode) another).errcode;
+    }
+
+    public boolean isSuccess() {
+        return success;
     }
 
     public T getRetval() {

@@ -17,4 +17,10 @@ public interface QcDataService extends Service<QcData> {
      * @return
      */
     List<QcData> listByDate(String date);
+
+    /**质检合格率查询
+     * @param date
+     * @return
+     */
+    Double passRate(String date);
 }

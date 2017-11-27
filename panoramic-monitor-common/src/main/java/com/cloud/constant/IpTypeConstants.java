@@ -1,7 +1,7 @@
 package com.cloud.constant;
 
 /**
- * @author
+ * @author summer
  */
 public class IpTypeConstants {
     public static final String UNKNOWN = "unknown";

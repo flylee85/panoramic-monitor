@@ -12,7 +12,7 @@ import java.util.List;
  * @since Jan 18, 2014 3:12:29 PM
  */
 public class LogTraceUtil {
-    private final static TLogger dbLogger = LoggerUtils.getLogger(LogTraceUtil.class);
+    private final static TLogger DB_LOGGER = LoggerUtils.getLogger(LogTraceUtil.class);
     private static List<LogTrace> traceList = Lists.newArrayList();
 
     public static void addTrace(LogTrace trace) {
@@ -28,7 +28,7 @@ public class LogTraceUtil {
                     result.add(ts);
                 }
             } catch (Throwable e) {
-                dbLogger.error("", e);
+                DB_LOGGER.error("", e);
             }
         }
         return result;

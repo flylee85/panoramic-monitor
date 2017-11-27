@@ -2,7 +2,9 @@ package com.cloud.serialize;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
-
+/**
+ * @author summer
+ */
 public interface ObjectInput extends DataInput {
 
 	/**

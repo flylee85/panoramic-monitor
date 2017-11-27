@@ -3,7 +3,9 @@ package com.cloud.api;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-
+/**
+ * @author summer
+ */
 public class ListNode extends ApiNode {
 	private List beanList;
 	private List<Map<String, ?>> dataMapList = new ArrayList<Map<String, ?>>();

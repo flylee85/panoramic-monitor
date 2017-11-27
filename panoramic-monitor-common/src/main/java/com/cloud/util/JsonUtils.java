@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.Map;
 
 public class JsonUtils {
-	private static final transient TLogger dbLogger = LoggerUtils.getLogger(JsonUtils.class);
+	private static final transient TLogger DB_LOGGER = LoggerUtils.getLogger(JsonUtils.class);
 	public static UpperCasePropertyNamingStrategy UPPER_CASE_PROPERTY_NAMING_STRATEGY = new UpperCasePropertyNamingStrategy();
 	public static <T> T readJsonToObject(Class<T> clazz, String json) {
 		if (StringUtils.isBlank(json)){
@@ -32,7 +32,7 @@ public class JsonUtils {
 			T result = mapper.readValue(json, clazz);
 			return result;
 		} catch (Exception e) {
-			dbLogger.error(StringUtils.substring(json, 0, 500), e, 15);
+			DB_LOGGER.error(StringUtils.substring(json, 0, 500), e, 15);
 		}
 		return null;
 	}
@@ -48,7 +48,7 @@ public class JsonUtils {
 			T result = mapper.readValue(json, type);
 			return result;
 		} catch (Exception e) {
-			dbLogger.error("json:" + StringUtils.substring(json, 0, 500) + "\n" + LoggerUtils.getExceptionTrace(e, 15));
+			DB_LOGGER.error("json:" + StringUtils.substring(json, 0, 500) + "\n" + LoggerUtils.getExceptionTrace(e, 15));
 		}
 		return null;
 	}
@@ -65,7 +65,7 @@ public class JsonUtils {
 			List<T> result = mapper.readValue(json, type);
 			return result;
 		} catch (Exception e) {
-			dbLogger.error("json:" + StringUtils.substring(json, 0, 500) + "\n" + LoggerUtils.getExceptionTrace(e, 15));
+			DB_LOGGER.error("json:" + StringUtils.substring(json, 0, 500) + "\n" + LoggerUtils.getExceptionTrace(e, 15));
 		}
 		return null;
 	}
@@ -83,7 +83,7 @@ public class JsonUtils {
             }
 			return result;
 		} catch (Exception e) {
-			dbLogger.error("json:" + StringUtils.substring(json, 0, 500) + "\n" + LoggerUtils.getExceptionTrace(e, 15));
+			DB_LOGGER.error("json:" + StringUtils.substring(json, 0, 500) + "\n" + LoggerUtils.getExceptionTrace(e, 15));
 			return new HashMap();
 		}
 
@@ -103,7 +103,7 @@ public class JsonUtils {
 			T result = mapper.readValue(json, clazz);
 			return result;
 		} catch (Exception e) {
-			dbLogger.error(StringUtils.substring(json, 0, 500), e, 15);
+			DB_LOGGER.error(StringUtils.substring(json, 0, 500), e, 15);
 		}
 		return null;
 	}
@@ -121,7 +121,7 @@ public class JsonUtils {
 			T result = mapper.readValue(json, type);
 			return result;
 		} catch (Exception e) {
-			dbLogger.error("json:" + StringUtils.substring(json, 0, 500) + "\n" + LoggerUtils.getExceptionTrace(e, 15));
+			DB_LOGGER.error("json:" + StringUtils.substring(json, 0, 500) + "\n" + LoggerUtils.getExceptionTrace(e, 15));
 		}
 		return null;
 	}
@@ -141,7 +141,7 @@ public class JsonUtils {
 			List<T> result = mapper.readValue(json, type);
 			return result;
 		} catch (Exception e) {
-			dbLogger.error("json:" + StringUtils.substring(json, 0, 500) + "\n" + LoggerUtils.getExceptionTrace(e, 15));
+			DB_LOGGER.error("json:" + StringUtils.substring(json, 0, 500) + "\n" + LoggerUtils.getExceptionTrace(e, 15));
 		}
 		return null;
 	}
@@ -162,7 +162,7 @@ public class JsonUtils {
             }
 			return result;
 		} catch (Exception e) {
-			dbLogger.error("json:" + StringUtils.substring(json, 0, 500) + "\n" + LoggerUtils.getExceptionTrace(e, 15));
+			DB_LOGGER.error("json:" + StringUtils.substring(json, 0, 500) + "\n" + LoggerUtils.getExceptionTrace(e, 15));
 			return new HashMap();
 		}
 	}
@@ -205,7 +205,7 @@ public class JsonUtils {
 				return data;
 			}
 		} catch (Exception e) {
-			dbLogger.error("object:" + object + "\n" + LoggerUtils.getExceptionTrace(e, 15));
+			DB_LOGGER.error("object:" + object + "\n" + LoggerUtils.getExceptionTrace(e, 15));
 		}
 		return null;
 	}
@@ -223,7 +223,7 @@ public class JsonUtils {
 			String data = mapper.writeValueAsString(dataMap);
 			return data;
 		} catch (Exception e) {
-			dbLogger.error("", e);
+			DB_LOGGER.error("", e);
 		}
 		return null;
 	}

@@ -11,6 +11,9 @@ import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
+/**
+ * @author summer
+ */
 @Configuration
 @EnableSwagger2
 public class SwaggerConfig {
@@ -18,6 +21,9 @@ public class SwaggerConfig {
     public static final String SWAGGER_SCAN_BASE_PACKAGE = "com.invoke.web.controller";
     public static final String VERSION = "1.0.0";
 
+    /**
+     * @return
+     */
     ApiInfo apiInfo() {
         return new ApiInfoBuilder()
                 .title("Swagger API")
@@ -26,10 +32,13 @@ public class SwaggerConfig {
                 .licenseUrl("http://www.apache.org/licenses/LICENSE-2.0.html")
                 .termsOfServiceUrl("")
                 .version(VERSION)
-                .contact(new Contact("","", "xieshengrong@live.com"))
+                .contact(new Contact("", "", "xieshengrong@live.com"))
                 .build();
     }
 
+    /**
+     * @return
+     */
 //    @Bean
 //    public Docket customImplementation(){
 //        return new Docket(DocumentationType.SWAGGER_2)

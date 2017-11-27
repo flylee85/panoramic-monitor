@@ -1,7 +1,7 @@
 package com.cloud.constant;
 
 /**
- * @author sunder
+ * @author sunmer
  * 符号常量
  */
 public class MarkConstant {

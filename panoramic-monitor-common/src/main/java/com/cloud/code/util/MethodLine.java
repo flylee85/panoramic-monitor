@@ -1,7 +1,9 @@
 package com.cloud.code.util;
 
 import org.apache.commons.lang.StringUtils;
-
+/**
+ * @author summer
+ */
 public class MethodLine{
 	public String method;
 	public Integer lineNo;

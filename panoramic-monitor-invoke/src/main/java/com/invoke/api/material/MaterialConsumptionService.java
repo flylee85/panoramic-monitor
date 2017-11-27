@@ -7,6 +7,9 @@ import com.invoke.model.material.MaterialConsumption;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * @author summer
+ */
 public interface MaterialConsumptionService extends Service<MaterialConsumption> {
 
     /**

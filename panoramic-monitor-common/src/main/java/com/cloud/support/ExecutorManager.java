@@ -9,7 +9,7 @@ import java.util.Map;
 import java.util.concurrent.ThreadPoolExecutor;
 
 public abstract class ExecutorManager {
-	private static final transient TLogger dbLogger = LoggerUtils.getLogger(HttpUtils.class);
+	private static final transient TLogger DB_LOGGER = LoggerUtils.getLogger(HttpUtils.class);
 	/**
 	 * 注册的线程池，当系统重新启动时，先等待线程池中的任务完成，最大30s
 	 * @param executor
@@ -28,7 +28,7 @@ public abstract class ExecutorManager {
 			while(totalWait > 0 && entry.getValue().getActiveCount()>0){
 				try {
 					Thread.sleep(1000L);
-					dbLogger.warn("wait:" + entry.getKey() + " to complete!" + totalWait);
+					DB_LOGGER.warn("wait:" + entry.getKey() + " to complete!" + totalWait);
 				} catch (InterruptedException e) {
 				}
 				totalWait --;

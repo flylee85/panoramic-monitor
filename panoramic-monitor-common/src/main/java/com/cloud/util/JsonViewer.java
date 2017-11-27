@@ -7,7 +7,9 @@ import java.util.Collection;
 import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Set;
-
+/**
+ * @author summer
+ */
 public class JsonViewer {
 	public static final JsonViewer instance = new JsonViewer();
 	private JsonViewer(){}

@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 /**
- * @author sunder
+ * @author sunmer
  * 物料消耗DTO
  */
 public class MaterialConsumptionDto {

@@ -9,7 +9,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
-
+/**
+ * @author summer
+ */
 public class ValidateUtil implements Util4Script {
 	private static Set<String> simplePass = new TreeSet<>();
 	static{

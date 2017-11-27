@@ -94,7 +94,7 @@ public class HttpUtils {
      * http请求状态：9003：SocketTimeoutException
      */
     public static final int HTTP_STATUSCODE_SOCKET_TIMEOUT_EXCEPTION = 9003;
-    private static final transient TLogger dbLogger = LoggerUtils.getLogger(HttpUtils.class);
+    private static final transient TLogger DB_LOGGER = LoggerUtils.getLogger(HttpUtils.class);
     private static final String DEFAULT_CHARSET = "UTF-8";
     private static Map<String, AtomicLong> hostCountMap = new ConcurrentHashMap<String, AtomicLong>();
     private static ScheduledExecutorService scheduExec = null;
@@ -429,7 +429,7 @@ public class HttpUtils {
                         msg += header.getName() + ":" + header.getValue();
                     }
                     request.abort();
-                    dbLogger.error("ERROR HttpUtils:" + msg + request.getURI());
+                    DB_LOGGER.error("ERROR HttpUtils:" + msg + request.getURI());
                     return HttpResult.getFailure("httpStatus:" + response.getStatusLine().getStatusCode(), statusCode, result);
                 }
             } finally {
@@ -437,19 +437,19 @@ public class HttpUtils {
             }
         } catch (HttpHostConnectException e) {
             request.abort();
-            dbLogger.error(request.getURI() + ":" + LoggerUtils.getExceptionTrace(e, 30));
+            DB_LOGGER.error(request.getURI() + ":" + LoggerUtils.getExceptionTrace(e, 30));
             return HttpResult.getFailure(request.getURI() + " exception:" + e.getClass().getCanonicalName(), HTTP_STATUSCODE_HTTP_HOST_CONNECT_EXCEPTION);
         } catch (ConnectTimeoutException e) {
             request.abort();
-            dbLogger.error(request.getURI() + ":" + LoggerUtils.getExceptionTrace(e, 30));
+            DB_LOGGER.error(request.getURI() + ":" + LoggerUtils.getExceptionTrace(e, 30));
             return HttpResult.getFailure(request.getURI() + " exception:" + e.getClass().getCanonicalName(), HTTP_STATUSCODE_CONNECT_TIMEOUT_EXCEPTION);
         } catch (SocketTimeoutException e) {
             request.abort();
-            dbLogger.error(request.getURI() + ":" + LoggerUtils.getExceptionTrace(e, 30));
+            DB_LOGGER.error(request.getURI() + ":" + LoggerUtils.getExceptionTrace(e, 30));
             return HttpResult.getFailure(request.getURI() + " exception:" + e.getClass().getCanonicalName(), HTTP_STATUSCODE_SOCKET_TIMEOUT_EXCEPTION);
         } catch (Exception e) {
             request.abort();
-            dbLogger.error(request.getURI() + ":" + LoggerUtils.getExceptionTrace(e, 100));
+            DB_LOGGER.error(request.getURI() + ":" + LoggerUtils.getExceptionTrace(e, 100));
             return HttpResult.getFailure(request.getURI() + " exception:" + e.getClass().getCanonicalName(), EXCEPTION_HTTP_STATUSCODE);
         }
     }
@@ -487,7 +487,7 @@ public class HttpUtils {
                 UrlEncodedFormEntity entity = new UrlEncodedFormEntity(form, encoding);
                 httpPost.setEntity(entity);
             } catch (UnsupportedEncodingException e) {
-                dbLogger.error("", e);
+                DB_LOGGER.error("", e);
             }
         }
         return httpPost;
@@ -504,7 +504,7 @@ public class HttpUtils {
                 UrlEncodedFormEntity entity = new UrlEncodedFormEntity(form, encoding);
                 httpOther.setEntity(entity);
             } catch (UnsupportedEncodingException e) {
-                dbLogger.error("", e);
+                DB_LOGGER.error("", e);
             }
         }
         return httpOther;
@@ -524,7 +524,7 @@ public class HttpUtils {
                 HttpEntity entity = new StringEntity(body, encoding);
                 httpOther.setEntity(entity);
             } catch (Exception e) {
-                dbLogger.error("", e);
+                DB_LOGGER.error("", e);
             }
         }
         return httpOther;
@@ -539,7 +539,7 @@ public class HttpUtils {
                 HttpEntity entity = new StringEntity(body, encoding);
                 httpPost.setEntity(entity);
             } catch (Exception e) {// UnsupportedEncodingException e) {
-                dbLogger.error("", e);
+                DB_LOGGER.error("", e);
             }
         }
         return httpPost;
@@ -554,7 +554,7 @@ public class HttpUtils {
                 HttpEntity entity = new ByteArrayEntity(body, contentType);
                 httpPost.setEntity(entity);
             } catch (Exception e) {// UnsupportedEncodingException e) {
-                dbLogger.error("", e);
+                DB_LOGGER.error("", e);
             }
         }
         return httpPost;
@@ -621,7 +621,7 @@ public class HttpUtils {
                     HttpResult ret = HttpResult.getFailure("httpStatus:" + response.getStatusLine().getStatusCode(), statusCode, result);
                     addHeader(ret, response);
                     String msg = "httpStatus:" + statusCode + response.getStatusLine().getReasonPhrase() + ", Header: " + ret.getAllHeaders();
-                    dbLogger.error("ERROR HttpUtils:" + msg + request.getURI());
+                    DB_LOGGER.error("ERROR HttpUtils:" + msg + request.getURI());
                     request.abort();
                     return ret;
                 }
@@ -630,19 +630,19 @@ public class HttpUtils {
             }
         } catch (HttpHostConnectException e) {
             request.abort();
-            dbLogger.error(request.getURI() + ":" + LoggerUtils.getExceptionTrace(e, 30));
+            DB_LOGGER.error(request.getURI() + ":" + LoggerUtils.getExceptionTrace(e, 30));
             return HttpResult.getFailure(request.getURI() + " exception:" + e.getClass().getCanonicalName(), HTTP_STATUSCODE_HTTP_HOST_CONNECT_EXCEPTION);
         } catch (ConnectTimeoutException e) {
             request.abort();
-            dbLogger.error(request.getURI() + ":" + LoggerUtils.getExceptionTrace(e, 30));
+            DB_LOGGER.error(request.getURI() + ":" + LoggerUtils.getExceptionTrace(e, 30));
             return HttpResult.getFailure(request.getURI() + " exception:" + e.getClass().getCanonicalName(), HTTP_STATUSCODE_CONNECT_TIMEOUT_EXCEPTION);
         } catch (SocketTimeoutException e) {
             request.abort();
-            dbLogger.error(request.getURI() + ":" + LoggerUtils.getExceptionTrace(e, 30));
+            DB_LOGGER.error(request.getURI() + ":" + LoggerUtils.getExceptionTrace(e, 30));
             return HttpResult.getFailure(request.getURI() + " exception:" + e.getClass().getCanonicalName(), HTTP_STATUSCODE_SOCKET_TIMEOUT_EXCEPTION);
         } catch (Exception e) {
             request.abort();
-            dbLogger.error(request.getURI() + ":" + LoggerUtils.getExceptionTrace(e, 30));
+            DB_LOGGER.error(request.getURI() + ":" + LoggerUtils.getExceptionTrace(e, 30));
             return HttpResult.getFailure(request.getURI() + " exception:" + e.getClass().getCanonicalName(), EXCEPTION_HTTP_STATUSCODE);
         }
     }
@@ -673,7 +673,7 @@ public class HttpUtils {
                         try {
                             return callback.processResult(instream, getAllHeaders(response));
                         } catch (Exception e) {
-                            dbLogger.error(request.getURI() + ":" + LoggerUtils.getExceptionTrace(e, 30));
+                            DB_LOGGER.error(request.getURI() + ":" + LoggerUtils.getExceptionTrace(e, 30));
                         } finally {
                             if (instream != null) {
                                 instream.close();
@@ -691,14 +691,14 @@ public class HttpUtils {
                         EntityUtils.toString(entity);
                     }
                     request.abort();
-                    dbLogger.error("ERROR HttpUtils:" + msg + request.getURI());
+                    DB_LOGGER.error("ERROR HttpUtils:" + msg + request.getURI());
                 }
             } finally {
                 response.close();
             }
         } catch (Exception e) {
             request.abort();
-            dbLogger.error(request.getURI() + ":" + LoggerUtils.getExceptionTrace(e, 30));
+            DB_LOGGER.error(request.getURI() + ":" + LoggerUtils.getExceptionTrace(e, 30));
         }
         return false;
     }
@@ -737,7 +737,7 @@ public class HttpUtils {
                         map.put(key, value);
                     }
                 } catch (UnsupportedEncodingException e) {
-                    dbLogger.error(e, 30);
+                    DB_LOGGER.error(e, 30);
                 }
             }
             key = matcher.group(1);
@@ -751,7 +751,7 @@ public class HttpUtils {
                     map.put(key, value);
                 }
             } catch (UnsupportedEncodingException e) {
-                dbLogger.error(e, 30);
+                DB_LOGGER.error(e, 30);
             }
         }
         return map;
@@ -807,7 +807,7 @@ public class HttpUtils {
             }
             al.incrementAndGet();
         } catch (Exception e) {
-            dbLogger.error(e, 30);
+            DB_LOGGER.error(e, 30);
         }
     }
 
@@ -818,7 +818,7 @@ public class HttpUtils {
             try {
                 isRedirect = super.isRedirected(request, response, context);
             } catch (ProtocolException e) {
-                dbLogger.error("isRedirected:" + LoggerUtils.getExceptionTrace(e, /*100*/HttpStatus.SC_CONTINUE));
+                DB_LOGGER.error("isRedirected:" + LoggerUtils.getExceptionTrace(e, /*100*/HttpStatus.SC_CONTINUE));
             }
             if (!isRedirect) {
                 int responseCode = response.getStatusLine().getStatusCode();
@@ -846,7 +846,7 @@ public class HttpUtils {
                 os.close();
                 return true;
             } catch (Exception e) {
-                dbLogger.error("", e);
+                DB_LOGGER.error("", e);
             } finally {
                 try {
                     if (os != null) {
@@ -864,7 +864,7 @@ public class HttpUtils {
         public void run() {
             Map<String, Long> stats = getStats(true);
             if (!stats.isEmpty()) {
-                dbLogger.warn("HostCount:" + JsonUtils.writeObjectToJson(stats));
+                DB_LOGGER.warn("HostCount:" + JsonUtils.writeObjectToJson(stats));
             }
         }
     }
@@ -876,7 +876,7 @@ public class HttpUtils {
             // cm.closeIdleConnections(CONNECTION_IDLE_TIMEOUT,
             // TimeUnit.MILLISECONDS);//此处开了可能有问题
             PoolStats poolStats = cm.getTotalStats();
-            dbLogger.warn("PoolStats----" + poolStats.toString());
+            DB_LOGGER.warn("PoolStats----" + poolStats.toString());
         }
     }
 }

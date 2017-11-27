@@ -3,7 +3,9 @@ package com.cloud.api;
 import com.cloud.util.BeanUtil;
 
 import java.util.Map;
-
+/**
+ * @author summer
+ */
 public abstract class ApiNode {
 	protected String nodeName;
 	protected String[] outputFields;

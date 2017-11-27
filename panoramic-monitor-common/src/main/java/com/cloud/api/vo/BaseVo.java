@@ -3,7 +3,9 @@ package com.cloud.api.vo;
 import java.io.Serializable;
 import java.util.LinkedHashMap;
 import java.util.Map;
-
+/**
+ * @author summer
+ */
 public abstract class BaseVo implements Serializable {
 	private static final long serialVersionUID = -1291080555056535690L;
 	private Map<String, String> attach;

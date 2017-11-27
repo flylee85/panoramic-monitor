@@ -12,6 +12,9 @@ import org.springframework.beans.factory.InitializingBean;
 import java.io.IOException;
 import java.util.*;
 
+/**
+ * @author summer
+ */
 public class Config implements InitializingBean {
     public static final String SYSTEMID;
     public static final String DEPLOYID;

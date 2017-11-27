@@ -1,16 +1,18 @@
 package com.cloud.code.util;
 
 import java.util.regex.Pattern;
-
-public abstract class LineFilter {
+/**
+ * @author summer
+ */
+public abstract class AbstractLineFilter {
 	public abstract boolean accept(String line);
-	public static LineFilter ACCEPT_ALL_FILTER = new LineFilter(){
+	public static AbstractLineFilter ACCEPT_ALL_FILTER = new AbstractLineFilter(){
 		@Override
 		public boolean accept(String line) {
 			return true;
 		}
 	};
-	public static class RegFilter extends LineFilter{
+	public static class RegFilter extends AbstractLineFilter{
 		private Pattern pattern = null;
 		
 		public RegFilter(String regexp){

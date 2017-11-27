@@ -9,7 +9,9 @@ import java.io.IOException;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
-
+/**
+ * @author summer
+ */
 public class LoggerUtils {
 	private static boolean notUseJson = false;
 	static{

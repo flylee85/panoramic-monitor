@@ -2,7 +2,9 @@ package com.cloud.util;
 
 import java.sql.Timestamp;
 import java.util.Date;
-
+/**
+ * @author summer
+ */
 public class ValueUtil  implements Util4Script{
 	public static final ValueUtil instance = new ValueUtil();
 	public Long lv(Object value){

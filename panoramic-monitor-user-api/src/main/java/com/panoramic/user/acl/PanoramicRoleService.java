@@ -5,7 +5,7 @@ import com.cloud.core.Service;
 import com.panoramic.user.entity.PanoramicRole;
 
 /**
- * @author sunder
+ * @author sunmer
  * on 2017/11/06.
  */
 public interface PanoramicRoleService extends Service<PanoramicRole> {

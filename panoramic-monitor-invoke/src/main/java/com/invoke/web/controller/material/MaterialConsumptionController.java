@@ -48,12 +48,4 @@ public class MaterialConsumptionController {
         return ResultCode.getSuccessReturn(pageInfo);
     }
 
-    // @GetMapping("/{matCode}/{conTime}")
-    // public ResultCode<List<MaterialConsumptionDto>> listByDate(@PathVariable
-    // String matCode, @PathVariable String conTime) {
-    // List<MaterialConsumptionDto> list =
-    // materialConsumptionService.listByDate(matCode, conTime);
-    // return ResultCode.getSuccessReturn(list);
-    // }
-
 }

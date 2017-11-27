@@ -9,7 +9,9 @@ import net.spy.memcached.transcoders.SerializingTranscoder;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-
+/**
+ * @author summer
+ */
 public class SerializingTranscodeAdapter extends SerializingTranscoder {
 
 	private Serialization serialization;

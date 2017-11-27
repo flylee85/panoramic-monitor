@@ -1,7 +1,9 @@
 package com.cloud.serialize;
 
 import java.io.IOException;
-
+/**
+ * @author summer
+ */
 public interface DataOutput {
 
 	/**

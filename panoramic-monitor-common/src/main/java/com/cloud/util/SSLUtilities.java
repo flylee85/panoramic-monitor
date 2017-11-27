@@ -6,7 +6,9 @@ import javax.net.ssl.SSLContext;
 import javax.net.ssl.TrustManager;
 import java.security.GeneralSecurityException;
 import java.security.SecureRandom;
-
+/**
+ * @author summer
+ */
 public final class SSLUtilities {
 	private static HostnameVerifier _hostnameVerifier;
 	private static TrustManager[] _trustManagers;

@@ -11,7 +11,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class JVMHelper {
-    private static TLogger dbLogger = LoggerUtils.getLogger(JVMHelper.class);
+    private static TLogger DB_LOGGER = LoggerUtils.getLogger(JVMHelper.class);
 
     public static Map<String, String> exportThreadToFile(String filePath, String fileName) {
         File savePath = new File(filePath);
@@ -25,7 +25,7 @@ public class JVMHelper {
             writer = new BufferedWriter(new FileWriter(file));
             result = exportThread(writer);
         } catch (Exception e) {
-            dbLogger.warn("", e);
+            DB_LOGGER.warn("", e);
             result = new HashMap<String, String>();
             result.put("error", e.getClass().getName() + ":" + e.getMessage());
         } finally {

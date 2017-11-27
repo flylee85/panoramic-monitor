@@ -10,7 +10,9 @@ import java.security.MessageDigest;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
+/**
+ * @author summer
+ */
 public class StringUtil implements Util4Script {
 	public static String md5(byte[] input) {
 		return encryptPassword(input, "md5");

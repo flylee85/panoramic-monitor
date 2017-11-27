@@ -3,7 +3,9 @@ package com.cloud.support;
 import org.apache.commons.beanutils.PropertyUtils;
 
 import java.util.Comparator;
-
+/**
+ * @author summer
+ */
 public class DoubleStringComparator<T> implements Comparator<T>{
 	private String property = null;
 	private boolean asc;

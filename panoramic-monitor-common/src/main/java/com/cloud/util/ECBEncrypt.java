@@ -9,6 +9,7 @@ import java.security.NoSuchAlgorithmException;
 
 /**
  * ECB加密实现，生成8位的MAC码，加密采用DES加密
+ * @author summer
  */
 public class ECBEncrypt {
 

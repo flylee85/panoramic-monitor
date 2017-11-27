@@ -38,7 +38,7 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * @author sunder Spring MVC 配置
+ * @author sunmer Spring MVC 配置
  */
 @Configuration
 public class WebMvcConfigurer extends WebMvcConfigurerAdapter {

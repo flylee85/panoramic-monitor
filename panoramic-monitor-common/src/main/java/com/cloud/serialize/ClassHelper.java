@@ -2,7 +2,9 @@ package com.cloud.serialize;
 
 import java.lang.reflect.Array;
 import java.util.*;
-
+/**
+ * @author summer
+ */
 public class ClassHelper {
 
 	public static Class<?> forNameWithThreadContextClassLoader(String name) throws ClassNotFoundException {

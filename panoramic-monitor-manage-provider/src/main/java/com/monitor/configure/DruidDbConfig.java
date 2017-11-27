@@ -13,7 +13,7 @@ import java.sql.SQLException;
 
 
 /**
- * @author sunder
+ * @author sunmer
  * <p>
  * 可以直接在yml中配置 @PropertySource(value = "classpath:db.properties",ignoreResourceNotFound = true,encoding = "utf-8")
  */

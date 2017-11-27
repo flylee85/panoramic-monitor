@@ -2,7 +2,9 @@ package com.cloud.util;
 
 import java.util.List;
 import java.util.Random;
-
+/**
+ * @author summer
+ */
 public class RandomUtils {
 
 	/**

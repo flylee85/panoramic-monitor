@@ -12,7 +12,7 @@ import java.util.Arrays;
 public final class PKCoderUtil {
 	private static transient String Algorithm = "DES"; // 定义 加密算法,可用 DES,DESede(TripleDES),Blowfish
 	private static transient byte[] DEFAULT_KEY={-72,-16,-79,-22,-79,-32,-48,-76};
-	private static final transient TLogger dbLogger = LoggerUtils.getLogger(PKCoderUtil.class);
+	private static final transient TLogger DB_LOGGER = LoggerUtils.getLogger(PKCoderUtil.class);
 
 	public static final String encodePK(long pk){
 		return encodePK(pk, DEFAULT_KEY);
@@ -43,7 +43,7 @@ public final class PKCoderUtil {
 			byte[] encoded = encode(pkbytes, skey);
 			result = byte2hex(encoded);
 		} catch (Exception e) {
-			dbLogger.error(original + LoggerUtils.getExceptionTrace(e, 10));
+			DB_LOGGER.error(original + LoggerUtils.getExceptionTrace(e, 10));
 		}
 		return result;
 	}
@@ -60,7 +60,7 @@ public final class PKCoderUtil {
 			String s = new String(decoded, "gbk");
 			return s;
 		} catch (Exception e) {
-			dbLogger.error(encodedHex + ":" + e.getClass().getName());
+			DB_LOGGER.error(encodedHex + ":" + e.getClass().getName());
 			return null;
 		}
 	}
@@ -87,7 +87,7 @@ public final class PKCoderUtil {
 			byte[] cipherByte = c1.doFinal(input);
 			return cipherByte;
 		} catch (Exception e) {
-			dbLogger.error(e.getClass().getCanonicalName());
+			DB_LOGGER.error(e.getClass().getCanonicalName());
 		}
 		return null;
 	}
@@ -102,7 +102,7 @@ public final class PKCoderUtil {
 			byte[] clearByte = c1.doFinal(input);
 			return clearByte;
 		} catch (Exception e) {
-			dbLogger.error(e.getClass().getCanonicalName());
+			DB_LOGGER.error(e.getClass().getCanonicalName());
 		}
 		return null;
 	}
@@ -131,7 +131,7 @@ public final class PKCoderUtil {
 			String str = original;
 			return encodeString(str, keys);
 		} catch (Exception e) {
-			dbLogger.error(original + ":" + key + ":" + e.getClass().getCanonicalName());
+			DB_LOGGER.error(original + ":" + key + ":" + e.getClass().getCanonicalName());
 		}
 		return null;
 	}
@@ -145,7 +145,7 @@ public final class PKCoderUtil {
 			String str = decodeString(encryptStr, keys);
 			return str;
 		} catch (Exception e) {
-			dbLogger.error(encryptStr + ":" + e.getClass().getCanonicalName());
+			DB_LOGGER.error(encryptStr + ":" + e.getClass().getCanonicalName());
 			return "";
 		}
 	}
@@ -170,7 +170,7 @@ public final class PKCoderUtil {
 
 			return ret.replaceAll("\r\n","");
 		} catch (Exception e) {
-			dbLogger.error(LoggerUtils.getExceptionTrace(e, 10));
+			DB_LOGGER.error(LoggerUtils.getExceptionTrace(e, 10));
 			return "";
 		}
 	}
@@ -187,7 +187,7 @@ public final class PKCoderUtil {
 			ret = new String(cipher.doFinal(Base64.decodeBase64(enc)), "UTF-8");
 			return ret.replaceAll("\r\n","");
 		} catch (Exception e) {
-			dbLogger.error(LoggerUtils.getExceptionTrace(e, 10));
+			DB_LOGGER.error(LoggerUtils.getExceptionTrace(e, 10));
 			return "";
 		}
 	}
@@ -228,7 +228,7 @@ public final class PKCoderUtil {
 
 			return ret.replaceAll("\r\n","");
 		} catch (Exception e) {
-			dbLogger.error(LoggerUtils.getExceptionTrace(e, 10));
+			DB_LOGGER.error(LoggerUtils.getExceptionTrace(e, 10));
 			return "";
 		}
 	}
@@ -245,7 +245,7 @@ public final class PKCoderUtil {
 			byte[] result = encryptWithThiDES(key, src);
 			return Base64.encodeBase64String(result).replaceAll("\r\n", "");
 		} catch (Exception e) {
-			dbLogger.error(LoggerUtils.getExceptionTrace(e, 10));
+			DB_LOGGER.error(LoggerUtils.getExceptionTrace(e, 10));
 		}
 		return null;
 	}
@@ -263,7 +263,7 @@ public final class PKCoderUtil {
 			byte[] result = decryptWithThiDES(key, src);
 			return new String(result, encoding);
 		} catch (Exception e) {
-			dbLogger.error(LoggerUtils.getExceptionTrace(e, 10));
+			DB_LOGGER.error(LoggerUtils.getExceptionTrace(e, 10));
 		}
 		return null;
 	}

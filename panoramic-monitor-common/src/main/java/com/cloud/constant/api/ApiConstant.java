@@ -1,11 +1,12 @@
 package com.cloud.constant.api;
 
+import com.google.common.collect.Maps;
 import org.apache.commons.collections.map.UnmodifiableMap;
 
-import java.util.HashMap;
 import java.util.Map;
 
 /**
+ * @author summer
  * 0000	成功
  * <p>
  * 5000	用户不存在
@@ -57,7 +58,7 @@ public abstract class ApiConstant {
     public static final Map<String, String> ORDER_STATUS_MAP;
 
     static {
-        Map<String, String> tmp = new HashMap<String, String>();
+        Map<String, String> tmp = Maps.newHashMap();
         ORDER_STATUS_MAP = UnmodifiableMap.decorate(tmp);
     }
 

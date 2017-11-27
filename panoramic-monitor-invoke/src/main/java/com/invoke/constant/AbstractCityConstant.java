@@ -10,7 +10,7 @@ import java.util.Map;
 /**
  * @author summer
  */
-public abstract class CityConstant {
+public abstract class AbstractCityConstant {
 
     public static final String PROVINCEID_SH = "310000";//上海市
     public static final String CITYCODE_SH = "310000";//上海

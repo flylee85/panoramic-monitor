@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * @author sunder
+ * @author sunmer
  */
 public class ApiAuthenticationFilter extends GenericFilterBean {
 

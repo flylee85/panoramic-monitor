@@ -5,7 +5,9 @@ import org.apache.commons.beanutils.PropertyUtils;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Comparator;
 import java.util.Date;
-
+/**
+ * @author summer
+ */
 public class DatePropertyComparator implements Comparator {
 	private String property = "";
 	private boolean desc = false;
