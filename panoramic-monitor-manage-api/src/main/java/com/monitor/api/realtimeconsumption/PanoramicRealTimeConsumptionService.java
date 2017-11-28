@@ -13,16 +13,16 @@ import java.util.List;
 public interface PanoramicRealTimeConsumptionService extends Service<PanoramicRealTimeConsumption> {
 
     /**
-     * 汇总指定code和date的消耗数据到汇总表中
+     * 汇总指定code和date的消耗数据到汇总表中(定时任务)
      *
      * @param name
      * @param code
      * @param date
      */
-    void realtimeConsumptionSummary(String name ,String code, String date);
+    void realtimeConsumptionSummaryTask(String name ,String code, String date);
 
-    /** 查询所有消耗分类
+    /** 查询所有消耗分类(定时任务)
      * @return
      */
-    List<PanoramicRealTimeConsumption> listRealTimeConsumptionCategory();
+    List<PanoramicRealTimeConsumption> listRealTimeConsumptionCategoryTask();
 }

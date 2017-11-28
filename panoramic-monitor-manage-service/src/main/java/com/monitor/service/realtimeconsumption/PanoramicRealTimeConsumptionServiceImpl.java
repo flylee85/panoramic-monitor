@@ -34,7 +34,7 @@ public class PanoramicRealTimeConsumptionServiceImpl extends AbstractService<Pan
 
 	@Override
 	@Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
-	public void realtimeConsumptionSummary(String name, String code, String date) {
+	public void realtimeConsumptionSummaryTask(String name, String code, String date) {
 		// 先查出来，再去更新
 		Condition condition = new Condition(PanoramicRealTimeConsumption.class, false);
 		condition.createCriteria().andCondition(" code ='" + code + "' AND f_id=2 AND delete_flag=1 "
@@ -91,7 +91,7 @@ public class PanoramicRealTimeConsumptionServiceImpl extends AbstractService<Pan
 	}
 
 	@Override
-	public List<PanoramicRealTimeConsumption> listRealTimeConsumptionCategory() {
+	public List<PanoramicRealTimeConsumption> listRealTimeConsumptionCategoryTask() {
 		List<PanoramicRealTimeConsumption> recordList = realTimeConsumptionMapper.listRealTimeConsumptionCategory();
 		return recordList;
 	}
