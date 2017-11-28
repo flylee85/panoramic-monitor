@@ -7,6 +7,6 @@ import org.springframework.stereotype.Repository;
 /**
  * @author summer
  */
-@Repository("panoramicProductMaterialsMapper")
+@Repository("productMaterialsMapper")
 public interface PanoramicProductMaterialsMapper extends Mapper<PanoramicProductMaterials> {
 }

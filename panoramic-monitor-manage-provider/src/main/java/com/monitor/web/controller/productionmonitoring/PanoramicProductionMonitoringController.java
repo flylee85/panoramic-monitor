@@ -15,12 +15,12 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/production/monitoring")
 public class PanoramicProductionMonitoringController {
     @Autowired
-    @Qualifier("panoramicProductionMonitoringService")
-    private PanoramicProductionMonitoringService panoramicProductionMonitoringService;
+    @Qualifier("productionMonitoringService")
+    private PanoramicProductionMonitoringService productionMonitoringService;
 
     @PostMapping("/{id}")
     public ResultCode<PanoramicProductionMonitoring> add(PanoramicProductionMonitoring panoramicProductionMonitoring) {
-        panoramicProductionMonitoringService.save(panoramicProductionMonitoring);
+        productionMonitoringService.save(panoramicProductionMonitoring);
         return ResultCode.getSuccessReturn(panoramicProductionMonitoring);
     }
 
@@ -31,20 +31,20 @@ public class PanoramicProductionMonitoringController {
 
     @PutMapping
     public ResultCode<PanoramicProductionMonitoring> update(PanoramicProductionMonitoring panoramicProductionMonitoring) {
-        panoramicProductionMonitoringService.update(panoramicProductionMonitoring);
+        productionMonitoringService.update(panoramicProductionMonitoring);
         return ResultCode.getSuccessReturn(panoramicProductionMonitoring);
     }
 
     @GetMapping("/{id}")
     public ResultCode<PanoramicProductionMonitoring> detail(@PathVariable Integer id) {
-        PanoramicProductionMonitoring panoramicProductionMonitoring = panoramicProductionMonitoringService.findById(id);
+        PanoramicProductionMonitoring panoramicProductionMonitoring = productionMonitoringService.findById(id);
         return ResultCode.getSuccessReturn(panoramicProductionMonitoring);
     }
 
 //    @GetMapping
 //    public ResultCode<PageInfo> list(Integer page, Integer size) {
 //        PageHelper.startPage(page, size);
-//        List<PanoramicProductionMonitoring> list = panoramicProductionMonitoringService.findAll();
+//        List<PanoramicProductionMonitoring> list = productionMonitoringService.findAll();
 //        PageInfo pageInfo = new PageInfo(list);
 //        return ResultCode.getSuccessReturn(pageInfo);
 //    }

@@ -46,7 +46,6 @@ public class PanoramicRealTimeConsumptionServiceImpl extends AbstractService<Pan
 		record.setValue(0.0);
 		record.setCtime(DateUtil.getCurFullTimestamp());
 		record.setId(null);
-		record.setUnit("吨");
 		record.setOperator("auto");
 		record.setfId("2");
 		record.setDeleteFlag(1);
@@ -78,11 +77,13 @@ public class PanoramicRealTimeConsumptionServiceImpl extends AbstractService<Pan
 		gather.setUnit(record.getUnit());
 		gather.setDtime(record.getDtime());
 		gather.setUtime(gather.getCtime());
-		PanoramicRealTimeConsumptionGather selectOne = realTimeConsumptionGatherMapper.selectOne(gather);
+		gather.setValue(record.getValue());
+		PanoramicRealTimeConsumptionGather selectOne = realTimeConsumptionGatherMapper.selectByGatherTime(code, date);
 		Optional<PanoramicRealTimeConsumptionGather> one = Optional.ofNullable(selectOne);
 		if (one.isPresent()) {
-			one.get().setValue(record.getValue());
-			realTimeConsumptionGatherMapper.updateByPrimaryKeySelective(one.get());
+			PanoramicRealTimeConsumptionGather realTimeConsumptionGather = one.get();
+			realTimeConsumptionGather.setValue(record.getValue());
+			realTimeConsumptionGatherMapper.updateByPrimaryKeySelective(realTimeConsumptionGather);
 		} else {
 			realTimeConsumptionGatherMapper.insert(gather);
 		}

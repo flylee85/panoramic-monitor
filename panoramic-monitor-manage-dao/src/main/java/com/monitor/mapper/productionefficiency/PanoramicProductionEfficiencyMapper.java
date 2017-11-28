@@ -7,6 +7,6 @@ import org.springframework.stereotype.Repository;
 /**
  * @author summer
  */
-@Repository("panoramicProductionEfficiencyMapper")
+@Repository("productionEfficiencyMapper")
 public interface PanoramicProductionEfficiencyMapper extends Mapper<PanoramicProductionEfficiency> {
 }

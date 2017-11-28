@@ -13,6 +13,11 @@ import java.util.List;
 @Repository("realTimeConsumptionMapper")
 public interface PanoramicRealTimeConsumptionMapper extends Mapper<PanoramicRealTimeConsumption> {
 
-    @Select("select id,code,name  from panoramic_real_time_consumption as b group by code ")
+    /**
+     * 查询所有物料code和名称
+     *
+     * @return
+     */
+    @Select("SELECT CODE,NAME FROM PANORAMIC_REAL_TIME_CONSUMPTION AS B GROUP BY CODE,NAME")
     List<PanoramicRealTimeConsumption> listRealTimeConsumptionCategory();
 }

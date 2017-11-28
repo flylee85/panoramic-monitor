@@ -8,6 +8,7 @@ import com.monitor.model.scheduling.PanoramicScheduling;
 import com.monitor.web.controller.base.AbstractAnnotationController;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,11 +22,12 @@ import java.util.List;
 @RequestMapping("/scheduling")
 public class PanoramicSchedulingController extends AbstractAnnotationController {
     @Autowired
-    private PanoramicSchedulingService panoramicSchedulingService;
+    @Qualifier("schedulingService")
+    private PanoramicSchedulingService schedulingService;
 
     @PostMapping
     public ResultCode<PanoramicScheduling> add(PanoramicScheduling panoramicScheduling) {
-        panoramicSchedulingService.save(panoramicScheduling);
+        schedulingService.save(panoramicScheduling);
         return ResultCode.getSuccessReturn(panoramicScheduling);
     }
 
@@ -36,20 +38,20 @@ public class PanoramicSchedulingController extends AbstractAnnotationController 
 
     @PutMapping
     public ResultCode<PanoramicScheduling> update(PanoramicScheduling panoramicScheduling) {
-        panoramicSchedulingService.update(panoramicScheduling);
+        schedulingService.update(panoramicScheduling);
         return ResultCode.getSuccessReturn(panoramicScheduling);
     }
 
     @GetMapping("/{id}")
     public ResultCode<PanoramicScheduling> detail(@PathVariable Integer id) {
-        PanoramicScheduling panoramicScheduling = panoramicSchedulingService.findById(id);
+        PanoramicScheduling panoramicScheduling = schedulingService.findById(id);
         return ResultCode.getSuccessReturn(panoramicScheduling);
     }
 
 //    @GetMapping
 //    public ResultCode<PageInfo> list(Integer page, Integer size) {
 //        PageHelper.startPage(page, size);
-//        List<PanoramicScheduling> list = panoramicSchedulingService.findAll();
+//        List<PanoramicScheduling> list = schedulingService.findAll();
 //        PageInfo pageInfo = new PageInfo(list);
 //        return ResultCode.getSuccessReturn(pageInfo);
 //    }

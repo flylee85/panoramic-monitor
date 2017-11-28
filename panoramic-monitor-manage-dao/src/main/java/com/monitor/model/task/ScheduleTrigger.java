@@ -1,14 +1,14 @@
 package com.monitor.model.task;
 
-import com.cloud.model.BaseObject;
-
-import javax.persistence.*;
-
-import org.quartz.Job;
-import org.quartz.JobExecutionContext;
-import org.quartz.JobExecutionException;
-
 import java.io.Serializable;
+
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import com.cloud.model.BaseObject;
 
 /**
  * @author summer

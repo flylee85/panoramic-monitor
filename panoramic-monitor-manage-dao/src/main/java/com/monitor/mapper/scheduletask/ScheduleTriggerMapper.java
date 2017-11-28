@@ -7,6 +7,6 @@ import org.springframework.stereotype.Repository;
 /**
  * @author summer
  */
-@Repository
+@Repository("scheduleTriggerMapper")
 public interface ScheduleTriggerMapper extends Mapper<ScheduleTrigger> {
 }

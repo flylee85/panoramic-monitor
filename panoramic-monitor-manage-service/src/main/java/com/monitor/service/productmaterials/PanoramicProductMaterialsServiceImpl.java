@@ -15,11 +15,11 @@ import org.springframework.transaction.annotation.Transactional;
  * @author summer
  * 2017/11/21.
  */
-@Service("panoramicProductMaterialsService")
+@Service("productMaterialsService")
 @Transactional(readOnly = true, rollbackFor = ServiceException.class)
 public class PanoramicProductMaterialsServiceImpl extends AbstractService<PanoramicProductMaterials> implements PanoramicProductMaterialsService {
     @Autowired
-    @Qualifier("panoramicProductMaterialsMapper")
-    private PanoramicProductMaterialsMapper panoramicProductMaterialsMapper;
+    @Qualifier("productMaterialsMapper")
+    private PanoramicProductMaterialsMapper productMaterialsMapper;
 
 }

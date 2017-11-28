@@ -7,6 +7,6 @@ import org.springframework.stereotype.Repository;
 /**
  * @author summer
  */
-@Repository("panoramicSystemConfigurationMapper")
+@Repository("systemConfigurationMapper")
 public interface PanoramicSystemConfigurationMapper extends Mapper<PanoramicSystemConfiguration> {
 }

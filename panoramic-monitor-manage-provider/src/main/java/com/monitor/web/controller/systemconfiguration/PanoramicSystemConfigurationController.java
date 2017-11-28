@@ -20,12 +20,12 @@ import java.util.List;
 @RequestMapping("/system/configuration")
 public class PanoramicSystemConfigurationController extends AbstractAnnotationController {
     @Autowired
-    @Qualifier("panoramicSystemConfigurationService")
-    private PanoramicSystemConfigurationService panoramicSystemConfigurationService;
+    @Qualifier("systemConfigurationService")
+    private PanoramicSystemConfigurationService systemConfigurationService;
 
     @PostMapping
     public ResultCode<PanoramicSystemConfiguration> add(PanoramicSystemConfiguration panoramicSystemConfiguration) {
-        panoramicSystemConfigurationService.save(panoramicSystemConfiguration);
+        systemConfigurationService.save(panoramicSystemConfiguration);
         return ResultCode.getSuccessReturn(panoramicSystemConfiguration);
     }
 
@@ -36,20 +36,20 @@ public class PanoramicSystemConfigurationController extends AbstractAnnotationCo
 
     @PutMapping
     public ResultCode<PanoramicSystemConfiguration> update(PanoramicSystemConfiguration panoramicSystemConfiguration) {
-        panoramicSystemConfigurationService.update(panoramicSystemConfiguration);
+        systemConfigurationService.update(panoramicSystemConfiguration);
         return ResultCode.getSuccessReturn(panoramicSystemConfiguration);
     }
 
     @GetMapping("/{id}")
     public ResultCode<PanoramicSystemConfiguration> detail(@PathVariable Integer id) {
-        PanoramicSystemConfiguration panoramicSystemConfiguration = panoramicSystemConfigurationService.findById(id);
+        PanoramicSystemConfiguration panoramicSystemConfiguration = systemConfigurationService.findById(id);
         return ResultCode.getSuccessReturn(panoramicSystemConfiguration);
     }
 
 //    @GetMapping
 //    public ResultCode<PageInfo> list(Integer page, Integer size) {
 //        PageHelper.startPage(page, size);
-//        List<PanoramicSystemConfiguration> list = panoramicSystemConfigurationService.findAll();
+//        List<PanoramicSystemConfiguration> list = systemConfigurationService.findAll();
 //        PageInfo pageInfo = new PageInfo(list);
 //        return ResultCode.getSuccessReturn(pageInfo);
 //    }

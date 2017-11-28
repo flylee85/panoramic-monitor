@@ -15,12 +15,12 @@ import org.springframework.transaction.annotation.Transactional;
  * @author summer
  * 2017/11/21.
  */
-@Service("panoramicSchedulingService")
+@Service("schedulingService")
 @Transactional(readOnly = true, rollbackFor = ServiceException.class)
 public class PanoramicSchedulingServiceImpl extends AbstractService<PanoramicScheduling> implements PanoramicSchedulingService {
 
     @Autowired
-    @Qualifier("panoramicSchedulingMapper")
-    private PanoramicSchedulingMapper panoramicSchedulingMapper;
+    @Qualifier("schedulingMapper")
+    private PanoramicSchedulingMapper schedulingMapper;
 
 }

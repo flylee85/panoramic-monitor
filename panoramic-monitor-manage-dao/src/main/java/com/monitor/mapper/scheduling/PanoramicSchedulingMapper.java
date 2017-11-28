@@ -7,6 +7,6 @@ import org.springframework.stereotype.Repository;
 /**
  * @author summer
  */
-@Repository("panoramicSchedulingMapper")
+@Repository("schedulingMapper")
 public interface PanoramicSchedulingMapper extends Mapper<PanoramicScheduling> {
 }

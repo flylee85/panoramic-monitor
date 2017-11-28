@@ -20,12 +20,12 @@ import java.util.List;
 @RequestMapping("/product/materials")
 public class PanoramicProductMaterialsController extends AbstractAnnotationController {
     @Autowired
-    @Qualifier("panoramicProductMaterialsService")
-    private PanoramicProductMaterialsService panoramicProductMaterialsService;
+    @Qualifier("productMaterialsService")
+    private PanoramicProductMaterialsService productMaterialsService;
 
     @PostMapping
     public ResultCode<PanoramicProductMaterials> add(PanoramicProductMaterials panoramicProductMaterials) {
-        panoramicProductMaterialsService.save(panoramicProductMaterials);
+        productMaterialsService.save(panoramicProductMaterials);
         return ResultCode.getSuccessReturn(panoramicProductMaterials);
     }
 
@@ -36,20 +36,20 @@ public class PanoramicProductMaterialsController extends AbstractAnnotationContr
 
     @PutMapping
     public ResultCode<PanoramicProductMaterials> update(PanoramicProductMaterials panoramicProductMaterials) {
-        panoramicProductMaterialsService.update(panoramicProductMaterials);
+        productMaterialsService.update(panoramicProductMaterials);
         return ResultCode.getSuccessReturn(panoramicProductMaterials);
     }
 
     @GetMapping("/{id}")
     public ResultCode<PanoramicProductMaterials> detail(@PathVariable Integer id) {
-        PanoramicProductMaterials panoramicProductMaterials = panoramicProductMaterialsService.findById(id);
+        PanoramicProductMaterials panoramicProductMaterials = productMaterialsService.findById(id);
         return ResultCode.getSuccessReturn(panoramicProductMaterials);
     }
 
 //    @GetMapping
 //    public ResultCode<PageInfo> list(Integer page, Integer size) {
 //        PageHelper.startPage(page, size);
-//        List<PanoramicProductMaterials> list = panoramicProductMaterialsService.findAll();
+//        List<PanoramicProductMaterials> list = productMaterialsService.findAll();
 //        PageInfo pageInfo = new PageInfo(list);
 //        return ResultCode.getSuccessReturn(pageInfo);
 //    }

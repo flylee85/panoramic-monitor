@@ -15,11 +15,11 @@ import org.springframework.transaction.annotation.Transactional;
  * @author  summer
  * 2017/11/21
  */
-@Service("panoramicProductionEfficiencyService")
+@Service("productionEfficiencyService")
 @Transactional(readOnly = true, rollbackFor = ServiceException.class)
 public class PanoramicProductionEfficiencyServiceImpl extends AbstractService<PanoramicProductionEfficiency> implements PanoramicProductionEfficiencyService {
     @Autowired
-    @Qualifier("panoramicProductionEfficiencyMapper")
-    private PanoramicProductionEfficiencyMapper panoramicProductionEfficiencyMapper;
+    @Qualifier("productionEfficiencyMapper")
+    private PanoramicProductionEfficiencyMapper productionEfficiencyMapper;
 
 }

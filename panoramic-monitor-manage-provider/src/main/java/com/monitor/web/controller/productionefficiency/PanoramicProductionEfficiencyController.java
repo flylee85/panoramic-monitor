@@ -15,12 +15,12 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/production/efficiency")
 public class PanoramicProductionEfficiencyController {
     @Autowired
-    @Qualifier("panoramicProductionEfficiencyService")
-    private PanoramicProductionEfficiencyService panoramicProductionEfficiencyService;
+    @Qualifier("productionEfficiencyService")
+    private PanoramicProductionEfficiencyService productionEfficiencyService;
 
     @PostMapping("/{id}")
     public ResultCode<PanoramicProductionEfficiency> add(PanoramicProductionEfficiency panoramicProductionEfficiency) {
-        panoramicProductionEfficiencyService.save(panoramicProductionEfficiency);
+        productionEfficiencyService.save(panoramicProductionEfficiency);
         return ResultCode.getSuccessReturn(panoramicProductionEfficiency);
     }
 
@@ -31,20 +31,20 @@ public class PanoramicProductionEfficiencyController {
 
     @PutMapping
     public ResultCode<PanoramicProductionEfficiency> update(PanoramicProductionEfficiency panoramicProductionEfficiency) {
-        panoramicProductionEfficiencyService.update(panoramicProductionEfficiency);
+        productionEfficiencyService.update(panoramicProductionEfficiency);
         return ResultCode.getSuccessReturn(panoramicProductionEfficiency);
     }
 
     @GetMapping("/{id}")
     public ResultCode<PanoramicProductionEfficiency> detail(@PathVariable Integer id) {
-        PanoramicProductionEfficiency panoramicProductionEfficiency = panoramicProductionEfficiencyService.findById(id);
+        PanoramicProductionEfficiency panoramicProductionEfficiency = productionEfficiencyService.findById(id);
         return ResultCode.getSuccessReturn(panoramicProductionEfficiency);
     }
 
 //    @GetMapping
 //    public ResultCode<PageInfo> list(Integer page, Integer size) {
 //        PageHelper.startPage(page, size);
-//        List<PanoramicProductionEfficiency> list = panoramicProductionEfficiencyService.findAll();
+//        List<PanoramicProductionEfficiency> list = productionEfficiencyService.findAll();
 //        PageInfo pageInfo = new PageInfo(list);
 //        return ResultCode.getSuccessReturn(pageInfo);
 //    }

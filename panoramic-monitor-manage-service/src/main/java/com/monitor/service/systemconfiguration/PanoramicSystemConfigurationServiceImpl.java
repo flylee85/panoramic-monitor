@@ -12,14 +12,14 @@ import org.springframework.transaction.annotation.Transactional;
 
 
 /**
- * sunmer
+ * @author sunmer
  * 2017/11/21.
  */
-@Service("panoramicSystemConfigurationService")
+@Service("systemConfigurationService")
 @Transactional(readOnly = true, rollbackFor = ServiceException.class)
 public class PanoramicSystemConfigurationServiceImpl extends AbstractService<PanoramicSystemConfiguration> implements PanoramicSystemConfigurationService {
     @Autowired
-    @Qualifier("panoramicSystemConfigurationMapper")
-    private PanoramicSystemConfigurationMapper panoramicSystemConfigurationMapper;
+    @Qualifier("systemConfigurationMapper")
+    private PanoramicSystemConfigurationMapper systemConfigurationMapper;
 
 }
