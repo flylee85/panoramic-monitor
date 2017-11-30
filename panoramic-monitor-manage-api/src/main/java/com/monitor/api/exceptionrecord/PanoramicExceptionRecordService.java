@@ -23,5 +23,5 @@ public interface PanoramicExceptionRecordService extends Service<PanoramicExcept
      * @param date
      * @return
      */
-    List<PanoramicExceptionRecord> queryAll(String date);
+    List<PanoramicExceptionRecord> listByDate(String date);
 }

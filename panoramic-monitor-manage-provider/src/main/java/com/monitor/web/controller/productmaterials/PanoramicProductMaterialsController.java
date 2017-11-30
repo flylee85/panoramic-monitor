@@ -6,6 +6,7 @@ import com.github.pagehelper.PageInfo;
 import com.monitor.api.productmaterials.PanoramicProductMaterialsService;
 import com.monitor.model.productmaterials.PanoramicProductMaterials;
 import com.monitor.web.controller.base.AbstractAnnotationController;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
@@ -16,6 +17,7 @@ import java.util.List;
  * @author summer
  * 2017/11/21.
  */
+@Api
 @RestController
 @RequestMapping("/product/materials")
 public class PanoramicProductMaterialsController extends AbstractAnnotationController {

@@ -6,6 +6,7 @@ import com.github.pagehelper.PageInfo;
 import com.monitor.api.systemconfiguration.PanoramicSystemConfigurationService;
 import com.monitor.model.systemconfiguration.PanoramicSystemConfiguration;
 import com.monitor.web.controller.base.AbstractAnnotationController;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
@@ -16,6 +17,7 @@ import java.util.List;
  * @author summer
  * 2017/11/21.
  */
+@Api
 @RestController
 @RequestMapping("/system/configuration")
 public class PanoramicSystemConfigurationController extends AbstractAnnotationController {

@@ -11,7 +11,6 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
-import tk.mybatis.mapper.entity.Condition;
 
 import java.util.List;
 
@@ -56,7 +55,7 @@ public class PanoramicExceptionRecordController extends AbstractAnnotationContro
     @GetMapping("/{date}/{page}/{size}")
     public ResultCode<PageInfo<PanoramicExceptionRecord>> list(@PathVariable String date,@PathVariable Integer page, @PathVariable Integer size) {
         PageHelper.startPage(page, size);
-        List<PanoramicExceptionRecord> list = exceptionRecordService.queryAll(date);
+        List<PanoramicExceptionRecord> list = exceptionRecordService.listByDate(date);
         PageInfo<PanoramicExceptionRecord> pageInfo = new PageInfo<>(list);
         return ResultCode.getSuccessReturn(pageInfo);
     }

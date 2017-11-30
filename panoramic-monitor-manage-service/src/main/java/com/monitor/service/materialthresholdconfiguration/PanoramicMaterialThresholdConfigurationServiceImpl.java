@@ -9,6 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import tk.mybatis.mapper.entity.Condition;
+
+import java.util.List;
 
 
 /**
@@ -22,4 +25,11 @@ public class PanoramicMaterialThresholdConfigurationServiceImpl extends Abstract
     @Qualifier("materialThresholdConfigurationMapper")
     private PanoramicMaterialThresholdConfigurationMapper materialThresholdConfigurationMapper;
 
+    @Override
+    public PanoramicMaterialThresholdConfiguration findByCode(String category,String code) {
+        Condition condition = new Condition(PanoramicMaterialThresholdConfiguration.class, false);
+        condition.createCriteria().andCondition("code ='" + code + "' and status =1 and delete_flag =1");
+        List<PanoramicMaterialThresholdConfiguration> configurationList = materialThresholdConfigurationMapper.selectByCondition(condition);
+        return (null == configurationList || configurationList.size() == 0) ? null : configurationList.get(0);
+    }
 }

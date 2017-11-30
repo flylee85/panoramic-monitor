@@ -44,7 +44,7 @@ public class PanoramicExceptionRecordServiceImpl extends AbstractService<Panoram
 
     @Override
     @Transactional(propagation = Propagation.NOT_SUPPORTED, rollbackFor = Exception.class)
-    public List<PanoramicExceptionRecord> queryAll(String date) {
+    public List<PanoramicExceptionRecord> listByDate(String date) {
         Condition condition = new Condition(PanoramicExceptionRecord.class, false);
         condition.createCriteria().andCondition(" status=0 and alarm_time >'" + date + "'");
         condition.setOrderByClause(" status asc ");

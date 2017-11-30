@@ -12,4 +12,10 @@ import com.monitor.model.materialthresholdconfiguration.PanoramicMaterialThresho
  */
 public interface PanoramicMaterialThresholdConfigurationService extends Service<PanoramicMaterialThresholdConfiguration> {
 
+    /**
+     * @param code
+     * @param category
+     * @return
+     */
+    PanoramicMaterialThresholdConfiguration findByCode(String category,String code);
 }

@@ -29,13 +29,13 @@ public class RealtimeConsumptionSummaryTask implements Job {
     @Override
     public void execute(JobExecutionContext context) throws JobExecutionException {
         String date = DateUtil.currentTimeHourStr();
-        List<PanoramicRealTimeConsumption> consumptionCategoryList = realTimeConsumptionService.listRealTimeConsumptionCategory();
+        List<PanoramicRealTimeConsumption> consumptionCategoryList = realTimeConsumptionService.listRealTimeConsumptionCategoryTask();
         if (null == consumptionCategoryList || consumptionCategoryList.size() == 0) {
             DB_LOGGER.warn("实时消耗表数据为空{}");
             return;
         }
         consumptionCategoryList.forEach((PanoramicRealTimeConsumption e) -> {
-            realTimeConsumptionService.realtimeConsumptionSummary(e.getName(),e.getCode(), date);
+            realTimeConsumptionService.realtimeConsumptionSummaryTask(e.getName(),e.getCode(), date);
         });
     }
 

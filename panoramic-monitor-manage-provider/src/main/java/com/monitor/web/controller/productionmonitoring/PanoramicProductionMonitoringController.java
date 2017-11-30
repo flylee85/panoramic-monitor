@@ -3,6 +3,7 @@ package com.monitor.web.controller.productionmonitoring;
 import com.cloud.api.vo.ResultCode;
 import com.monitor.api.productionmonitoring.PanoramicProductionMonitoringService;
 import com.monitor.model.productionmonitoring.PanoramicProductionMonitoring;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
  * @author summer
  * 2017/11/21.
  */
+@Api
 @RestController
 @RequestMapping("/production/monitoring")
 public class PanoramicProductionMonitoringController {

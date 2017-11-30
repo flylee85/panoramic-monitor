@@ -50,6 +50,32 @@ public class QcData extends BaseObject {
      */
     private String type;
 
+
+    /**
+     * 例外等级（判断是否为合格的标志）
+     */
+    @Column(name = "event_level")
+    private String eventLevel;
+    /**
+     * 作业检测项
+     */
+    @Column(name = "task_item_name")
+    private String taskItemName;
+
+    /**
+     * @return
+     */
+    public String getTaskItemName() {
+        return taskItemName;
+    }
+
+    /**
+     * @param taskItemName
+     */
+    public void setTaskItemName(String taskItemName) {
+        this.taskItemName = taskItemName;
+    }
+
     /**
      * 获取ID
      *
@@ -156,6 +182,22 @@ public class QcData extends BaseObject {
      */
     public void setClassNo(Integer classNo) {
         this.classNo = classNo;
+    }
+
+    /**
+     * eventLevel - 类型
+     *
+     * @return
+     */
+    public String getEventLevel() {
+        return eventLevel;
+    }
+
+    /**
+     * @param eventLevel
+     */
+    public void setEventLevel(String eventLevel) {
+        this.eventLevel = eventLevel;
     }
 
     /**

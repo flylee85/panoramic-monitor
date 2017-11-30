@@ -3,6 +3,8 @@ package com.monitor.api.dailyinventorysummary;
 import com.cloud.core.Service;
 import com.monitor.model.dailyinventorysummary.PanoramicDailyInventorySummary;
 
+import java.util.List;
+
 
 /**
  * 库存服务
@@ -20,4 +22,10 @@ public interface PanoramicDailyInventorySummaryService extends Service<Panoramic
      * @return
      */
     PanoramicDailyInventorySummary queryByDateAndCode(String code, String date);
+
+    /**根据日期查询当前时间所有库存
+     * @param date
+     * @return
+     */
+    List<PanoramicDailyInventorySummary> listByDateAndCode(String date);
 }

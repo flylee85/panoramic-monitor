@@ -12,15 +12,17 @@ import java.util.List;
  */
 public interface QcDataService extends Service<QcData> {
 
-    /**根据时间指定查询质检数据
+    /**根据时间和类型指定查询质检数据
      * @param date
+     * @param type
      * @return
      */
-    List<QcData> listByDate(String date);
+    List<QcData> listByDate(String date,String type);
 
     /**质检合格率查询
      * @param date
+     * @param type
      * @return
      */
-    Double passRate(String date);
+    Double passRate(String date,String type);
 }

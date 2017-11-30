@@ -11,11 +11,11 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 /**
- * sunmer
+ * @author summer
  * 2017/11/08.
  */
 @RestController
-@RequestMapping("/panoramic/permission")
+@RequestMapping("/permission")
 public class PanoramicPermissionController {
     @Autowired
     private PanoramicPermissionService panoramicPermissionService;

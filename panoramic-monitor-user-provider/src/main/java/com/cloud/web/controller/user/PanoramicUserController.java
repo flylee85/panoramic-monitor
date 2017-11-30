@@ -15,7 +15,7 @@ import java.util.List;
  * Created by @author sunmer on 2017/11/07.
  */
 @RestController
-@RequestMapping("/noramic/user")
+@RequestMapping("/user")
 public class PanoramicUserController {
     @Autowired
     private PanoramicUserService panoramicUserService;

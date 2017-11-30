@@ -3,6 +3,7 @@ package com.monitor.web.controller.realtimeconsumption;
 import com.cloud.api.vo.ResultCode;
 import com.monitor.api.realtimeconsumption.PanoramicRealTimeConsumptionService;
 import com.monitor.model.realtimeconsumption.PanoramicRealTimeConsumption;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 *@author summer
 * 2017/11/21.
 */
+@Api
 @RestController
 @RequestMapping("/real/time/consumption")
 public class PanoramicRealTimeConsumptionController {

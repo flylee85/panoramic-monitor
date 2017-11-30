@@ -49,7 +49,7 @@ public class PanoramicRawMaterialsController extends AbstractAnnotationControlle
     }
 
     @GetMapping("/{date}/{page}/{size}")
-    public ResultCode<PageInfo> list(@PathVariable String date, @PathVariable Integer page, @PathVariable Integer size) {
+    public ResultCode<PageInfo> list(@PathVariable("date") String date, @PathVariable("page") Integer page, @PathVariable("size") Integer size) {
         PageHelper.startPage(page, size);
         List<PanoramicRawMaterials> list = rawMaterialsService.findAll();
         PageInfo pageInfo = new PageInfo(list);

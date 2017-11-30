@@ -15,7 +15,7 @@ import java.util.List;
  * on 2017/11/06.
  */
 @RestController
-@RequestMapping("/panoramic/role")
+@RequestMapping("/role")
 public class PanoramicRoleController {
     @Autowired
     private PanoramicRoleService panoramicRoleService;
