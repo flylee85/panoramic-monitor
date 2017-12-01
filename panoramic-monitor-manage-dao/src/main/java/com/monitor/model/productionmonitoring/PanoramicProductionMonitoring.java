@@ -40,11 +40,20 @@ public class PanoramicProductionMonitoring extends BaseObject {
     @Column(name = "coal_calcium_phosphate")
     private Double coalCalciumPhosphate;
 
+    public Double getCalciumPowerConsumption() {
+        return calciumPowerConsumption;
+    }
+
+    public void setCalciumPowerConsumption(Double calciumPowerConsumption) {
+        this.calciumPowerConsumption = calciumPowerConsumption;
+    }
+
     /**
-     * 磷钙电耗
+     * 普钙电耗
      */
-    @Column(name = "power_consumption_of_calcium_phosphate")
-    private Double powerConsumptionOfCalciumPhosphate;
+
+    @Column(name = "calcium_power_consumption")
+    private Double calciumPowerConsumption;
 
     /**
      * 删除标记（1：未删除；0：删除）
@@ -142,24 +151,6 @@ public class PanoramicProductionMonitoring extends BaseObject {
      */
     public void setCoalCalciumPhosphate(Double coalCalciumPhosphate) {
         this.coalCalciumPhosphate = coalCalciumPhosphate;
-    }
-
-    /**
-     * 获取磷钙电耗
-     *
-     * @return power_consumption_of_calcium_phosphate - 磷钙电耗
-     */
-    public Double getPowerConsumptionOfCalciumPhosphate() {
-        return powerConsumptionOfCalciumPhosphate;
-    }
-
-    /**
-     * 设置磷钙电耗
-     *
-     * @param powerConsumptionOfCalciumPhosphate 磷钙电耗
-     */
-    public void setPowerConsumptionOfCalciumPhosphate(Double powerConsumptionOfCalciumPhosphate) {
-        this.powerConsumptionOfCalciumPhosphate = powerConsumptionOfCalciumPhosphate;
     }
 
     /**

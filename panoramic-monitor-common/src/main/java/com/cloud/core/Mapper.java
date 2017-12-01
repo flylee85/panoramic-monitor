@@ -10,6 +10,7 @@ import tk.mybatis.mapper.common.special.InsertListMapper;
  */
 public interface Mapper<T>
         extends
+        MySqlMapper<T>,
         BaseMapper<T>,
         ConditionMapper<T>,
         IdsMapper<T>,

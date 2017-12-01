@@ -26,6 +26,25 @@ public class PanoramicIntoTheFactoryRecords {
     private String code;
 
     /**
+     * @return
+     */
+    public String getErrMsg() {
+        return errMsg;
+    }
+
+    /**
+     * @param errMsg
+     */
+    public void setErrMsg(String errMsg) {
+        this.errMsg = errMsg;
+    }
+
+    /**
+     * 异常信息
+     */
+    private String errMsg;
+
+    /**
      * 车牌
      */
     @Column(name = "number_plate")

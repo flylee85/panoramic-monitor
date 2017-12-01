@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author summer 2017/11/21.
@@ -56,12 +57,23 @@ public class PanoramicDailyInventorySummaryController extends AbstractAnnotation
         return ResultCode.getSuccessReturn(summaryList);
     }
 
+    @ApiOperation(value = "库存数据校验数据接口", notes = "库存数据校验")
     @PostMapping
-    public ResultCode<PanoramicDailyInventorySummary> add(
-            PanoramicDailyInventorySummary panoramicDailyInventorySummary) {
-        dailyInventorySummaryService.save(panoramicDailyInventorySummary);
-        return ResultCode.getSuccessReturn(panoramicDailyInventorySummary);
+    public ResultCode< Map<String,String>> check( @RequestBody List<String> codeList) {
+        if (null == codeList || codeList.size() == 0) {
+            return ResultCode.getFailure("数据格式错误！");
+        }
+        
+        Map<String,String> result = dailyInventorySummaryService.check(codeList);
+        return ResultCode.getSuccessReturn(result);
     }
+
+//    @PostMapping
+//    public ResultCode<PanoramicDailyInventorySummary> add(
+//            PanoramicDailyInventorySummary panoramicDailyInventorySummary) {
+//        dailyInventorySummaryService.save(panoramicDailyInventorySummary);
+//        return ResultCode.getSuccessReturn(panoramicDailyInventorySummary);
+//    }
 
     @DeleteMapping("/{id}")
     public ResultCode<PanoramicDailyInventorySummary> delete(@PathVariable Integer id) {

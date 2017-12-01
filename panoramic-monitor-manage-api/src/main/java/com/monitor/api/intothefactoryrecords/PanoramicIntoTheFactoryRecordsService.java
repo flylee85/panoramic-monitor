@@ -36,4 +36,9 @@ public interface PanoramicIntoTheFactoryRecordsService extends Service<Panoramic
      * @return
      */
     Integer count(String date);
+
+    /**
+     * 定时任务 -定时刷新异常出库异常信息状态
+     */
+    void regularlyRefreshTask();
 }

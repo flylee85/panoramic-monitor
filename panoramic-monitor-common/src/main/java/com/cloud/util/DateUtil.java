@@ -2,6 +2,8 @@ package com.cloud.util;
 
 import org.apache.commons.lang.StringUtils;
 
+import com.google.common.collect.Lists;
+
 import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -74,10 +76,6 @@ public class DateUtil implements Util4Script {
         return org.apache.commons.lang3.StringUtils.substring(formatTimestamp(currentTime()), 0, 13);
     }
 
-    public static void main(){
-        DateUtil.currentTimeHourStr();
-        System.out.println(DateUtil.currentTimeHourStr());
-    }
     /**
      * 获取当前日期 <br>
      * 参见{@link #timeMillis()}
@@ -180,8 +178,14 @@ public class DateUtil implements Util4Script {
     }
 
     public static void main(String[] args) {
-        String date = DateUtil.currentTimeHourStr();
-        System.out.println(date);
+    	List<String> s =Lists.newArrayList();
+        s.add("HG01XY750100");
+        s.add("HG01XY750000");
+        s.add("HG01XY750300");
+        s.add("HG01XY750200");
+        s.add("HG01XY750410");
+        s.add("HG01XY750510");
+        System.out.println(JsonUtils.writeObjectToJson(s));
     }
 
     public static int getWeekOfYear(Timestamp time) {

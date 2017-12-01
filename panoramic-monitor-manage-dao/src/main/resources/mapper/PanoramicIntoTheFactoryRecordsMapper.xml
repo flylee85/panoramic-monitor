@@ -8,6 +8,7 @@
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="code" jdbcType="VARCHAR" property="code" />
+    <result column="err_msg" jdbcType="VARCHAR" property="errMsg" />
     <result column="number_plate" jdbcType="VARCHAR" property="numberPlate" />
     <result column="net_weight" jdbcType="DOUBLE" property="netWeight" />
     <result column="tare" jdbcType="DOUBLE" property="tare" />

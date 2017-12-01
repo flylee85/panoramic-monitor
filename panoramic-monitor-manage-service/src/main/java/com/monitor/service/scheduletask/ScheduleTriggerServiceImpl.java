@@ -8,7 +8,9 @@ import org.quartz.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,7 +18,7 @@ import java.util.List;
 /**
  * @author summer
  */
-@Service
+@Component
 public class ScheduleTriggerServiceImpl extends AbstractService<ScheduleTrigger> implements ScheduleTriggerService {
 
 	private static final Logger logger = LoggerFactory.getLogger(ScheduleTriggerServiceImpl.class);
@@ -28,6 +30,7 @@ public class ScheduleTriggerServiceImpl extends AbstractService<ScheduleTrigger>
 	private Scheduler scheduler;
 
 	@Autowired
+	@Qualifier("scheduleTriggerMapper")
 	private ScheduleTriggerMapper scheduleTriggerMapper;
 
 	/**

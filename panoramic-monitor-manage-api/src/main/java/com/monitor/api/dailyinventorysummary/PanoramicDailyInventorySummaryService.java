@@ -4,6 +4,7 @@ import com.cloud.core.Service;
 import com.monitor.model.dailyinventorysummary.PanoramicDailyInventorySummary;
 
 import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -23,9 +24,19 @@ public interface PanoramicDailyInventorySummaryService extends Service<Panoramic
      */
     PanoramicDailyInventorySummary queryByDateAndCode(String code, String date);
 
-    /**根据日期查询当前时间所有库存
+    /**
+     * 根据日期查询当前时间所有库存
+     *
      * @param date
      * @return
      */
     List<PanoramicDailyInventorySummary> listByDateAndCode(String date);
+
+    /**
+     * 根据code校验数据高低状态
+     *
+     * @param codeList
+     * @return
+     */
+    Map<String,String> check(List<String> codeList);
 }

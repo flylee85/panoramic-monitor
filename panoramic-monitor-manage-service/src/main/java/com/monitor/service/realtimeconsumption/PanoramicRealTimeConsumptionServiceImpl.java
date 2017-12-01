@@ -63,28 +63,30 @@ public class PanoramicRealTimeConsumptionServiceImpl extends AbstractService<Pan
 				record.setId(null);
 			});
 		}
-
-		PanoramicRealTimeConsumptionGather gather = new PanoramicRealTimeConsumptionGather();
-		gather.setCode(code);
-		gather.setName(name);
-		gather.setDeleteFlag(record.getDeleteFlag());
-		gather.setfId(record.getfId());
-		gather.setGatherTime(date);
-		gather.setId(record.getId());
-		gather.setCtime(DateUtil.getCurFullTimestamp());
-		gather.setName(record.getName());
-		gather.setOperator(record.getOperator());
-		gather.setUnit(record.getUnit());
-		gather.setDtime(record.getDtime());
-		gather.setUtime(gather.getCtime());
-		gather.setValue(record.getValue());
 		PanoramicRealTimeConsumptionGather selectOne = realTimeConsumptionGatherMapper.selectByGatherTime(code, date);
 		Optional<PanoramicRealTimeConsumptionGather> one = Optional.ofNullable(selectOne);
 		if (one.isPresent()) {
 			PanoramicRealTimeConsumptionGather realTimeConsumptionGather = one.get();
 			realTimeConsumptionGather.setValue(record.getValue());
+			realTimeConsumptionGather.setUtime(DateUtil.getCurFullTimestamp());
+			realTimeConsumptionGather.setOperator("auto_task");
+			realTimeConsumptionGather.setGatherTime(DateUtil.getCurFullTimestampStr());
 			realTimeConsumptionGatherMapper.updateByPrimaryKeySelective(realTimeConsumptionGather);
 		} else {
+			PanoramicRealTimeConsumptionGather gather = new PanoramicRealTimeConsumptionGather();
+			gather.setCode(code);
+			gather.setName(name);
+			gather.setDeleteFlag(record.getDeleteFlag());
+			gather.setfId(null);
+			gather.setGatherTime(DateUtil.getCurFullTimestampStr());
+			gather.setId(record.getId());
+			gather.setCtime(DateUtil.getCurFullTimestamp());
+			gather.setName(record.getName());
+			gather.setOperator(record.getOperator());
+			gather.setUnit(record.getUnit());
+			gather.setDtime(record.getDtime());
+			gather.setUtime(gather.getCtime());
+			gather.setValue(record.getValue());
 			realTimeConsumptionGatherMapper.insert(gather);
 		}
 
