@@ -27,59 +27,67 @@ public class PanoramicProductMaterials extends BaseObject {
      * 产品料名
      */
     private String name;
-
+    /**
+     *
+     */
+    private String tId;
     /**
      * 值
      */
     private String value;
-
     /**
      * 物料编码
      */
     private String code;
-
     /**
      * 进出库类型（1：进库; 0：出库）
      */
     @Column(name = "in_or_out")
     private Integer inOrOut;
-
     /**
      * 单位
      */
     private String unit;
-
     /**
      * 删除标记（1：有效；0：删除）
      */
     @Column(name = "delete_flag")
     private Integer deleteFlag;
-
     /**
      * 创建时间
      */
     private Date ctime;
-
     /**
      * 修改时间
      */
     private Date utime;
-
     /**
      * 删除时间
      */
     private Date dtime;
-
     /**
      * 操作人
      */
     private String operator;
-
     /**
      * 工厂ID
      */
     @Column(name = "f_id")
     private String fId;
+
+    /**
+     * @return
+     */
+    public String gettId() {
+        return tId;
+    }
+
+    /**
+     * @param tId
+     */
+    public void settId(String tId) {
+        this.tId = tId;
+    }
 
     /**
      * 获取ID

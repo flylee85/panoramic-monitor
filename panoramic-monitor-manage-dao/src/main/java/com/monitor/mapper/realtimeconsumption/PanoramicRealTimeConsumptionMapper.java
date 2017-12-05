@@ -18,6 +18,6 @@ public interface PanoramicRealTimeConsumptionMapper extends Mapper<PanoramicReal
      *
      * @return
      */
-    @Select("SELECT CODE,NAME FROM PANORAMIC_REAL_TIME_CONSUMPTION AS B GROUP BY CODE,NAME")
+    @Select("SELECT SUBSTRING(CODE, 1, 12) CODE ,NAME FROM PANORAMIC_REAL_TIME_CONSUMPTION AS B GROUP BY SUBSTRING(CODE, 1, 12)")
     List<PanoramicRealTimeConsumption> listRealTimeConsumptionCategory();
 }

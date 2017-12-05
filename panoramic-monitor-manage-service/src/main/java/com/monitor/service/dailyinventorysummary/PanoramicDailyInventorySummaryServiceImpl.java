@@ -62,19 +62,18 @@ public class PanoramicDailyInventorySummaryServiceImpl extends AbstractService<P
 	}
 
 	@Override
-	public Map<String,String> check(List<String> codeList) {
-		Map<String,String> result = Maps.newHashMap();
+	public Map<String, String> check(List<String> codeList) {
+		Map<String, String> result = Maps.newHashMap();
 		codeList.forEach((String e) -> {
 			PanoramicDailyInventorySummary dailyInventorySummary = this.queryByDateAndCode(e,
 					DateUtil.getCurFullTimestampStr());
 			PanoramicMaterialThresholdConfiguration configuration = materialThresholdConfigurationService
 					.findByCode("stock", e);
-			result.put(e,"正常");
+			result.put(e, "正常");
 			if (!Optional.ofNullable(configuration).isPresent()) {
 				// 3 库存配置异常
 				result.put(e, "配置异常");
-			}
-			if ((!Optional.ofNullable(dailyInventorySummary).isPresent())
+			} else if ((!Optional.ofNullable(dailyInventorySummary).isPresent())
 					|| dailyInventorySummary.getValue() < configuration.getLowerLimit()) {
 				// 1：库存偏低
 				result.put(e, "低");

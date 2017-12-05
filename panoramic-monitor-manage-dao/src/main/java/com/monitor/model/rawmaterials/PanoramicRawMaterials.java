@@ -28,6 +28,12 @@ public class PanoramicRawMaterials extends BaseObject {
      */
     private String name;
 
+
+    /**
+     * 点位号
+     */
+    private String tId;
+
     /**
      * 值
      */
@@ -295,6 +301,14 @@ public class PanoramicRawMaterials extends BaseObject {
      */
     public void setfId(String fId) {
         this.fId = fId;
+    }
+
+    public String gettId() {
+        return tId;
+    }
+
+    public void settId(String tId) {
+        this.tId = tId;
     }
 
     @Override

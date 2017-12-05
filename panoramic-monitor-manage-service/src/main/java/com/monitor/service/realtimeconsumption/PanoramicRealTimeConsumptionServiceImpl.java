@@ -37,7 +37,7 @@ public class PanoramicRealTimeConsumptionServiceImpl extends AbstractService<Pan
 	public void realtimeConsumptionSummaryTask(String name, String code, String date) {
 		// 先查出来，再去更新
 		Condition condition = new Condition(PanoramicRealTimeConsumption.class, false);
-		condition.createCriteria().andCondition(" code ='" + code + "' AND f_id=2 AND delete_flag=1 "
+		condition.createCriteria().andCondition("  substring(code, 1, 12) = substring('" + code + "', 1, 12) AND f_id=2 AND delete_flag=1 "
 				+ " AND date_format(utime,'%Y%m%d%H') = date_format('" + date + "','%Y%m%d%H')");
 		List<PanoramicRealTimeConsumption> consumptionList = realTimeConsumptionMapper.selectByCondition(condition);
 		PanoramicRealTimeConsumption record = new PanoramicRealTimeConsumption();
