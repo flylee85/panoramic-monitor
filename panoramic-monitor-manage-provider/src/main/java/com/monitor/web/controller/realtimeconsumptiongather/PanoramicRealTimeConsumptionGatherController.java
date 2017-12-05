@@ -2,6 +2,7 @@ package com.monitor.web.controller.realtimeconsumptiongather;
 
 import com.cloud.api.vo.ResultCode;
 import com.monitor.api.realtimeconsumptiongather.PanoramicRealTimeConsumptionGatherService;
+import com.monitor.dto.realtimeconsumptiongather.PanoramicRealTimeConsumptionGatherDto;
 import com.monitor.model.realtimeconsumptiongather.PanoramicRealTimeConsumptionGather;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -32,9 +33,17 @@ public class PanoramicRealTimeConsumptionGatherController {
 
     @ApiOperation(value = "月度实时消耗汇总查询接口", notes = "根据时间和code查询月度实时消耗汇总数据(月累计消耗量)")
     @GetMapping("/monthly/statistics/{date}/{code}")
-    public ResultCode<PanoramicRealTimeConsumptionGather> listMonthlyStatisticsByDate(@PathVariable String date,
+    public ResultCode<PanoramicRealTimeConsumptionGather> queryMonthlyStatisticsByDate(@PathVariable String date,
                                                                                       @PathVariable String code) {
         PanoramicRealTimeConsumptionGather gather = realTimeConsumptionGatherService.queryMonthlyStatisticsByDate(date, code);
+        return ResultCode.getSuccessReturn(gather);
+    }
+
+    @ApiOperation(value = "数据校验-磷矿查询接口", notes = "根据时间和code查询每日数据校验查询数据(每日累计消耗量和记录值)")
+    @GetMapping("/day/statistics/{date}/{code}")
+    public ResultCode<PanoramicRealTimeConsumptionGatherDto> listDayStatisticsByDate(@PathVariable String date,
+                                                                                     @PathVariable String code) {
+        PanoramicRealTimeConsumptionGatherDto gather = realTimeConsumptionGatherService.queryDayStatisticsByDate(date, code);
         return ResultCode.getSuccessReturn(gather);
     }
 

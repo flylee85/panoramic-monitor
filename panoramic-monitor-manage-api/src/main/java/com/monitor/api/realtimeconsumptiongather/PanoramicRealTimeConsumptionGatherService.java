@@ -1,6 +1,7 @@
 package com.monitor.api.realtimeconsumptiongather;
 
 import com.cloud.core.Service;
+import com.monitor.dto.realtimeconsumptiongather.PanoramicRealTimeConsumptionGatherDto;
 import com.monitor.model.realtimeconsumptiongather.PanoramicRealTimeConsumptionGather;
 
 import java.util.List;
@@ -29,4 +30,13 @@ public interface PanoramicRealTimeConsumptionGatherService extends Service<Panor
      * @return
      */
     PanoramicRealTimeConsumptionGather queryMonthlyStatisticsByDate(String date, String code);
+
+    /**
+     * 根据时间进行每日统计
+     *
+     * @param date
+     * @param code
+     * @return
+     */
+    PanoramicRealTimeConsumptionGatherDto queryDayStatisticsByDate(String date, String code);
 }

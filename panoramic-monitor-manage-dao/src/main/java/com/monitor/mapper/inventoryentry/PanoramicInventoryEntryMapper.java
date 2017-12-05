@@ -23,7 +23,7 @@ public interface PanoramicInventoryEntryMapper extends Mapper<PanoramicInventory
 	 * @return
 	 */
 	@Select(" select * from panoramic_inventory_entry where  in_or_out =1  and delete_flag=1 "
-			+ " and  code =#{code} and date_format(utime,'%Y%m%d') = date_format(#{date},'%Y%m%d') and schedule =#{schedule} ")
+			+ " and  code =#{code} and date_format(utime,'%Y%m%d') = date_format(#{date},'%Y%m%d') and schedule =#{schedule} limit 1")
 	PanoramicInventoryEntry selectByCodeAndTime(@Param("code") String code, @Param("date") Date date,
 			@Param("schedule") String schedule);
 }

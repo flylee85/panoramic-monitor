@@ -8,6 +8,8 @@ import com.monitor.mapper.realtimeconsumption.PanoramicRealTimeConsumptionMapper
 import com.monitor.mapper.realtimeconsumptiongather.PanoramicRealTimeConsumptionGatherMapper;
 import com.monitor.model.realtimeconsumption.PanoramicRealTimeConsumption;
 import com.monitor.model.realtimeconsumptiongather.PanoramicRealTimeConsumptionGather;
+
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -37,8 +39,9 @@ public class PanoramicRealTimeConsumptionServiceImpl extends AbstractService<Pan
 	public void realtimeConsumptionSummaryTask(String name, String code, String date) {
 		// 先查出来，再去更新
 		Condition condition = new Condition(PanoramicRealTimeConsumption.class, false);
-		condition.createCriteria().andCondition("  substring(code, 1, 12) = substring('" + code + "', 1, 12) AND f_id=2 AND delete_flag=1 "
-				+ " AND date_format(utime,'%Y%m%d%H') = date_format('" + date + "','%Y%m%d%H')");
+		condition.createCriteria().andCondition(
+				"  substring(code, 1, 12) = substring('" + code + "', 1, 12) AND f_id=2 AND delete_flag=1 "
+						+ " AND date_format(utime,'%Y%m%d%H') = date_format('" + date + "','%Y%m%d%H')");
 		List<PanoramicRealTimeConsumption> consumptionList = realTimeConsumptionMapper.selectByCondition(condition);
 		PanoramicRealTimeConsumption record = new PanoramicRealTimeConsumption();
 		record.setCode(code);
@@ -46,8 +49,9 @@ public class PanoramicRealTimeConsumptionServiceImpl extends AbstractService<Pan
 		record.setValue(0.0);
 		record.setCtime(DateUtil.getCurFullTimestamp());
 		record.setId(null);
-		record.setOperator("auto");
+		record.setOperator("auto_task");
 		record.setfId("2");
+		record.setUnit(StringUtils.containsIgnoreCase(code, "0004A4000009")?"度":"千克");
 		record.setDeleteFlag(1);
 		if (null != consumptionList && consumptionList.size() > 0) {
 			consumptionList.forEach(e -> {
@@ -69,17 +73,17 @@ public class PanoramicRealTimeConsumptionServiceImpl extends AbstractService<Pan
 			PanoramicRealTimeConsumptionGather realTimeConsumptionGather = one.get();
 			realTimeConsumptionGather.setValue(record.getValue());
 			realTimeConsumptionGather.setUtime(DateUtil.getCurFullTimestamp());
-			realTimeConsumptionGather.setOperator("auto_task");
-			realTimeConsumptionGather.setGatherTime(DateUtil.getCurFullTimestampStr());
+			realTimeConsumptionGather.setOperator("auto_task_update");
+			realTimeConsumptionGather.setGatherTime(date);
 			realTimeConsumptionGatherMapper.updateByPrimaryKeySelective(realTimeConsumptionGather);
 		} else {
 			PanoramicRealTimeConsumptionGather gather = new PanoramicRealTimeConsumptionGather();
 			gather.setCode(code);
 			gather.setName(name);
 			gather.setDeleteFlag(record.getDeleteFlag());
-			gather.setfId(null);
-			gather.setGatherTime(DateUtil.getCurFullTimestampStr());
-			gather.setId(record.getId());
+			gather.setfId(record.getfId());
+			gather.setGatherTime(date);
+			gather.setId(null);
 			gather.setCtime(DateUtil.getCurFullTimestamp());
 			gather.setName(record.getName());
 			gather.setOperator(record.getOperator());

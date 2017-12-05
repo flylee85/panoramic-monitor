@@ -20,6 +20,6 @@ public interface PanoramicRealTimeConsumptionGatherMapper extends Mapper<Panoram
      * @return
      */
     @Select(" select * from panoramic_real_time_consumption_gather  where delete_flag =1 " +
-            "and code = #{code} and date_format(gather_time,'%y%m%d%h') = date_format( #{date} ,'%y%m%d%h') ")
+            "and code = #{code} and date_format(gather_time,'%y%m%d%h') = date_format( #{date} ,'%y%m%d%h') limit 1")
     PanoramicRealTimeConsumptionGather selectByGatherTime(@Param("code") String code, @Param("date") String date);
 }
