@@ -10,4 +10,12 @@ import com.monitor.model.rawmaterials.PanoramicRawMaterials;
  */
 public interface PanoramicRawMaterialsService extends Service<PanoramicRawMaterials> {
 
+    /**
+     * 库存预计可使用天数
+     *
+     * @param code
+     * @param date
+     * @return
+     */
+    Integer countUsable(String code, String date);
 }

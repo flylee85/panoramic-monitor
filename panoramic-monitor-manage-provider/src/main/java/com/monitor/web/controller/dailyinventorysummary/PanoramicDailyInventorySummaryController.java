@@ -58,13 +58,13 @@ public class PanoramicDailyInventorySummaryController extends AbstractAnnotation
     }
 
     @ApiOperation(value = "库存数据校验数据接口", notes = "库存数据校验")
-    @GetMapping("/check")
-    public ResultCode< Map<String,String>> check( @RequestParam("codeList[]") List<String> codeList) {
+    @GetMapping("/check/{date}")
+    public ResultCode<Map<String, String>> check(@RequestParam("codeList[]") List<String> codeList, @PathVariable("date") String date) {
         if (null == codeList || codeList.size() == 0) {
             return ResultCode.getFailure("数据格式错误！");
         }
-        
-        Map<String,String> result = dailyInventorySummaryService.check(codeList);
+
+        Map<String, String> result = dailyInventorySummaryService.check(codeList, date);
         return ResultCode.getSuccessReturn(result);
     }
 

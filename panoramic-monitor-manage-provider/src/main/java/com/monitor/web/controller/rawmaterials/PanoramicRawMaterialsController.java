@@ -7,6 +7,7 @@ import com.monitor.api.rawmaterials.PanoramicRawMaterialsService;
 import com.monitor.model.rawmaterials.PanoramicRawMaterials;
 import com.monitor.web.controller.base.AbstractAnnotationController;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
@@ -29,6 +30,13 @@ public class PanoramicRawMaterialsController extends AbstractAnnotationControlle
     public ResultCode<PanoramicRawMaterials> add(PanoramicRawMaterials panoramicRawMaterials) {
         rawMaterialsService.save(panoramicRawMaterials);
         return ResultCode.getSuccessReturn(panoramicRawMaterials);
+    }
+
+    @ApiOperation(value = "库存可使用天数-查询接口", notes = "根据时间和code查询库存可使用天数数据")
+    @GetMapping("/{code}/{date}")
+    public ResultCode<Integer> number(@PathVariable("code") String code, @PathVariable("date") String date) {
+        Integer count = rawMaterialsService.countUsable(code, date);
+        return ResultCode.getSuccessReturn(count);
     }
 
     @DeleteMapping("/{id}")

@@ -51,14 +51,13 @@ public class PanoramicRealTimeConsumptionServiceImpl extends AbstractService<Pan
 		record.setId(null);
 		record.setOperator("auto_task");
 		record.setfId("2");
-		record.setUnit(StringUtils.containsIgnoreCase(code, "0004A4000009")?"度":"千克");
+		record.setUnit(StringUtils.containsIgnoreCase(code, "0004A4000009")?"度":"吨");
 		record.setDeleteFlag(1);
 		if (null != consumptionList && consumptionList.size() > 0) {
 			consumptionList.forEach(e -> {
 				record.setValue(record.getValue() + e.getValue());
 				record.setUtime(e.getUtime());
 				record.setDtime(null);
-				record.setUnit(e.getUnit());
 				record.setOperator(e.getOperator());
 				record.setfId(e.getfId());
 				record.setName(e.getName());
@@ -71,7 +70,7 @@ public class PanoramicRealTimeConsumptionServiceImpl extends AbstractService<Pan
 		Optional<PanoramicRealTimeConsumptionGather> one = Optional.ofNullable(selectOne);
 		if (one.isPresent()) {
 			PanoramicRealTimeConsumptionGather realTimeConsumptionGather = one.get();
-			realTimeConsumptionGather.setValue(record.getValue());
+			realTimeConsumptionGather.setValue(record.getValue()/1000);
 			realTimeConsumptionGather.setUtime(DateUtil.getCurFullTimestamp());
 			realTimeConsumptionGather.setOperator("auto_task_update");
 			realTimeConsumptionGather.setGatherTime(date);
@@ -90,13 +89,14 @@ public class PanoramicRealTimeConsumptionServiceImpl extends AbstractService<Pan
 			gather.setUnit(record.getUnit());
 			gather.setDtime(record.getDtime());
 			gather.setUtime(gather.getCtime());
-			gather.setValue(record.getValue());
+			gather.setValue(record.getValue()/1000);
 			realTimeConsumptionGatherMapper.insert(gather);
 		}
 
 	}
 
 	@Override
+	@Transactional( propagation = Propagation.NOT_SUPPORTED, rollbackFor = Exception.class)
 	public List<PanoramicRealTimeConsumption> listRealTimeConsumptionCategoryTask() {
 		List<PanoramicRealTimeConsumption> recordList = realTimeConsumptionMapper.listRealTimeConsumptionCategory();
 		return recordList;

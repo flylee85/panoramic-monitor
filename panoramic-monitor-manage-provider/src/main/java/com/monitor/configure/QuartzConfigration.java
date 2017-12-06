@@ -7,6 +7,7 @@ import java.util.Properties;
 
 import org.quartz.Scheduler;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.factory.config.PropertiesFactoryBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -21,6 +22,8 @@ public class QuartzConfigration {
 
     @Autowired
     private MyJobFactory myJobFactory;
+    @Value("${quartzConfig}")
+    private String quartzConfig;
 
     @Bean
     public SchedulerFactoryBean schedulerFactoryBean() {
@@ -40,7 +43,7 @@ public class QuartzConfigration {
     @Bean
     public Properties quartzProperties() throws IOException {
         PropertiesFactoryBean propertiesFactoryBean = new PropertiesFactoryBean();
-        propertiesFactoryBean.setLocation(new ClassPathResource("/quartz.properties"));
+        propertiesFactoryBean.setLocation(new ClassPathResource(quartzConfig));
         propertiesFactoryBean.afterPropertiesSet();
         return propertiesFactoryBean.getObject();
     }

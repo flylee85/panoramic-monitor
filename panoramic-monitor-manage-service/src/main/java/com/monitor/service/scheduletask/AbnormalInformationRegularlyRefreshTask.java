@@ -22,8 +22,13 @@ public class AbnormalInformationRegularlyRefreshTask implements Job {
 
     @Override
     public void execute(JobExecutionContext context) throws JobExecutionException {
-        DB_LOGGER.warn("<----------异常出库信息状态定时刷新开始---------->");
-        intoTheFactoryRecordsService.regularlyRefreshTask();
-        DB_LOGGER.warn("<----------异常出库信息状态定时刷新结束---------->");
+
+        try {
+            DB_LOGGER.warn("<----------异常出库信息状态定时刷新开始---------->");
+            intoTheFactoryRecordsService.regularlyRefreshTask();
+            DB_LOGGER.warn("<----------异常出库信息状态定时刷新结束---------->");
+        } catch (Exception e) {
+            DB_LOGGER.warn("异常出库信息状态定时刷新出错{}"+e);
+        }
     }
 }

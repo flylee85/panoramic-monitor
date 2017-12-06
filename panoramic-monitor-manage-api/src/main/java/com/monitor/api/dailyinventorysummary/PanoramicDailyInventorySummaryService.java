@@ -36,7 +36,17 @@ public interface PanoramicDailyInventorySummaryService extends Service<Panoramic
      * 根据code校验数据高低状态
      *
      * @param codeList
+     * @param date
      * @return
      */
-    Map<String,String> check(List<String> codeList);
+    Map<String, String> check(List<String> codeList, String date);
+
+    /**
+     * 库存预计可使用天数
+     *
+     * @param code
+     * @param date
+     * @return
+     */
+    Integer countUsable(String code, String date);
 }
