@@ -52,4 +52,11 @@ public class PanoramicExceptionRecordServiceImpl extends AbstractService<Panoram
         List<PanoramicExceptionRecord> recordList = exceptionRecordMapper.selectByCondition(condition);
         return recordList;
     }
+
+    @Override
+    @Transactional(propagation = Propagation.NOT_SUPPORTED, rollbackFor = Exception.class)
+    public List<PanoramicExceptionRecord> findMsgByDate(String category, String date) {
+        List<PanoramicExceptionRecord> recordList = exceptionRecordMapper.findMsgByDate(category,date,30);
+        return recordList;
+    }
 }

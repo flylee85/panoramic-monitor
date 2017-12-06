@@ -16,6 +16,6 @@
     <result column="utime" jdbcType="TIMESTAMP" property="utime" />
     <result column="dtime" jdbcType="TIMESTAMP" property="dtime" />
     <result column="operator" jdbcType="VARCHAR" property="operator" />
-    <result column="related_person_log" jdbcType="VARBINARY" property="relatedPersonLog" />
+    <result column="related_person_log" jdbcType="VARCHAR" property="relatedPersonLog" />
   </resultMap>
 </mapper>

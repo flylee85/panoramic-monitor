@@ -1,4 +1,4 @@
-package com.monitor.model.exceptionrecord;
+package com.monitor.dto.exceptionrecord;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -7,8 +7,7 @@ import java.util.Date;
 /**
  * @author summer
  */
-@Table(name = "panoramic_exception_record")
-public class PanoramicExceptionRecord implements Serializable {
+public class PanoramicExceptionRecordDto implements Serializable {
     /**
 	 * 
 	 */
@@ -17,14 +16,11 @@ public class PanoramicExceptionRecord implements Serializable {
 	/**
      * ID
      */
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     /**
      * 报警项
      */
-    @Column(name = "alarm_item")
     private String alarmItem;
 
     /**
@@ -35,25 +31,21 @@ public class PanoramicExceptionRecord implements Serializable {
     /**
      * 删除标记（1：未删除；0：删除）
      */
-    @Column(name = "delete_flag")
     private Integer deleteFlag;
 
     /**
      * 报警内容
      */
-    @Column(name = "alarm_content")
     private String alarmContent;
 
     /**
      * 报警时间
      */
-    @Column(name = "alarm_time")
     private Date alarmTime;
 
     /**
      * 责任人
      */
-    @Column(name = "associated_person")
     private String associatedPerson;
 
     /**
@@ -79,7 +71,6 @@ public class PanoramicExceptionRecord implements Serializable {
     /**
      * 责任人日志
      */
-    @Column(name = "related_person_log")
     private String relatedPersonLog;
 
     /**

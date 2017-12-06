@@ -1,6 +1,7 @@
 package com.monitor.model.inventoryentry;
 
 import com.cloud.model.BaseObject;
+import com.monitor.support.ScheduleEnum;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -224,6 +225,15 @@ public class PanoramicInventoryEntry extends BaseObject {
      * @return schedule - 排班
      */
     public String getSchedule() {
+        if (ScheduleEnum.ONE_CLASS.getCode().equalsIgnoreCase(schedule)) {
+            return "早班";
+        }
+        if (ScheduleEnum.SECOND_CLASS.getCode().equalsIgnoreCase(schedule)) {
+            return "中班";
+        }
+        if (ScheduleEnum.THREE_CLASSE.getCode().equalsIgnoreCase(schedule)) {
+            return "晚班";
+        }
         return schedule;
     }
 

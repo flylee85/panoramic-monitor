@@ -24,4 +24,11 @@ public interface PanoramicExceptionRecordService extends Service<PanoramicExcept
      * @return
      */
     List<PanoramicExceptionRecord> listByDate(String date);
+
+    /**
+     * @param category
+     * @param date
+     * @return
+     */
+    List<PanoramicExceptionRecord> findMsgByDate(String category, String date);
 }
