@@ -48,32 +48,45 @@ public class PanoramicDailyInventorySummary extends BaseObject {
      */
     @Column(name = "delete_flag")
     private Integer deleteFlag;
-
+    /**
+     * 分类标记（1:原料；2：产品）
+     */
+    private Integer category;
     /**
      * 创建时间
      */
     private Date ctime;
-
     /**
      * 更新时间
      */
     private Date utime;
-
     /**
      * 删除时间
      */
     private Date dtime;
-
     /**
      * 操作人
      */
     private String operator;
-
     /**
      * 工厂id
      */
     @Column(name = "f_id")
     private String fId;
+
+    /**
+     * @return
+     */
+    public Integer getCategory() {
+        return category;
+    }
+
+    /**
+     * @param category
+     */
+    public void setCategory(Integer category) {
+        this.category = category;
+    }
 
     /**
      * 获取ID
@@ -135,7 +148,8 @@ public class PanoramicDailyInventorySummary extends BaseObject {
      * @return value - 库存量
      */
     public Double getValue() {
-        return value;
+
+        return value < 0 ? 0 : value;
     }
 
     /**

@@ -22,4 +22,9 @@ public interface PanoramicDailyInventorySummaryMapper extends Mapper<PanoramicDa
      */
     @Select("select * from panoramic_daily_inventory_summary where code = #{code} and date_sub(#{date}, INTERVAL #{number} DAY) <= date(utime)")
     List<PanoramicDailyInventorySummary> findNumberdayData(@Param("code") String code,@Param("number") Integer number, @Param("date") String date);
+
+    /**批量更新
+     * @param curRecords
+     */
+    void updateBatch(List<PanoramicDailyInventorySummary> curRecords);
 }

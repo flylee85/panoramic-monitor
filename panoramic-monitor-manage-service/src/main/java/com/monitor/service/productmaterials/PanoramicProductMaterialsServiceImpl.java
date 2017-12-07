@@ -100,4 +100,12 @@ public class PanoramicProductMaterialsServiceImpl extends AbstractService<Panora
             realTimeConsumptionGatherMapper.insert(gather);
         }
     }
+
+    @Override
+    @Transactional(propagation = Propagation.NOT_SUPPORTED, rollbackFor = Exception.class)
+    public Double summaryByCodeAndDate(String code, String date) {
+        double inSum = productMaterialsMapper.summaryByCodeAndDate(code, date, 1)==null?0:productMaterialsMapper.summaryByCodeAndDate(code, date, 1);
+        double outSum = productMaterialsMapper.summaryByCodeAndDate(code, date, 0)==null?0:productMaterialsMapper.summaryByCodeAndDate(code, date, 0);
+        return inSum - outSum;
+    }
 }

@@ -8,7 +8,7 @@ security:
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://user:user@panoramic.neweplatform.com:8761/eureka/   # 指定注册中心的地址
+      defaultZone: http://user:user@test.neweplatform.com:8761/eureka/   # 指定注册中心的地址
   instance:
     preferIpAddress: true
 #    hostname : discovery   # 指定主机名时候通过主机名访问,否则通过ip地址
@@ -27,7 +27,7 @@ spring:
 dev:
   spring:
     datasource:
-      url: jdbc:mysql://panoramic.neweplatform.com:3306/risk?useUnicode=true&characterEncoding=utf-8
+      url: jdbc:mysql://test.neweplatform.com:3306/risk?useUnicode=true&characterEncoding=utf-8
       username: root
       password: root
       driverClassName: com.mysql.jdbc.Driver

@@ -49,4 +49,13 @@ public interface PanoramicDailyInventorySummaryService extends Service<Panoramic
      * @return
      */
     Integer countUsable(String code, String date);
+
+    /**
+     * 每日库存统计--定时任务
+     *
+     * @param date
+     * @param records
+     */
+    void dailyInventorySummaryTask(String date, List<PanoramicDailyInventorySummary> records);
+
 }
