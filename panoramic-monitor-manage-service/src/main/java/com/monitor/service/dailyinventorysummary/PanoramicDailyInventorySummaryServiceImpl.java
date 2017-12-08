@@ -131,6 +131,7 @@ public class PanoramicDailyInventorySummaryServiceImpl extends AbstractService<P
             }
         }
         if (null == summaryList || summaryList.size() == 0) {
+
             dailyInventorySummaryMapper.insertList(curRecords);
         } else {
             dailyInventorySummaryMapper.updateBatch(curRecords);
@@ -145,8 +146,8 @@ public class PanoramicDailyInventorySummaryServiceImpl extends AbstractService<P
             sum = rawMaterialsService.summaryByCodeAndDate(e.getCode(), date);
         }
         e.setValue((e.getValue() + sum) < 0 ? 0 : (e.getValue() + sum));
-        e.setCtime(DateUtil.parseTimestamp(date));
-        e.setUtime(e.getCtime());
+        e.setCtime(DateUtil.getCurFullTimestamp());
+        e.setUtime(DateUtil.getCurFullTimestamp());
     }
 
     @Override

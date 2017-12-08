@@ -64,7 +64,7 @@ public class PanoramicIntoTheFactoryRecordsServiceImpl extends AbstractService<P
     @Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
     public void regularlyRefreshTask() {
         Condition condition = new Condition(PanoramicIntoTheFactoryRecords.class, false);
-        condition.createCriteria().andCondition(" delete_flag=1 and status=1 and err_msg is not null and date_format(snapshot_time,'%Y%m%d') = date_format('" + DateUtil.currentTimeStr() + "','%Y%m%d') ");
+        condition.createCriteria().andCondition(" delete_flag=1 and status=1  and date_format(snapshot_time,'%Y%m%d') = date_format('" + DateUtil.currentTimeStr() + "','%Y%m%d') ");
         condition.setOrderByClause(" snapshot_time desc ");
         List<PanoramicIntoTheFactoryRecords> records = intoTheFactoryRecordsMapper.selectByCondition(condition);
         if (null == records || records.size() == 0) {
@@ -72,6 +72,9 @@ public class PanoramicIntoTheFactoryRecordsServiceImpl extends AbstractService<P
         }
         records.forEach(e -> {
             try {
+                if (null == e.getNetWeight() || e.getNetWeight() == 0) {
+                    e.setErrMsg("数据异常，记录数据没有净重值");
+                }
                 if (e.getTare() / e.getNetWeight() >= 0.006) {
                     e.setErrMsg("超重");
                 }
@@ -82,7 +85,7 @@ public class PanoramicIntoTheFactoryRecordsServiceImpl extends AbstractService<P
                 DB_LOGGER.error("数据异常，记录数据没有净重值");
             }
             if (Optional.ofNullable(e.getErrMsg()).isPresent()) {
-                e.setMemo(e.getMemo() + "--> auto task {\"更新异常信息\"}:" + e.getErrMsg() + DateUtil.currentTimeStr());
+                e.setMemo("<-- auto task {\"更新异常信息\"}:" + e.getErrMsg() + DateUtil.currentTimeStr()+"-->");
                 e.setUtime(DateUtil.getCurFullTimestamp());
             }
             intoTheFactoryRecordsMapper.updateByPrimaryKeySelective(e);

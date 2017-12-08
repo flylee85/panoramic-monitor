@@ -24,11 +24,91 @@ public class PanoramicIntoTheFactoryRecords {
      * 物料编码
      */
     private String code;
+    /**
+     * 异常信息
+     */
+    private String errMsg;
+    /**
+     * 车牌
+     */
+    @Column(name = "number_plate")
+    private String numberPlate;
+    /**
+     * 净重
+     */
+    @Column(name = "net_weight")
+    private Double netWeight;
+    /**
+     * 扣重
+     */
+    private Double tare;
+    /**
+     * 单位
+     */
+    private String unit;
+    /**
+     * 进厂时间
+     */
+    @Column(name = "in_time")
+    private Date inTime;
+    /**
+     * 出厂时间
+     */
+    @Column(name = "out_time")
+    private Date outTime;
+    /**
+     * 状态
+     */
+    private Integer status;
+    /**
+     * 删除标记（1：未删除；0：删除））
+     */
+    @Column(name = "delete_flag")
+    private Integer deleteFlag;
+    /**
+     * 抓拍时间
+     */
+    @Column(name = "snapshot_time")
+    private Date snapshotTime;
+    /**
+     * 创建时间
+     */
+    private Date ctime;
+    /**
+     * 更新时间
+     */
+    private Date utime;
+    /**
+     * 删除时间
+     */
+    private Date dtime;
+    /**
+     * 备忘通知
+     */
+    private String memo;
+    /**
+     * 进出厂标志
+     */
+    @Column(name = "in_or_out")
+    private Integer inOrOut;
+    private String operator;
 
     /**
      * @return
      */
     public String getErrMsg() {
+//        Double v = getNetWeight();
+//        if (v == null || v == 0) {
+//            return "数据异常,记录数据没有净重值或者净重为0";
+//        }
+//        if (getTare() / v >= 0.006) {
+//            setErrMsg("超重");
+//            return "超重";
+//        }
+//        if (getTare() / v <= -0.006) {
+//            setErrMsg("缺重");
+//            return "缺重";
+//        }
         return errMsg;
     }
 
@@ -38,90 +118,6 @@ public class PanoramicIntoTheFactoryRecords {
     public void setErrMsg(String errMsg) {
         this.errMsg = errMsg;
     }
-
-    /**
-     * 异常信息
-     */
-    private String errMsg;
-
-    /**
-     * 车牌
-     */
-    @Column(name = "number_plate")
-    private String numberPlate;
-
-    /**
-     * 净重
-     */
-    @Column(name = "net_weight")
-    private Double netWeight;
-
-    /**
-     * 扣重
-     */
-    private Double tare;
-
-    /**
-     * 单位
-     */
-    private String unit;
-
-    /**
-     * 进厂时间
-     */
-    @Column(name = "in_time")
-    private Date inTime;
-
-    /**
-     * 出厂时间
-     */
-    @Column(name = "out_time")
-    private Date outTime;
-
-    /**
-     * 状态
-     */
-    private Integer status;
-
-    /**
-     * 删除标记（1：未删除；0：删除））
-     */
-    @Column(name = "delete_flag")
-    private Integer deleteFlag;
-
-    /**
-     * 抓拍时间
-     */
-    @Column(name = "snapshot_time")
-    private Date snapshotTime;
-
-    /**
-     * 创建时间
-     */
-    private Date ctime;
-
-    /**
-     * 更新时间
-     */
-    private Date utime;
-
-    /**
-     * 删除时间
-     */
-    private Date dtime;
-
-    /**
-     * 备忘通知
-     */
-    private String memo;
-
-    /**
-     * 进出厂标志
-     */
-    @Column(name = "in_or_out")
-    private Integer inOrOut;
-
-    private String operator;
 
     /**
      * 获取ID
