@@ -11,7 +11,7 @@ import org.springframework.context.annotation.ComponentScan;
  */
 @SpringBootApplication
 @EnableDiscoveryClient
-@ComponentScan(basePackages = {"com.cloud", "com.risk", "com"})
+@ComponentScan(basePackages = {"com.cloud", "com.risk"})
 public class RiskWarningApplication {
     public static void main(String[] args) {
         SpringApplication.run(RiskWarningApplication.class, args);
