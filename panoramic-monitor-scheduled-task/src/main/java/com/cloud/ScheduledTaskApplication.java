@@ -11,7 +11,7 @@ import org.springframework.context.annotation.ComponentScan;
  */
 @SpringBootApplication
 @EnableDiscoveryClient
-@ComponentScan(basePackages = {"com.cloud", "com"})
+@ComponentScan(basePackages = {"com.cloud"})
 public class ScheduledTaskApplication {
     public static void main(String[] args) {
         SpringApplication.run(ScheduledTaskApplication.class, args);

@@ -15,7 +15,7 @@ eureka:
 #    hostname : discovery   # 指定主机名时候通过主机名访问,否则通过ip地址
 spring:
   application:
-    name: panoramic-monitor-manage    # 项目名称尽量用小写
+    name: monitor-manage    # 项目名称尽量用小写
   datasource:                           # 指定数据源
     platform: mysql                # 指定数据源类型
     # 数据库参数  #如果有配置,按照这个配置优先,如果没有按照db.properties配置

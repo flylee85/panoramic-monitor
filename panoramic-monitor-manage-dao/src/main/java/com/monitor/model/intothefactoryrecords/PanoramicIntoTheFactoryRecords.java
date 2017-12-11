@@ -27,6 +27,7 @@ public class PanoramicIntoTheFactoryRecords {
     /**
      * 异常信息
      */
+    @Column(name = "err_msg")
     private String errMsg;
     /**
      * 车牌

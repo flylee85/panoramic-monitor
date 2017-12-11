@@ -1,11 +1,13 @@
 server:
-  port: 9000
+  port: 4000
   servlet-path: /
 
 security:
   user:
     name: user
     password: user
+
+quartzConfig: quartz.properties
 
 eureka:
   client:
@@ -16,7 +18,27 @@ eureka:
 #    hostname : discovery   # 指定主机名时候通过主机名访问,否则通过ip地址
 spring:
   application:
-    name: panoramic-monitor-service-task    # 项目名称尽量用小写
+    name: monitor-service-task    # 项目名称尽量用小写
+  datasource:
+    url: jdbc:mysql://test.neweplatform.com:3306/scheduled-task?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true
+    username: root
+    password: root
+    driverClassName: com.mysql.jdbc.Driver
+     # 参数
+    initialSize: 5
+    minIdle: 5
+    maxActive: 20
+    maxWait: 60000
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: SELECT 1 FROM DUAL
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    maxPoolPreparedStatementPerConnectionSize: 20
+    filters: stat,log4j
+    connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
 
 # 日志配置
 logging:

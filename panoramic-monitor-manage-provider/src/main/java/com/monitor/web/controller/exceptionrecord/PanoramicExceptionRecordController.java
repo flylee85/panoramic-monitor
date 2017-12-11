@@ -33,11 +33,11 @@ public class PanoramicExceptionRecordController extends AbstractAnnotationContro
         PanoramicExceptionRecord panoramicExceptionRecord = exceptionRecordService.findById(id);
         return ResultCode.getSuccessReturn(panoramicExceptionRecord);
     }
-
+    @ApiOperation(value = "异常信息接口-保存异常信息接口", notes = "保存异常信息，{category,必填;alarmContent,必填}")
     @PostMapping
-    public ResultCode<PanoramicExceptionRecord> add(PanoramicExceptionRecord panoramicExceptionRecord) {
-        exceptionRecordService.save(panoramicExceptionRecord);
-        return ResultCode.getSuccessReturn(panoramicExceptionRecord);
+    public ResultCode<PanoramicExceptionRecord> add(PanoramicExceptionRecord exceptionRecord) {
+        exceptionRecordService.save(exceptionRecord);
+        return ResultCode.SUCCESS;
     }
 
     @DeleteMapping("/{id}")

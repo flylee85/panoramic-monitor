@@ -28,6 +28,19 @@ public class PanoramicExceptionRecordServiceImpl extends AbstractService<Panoram
     @Qualifier("exceptionRecordMapper")
     private PanoramicExceptionRecordMapper exceptionRecordMapper;
 
+    @Override
+    @Transactional(readOnly = false,propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
+    public void save(PanoramicExceptionRecord record){
+        record.setDtime(null);
+        record.setId(null);
+        record.setDeleteFlag(1);
+        record.setCtime(record.getCtime() == null ? DateUtil.getCurFullTimestamp() : record.getCtime());
+        record.setStatus(0);
+        record.setUtime(record.getCtime());
+        record.setAlarmTime(DateUtil.getCurTruncTimestamp());
+        super.save(record);
+    }
+
     /**
      * 方法上不需要事务
      */

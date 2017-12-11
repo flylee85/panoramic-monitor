@@ -1,4 +1,4 @@
-package com.monitor.constant;
+package com.cloud.constant;
 
 /**
  * @author summer
@@ -7,7 +7,7 @@ public class MybatisConstant {
     /**
      * //项目基础包名称
      */
-    public static final String BASE_PACKAGE = "com.monitor";
+    public static final String BASE_PACKAGE = "com.cloud";
     /**
      * //Mapper所在包
      */

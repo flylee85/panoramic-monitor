@@ -1,11 +1,12 @@
-package com.cloud.service;
+package com.cloud.service.acl;
 
 import com.cloud.mapper.ScheduleTriggerMapper;
-import com.cloud.task.ScheduleTrigger;
+import com.cloud.model.ScheduleTrigger;
 import org.quartz.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
@@ -22,16 +23,21 @@ public class ScheduleTriggerService {
     private Scheduler scheduler;
 
     @Autowired
+    @Qualifier("scheduleTriggerMapper")
     private ScheduleTriggerMapper scheduleTriggerMapper;
 
-    @Scheduled(fixedRate = 5000)  //每天晚上11点调用这个方法来更新quartz中的任务
+    /**
+     * //每天晚上11点调用这个方法来更新quartz中的任务
+     */
+    @Scheduled(fixedRate = 5000)
     public void refreshTrigger() {
         try {
             //查询出数据库中所有的定时任务
             List<ScheduleTrigger> jobList = scheduleTriggerMapper.selectAll();
             if (jobList != null) {
                 for (ScheduleTrigger scheduleJob : jobList) {
-                    String status = scheduleJob.getStatus(); //该任务触发器目前的状态
+                    //该任务触发器目前的状态
+                    String status = scheduleJob.getStatus();
                     TriggerKey triggerKey = TriggerKey.triggerKey(scheduleJob.getJobName(), scheduleJob.getJobGroup());
                     CronTrigger trigger = (CronTrigger) scheduler.getTrigger(triggerKey);
                     //说明本条任务还没有添加到quartz中
@@ -61,14 +67,17 @@ public class ScheduleTriggerService {
 
                     } else {  //说明查出来的这条任务，已经设置到quartz中了
                         // Trigger已存在，先判断是否需要删除，如果不需要，再判定是否时间有变化
-                        if (status.equals("0")) { //如果是禁用，从quartz中删除这条任务
+                        //如果是禁用，从quartz中删除这条任务
+                        if (status.equals("0")) {
                             JobKey jobKey = JobKey.jobKey(scheduleJob.getJobName(), scheduleJob.getJobGroup());
                             scheduler.deleteJob(jobKey);
                             continue;
                         }
-                        String searchCron = scheduleJob.getCron(); //获取数据库的
+                        //获取数据库的
+                        String searchCron = scheduleJob.getCron();
                         String currentCron = trigger.getCronExpression();
-                        if (!searchCron.equals(currentCron)) {  //说明该任务有变化，需要更新quartz中的对应的记录
+                        //说明该任务有变化，需要更新quartz中的对应的记录
+                        if (!searchCron.equals(currentCron)) {
                             //表达式调度构建器
                             CronScheduleBuilder scheduleBuilder = CronScheduleBuilder.cronSchedule(searchCron);
 
