@@ -1,6 +1,7 @@
 package com.monitor.web.controller.exceptionrecord;
 
 import com.cloud.api.vo.ResultCode;
+import com.cloud.util.DateUtil;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.monitor.api.exceptionrecord.PanoramicExceptionRecordService;
@@ -40,31 +41,48 @@ public class PanoramicExceptionRecordController extends AbstractAnnotationContro
     }
 
     @DeleteMapping("/{id}")
+    @ApiOperation(value = "异常信修改接口", notes = "更新异常信息状态，即删除异常信息")
     public ResultCode<Void> delete(@PathVariable Integer id) {
+        PanoramicExceptionRecord record = exceptionRecordService.findById(id);
+        record.setDeleteFlag(0);
+        record.setUtime(DateUtil.getCurFullTimestamp());
+        record.setDtime(record.getUtime());
+        exceptionRecordService.update(record);
         return ResultCode.SUCCESS;
     }
 
     @PutMapping
-    public ResultCode<PanoramicExceptionRecord> update(PanoramicExceptionRecord panoramicExceptionRecord) {
-        exceptionRecordService.update(panoramicExceptionRecord);
-        return ResultCode.getSuccessReturn(panoramicExceptionRecord);
+    @ApiOperation(value = "异常信息更新接口", notes = "更新异常信息状态，即更新异常信息状态")
+    public ResultCode<PanoramicExceptionRecord> update(PanoramicExceptionRecord record) {
+        record.setStatus(1);
+        record.setUtime(DateUtil.getCurFullTimestamp());
+        exceptionRecordService.update(record);
+        return ResultCode.SUCCESS;
     }
 
+    /**
+     * @param startDate
+     * @param endDate
+     * @param page
+     * @param size
+     * @return
+     */
     //
     @ApiOperation(value = "异常信息查询接口", notes = "分页查询所有异常信息")
-    @GetMapping("/{date}/{page}/{size}")
-    public ResultCode<PageInfo<PanoramicExceptionRecord>> list(@PathVariable String date,@PathVariable Integer page, @PathVariable Integer size) {
+    @GetMapping("/{page}/{size}/{startDate}/{endDate}")
+    public ResultCode<PageInfo<PanoramicExceptionRecord>> list(@PathVariable Integer page, @PathVariable Integer size, @PathVariable("startDate") String startDate, @PathVariable("endDate") String endDate) {
         PageHelper.startPage(page, size);
-        List<PanoramicExceptionRecord> list = exceptionRecordService.listByDate(date);
+        List<PanoramicExceptionRecord> list = exceptionRecordService.listByDate(startDate, endDate);
         PageInfo<PanoramicExceptionRecord> pageInfo = new PageInfo<>(list);
         return ResultCode.getSuccessReturn(pageInfo);
     }
 
     @ApiOperation(value = "异常信息查询接口", notes = "根据指定分类分页查询异常信息")
-    @GetMapping("/{date}/{category}/{page}/{size}")
-    public ResultCode<PageInfo<PanoramicExceptionRecord>> listByCategory(@PathVariable String date,@PathVariable String category, @PathVariable Integer page, @PathVariable Integer size) {
+    @GetMapping("/{category}/{page}/{size}/{startDate}/{endDate}")
+    public ResultCode<PageInfo<PanoramicExceptionRecord>> listByCategory(@PathVariable("category") String category, @PathVariable("page") Integer page, @PathVariable("size") Integer size,
+                                                                         @PathVariable("startDate") String startDate, @PathVariable("endDate") String endDate) {
         PageHelper.startPage(page, size);
-        List<PanoramicExceptionRecord> list = exceptionRecordService.listByCategory(category,date);
+        List<PanoramicExceptionRecord> list = exceptionRecordService.listByCategory(category, startDate, endDate);
         PageInfo<PanoramicExceptionRecord> pageInfo = new PageInfo<>(list);
         return ResultCode.getSuccessReturn(pageInfo);
     }

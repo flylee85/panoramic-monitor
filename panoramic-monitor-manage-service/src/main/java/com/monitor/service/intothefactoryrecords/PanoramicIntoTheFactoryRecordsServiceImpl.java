@@ -5,9 +5,14 @@ import com.cloud.core.ServiceException;
 import com.cloud.util.DateUtil;
 import com.cloud.util.LoggerUtils;
 import com.cloud.util.TLogger;
+import com.google.common.collect.Lists;
+import com.monitor.api.exceptionrecord.PanoramicExceptionRecordService;
 import com.monitor.api.intothefactoryrecords.PanoramicIntoTheFactoryRecordsService;
 import com.monitor.mapper.intothefactoryrecords.PanoramicIntoTheFactoryRecordsMapper;
+import com.monitor.model.exceptionrecord.PanoramicExceptionRecord;
 import com.monitor.model.intothefactoryrecords.PanoramicIntoTheFactoryRecords;
+import com.monitor.support.ExceptionRecordCategoryConstant;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -31,6 +36,9 @@ public class PanoramicIntoTheFactoryRecordsServiceImpl extends AbstractService<P
     @Autowired
     @Qualifier("intoTheFactoryRecordsMapper")
     private PanoramicIntoTheFactoryRecordsMapper intoTheFactoryRecordsMapper;
+    @Autowired
+    @Qualifier("exceptionRecordService")
+    private PanoramicExceptionRecordService exceptionRecordService;
 
     @Override
     @Transactional(propagation = Propagation.NOT_SUPPORTED, rollbackFor = Exception.class)
@@ -64,16 +72,19 @@ public class PanoramicIntoTheFactoryRecordsServiceImpl extends AbstractService<P
     @Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
     public void regularlyRefreshTask() {
         Condition condition = new Condition(PanoramicIntoTheFactoryRecords.class, false);
-        condition.createCriteria().andCondition(" delete_flag=1 and status=1  and date_format(snapshot_time,'%Y%m%d') = date_format('" + DateUtil.currentTimeStr() + "','%Y%m%d') ");
+        condition.createCriteria().andCondition(" err_msg is null and delete_flag=1 and status=1  and date_format(snapshot_time,'%Y%m%d') = date_format('" + DateUtil.currentTimeStr() + "','%Y%m%d') ");
         condition.setOrderByClause(" snapshot_time desc ");
         List<PanoramicIntoTheFactoryRecords> records = intoTheFactoryRecordsMapper.selectByCondition(condition);
         if (null == records || records.size() == 0) {
             return;
         }
+        List<PanoramicExceptionRecord> exceptionRecords = Lists.newArrayList();
         records.forEach(e -> {
+
             try {
                 if (null == e.getNetWeight() || e.getNetWeight() == 0) {
                     e.setErrMsg("数据异常，记录数据没有净重值");
+
                 }
                 if (e.getTare() / e.getNetWeight() >= 0.006) {
                     e.setErrMsg("超重");
@@ -81,14 +92,33 @@ public class PanoramicIntoTheFactoryRecordsServiceImpl extends AbstractService<P
                 if (e.getTare() / e.getNetWeight() <= -0.006) {
                     e.setErrMsg("缺重");
                 }
+                if (StringUtils.isNotBlank(e.getErrMsg())) {
+                    PanoramicExceptionRecord exceptionRecord = new PanoramicExceptionRecord();
+                    exceptionRecord.setStatus(0);
+                    exceptionRecord.setOperator("auto_task");
+                    exceptionRecord.setId(null);
+                    exceptionRecord.setDtime(null);
+                    exceptionRecord.setCtime(DateUtil.getCurFullTimestamp());
+                    exceptionRecord.setUtime(exceptionRecord.getCtime());
+                    exceptionRecord.setAlarmTime(exceptionRecord.getCtime());
+                    exceptionRecord.setAlarmContent(e.getErrMsg());
+                    exceptionRecord.setAssociatedPerson(null);
+                    exceptionRecord.setDeleteFlag(1);
+                    exceptionRecord.setAlarmItem(ExceptionRecordCategoryConstant.IN_OR_OUT_EXCEPTION_RECORD);
+                    exceptionRecords.add(exceptionRecord);
+                }
             } catch (Exception e1) {
                 DB_LOGGER.error("数据异常，记录数据没有净重值");
             }
+
             if (Optional.ofNullable(e.getErrMsg()).isPresent()) {
-                e.setMemo("<-- auto task {\"更新异常信息\"}:" + e.getErrMsg() + DateUtil.currentTimeStr()+"-->");
+                e.setMemo("<-- auto task {\"更新异常信息\"}:" + e.getErrMsg() + DateUtil.currentTimeStr() + "-->");
                 e.setUtime(DateUtil.getCurFullTimestamp());
             }
             intoTheFactoryRecordsMapper.updateByPrimaryKeySelective(e);
         });
+        if (null != exceptionRecords && exceptionRecords.size() > 0) {
+            exceptionRecordService.save(exceptionRecords);
+        }
     }
 }

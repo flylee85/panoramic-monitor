@@ -1,7 +1,7 @@
 server:
   port: 9000
   servlet-path: /
-quartzConfig: dev-quartz.properties
+quartzConfig: quartz.properties
 security:
   user:
     name: user

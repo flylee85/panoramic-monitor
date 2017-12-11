@@ -1,20 +1,20 @@
 package com.monitor.service.exceptionrecord;
 
-import java.util.List;
-
+import com.cloud.core.AbstractService;
+import com.cloud.core.ServiceException;
+import com.cloud.util.DateUtil;
+import com.monitor.api.exceptionrecord.PanoramicExceptionRecordService;
+import com.monitor.mapper.exceptionrecord.PanoramicExceptionRecordMapper;
+import com.monitor.model.exceptionrecord.PanoramicExceptionRecord;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
-
-import com.cloud.core.AbstractService;
-import com.cloud.core.ServiceException;
-import com.monitor.api.exceptionrecord.PanoramicExceptionRecordService;
-import com.monitor.mapper.exceptionrecord.PanoramicExceptionRecordMapper;
-import com.monitor.model.exceptionrecord.PanoramicExceptionRecord;
-
 import tk.mybatis.mapper.entity.Condition;
+
+import java.util.List;
 
 
 /**
@@ -33,30 +33,39 @@ public class PanoramicExceptionRecordServiceImpl extends AbstractService<Panoram
      */
     @Override
     @Transactional(propagation = Propagation.NOT_SUPPORTED, rollbackFor = Exception.class)
-    public List<PanoramicExceptionRecord> listByCategory(String category, String date) {
-        Condition condition = new Condition(PanoramicExceptionRecord.class, false);
-        condition.createCriteria().andCondition(" alarm_time >'" +date+ "' and status=0 and alarm_item = '" + category + "'");
-        condition.setOrderByClause(" status asc ");
-        condition.setOrderByClause(" alarm_time desc ");
-        List<PanoramicExceptionRecord> recordList = exceptionRecordMapper.selectByCondition(condition);
+    public List<PanoramicExceptionRecord> listByCategory(String category, String startDate, String endDate) {
+        List<PanoramicExceptionRecord> recordList = getPanoramicExceptionRecords(category, startDate, endDate);
         return recordList;
+    }
+
+    private List<PanoramicExceptionRecord> getPanoramicExceptionRecords(String category, String startDate, String endDate) {
+        Condition condition = new Condition(PanoramicExceptionRecord.class, false);
+        StringBuilder sb = new StringBuilder("delete_flag=1 and alarm_time >='" + startDate + "' and alarm_time <='" + DateUtil.getSpecifiedDayBefor(endDate, -1));
+        if (StringUtils.isNotBlank(category)) {
+            sb.append("'  and alarm_item = '" + category + "'");
+        }
+        condition.createCriteria().andCondition(sb.toString());
+        condition.setOrderByClause(" status desc ");
+        condition.setOrderByClause(" alarm_time desc ");
+        return exceptionRecordMapper.selectByCondition(condition);
     }
 
     @Override
     @Transactional(propagation = Propagation.NOT_SUPPORTED, rollbackFor = Exception.class)
-    public List<PanoramicExceptionRecord> listByDate(String date) {
-        Condition condition = new Condition(PanoramicExceptionRecord.class, false);
-        condition.createCriteria().andCondition(" status=0 and alarm_time >'" + date + "'");
-        condition.setOrderByClause(" status asc ");
-        condition.setOrderByClause(" alarm_time desc ");
-        List<PanoramicExceptionRecord> recordList = exceptionRecordMapper.selectByCondition(condition);
+    public List<PanoramicExceptionRecord> listByDate(String startDate, String endDate) {
+        List<PanoramicExceptionRecord> recordList = getPanoramicExceptionRecords(null, startDate, endDate);
         return recordList;
     }
 
+    /**
+     * @param category
+     * @param startDate
+     * @return
+     */
     @Override
     @Transactional(propagation = Propagation.NOT_SUPPORTED, rollbackFor = Exception.class)
-    public List<PanoramicExceptionRecord> findMsgByDate(String category, String date) {
-        List<PanoramicExceptionRecord> recordList = exceptionRecordMapper.findMsgByDate(category,date,30);
+    public List<PanoramicExceptionRecord> findMsgByDate(String category, String startDate) {
+        List<PanoramicExceptionRecord> recordList = exceptionRecordMapper.findMsgByDate(category, startDate, 3);
         return recordList;
     }
 }

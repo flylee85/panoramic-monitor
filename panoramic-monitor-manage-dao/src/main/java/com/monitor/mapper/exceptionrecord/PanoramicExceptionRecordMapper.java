@@ -14,11 +14,12 @@ import java.util.List;
 @Repository("exceptionRecordMapper")
 public interface PanoramicExceptionRecordMapper extends Mapper<PanoramicExceptionRecord> {
 
-    /**
+    /** 查询
      * @param category
      * @param date
+     * @param number
      * @return
      */
-    @Select("select * from panoramic_exception_record where alarm_item = #{category} and date_sub(#{date}, INTERVAL #{number} DAY) <= date(alarm_time)")
+    @Select("select * from panoramic_exception_record where delete_flag=1 and alarm_item = #{category} and date_sub(#{date}, INTERVAL #{number} DAY) <= date(alarm_time)")
     List<PanoramicExceptionRecord> findMsgByDate(@Param("category") String category, @Param("date") String date, @Param("number") Integer number);
 }

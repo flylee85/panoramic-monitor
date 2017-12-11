@@ -54,7 +54,7 @@ public class PanoramicRealTimeConsumptionGatherServiceImpl extends AbstractServi
 				.andCondition(" code ='" + code + "' and f_id=2 and delete_flag=1 and ctime > '"
 						+ DateUtil.parseTimestamp(date, "yyyy-MM-dd") + "' and  utime < '"
 						+ DateUtil.parseTimestamp(DateUtil.getSpecifiedDayBefor(date, -1), "yyyy-MM-dd") + "'");
-		condition.setOrderByClause(" ctime asc ");
+		condition.setOrderByClause(" gather_time asc ");
 		List<PanoramicRealTimeConsumptionGather> recordList = realTimeConsumptionGatherMapper
 				.selectByCondition(condition);
 		return recordList;
@@ -66,7 +66,7 @@ public class PanoramicRealTimeConsumptionGatherServiceImpl extends AbstractServi
 		Condition condition = new Condition(PanoramicRealTimeConsumptionGather.class, false);
 		condition.createCriteria().andCondition(" code ='" + code + "' AND f_id=2 AND delete_flag=1 "
 				+ " AND date_format(gather_time,'%Y%m') = date_format('" + date + "','%Y%m')");
-		condition.setOrderByClause(" ctime asc ");
+		condition.setOrderByClause(" gather_time asc ");
 		List<PanoramicRealTimeConsumptionGather> recordList = realTimeConsumptionGatherMapper
 				.selectByCondition(condition);
 		PanoramicRealTimeConsumptionGather gather = new PanoramicRealTimeConsumptionGather();
@@ -101,7 +101,7 @@ public class PanoramicRealTimeConsumptionGatherServiceImpl extends AbstractServi
 		Condition condition = new Condition(PanoramicRealTimeConsumptionGather.class, false);
 		condition.createCriteria().andCondition(" code ='" + code + "' AND f_id=2 AND delete_flag=1 "
 				+ " AND date_format(gather_time,'%Y%m%d') = date_format('" + date + "','%Y%m%d')");
-		condition.setOrderByClause(" ctime asc ");
+		condition.setOrderByClause(" gather_time asc ");
 		List<PanoramicRealTimeConsumptionGather> recordList = realTimeConsumptionGatherMapper
 				.selectByCondition(condition);
 		PanoramicRealTimeConsumptionGatherDto gather = new PanoramicRealTimeConsumptionGatherDto();
