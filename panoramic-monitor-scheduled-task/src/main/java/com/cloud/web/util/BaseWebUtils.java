@@ -3,6 +3,7 @@ package com.cloud.web.util;
 import com.cloud.constant.IpTypeConstants;
 import com.cloud.constant.MarkConstant;
 import com.cloud.util.*;
+import com.google.common.collect.Maps;
 import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.commons.lang.StringUtils;
 
@@ -111,7 +112,7 @@ public class BaseWebUtils {
 
         try {
             PrintWriter writer = res.getWriter();
-            Map jsonMap = new HashMap();
+            Map jsonMap = Maps.newHashMap();
             jsonMap.put("success", success);
             if (!success) {
                 jsonMap.put("msg", retval);
@@ -144,7 +145,7 @@ public class BaseWebUtils {
     }
 
     public static final Map<String, String> getRequestMap(HttpServletRequest request) {
-        Map<String, String> result = new HashMap();
+        Map<String, String> result = Maps.newHashMap();
         Enumeration<String> it = request.getParameterNames();
         String key = null;
 
@@ -157,7 +158,7 @@ public class BaseWebUtils {
     }
 
     public static final Map<String, String> getHeaderMap(HttpServletRequest request) {
-        Map<String, String> result = new HashMap();
+        Map<String, String> result = Maps.newHashMap();
         Enumeration<String> it = request.getHeaderNames();
 
         String value;
@@ -173,7 +174,7 @@ public class BaseWebUtils {
     }
 
     public static final Map<String, String> getHeaderMapWidthPreKey(HttpServletRequest request) {
-        Map<String, String> result = new HashMap();
+        Map<String, String> result = Maps.newHashMap();
         Enumeration<String> it = request.getHeaderNames();
 
         String value;
@@ -407,7 +408,7 @@ public class BaseWebUtils {
     }
 
     public static final Map<String, String> flatRequestMap(Map<String, String[]> reqMap, String joinChar) {
-        Map<String, String> flatMap = new HashMap();
+        Map<String, String> flatMap = Maps.newHashMap();
         Iterator var4 = reqMap.keySet().iterator();
 
         while (var4.hasNext()) {

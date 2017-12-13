@@ -21,7 +21,6 @@ public interface PanoramicRawMaterialsMapper extends Mapper<PanoramicRawMaterial
      * @param type
      * @return
      */
-    //@Select("select SUM(value) as value from panoramic_raw_materials where code=#{code} and date_format(utime,'%Y%m%d') =date_format(#{date},'%Y%m%d') and in_or_out=#{type} LIMIT 1 ")
     Double summaryByCodeAndDate(@Param("code") String code, @Param("date") String date, @Param("type") Integer type);
 
     /**

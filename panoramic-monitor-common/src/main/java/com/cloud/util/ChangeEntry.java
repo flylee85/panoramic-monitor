@@ -1,5 +1,6 @@
 package com.cloud.util;
 
+import com.google.common.collect.Maps;
 import org.apache.commons.lang.StringUtils;
 
 import java.sql.Timestamp;
@@ -22,16 +23,16 @@ public class ChangeEntry {
 			oldMap = BeanUtil.getBeanMap(oldObj);
 		}
 		if(oldMap==null) {
-            oldMap = new HashMap<String, Object>();
+            oldMap = Maps.newHashMap();
         }
 	}
 	public Map<String, String> getChangeMap(Object newObj){
 		Map<String, ?> tmpMap = new HashMap<String, Object>(oldMap);
 		Map<String, ?> newMap = BeanUtil.getBeanMap(newObj);
 		if(newMap ==null) {
-            newMap = new HashMap<String, Object>();
+            newMap = Maps.newHashMap();
         }
-		Map<String, String> changeMap = new HashMap<String, String>();
+		Map<String, String> changeMap =Maps.newHashMap();
 		List<String> keySet = new ArrayList<String>();
 		keySet.addAll(tmpMap.keySet());
 		keySet.addAll(newMap.keySet());

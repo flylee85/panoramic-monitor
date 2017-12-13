@@ -1,5 +1,6 @@
 package com.cloud.util;
 
+import com.google.common.collect.Maps;
 import org.apache.commons.lang.StringUtils;
 import org.dom4j.*;
 import org.dom4j.io.OutputFormat;
@@ -11,7 +12,9 @@ import java.io.IOException;
 import java.io.StringWriter;
 import java.io.Writer;
 import java.util.*;
-
+/**
+ * @author summer
+ */
 public class XmlUtils {
 	private static final transient TLogger DB_LOGGER = LoggerUtils.getLogger(XmlUtils.class);
 	public static String formatXml(String str, String encoding) {
@@ -125,7 +128,7 @@ public class XmlUtils {
 	}
 	public static Map<String, Object> xml2Map(String infoXML) {
 		Document document;
-		Map<String, Object> map = new HashMap<String, Object>();
+		Map<String, Object> map = Maps.newHashMap();
 		try {
 			document = DocumentHelper.parseText(infoXML);
 			Element root = document.getRootElement();

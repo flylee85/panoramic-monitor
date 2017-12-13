@@ -79,7 +79,10 @@ public class WebUtils extends BaseWebUtils {
         return citycode;
     }
 
-    //没有默认值，特殊情况下使用
+    /**   //没有默认值，特殊情况下使用
+     * @return
+     */
+
     public static String findCitycodeByIp() {
         return CityConstant.CITYCODE_SH;
     }

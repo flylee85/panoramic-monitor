@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import com.google.common.collect.Maps;
 import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.commons.lang.ArrayUtils;
 
@@ -131,7 +132,7 @@ public class XSSFilter {
 	}
 
 	protected void reset() {
-		vTagCounts = new HashMap<String, Integer>();
+		vTagCounts = Maps.newHashMap();
 	}
 
 	protected void debug(String msg) {

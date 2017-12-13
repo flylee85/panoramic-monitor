@@ -15,7 +15,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
-
+/**
+ * @author summer
+ */
 public class VoCopyUtil {
 	private static final transient TLogger DB_LOGGER = LoggerUtils.getLogger(VoCopyUtil.class);
 	public static Map<String/*srcClass+dstClass*/, List<String>> copyPropsMap = new FastHashMap();

@@ -14,9 +14,9 @@ public class TJsonModule extends SimpleModule {
     public static TJsonModule TAOTAO_MODULE = new TJsonModule();
 
     private TJsonModule() {
-        addDeserializer(Timestamp.class, TDateSerializers.timestampDeserializer);
-        addDeserializer(Date.class, TDateSerializers.dateDeserializer);
-        addDeserializer(java.sql.Date.class, TDateSerializers.sqlDateDeserializer);
+        addDeserializer(Timestamp.class, TDateSerializers.TIMESTAMP_DESERIALIZER);
+        addDeserializer(Date.class, TDateSerializers.DATE_DESERIALIZER);
+        addDeserializer(java.sql.Date.class, TDateSerializers.SQL_DATE_DESERIALIZER);
         addSerializer(Timestamp.class, new TDateSerializer());
         addSerializer(Date.class, new TDateSerializer());
         addSerializer(java.sql.Date.class, new TDateSerializer());

@@ -2,6 +2,7 @@ package com.invoke.service.monitor;
 
 import com.cloud.support.TExecutorThreadFactory;
 import com.cloud.util.*;
+import com.google.common.collect.Maps;
 import com.invoke.api.monitor.MonitorService;
 import com.invoke.api.monitor.RoleTag;
 import com.invoke.api.monitor.SysLogType;
@@ -239,14 +240,14 @@ public abstract class AbstractMonitorService implements MonitorService {
     public void addBeanData(Class clazz, Map<String, String> beanMap) {
         beanMap.put("className", clazz.getCanonicalName());
         MapMonitorEntry entry = new MapMonitorEntry("BEANDATA", beanMap);
-        Map<String, String> headMap = new HashMap();
+        Map<String, String> headMap = Maps.newHashMap();
         headMap.put("className", clazz.getCanonicalName());
         entry.setHeadMap(headMap);
         this.addMonitorEntry(entry);
     }
 
     private Map<String, String> getLogMap(String flag) {
-        Map<String, String> map = new HashMap();
+        Map<String, String> map =Maps.newHashMap();
         if (StringUtils.isNotBlank(flag)) {
             map.put("flag", flag);
         }
@@ -285,7 +286,7 @@ public abstract class AbstractMonitorService implements MonitorService {
 
     @Override
     public Map<String, Integer> getCallCountInfo() {
-        Map<String, Integer> result = new HashMap();
+        Map<String, Integer> result = Maps.newHashMap();
         Iterator var3 = this.callcountMap.keySet().iterator();
 
         while (var3.hasNext()) {
@@ -304,7 +305,7 @@ public abstract class AbstractMonitorService implements MonitorService {
 
     @Override
     public String logException(EXCEPTION_TAG tag, String location, String title, Throwable ex, Map<String, String> otherinfo) {
-        Map<String, String> row = new HashMap();
+        Map<String, String> row = Maps.newHashMap();
         String exctrace = null;
         String exceptionType = "UNKNOWN";
         String exceptionTrace;
@@ -362,7 +363,7 @@ public abstract class AbstractMonitorService implements MonitorService {
                 String reqUri = (String) otherinfo.get("reqUri");
                 String reqParams = (String) otherinfo.get("reqParams");
                 String exceptionName = (String) row.get("exceptionName");
-                Map<String, String> params = new HashMap();
+                Map<String, String> params = Maps.newHashMap();
                 params.put("reqParams", reqParams);
                 params.put("exceptionType", "AttackException");
                 params.put("exceptionName", exceptionName);

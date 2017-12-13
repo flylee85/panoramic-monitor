@@ -10,7 +10,7 @@ import org.apache.commons.lang.StringUtils;
 import com.cloud.util.DateUtil;
 
 /**
- * @author ge.biao
+ * @author  summer
  * 只用于后台管理类dubbo接口数据封装
  */
 public class RequestParamVo implements Serializable{

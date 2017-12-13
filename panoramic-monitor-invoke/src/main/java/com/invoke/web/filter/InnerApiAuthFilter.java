@@ -36,8 +36,8 @@ public class InnerApiAuthFilter extends GenericFilterBean {
         long cur = System.currentTimeMillis();
         HttpServletRequest request = (HttpServletRequest) req;
         HttpServletResponse response = (HttpServletResponse) res;
-
-        if (ServletFileUpload.isMultipartContent(request)) {//包装文件上传请求
+//包装文件上传请求
+        if (ServletFileUpload.isMultipartContent(request)) {
             request = new CommonsMultipartResolver().resolveMultipart(request);
         }
 
@@ -60,8 +60,8 @@ public class InnerApiAuthFilter extends GenericFilterBean {
             apiFilterHelper.apiLog(request, cur, false);
             return;
         }
-
-        String remoteIp = "";//WebUtils.getRemoteIp(request);
+//WebUtils.getRemoteIp(request);
+        String remoteIp = "";
         if (!isInnerIp(remoteIp)) {
             ApiFilterHelper.writeErrorResponse(response, ApiConstant.CODE_PARTNER_NORIGHTS, "没有权限");
             return;
@@ -75,6 +75,7 @@ public class InnerApiAuthFilter extends GenericFilterBean {
         } finally {
             //清除当前授权用户
             apiAuthLocal.set(null);
+            apiAuthLocal.remove();
             //记录成功日志
             apiFilterHelper.apiLog(request, cur, true);
         }

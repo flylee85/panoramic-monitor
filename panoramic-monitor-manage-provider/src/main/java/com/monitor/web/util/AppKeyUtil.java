@@ -1,5 +1,6 @@
 package com.monitor.web.util;
 
+import com.google.common.collect.Maps;
 import org.apache.commons.collections.map.UnmodifiableMap;
 
 import java.io.InputStream;
@@ -36,7 +37,7 @@ public class AppKeyUtil {
                 }
             }
         }
-        Map<String, String> tmp = new HashMap<String, String>();
+        Map<String, String> tmp = Maps.newHashMap();
         Enumeration<?> propertyNames = props.propertyNames();
         while (propertyNames.hasMoreElements()) {
             String propertyName = (String) propertyNames.nextElement();

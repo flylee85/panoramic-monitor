@@ -171,7 +171,7 @@ public class BeanUtil implements Util4Script{
 	}
 
 	public static <T> Map beanListToMap(final Collection<T> beanList, String keyproperty, String valueproperty, boolean ignoreNull) {
-		Map result = new HashMap();
+		Map result = Maps.newHashMap();
 		if(beanList==null){
 			return result;
 		}
@@ -262,7 +262,7 @@ public class BeanUtil implements Util4Script{
 	 * @return
 	 */
 	public static Map beanListToMap(final Collection beanList, String keyproperty) {
-		Map result = new HashMap();
+		Map result = Maps.newHashMap();
 		if(beanList==null){
 			return result;
 		}
@@ -356,7 +356,7 @@ public class BeanUtil implements Util4Script{
 		Object bean = null;
 		while (it.hasNext()) {
 			bean = it.next();
-			Map beanMap = new HashMap();
+			Map beanMap = Maps.newHashMap();
 			boolean hasProperty = false;
 			for (String property : properties) {
 				try {
@@ -473,7 +473,7 @@ public class BeanUtil implements Util4Script{
 		if (keys == null || keys.length == 0){
 			return getBeanMap(bean, nested, ignoreNull);
 		}
-		Map result = new HashMap();
+		Map result = Maps.newHashMap();
 		Object pv = null;
 		for (String key : keys) {
 			pv = get(bean, key);
@@ -594,7 +594,7 @@ public class BeanUtil implements Util4Script{
 	 * @return
 	 */
 	public static Map getKeyValuePairMap(List beanList, String keyProperty, String valueProperty) {
-		Map result = new HashMap();
+		Map result = Maps.newHashMap();
 		for (Object bean : beanList) {
 			try {
 				Object keyvalue = PropertyUtils.getProperty(bean, keyProperty);
@@ -608,7 +608,7 @@ public class BeanUtil implements Util4Script{
 	}
 
 	public static Map<Object, List> groupBeanProperty(List beanList, String keyname, String valuename) {
-		Map<Object, List> result = new HashMap<Object, List>();
+		Map<Object, List> result = Maps.newHashMap();
 		for (Object bean : beanList) {
 			try {
 				Object keyvalue = get(bean, keyname);
@@ -730,7 +730,7 @@ public class BeanUtil implements Util4Script{
 	}
 
 	public static Map<String, String> getSimpleStringMapWithKey(final Object bean, String... keys) {
-		Map<String, String> result = new HashMap<String, String>();
+		Map<String, String> result = Maps.newHashMap();
 		Object pv;
 		for (String key : keys) {
 			try {

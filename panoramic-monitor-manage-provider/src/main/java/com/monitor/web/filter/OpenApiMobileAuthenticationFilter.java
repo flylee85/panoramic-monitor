@@ -93,6 +93,7 @@ public class OpenApiMobileAuthenticationFilter extends GenericFilterBean {
 			chain.doFilter(request, response);
 		} finally {
 			apiAuthLocal.set(null);
+			apiAuthLocal.remove();
 		}
 	}
 

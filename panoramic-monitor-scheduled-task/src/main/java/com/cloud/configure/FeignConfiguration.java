@@ -25,8 +25,10 @@ public class FeignConfiguration {
 
 	@Bean
 	Request.Options feignOptions() {
-		return new Request.Options(/** connectTimeoutMillis **/
-				1 * 100000, /** readTimeoutMillis **/
+		/** connectTimeoutMillis **/
+		/** readTimeoutMillis **/
+		return new Request.Options(
+				1 * 100000,
 				1 * 100000);
 	}
 

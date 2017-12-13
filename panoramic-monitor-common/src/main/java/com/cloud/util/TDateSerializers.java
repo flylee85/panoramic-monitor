@@ -15,9 +15,9 @@ import java.text.SimpleDateFormat;
  * @author summer
  */
 public class TDateSerializers {
-	public static final GewaDateDeserializer dateDeserializer= new GewaDateDeserializer();
-	public static final GewaTimestampDeserializer timestampDeserializer= new GewaTimestampDeserializer();
-	public static final GewaSqlDateDeserializer sqlDateDeserializer= new GewaSqlDateDeserializer();
+	public static final GewaDateDeserializer DATE_DESERIALIZER = new GewaDateDeserializer();
+	public static final GewaTimestampDeserializer TIMESTAMP_DESERIALIZER = new GewaTimestampDeserializer();
+	public static final GewaSqlDateDeserializer SQL_DATE_DESERIALIZER = new GewaSqlDateDeserializer();
 	
 	public static class GewaDateDeserializer extends DateDeserializer {
 		private static final long serialVersionUID = -8049402816880830231L;

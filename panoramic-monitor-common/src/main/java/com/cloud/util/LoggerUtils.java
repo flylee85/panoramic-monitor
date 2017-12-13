@@ -1,5 +1,6 @@
 package com.cloud.util;
 
+import com.google.common.collect.Maps;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -75,7 +76,7 @@ public class LoggerUtils {
 	}
 	public static Map<String, Integer> resetExceptionCount(){
 		Map<String, AtomicInteger> cur = exceptionCount;
-		exceptionCount = new ConcurrentHashMap<String, AtomicInteger>();
+		exceptionCount = Maps.newConcurrentMap();
 		criticalCount.set(0);
 		exceptionTimefrom = System.currentTimeMillis();
 		singleMax = 0;
@@ -83,7 +84,7 @@ public class LoggerUtils {
 		return getCountMap(cur);
 	}
 	private static Map<String, Integer> getCountMap(Map<String, AtomicInteger> countMap){
-		Map<String, Integer> result = new HashMap<String, Integer>();
+		Map<String, Integer> result = Maps.newHashMap();
 		for(Map.Entry<String, AtomicInteger> entry: countMap.entrySet()){
 			result.put(entry.getKey(), entry.getValue().get());
 		}

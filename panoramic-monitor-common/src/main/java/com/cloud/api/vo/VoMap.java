@@ -11,7 +11,9 @@ import java.util.Set;
 import com.cloud.util.BeanUtil;
 import com.cloud.util.TLogger;
 import com.cloud.util.LoggerUtils;
-
+/**
+ * @author summer
+ */
 public class VoMap<K, V> implements Map<K, V>, Serializable{
 	private static final long serialVersionUID = -6947799462487517862L;
 	private static TLogger DB_LOGGER = LoggerUtils.getLogger(VoMap.class);

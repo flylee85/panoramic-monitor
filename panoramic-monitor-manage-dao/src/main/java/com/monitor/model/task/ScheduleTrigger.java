@@ -22,16 +22,31 @@ public class ScheduleTrigger extends BaseObject {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    //时间表达式
+    /**
+     *     //时间表达式
+     */
+
     @Column
     private String cron;
-    //使用状态 0：禁用   1：启用
+    /**
+     *     //使用状态 0：禁用   1：启用
+     */
+
     private String status;
-    //任务名称
+    /**
+     *     //任务名称
+     */
+
     private String jobName;
-    //描述
+    /**
+     *     //描述
+     */
+
     private String content;
-    //任务分组
+    /**
+     *     //任务分组
+     */
+
     private String jobGroup;
 
     public Integer getId() {

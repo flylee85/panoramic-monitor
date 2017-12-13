@@ -77,8 +77,26 @@ public class JsonLogger extends LoggerWrapper implements Logger, TLogger {
 	}
 
 	public enum Level {
-		TRACE("TRACE", LocationAwareLogger.TRACE_INT), DEBUG("DEBUG", LocationAwareLogger.DEBUG_INT), INFO("INFO", LocationAwareLogger.INFO_INT), WARN(
-				"WARN", LocationAwareLogger.WARN_INT), ERROR("ERROR", LocationAwareLogger.ERROR_INT);
+		/**
+		 *
+		 */
+		TRACE("TRACE", LocationAwareLogger.TRACE_INT),
+		/**
+		 *
+		 */
+		DEBUG("DEBUG", LocationAwareLogger.DEBUG_INT),
+		/**
+		 *
+		 */
+		INFO("INFO", LocationAwareLogger.INFO_INT),
+		/**
+		 *
+		 */
+		WARN("WARN", LocationAwareLogger.WARN_INT),
+		/**
+		 *
+		 */
+		ERROR("ERROR", LocationAwareLogger.ERROR_INT);
 
 		private final String name;
 		private final int level;

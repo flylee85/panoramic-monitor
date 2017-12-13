@@ -2,7 +2,9 @@ package com.cloud.support;
 
 import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.atomic.AtomicInteger;
-
+/**
+ * @author summer
+ */
 public class TExecutorThreadFactory implements ThreadFactory {
 	static final AtomicInteger poolNumber = new AtomicInteger(1);
 	final ThreadGroup group;

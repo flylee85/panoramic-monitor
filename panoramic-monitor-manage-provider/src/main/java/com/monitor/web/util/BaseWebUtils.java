@@ -3,6 +3,7 @@ package com.monitor.web.util;
 import com.cloud.constant.IpTypeConstants;
 import com.cloud.constant.MarkConstant;
 import com.cloud.util.*;
+import com.google.common.collect.Maps;
 import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.commons.lang.StringUtils;
 
@@ -111,7 +112,7 @@ public class BaseWebUtils {
 
         try {
             PrintWriter writer = res.getWriter();
-            Map jsonMap = new HashMap();
+            Map jsonMap = Maps.newHashMap();
             jsonMap.put("success", success);
             if (!success) {
                 jsonMap.put("msg", retval);
@@ -144,7 +145,7 @@ public class BaseWebUtils {
     }
 
     public static final Map<String, String> getRequestMap(HttpServletRequest request) {
-        Map<String, String> result = new HashMap();
+        Map<String, String> result = Maps.newHashMap();
         Enumeration<String> it = request.getParameterNames();
         String key = null;
 
@@ -157,7 +158,7 @@ public class BaseWebUtils {
     }
 
     public static final Map<String, String> getHeaderMap(HttpServletRequest request) {
-        Map<String, String> result = new HashMap();
+        Map<String, String> result =Maps.newHashMap();
         Enumeration<String> it = request.getHeaderNames();
 
         String value;
@@ -173,7 +174,7 @@ public class BaseWebUtils {
     }
 
     public static final Map<String, String> getHeaderMapWidthPreKey(HttpServletRequest request) {
-        Map<String, String> result = new HashMap();
+        Map<String, String> result = Maps.newHashMap();
         Enumeration<String> it = request.getHeaderNames();
 
         String value;
@@ -407,7 +408,7 @@ public class BaseWebUtils {
     }
 
     public static final Map<String, String> flatRequestMap(Map<String, String[]> reqMap, String joinChar) {
-        Map<String, String> flatMap = new HashMap();
+        Map<String, String> flatMap = Maps.newHashMap();
         Iterator var4 = reqMap.keySet().iterator();
 
         while (var4.hasNext()) {
@@ -422,18 +423,17 @@ public class BaseWebUtils {
         if (requestMap != null && !requestMap.isEmpty()) {
             String result = "";
             Iterator var4 = requestMap.keySet().iterator();
-
+            StringBuilder sb = new StringBuilder();
             while (var4.hasNext()) {
                 String name = (String) var4.next();
 
                 try {
-                    result = result + name + "=" + URLEncoder.encode((String) requestMap.get(name), encode) + "&";
+                    sb.append(name).append("=").append(URLEncoder.encode((String) requestMap.get(name), encode)).append("&");
                 } catch (UnsupportedEncodingException var6) {
-                    ;
                 }
             }
 
-            return result.substring(0, result.length() - 1);
+            return sb.toString().substring(0, sb.toString().length() - 1);
         } else {
             return "";
         }
@@ -443,18 +443,17 @@ public class BaseWebUtils {
         Map<String, String> paramMap = parseQueryStr(params, encode);
         String result = "";
         Iterator var5 = paramMap.keySet().iterator();
-
+        StringBuilder sb = new StringBuilder();
         while (var5.hasNext()) {
             String key = (String) var5.next();
-
             try {
-                result = result + "&" + key + "=" + URLEncoder.encode((String) paramMap.get(key), encode);
+                sb.append("&").append(key).append("=").append(URLEncoder.encode((String) paramMap.get(key), encode));
             } catch (UnsupportedEncodingException var7) {
                 var7.printStackTrace();
             }
         }
 
-        return StringUtils.isNotBlank(result) ? result.substring(1) : "";
+        return StringUtils.isNotBlank(sb.toString()) ? sb.toString().substring(1) : "";
     }
 
     public static final String getContextPath(HttpServletRequest request) {

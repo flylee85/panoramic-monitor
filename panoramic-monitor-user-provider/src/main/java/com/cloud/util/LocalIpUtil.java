@@ -3,6 +3,9 @@ package com.cloud.util;
 import java.net.*;
 import java.util.Enumeration;
 
+/**
+ * @author summer
+ */
 public class LocalIpUtil {
     private static final String WINDOWS = "WINDOWS";
     private static TLogger logger = LoggerUtils.getLogger(LocalIpUtil.class);

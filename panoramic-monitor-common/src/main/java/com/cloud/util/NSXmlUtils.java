@@ -7,7 +7,9 @@ import org.dom4j.io.SAXReader;
 
 import java.io.CharArrayReader;
 import java.util.Map;
-
+/**
+ * @author summer
+ */
 public class NSXmlUtils {
 	private static final transient TLogger DB_LOGGER = LoggerUtils.getLogger(NSXmlUtils.class);
 	private DocumentFactory factory;

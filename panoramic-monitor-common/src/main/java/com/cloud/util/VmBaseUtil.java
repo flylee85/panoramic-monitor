@@ -17,7 +17,7 @@ import java.util.Map;
  * @author summer
  */
 public class VmBaseUtil extends StringUtils implements Util4Script {
-    public static final VmBaseUtil instance = new VmBaseUtil();
+    public static final VmBaseUtil INSTANCE = new VmBaseUtil();
     /**
      * 需要校验token的页面（如token）生成、校验token用
      */

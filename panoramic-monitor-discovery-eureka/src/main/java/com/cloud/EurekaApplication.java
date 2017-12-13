@@ -10,13 +10,16 @@ import com.cloud.util.TLogger;
 
 /**
  * 使用Eureka做服务发现。
+ * @author summer
  */
 @SpringBootApplication
 @EnableEurekaServer
-// @ComponentScan(basePackages = {"com.cloud"})
 public class EurekaApplication {
 	private static final transient TLogger DB_LOGGER = LoggerUtils.getLogger(EurekaApplication.class);
 
+	/**
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		SpringApplication.run(EurekaApplication.class, args);
 		DB_LOGGER.warn("EurekaApplication started successfully");

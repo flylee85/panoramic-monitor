@@ -7,7 +7,9 @@ import com.cloud.serialize.ObjectOutput;
 import java.io.IOException;
 import java.io.OutputStream;
 
-
+/**
+ * @author summer
+ */
 public class Hessian2ObjectOutput implements ObjectOutput
 {
 	private final Hessian2Output mH2o;

@@ -8,7 +8,9 @@ import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
 import java.util.Arrays;
-
+/**
+ * @author summer
+ */
 public final class PKCoderUtil {
 	private static transient String Algorithm = "DES"; // 定义 加密算法,可用 DES,DESede(TripleDES),Blowfish
 	private static transient byte[] DEFAULT_KEY={-72,-16,-79,-22,-79,-32,-48,-76};
@@ -64,7 +66,12 @@ public final class PKCoderUtil {
 			return null;
 		}
 	}
-	// 加密
+
+	/** // 加密
+	 * @param num
+	 * @return
+	 */
+
 	public static final Long encodeNumer(long num){
 		byte[] bytes = long2bytes(num);
 		byte[] encoded = encode(bytes, DEFAULT_KEY);
@@ -92,7 +99,12 @@ public final class PKCoderUtil {
 		return null;
 	}
 
-	// 解密
+	/** 解密
+	 * @param input
+	 * @param key
+	 * @return
+	 */
+
 	private static byte[] decode(byte[] input, byte[] key) {
 		SecretKey deskey = new SecretKeySpec(key, Algorithm);
 		Cipher c1=null;
@@ -107,7 +119,11 @@ public final class PKCoderUtil {
 		return null;
 	}
 
-	// 字节码转换成16进制字符串
+	/** 	// 字节码转换成16进制字符串
+	 * @param bytes
+	 * @return
+	 */
+
 	private static final String byte2hex(byte bytes[]) {
 		StringBuilder retString = new StringBuilder();
 		for (int i = 0; i < bytes.length; ++i) {
@@ -116,7 +132,11 @@ public final class PKCoderUtil {
 		return retString.toString();
 	}
 
-	// 将16进制字符串转换成字节码
+	/**	// 将16进制字符串转换成字节码
+	 * @param hex
+	 * @return
+	 */
+
 	private static final byte[] hex2byte(String hex) {
 		byte[] bts = new byte[hex.length() / 2];
 		for (int i = 0; i < bts.length; i++) {

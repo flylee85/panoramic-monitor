@@ -1,5 +1,6 @@
 package com.cloud.util;
 
+import com.google.common.collect.Maps;
 import org.apache.commons.lang.StringUtils;
 
 import java.sql.Timestamp;
@@ -18,12 +19,15 @@ public class DateUtil implements Util4Script {
      */
     public final static int TIME_DAY_MILLISECOND = 86400000;
     public static final DateUtil instance = new DateUtil();
-    public static final long m_second = 1000;
-    public static final long m_minute = m_second * 60;
-    public static final long m_hour = m_minute * 60;
-    public static final long m_day = m_hour * 24;
+    public static final long M_SECOND = 1000;
+    public static final long M_MINUTE = M_SECOND * 60;
+    public static final long M_HOUR = M_MINUTE * 60;
+    public static final long M_DAY = M_HOUR * 24;
+    /**
+     *
+     */
     // change by bbq
-    public static final String dtSimple = "yyyy-MM-dd";
+    public static final String DT_SIMPLE = "yyyy-MM-dd";
     /**
      *
      */
@@ -827,6 +831,11 @@ public class DateUtil implements Util4Script {
         return getFormatDateTime(dateStr);
     }
 
+    /**
+     * @param date1
+     * @param compday
+     * @return
+     */
     // date1加上compday天数以后的日期与当前时间比较，如果大于当前时间返回true，否则false
     public static Boolean compareDay(Date date1, int compday) {
         if (date1 == null) {
@@ -854,7 +863,7 @@ public class DateUtil implements Util4Script {
         if (timespan == null || "".equals(timespan)) {
             return "";
         }
-
+        StringBuilder sb = new StringBuilder();
         String ret = "";
         String tmp = "";
         for (int i = 0; i < timespan.length(); i++) {
@@ -863,23 +872,21 @@ public class DateUtil implements Util4Script {
             // tmp += i;
             if ((i + 1) % 16 == 0) {
                 if (!"".equals(ret)) {
-                    ret += ",";
+                    sb.append(ret).append(",");
                 }
                 Long t = Long.parseLong(tmp, 2);
                 String hexStr = Long.toHexString(t);
                 if (hexStr.length() < 8) {
                     int length = hexStr.length();
                     for (int n = 0; n < 8 - length; n++) {
-                        hexStr = "0" + hexStr;
+                        sb.append("0").append(hexStr);
                     }
                 }
-
-                ret += hexStr;
                 tmp = "";
             }
         }
 
-        return ret;
+        return sb.toString();
     }
 
     /**
@@ -896,19 +903,20 @@ public class DateUtil implements Util4Script {
         String tmp = "";
         String ret = "";
         String[] strArr = timespan.split(",");
+        StringBuilder sb = new StringBuilder(tmp);
         for (int i = 0; i < strArr.length; i++) {
             String binStr = Long.toBinaryString(Long.parseLong(strArr[i], 16));
             if (binStr.length() < 32) {
                 int length = binStr.length();
                 for (int n = 0; n < 32 - length; n++) {
-                    binStr = "0" + binStr;
+                    sb.append("0").append(binStr);
                 }
             }
             tmp += binStr;
         }
 
         for (int i = 0; i < 48; i++) {
-            ret += tmp.charAt(i * 2);
+            ret += sb.toString().charAt(i * 2);
         }
 
         return ret;
@@ -1071,9 +1079,13 @@ public class DateUtil implements Util4Script {
             return "";
         }
 
-        return getFormat(dtSimple).format(date);
+        return getFormat(DT_SIMPLE).format(date);
     }
 
+    /**
+     * @param format
+     * @return
+     */
     // SimpleDateFormat("yyyy-MM-dd HH:mm");
     private static final DateFormat getFormat(String format) {
         return new SimpleDateFormat(format);
@@ -1214,7 +1226,7 @@ public class DateUtil implements Util4Script {
      * @return 最高可购买时间
      */
     public static String getCansellTime(String busytimes, int days) {
-        Map<String, Integer> dayMap = new HashMap<String, Integer>();
+        Map<String, Integer> dayMap = Maps.newHashMap();
         String[] busytimeArr = StringUtils.split(busytimes, ";");
         for (int i = 0; i < busytimeArr.length; i++) {
             String[] time = StringUtils.split(busytimeArr[i], ",");
@@ -1427,7 +1439,7 @@ public class DateUtil implements Util4Script {
         if (original == null) {
             return null;
         }
-        long newTime = original.getTime() + m_day * days + m_hour * hours + m_minute * minutes + m_second * seconds;
+        long newTime = original.getTime() + M_DAY * days + M_HOUR * hours + M_MINUTE * minutes + M_SECOND * seconds;
         T another = (T) original.clone();
         another.setTime(newTime);
         return another;
@@ -1437,7 +1449,7 @@ public class DateUtil implements Util4Script {
         if (original == null) {
             return null;
         }
-        long newTime = original.getTime() + m_day * days;
+        long newTime = original.getTime() + M_DAY * days;
         T another = (T) original.clone();
         another.setTime(newTime);
         return another;
@@ -1447,7 +1459,7 @@ public class DateUtil implements Util4Script {
         if (original == null) {
             return null;
         }
-        long newTime = original.getTime() + m_hour * hours;
+        long newTime = original.getTime() + M_HOUR * hours;
         T another = (T) original.clone();
         another.setTime(newTime);
         return another;
@@ -1457,7 +1469,7 @@ public class DateUtil implements Util4Script {
         if (original == null) {
             return null;
         }
-        long newTime = original.getTime() + m_minute * minutes;
+        long newTime = original.getTime() + M_MINUTE * minutes;
         T another = (T) original.clone();
         another.setTime(newTime);
         return another;
@@ -1467,7 +1479,7 @@ public class DateUtil implements Util4Script {
         if (original == null) {
             return null;
         }
-        long newTime = original.getTime() + m_second * second;
+        long newTime = original.getTime() + M_SECOND * second;
         T another = (T) original.clone();
         another.setTime(newTime);
         return another;
@@ -1497,7 +1509,7 @@ public class DateUtil implements Util4Script {
         if (day == null) {
             return null;
         }
-        Long mill = getBeginningTimeOfDay(day).getTime() + m_day - 1;
+        Long mill = getBeginningTimeOfDay(day).getTime() + M_DAY - 1;
         T another = (T) day.clone();
         another.setTime(mill);
         return another;
@@ -2101,11 +2113,11 @@ public class DateUtil implements Util4Script {
     }
 
     public static String getCurrAddHour(int hour) {
-        return formatTimestamp(System.currentTimeMillis() + m_hour * hour);
+        return formatTimestamp(System.currentTimeMillis() + M_HOUR * hour);
     }
 
     public static String getCurrAddDay(int day) {
-        return formatTimestamp(System.currentTimeMillis() + m_day * day);
+        return formatTimestamp(System.currentTimeMillis() + M_DAY * day);
     }
 
     /**

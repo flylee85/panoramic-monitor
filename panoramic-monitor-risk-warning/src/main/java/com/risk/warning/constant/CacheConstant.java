@@ -4,7 +4,6 @@ package com.risk.warning.constant;
  * @author summer
  */
 public abstract class CacheConstant {
-	//
 	public static final String REGION_HALFMIN = "halfMin";	//30
 	public static final String REGION_ONEMIN = "oneMin";
 	public static final String REGION_TWOMIN = "twoMin";
@@ -26,7 +25,6 @@ public abstract class CacheConstant {
 	public static final int SECONDS_OPENSEAT = 60*60*8;
 	public static final int SECONDS_HALFDAY = 60*60*12;
 	public static final int SECONDS_ONEDAY = 60*60*24;
-	// KEY 
 	public static final String KEY_TICKET_VALIDTIME_ = "TICKET_VALIDTIME_";
 	public static final String KEY_FILTERKEY = "BLOG_FILTER_KEY";	// ݹ
 	public static final String KEY_MOBILEALLCINEMASLIST = "key_mobileAllCinemasList";
@@ -50,6 +48,9 @@ public abstract class CacheConstant {
 	public static final String KEY_USER_MSGCOUNT_ = "USER_MSGCOUNT_";
 	public static final String KEY_WAP_BOOKINGCINEMALIST = "key_wap_booking_cinema_list";
 	public static final String KEY_ACTIVITY_COUNT = "key_activity_count";		//
+	/**
+	 *
+	 */
 	public static final String KEY_NEWS_COUNT = "key_news_count";					//
 	public static final String KEY_PICTURE_COUNT = "key_picture_count";			//Ƭ
 	public static final String KEY_VIDEO_COUNT = "key_video_count";				//ԤƬ

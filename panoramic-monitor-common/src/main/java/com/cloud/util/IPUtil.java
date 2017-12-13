@@ -86,7 +86,7 @@ public class IPUtil {
                 Reader reader = new BufferedReader(new InputStreamReader(IPUtil.class.getClassLoader().getResourceAsStream("province.txt"), "utf-8"));
         ) {
             List<String> provinceList = IOUtils.readLines(reader);
-            Map<String, String> map = new HashMap<String, String>();
+            Map<String, String> map = Maps.newHashMap();
             for (String province : provinceList) {
                 String[] pair = StringUtils.split(province, "\t");
                 if (pair.length == 2) {
@@ -102,14 +102,14 @@ public class IPUtil {
                 Reader reader = new BufferedReader(new InputStreamReader(IPUtil.class.getClassLoader().getResourceAsStream("city.txt"), "utf-8"));
         ) {
             List<String> cityList = IOUtils.readLines(reader);
-            Map<String/*provinceCode*/, Map<String/*citycode*/, String/*cityname*/>> cmap = new HashMap<>();
+            Map<String/*provinceCode*/, Map<String/*citycode*/, String/*cityname*/>> cmap = Maps.newHashMap();
 
             for (String city : cityList) {
                 String[] pair/*pcode,ccode,cname*/ = StringUtils.split(city, "\t");
                 if (pair.length == 3) {
                     Map<String, String> row = cmap.get(pair[0]);
                     if (row == null) {
-                        row = new HashMap<String, String>();
+                        row = Maps.newHashMap();
                         cmap.put(pair[0], row);
                     }
                     row.put(pair[1], pair[2]);

@@ -1,7 +1,9 @@
 package com.panoramic.user.entity;
 
 import javax.persistence.*;
-
+/**
+ * @author summer
+ */
 @Table(name = "panoramic_permission")
 public class PanoramicPermission {
     /**

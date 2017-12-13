@@ -4,7 +4,9 @@ package com.monitor.constant;
  * @author summer
  */
 public abstract class CacheConstant {
-	//
+	/**
+	 *
+	 */
 	public static final String REGION_HALFMIN = "halfMin";	//30
 	public static final String REGION_ONEMIN = "oneMin";
 	public static final String REGION_TWOMIN = "twoMin";
@@ -26,7 +28,10 @@ public abstract class CacheConstant {
 	public static final int SECONDS_OPENSEAT = 60*60*8;
 	public static final int SECONDS_HALFDAY = 60*60*12;
 	public static final int SECONDS_ONEDAY = 60*60*24;
-	// KEY 
+	/**
+	 * 	// KEY
+	 */
+
 	public static final String KEY_TICKET_VALIDTIME_ = "TICKET_VALIDTIME_";
 	public static final String KEY_FILTERKEY = "BLOG_FILTER_KEY";	// ݹ
 	public static final String KEY_MOBILEALLCINEMASLIST = "key_mobileAllCinemasList";

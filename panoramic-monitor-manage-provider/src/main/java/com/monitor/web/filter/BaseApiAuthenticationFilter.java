@@ -81,6 +81,7 @@ public abstract class BaseApiAuthenticationFilter extends GenericFilterBean {
         } finally {
             //清除当前授权用户
             apiAuthLocal.set(null);
+            apiAuthLocal.remove();
             //记录成功日志
             apiFilterHelper.apiLog(request, cur, true);
         }

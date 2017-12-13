@@ -9,7 +9,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
+/**
+ * @author summer
+ */
 public class Member extends BaseUser {
     private static final long serialVersionUID = -5010141453720441090L;
     private Long id;
@@ -17,9 +19,18 @@ public class Member extends BaseUser {
     private String email;
     private String password;
     private String mobile;
+    /**
+     *
+     */
     private String rejected;
-    private String bindStatus;					//N：未绑定，X：未知，特殊用途，Y:绑定，Y_S：手机能通话验证过
-    private String roles = "member";			//分配的角色
+    /**
+     * //N：未绑定，X：未知，特殊用途，Y:绑定，Y_S：手机能通话验证过
+     */
+    private String bindStatus;
+    /**
+     * //分配的角色
+     */
+    private String roles = "member";
     private List<GrantedAuthority> tmpAuth;
     @Override
     public final List<GrantedAuthority> getAuthorities() {

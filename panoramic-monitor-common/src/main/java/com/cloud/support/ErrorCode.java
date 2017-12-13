@@ -1,5 +1,6 @@
 package com.cloud.support;
 
+import com.google.common.collect.Maps;
 import org.apache.commons.lang.StringUtils;
 
 import java.io.Serializable;
@@ -71,7 +72,7 @@ public class ErrorCode<T> implements Serializable {
     }
 
     public static ErrorCode getSuccessMap() {
-        return new ErrorCode(CODE_SUCCESS, null, new HashMap());
+        return new ErrorCode(CODE_SUCCESS, null, Maps.newHashMap());
     }
 
     public static <T> ErrorCode getFailureReturn(T retval) {

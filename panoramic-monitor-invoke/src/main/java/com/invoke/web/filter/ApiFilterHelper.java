@@ -40,8 +40,8 @@ public class ApiFilterHelper {
                 vb.append(v + ",");
             }
             params.put(entry.getKey(), StringUtils.removeEnd(vb.toString(), ","));
-        }
-        if (ServletFileUpload.isMultipartContent(request)) {//文件FileData不做签名
+        }//文件FileData不做签名
+        if (ServletFileUpload.isMultipartContent(request)) {
             params.remove("FileData");
         }
         return params;

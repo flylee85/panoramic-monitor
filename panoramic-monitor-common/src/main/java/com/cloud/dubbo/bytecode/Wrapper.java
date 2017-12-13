@@ -18,13 +18,17 @@ package com.cloud.dubbo.bytecode;
 import com.cloud.serialize.ClassHelper;
 import com.cloud.serialize.ReflectUtils;
 import com.cloud.util.ClassUtils;
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 
 import java.lang.NoSuchMethodException;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.regex.Matcher;
@@ -238,6 +242,10 @@ public abstract class Wrapper
 	 */
 	abstract public Object invokeMethod(Object instance, String mn, Class<?>[] types, Object[] args) throws NoSuchMethodException, InvocationTargetException;
 
+	/**
+	 * @param c
+	 * @return
+	 */
 	private static Wrapper makeWrapper(Class<?> c){
 		if( c.isPrimitive() ){
 			throw new IllegalArgumentException("Can not create wrapper for primitive type: " + c);
@@ -253,13 +261,19 @@ public abstract class Wrapper
 		c2.append(name).append(" w; try{ w = ((").append(name).append(")$1); }catch(Throwable e){ throw new IllegalArgumentException(e); }");
 		c3.append(name).append(" w; try{ w = ((").append(name).append(")$1); }catch(Throwable e){ throw new IllegalArgumentException(e); }");
 
-		Map<String, Class<?>> pts = new HashMap<String, Class<?>>(); // <property name, property types>
-		Map<String, Method> ms = new LinkedHashMap<String, Method>(); // <method desc, Method instance>
-		List<String> mns = new ArrayList<String>(); // method names.
-		List<String> dmns = new ArrayList<String>(); // declaring method names.
-		List<String> readPns = new ArrayList<String>();
-		List<String> fieldPns = new ArrayList<String>();//only fields(exclude read method)
-		List<String> writePns = new ArrayList<String>();
+		// <property name, property types>
+		Map<String, Class<?>> pts = Maps.newHashMap();
+		// <method desc, Method instance>
+		Map<String, Method> ms = Maps.newLinkedHashMap();
+		// method names.
+		List<String> mns = Lists.newArrayList();
+		// declaring method names.
+		List<String> dmns =Lists.newArrayList();
+
+		List<String> readPns =Lists.newArrayList();
+		//only fields(exclude read method)
+		List<String> fieldPns = Lists.newArrayList();
+		List<String> writePns = Lists.newArrayList();
 		// get all public field.
 		for( Field f : c.getFields() )
 		{

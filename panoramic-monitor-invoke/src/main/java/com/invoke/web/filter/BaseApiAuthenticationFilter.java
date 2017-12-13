@@ -41,8 +41,8 @@ public abstract class BaseApiAuthenticationFilter extends GenericFilterBean {
         Long cur = System.currentTimeMillis();
         HttpServletRequest request = (HttpServletRequest) req;
         HttpServletResponse response = (HttpServletResponse) res;
-
-        if (ServletFileUpload.isMultipartContent(request)) {//包装文件上传请求
+        //包装文件上传请求
+        if (ServletFileUpload.isMultipartContent(request)) {
             request = new CommonsMultipartResolver().resolveMultipart(request);
         }
         String appkey = request.getParameter(ApiSysParamConstants.APPKEY);
@@ -50,7 +50,8 @@ public abstract class BaseApiAuthenticationFilter extends GenericFilterBean {
         ApiUser apiUser = apiMobileService.getApiUserByAppkey(appkey);
         if (apiUser == null) {
             ApiFilterHelper.writeErrorResponse(response, ApiConstant.CODE_PARTNER_NOT_EXISTS, "用户不存在");
-            apiFilterHelper.apiLog(request, cur, false);//记录失败日志
+            //记录失败日志
+            apiFilterHelper.apiLog(request, cur, false);
             return;
         }
         String sign = request.getParameter(ApiSysParamConstants.SIGN);
@@ -59,7 +60,8 @@ public abstract class BaseApiAuthenticationFilter extends GenericFilterBean {
         String signData = Sign.signMD5(ApiFilterHelper.getTreeMap(request), privateKey);
         if (!StringUtils.equalsIgnoreCase(sign, signData)) {
             ApiFilterHelper.writeErrorResponse(response, ApiConstant.CODE_PARTNER_NORIGHTS, "校验签名错误!");
-            apiFilterHelper.apiLog(request, cur, false);//记录失败日志
+            //记录失败日志
+            apiFilterHelper.apiLog(request, cur, false);
             return;
         }
 
@@ -67,7 +69,8 @@ public abstract class BaseApiAuthenticationFilter extends GenericFilterBean {
         boolean hasRights = checkRights(apiUser, request);
         if (!hasRights) {
             ApiFilterHelper.writeErrorResponse(response, ApiConstant.CODE_PARTNER_NORIGHTS, "没有权限");
-            apiFilterHelper.apiLog(request, cur, false);//记录失败日志
+            //记录失败日志
+            apiFilterHelper.apiLog(request, cur, false);
             return;
         }
 
@@ -79,6 +82,7 @@ public abstract class BaseApiAuthenticationFilter extends GenericFilterBean {
         } finally {
             //清除当前授权用户
             apiAuthLocal.set(null);
+            apiAuthLocal.remove();
             //记录成功日志
             apiFilterHelper.apiLog(request, cur, true);
         }

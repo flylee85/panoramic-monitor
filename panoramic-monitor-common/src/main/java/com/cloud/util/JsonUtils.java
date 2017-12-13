@@ -9,6 +9,7 @@ import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.type.CollectionType;
 import com.cloud.util.TJsonModule.UpperCasePropertyNamingStrategy;
+import com.google.common.collect.Maps;
 import org.apache.commons.lang.StringUtils;
 
 import java.io.OutputStream;
@@ -16,7 +17,9 @@ import java.io.Writer;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
+/**
+ * @author summer
+ */
 public class JsonUtils {
 	private static final transient TLogger DB_LOGGER = LoggerUtils.getLogger(JsonUtils.class);
 	public static UpperCasePropertyNamingStrategy UPPER_CASE_PROPERTY_NAMING_STRATEGY = new UpperCasePropertyNamingStrategy();
@@ -72,22 +75,30 @@ public class JsonUtils {
 
 	public static Map readJsonToMap(String json) {
 		if (StringUtils.isBlank(json)){
-			return new HashMap();
+			return Maps.newHashMap();
 		}
 		ObjectMapper mapper = new ObjectMapper();
 		mapper.registerModule(TJsonModule.TAOTAO_MODULE);
 		try {
 			Map result = mapper.readValue(json, Map.class);
 			if (result == null) {
-                result = new HashMap();
+                result = Maps.newHashMap();
             }
 			return result;
 		} catch (Exception e) {
 			DB_LOGGER.error("json:" + StringUtils.substring(json, 0, 500) + "\n" + LoggerUtils.getExceptionTrace(e, 15));
-			return new HashMap();
+			return Maps.newHashMap();
 		}
 
 	}
+
+	/**
+	 * @param clazz
+	 * @param json
+	 * @param pns
+	 * @param <T>
+	 * @return
+	 */
 	//-----------------------------------------------------------------
 	public static <T> T readJsonToObject(Class<T> clazz, String json, PropertyNamingStrategy pns) {
 		if (StringUtils.isBlank(json)){
@@ -148,7 +159,7 @@ public class JsonUtils {
 
 	public static Map readJsonToMap(String json, PropertyNamingStrategy pns) {
 		if (StringUtils.isBlank(json)){
-			return new HashMap();
+			return Maps.newHashMap();
 		}
 		ObjectMapper mapper = new ObjectMapper();
 		mapper.registerModule(TJsonModule.TAOTAO_MODULE);
@@ -158,12 +169,12 @@ public class JsonUtils {
 		try {
 			Map result = mapper.readValue(json, Map.class);
 			if (result == null) {
-                result = new HashMap();
+                result =Maps.newHashMap();
             }
 			return result;
 		} catch (Exception e) {
 			DB_LOGGER.error("json:" + StringUtils.substring(json, 0, 500) + "\n" + LoggerUtils.getExceptionTrace(e, 15));
-			return new HashMap();
+			return Maps.newHashMap();
 		}
 	}
 	

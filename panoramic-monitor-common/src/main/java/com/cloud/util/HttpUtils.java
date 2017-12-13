@@ -1,5 +1,6 @@
 package com.cloud.util;
 
+import com.google.common.collect.Maps;
 import org.apache.commons.collections.map.CaseInsensitiveMap;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang.StringUtils;
@@ -57,7 +58,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * Convenience class for setting and retrieving cookies.
+ * @author summer
  */
 public class HttpUtils {
 
@@ -355,9 +356,9 @@ public class HttpUtils {
     }
 
     public static HttpResult uploadFile(String url, Map<String, String> params, byte[] bytes, String inputName, String fileName, String encode) {
-        Map<String, byte[]> uploadMap = new HashMap<String, byte[]>();
+        Map<String, byte[]> uploadMap = Maps.newHashMap();
         uploadMap.put(inputName, bytes);
-        Map<String, String> fileNameMap = new HashMap<String, String>();
+        Map<String, String> fileNameMap = Maps.newHashMap();
         fileNameMap.put(inputName, fileName);
         return uploadFile(url, params, uploadMap, fileNameMap, encode);
     }
@@ -758,7 +759,7 @@ public class HttpUtils {
     }
 
     public static Map<String, Long> getStats(boolean clean) {
-        Map<String, Long> result = new HashMap<>();
+        Map<String, Long> result = Maps.newHashMap();
         for (Map.Entry<String, AtomicLong> entry : hostCountMap.entrySet()) {
             long value = entry.getValue().get();
             if (value > 0) {

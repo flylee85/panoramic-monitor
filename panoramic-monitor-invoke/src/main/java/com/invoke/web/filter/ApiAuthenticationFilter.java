@@ -60,6 +60,7 @@ public class ApiAuthenticationFilter extends GenericFilterBean {
             }
         } finally {//做清理
             ApiAuthLocal.set(null);
+            ApiAuthLocal.remove();
             apiFilterHelper.apiLog(request, cur, success);
         }
     }

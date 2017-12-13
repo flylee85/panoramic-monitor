@@ -23,6 +23,9 @@ public abstract class IpConfig {
 	private static final String serverIp;
 	private static final String hostname;
 	private static final List<String> searchList;
+	/**
+	 *
+	 */
 	//机房内网IP
 	private static final List<String> innerLocalIp;
 

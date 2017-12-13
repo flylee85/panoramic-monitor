@@ -5,13 +5,16 @@ import com.cloud.support.TraceErrorException;
 import com.cloud.util.DateUtil;
 import com.cloud.util.IpConfig;
 import com.cloud.util.SystemUtils;
+import com.google.common.collect.Maps;
 import org.apache.commons.collections.map.UnmodifiableMap;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.InitializingBean;
 
 import java.io.IOException;
 import java.util.*;
-
+/**
+ * @author summer
+ */
 public class Config implements InitializingBean {
     public static final String SYSTEMID;
     public static final String DEPLOYID;
@@ -133,7 +136,7 @@ public class Config implements InitializingBean {
     }
 
     public void initPageTools() {
-        Map tmp = new HashMap();
+        Map tmp = Maps.newHashMap();
 //        tmp.put("math", new MathTool());
         tmp.put("DateUtil", new DateUtil());
         tmp.putAll(this.pageMap);

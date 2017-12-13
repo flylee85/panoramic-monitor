@@ -2,6 +2,7 @@ package com.cloud.monitor;
 
 import com.cloud.util.LoggerUtils;
 import com.cloud.util.TLogger;
+import com.google.common.collect.Maps;
 import org.apache.commons.collections.Bag;
 import org.apache.commons.collections.bag.HashBag;
 
@@ -9,7 +10,9 @@ import java.io.*;
 import java.lang.management.*;
 import java.util.HashMap;
 import java.util.Map;
-
+/**
+ * @author summer
+ */
 public class JVMHelper {
     private static TLogger DB_LOGGER = LoggerUtils.getLogger(JVMHelper.class);
 
@@ -26,7 +29,7 @@ public class JVMHelper {
             result = exportThread(writer);
         } catch (Exception e) {
             DB_LOGGER.warn("", e);
-            result = new HashMap<String, String>();
+            result = Maps.newHashMap();
             result.put("error", e.getClass().getName() + ":" + e.getMessage());
         } finally {
             if (writer != null) {
@@ -55,7 +58,7 @@ public class JVMHelper {
             writer.write("\n");
             bag.add(t.getState().name());
         }
-        Map<String, String> result = new HashMap<String, String>();
+        Map<String, String> result = Maps.newHashMap();
         result.put("threadCount", "" + traceList.size());
         for (Object key : bag.uniqueSet()) {
             result.put((String) key, "" + bag.getCount(key));
@@ -71,7 +74,7 @@ public class JVMHelper {
             appendThreadInfo(writer, ti);
             bag.add(ti.getThreadState().name());
         }
-        Map<String, String> result = new HashMap<String, String>();
+        Map<String, String> result = Maps.newHashMap();
         result.put("threadCount", "" + tiList.length);
         for (Object key : bag.uniqueSet()) {
             result.put((String) key, "" + bag.getCount(key));

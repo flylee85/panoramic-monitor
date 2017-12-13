@@ -9,7 +9,9 @@ import java.io.Reader;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
+/**
+ * @author summer
+ */
 public class MobileAreaUtil {
 	private static Map<String, String> mobileAreaMap = new HashMap<String, String>();
 	private final static transient TLogger DB_LOGGER = LoggerUtils.getLogger(MobileAreaUtil.class);

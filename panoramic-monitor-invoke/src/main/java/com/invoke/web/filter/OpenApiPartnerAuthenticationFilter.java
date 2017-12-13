@@ -58,6 +58,7 @@ public class OpenApiPartnerAuthenticationFilter extends GenericFilterBean {
             chain.doFilter(request, response);
         } finally {
             apiAuthLocal.set(null);
+            apiAuthLocal.remove();
         }
     }
 

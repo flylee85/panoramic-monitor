@@ -14,7 +14,9 @@ import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Array;
 import java.net.URLEncoder;
 import java.util.*;
-
+/**
+ * @author summer
+ */
 public class WebUtils extends BaseWebUtils {
 
     public static String removeFourChar(String content) {
@@ -77,7 +79,10 @@ public class WebUtils extends BaseWebUtils {
         return citycode;
     }
 
-    //没有默认值，特殊情况下使用
+    /**    //没有默认值，特殊情况下使用
+     * @return
+     */
+
     public static String findCitycodeByIp(){
         return CityConstant.CITYCODE_SH;
     }

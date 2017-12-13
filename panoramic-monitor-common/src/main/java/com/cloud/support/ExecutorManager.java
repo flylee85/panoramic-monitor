@@ -7,7 +7,9 @@ import com.cloud.util.LoggerUtils;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ThreadPoolExecutor;
-
+/**
+ * @author summer
+ */
 public abstract class ExecutorManager {
 	private static final transient TLogger DB_LOGGER = LoggerUtils.getLogger(HttpUtils.class);
 	/**

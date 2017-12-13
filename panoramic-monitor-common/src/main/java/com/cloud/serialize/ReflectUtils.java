@@ -1,5 +1,6 @@
 package com.cloud.serialize;
 
+import com.google.common.collect.Maps;
 import javassist.CtClass;
 import javassist.CtConstructor;
 import javassist.CtMethod;
@@ -85,6 +86,9 @@ public final class ReflectUtils {
             + DESC_REGEX + ")?)";
 
     public static final Pattern METHOD_DESC_PATTERN = Pattern.compile(METHOD_DESC_REGEX);
+    /**
+     *
+     */
     //public static final Pattern GETTER_METHOD_DESC_PATTERN = Pattern.compile("get([A-Z][_a-zA-Z0-9]*)\\(\\)(" �޸�mongo��_id ����
     public static final Pattern GETTER_METHOD_DESC_PATTERN = Pattern.compile("get([A-Z_][_a-zA-Z0-9]*)\\(\\)("
             + DESC_REGEX + ")");
@@ -912,7 +916,7 @@ public final class ReflectUtils {
     }
 
     public static Object getEmptyObject(Class<?> returnType) {
-        return getEmptyObject(returnType, new HashMap<Class<?>, Object>(), 0);
+        return getEmptyObject(returnType, Maps.newHashMap(), 0);
     }
 
     private static Object getEmptyObject(Class<?> returnType, Map<Class<?>, Object> emptyInstances, int level) {
@@ -1022,7 +1026,7 @@ public final class ReflectUtils {
     }
 
     public static Map<String, Field> getBeanPropertyFields(Class cl) {
-        Map<String, Field> properties = new HashMap<String, Field>();
+        Map<String, Field> properties =Maps.newHashMap();
         for (; cl != null; cl = cl.getSuperclass()) {
             Field[] fields = cl.getDeclaredFields();
             for (Field field : fields) {
@@ -1055,7 +1059,7 @@ public final class ReflectUtils {
     }
 
     public static Map<String, Method> getBeanPropertyReadMethods(Class cl) {
-        Map<String, Method> properties = new HashMap<String, Method>();
+        Map<String, Method> properties = Maps.newHashMap();
         for (; cl != null; cl = cl.getSuperclass()) {
             Method[] methods = cl.getDeclaredMethods();
             for (Method method : methods) {
