@@ -1,12 +1,12 @@
 package com.cloud.service.task.test;
 
-import com.cloud.service.api.test.TestService;
-import com.cloud.util.DateUtil;
-import com.cloud.util.LoggerUtils;
-import com.cloud.util.TLogger;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
 import org.springframework.stereotype.Service;
+
+import com.cloud.service.api.test.TestService;
+import com.cloud.util.LoggerUtils;
+import com.cloud.util.TLogger;
 
 /**
  * @author summer
@@ -22,8 +22,11 @@ public class TestServiceImpl implements TestService {
 
     @Override
     public void execute(JobExecutionContext context) throws JobExecutionException {
-        DB_LOGGER.warn(DateUtil.currentTimeStr());
-        DB_LOGGER.warn("哈哈，执行了定时任务");
 
+//        try {
+//            productMaterialFeignHystrixClient.realTimeProductSummaryTask();
+//        } catch (Exception e) {
+//            DB_LOGGER.warn("产品定时任务汇总出现异常{}" + e);
+//        }
     }
 }
