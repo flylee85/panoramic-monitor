@@ -30,7 +30,7 @@ zuul:
       serviceId: monitor-scheduled-task
       sensitive-headers: Cookie,Set-Cookie
     risks:
-      path: /risk/warning/**
+      path: /risk-warning/**
       serviceId: monitor-risk-warning
       sensitive-headers: Cookie,Set-Cookie
 eureka:

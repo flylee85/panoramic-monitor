@@ -33,6 +33,7 @@ public class User extends AbstractUser {
         this.username = StringUtils.lowerCase(username);
     }
 
+    @Override
     public final List<GrantedAuthority> getAuthorities() {
         if (this.tmpAuth != null) {
             return this.tmpAuth;
@@ -51,15 +52,18 @@ public class User extends AbstractUser {
         this.tmpAuth = tmpAuth;
     }
 
+    @Override
     public final String getRolesString() {
         return this.rolenames;
     }
 
+    @Override
     public final boolean isRole(String rolename) {
         String[] roles = StringUtils.split(this.rolenames, ",");
         return ArrayUtils.contains(roles, rolename);
     }
 
+    @Override
     public String getRealname() {
         if (StringUtils.isBlank(this.username)) {
             return null;
@@ -69,6 +73,7 @@ public class User extends AbstractUser {
         }
     }
 
+    @Override
     public Long getId() {
         return this.id;
     }
@@ -77,6 +82,7 @@ public class User extends AbstractUser {
         this.id = id;
     }
 
+    @Override
     public String getUsername() {
         return this.username;
     }
@@ -85,6 +91,7 @@ public class User extends AbstractUser {
         this.username = username;
     }
 
+    @Override
     public String getPassword() {
         return this.password;
     }
@@ -93,10 +100,12 @@ public class User extends AbstractUser {
         this.password = password;
     }
 
+    @Override
     public Serializable realId() {
         return this.id;
     }
 
+    @Override
     public boolean isEnabled() {
         return "Y".equals(this.accountEnabled);
     }
@@ -133,6 +142,7 @@ public class User extends AbstractUser {
         this.rolenames = rolenames;
     }
 
+    @Override
     public String getUsertype() {
         return this.usertype;
     }

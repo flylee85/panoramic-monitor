@@ -6,6 +6,7 @@ import com.monitor.model.realtimeconsumption.PanoramicRealTimeConsumption;
 import com.monitor.web.controller.base.AbstractAnnotationController;
 
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
@@ -27,6 +28,7 @@ public class PanoramicRealTimeConsumptionController extends AbstractAnnotationCo
     	realTimeConsumptionService.save(panoramicRealTimeConsumption);
         return ResultCode.getSuccessReturn(panoramicRealTimeConsumption);
     }
+    @ApiOperation(value = "消耗数据定时任务汇总", notes = "消耗数据定时任务汇总")
     @PostMapping("/task")
     public ResultCode<Void> task() {
     	DB_LOGGER.warn("<--消耗数据定时任务汇总  开始-->");

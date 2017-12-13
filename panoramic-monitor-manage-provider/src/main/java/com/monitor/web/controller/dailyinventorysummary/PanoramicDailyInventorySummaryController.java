@@ -68,7 +68,7 @@ public class PanoramicDailyInventorySummaryController extends AbstractAnnotation
         Map<String, String> result = dailyInventorySummaryService.check(codeList, date);
         return ResultCode.getSuccessReturn(result);
     }
-
+    @ApiOperation(value = "每日库存数据定时任务汇总", notes = "每日库存数据定时任务汇总")
     @PostMapping("/task")
     public ResultCode<Void> task() {
     	DB_LOGGER.warn("<--每日库存数据定时任务汇总  开始-->");

@@ -30,6 +30,7 @@ public abstract class AbstractUser extends BaseObject implements UserDetails {
         return true;
     }
 
+    @Override
     public abstract List<GrantedAuthority> getAuthorities();
 
     public abstract boolean isRole(String var1);

@@ -42,7 +42,7 @@ public class PanoramicInventoryEntryController extends AbstractAnnotationControl
 	public ResultCode<Void> delete(@PathVariable Integer id) {
 		return ResultCode.SUCCESS;
 	}
-
+	@ApiOperation(value = "扫描人工录入数据定时任务", notes = "扫描人工录入数据定时任务")
 	@PostMapping("/task")
 	public ResultCode<Void> task() {
 		DB_LOGGER.warn("<--扫描人工录入数据定时任务汇总  开始-->");

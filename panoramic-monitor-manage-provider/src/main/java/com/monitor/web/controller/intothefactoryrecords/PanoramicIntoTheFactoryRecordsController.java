@@ -32,7 +32,7 @@ public class PanoramicIntoTheFactoryRecordsController extends AbstractAnnotation
         intoTheFactoryRecordsService.save(panoramicIntoTheFactoryRecords);
         return ResultCode.getSuccessReturn(panoramicIntoTheFactoryRecords);
     }
-
+    @ApiOperation(value = "异常出库异常信息状态定时任务", notes = "异常出库异常信息状态定时任务")
     @PostMapping("/task")
     public ResultCode<PanoramicIntoTheFactoryRecords> task() {
     	DB_LOGGER.warn("<--异常出库异常信息状态定时任务汇总  开始-->");

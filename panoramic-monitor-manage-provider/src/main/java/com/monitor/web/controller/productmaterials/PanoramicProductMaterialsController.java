@@ -5,6 +5,7 @@ import com.monitor.api.productmaterials.PanoramicProductMaterialsService;
 import com.monitor.model.productmaterials.PanoramicProductMaterials;
 import com.monitor.web.controller.base.AbstractAnnotationController;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
@@ -26,7 +27,7 @@ public class PanoramicProductMaterialsController extends AbstractAnnotationContr
         productMaterialsService.save(panoramicProductMaterials);
         return ResultCode.getSuccessReturn(panoramicProductMaterials);
     }
-
+    @ApiOperation(value = "产品定时任务汇总", notes = "产品定时任务汇总")
     @PostMapping("/task")
     public ResultCode<PanoramicProductMaterials> task() {
     	DB_LOGGER.warn("<--产品定时任务汇总  开始-->");
