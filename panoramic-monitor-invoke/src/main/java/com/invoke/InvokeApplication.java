@@ -9,6 +9,8 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 
+import com.cloud.util.LoggerUtils;
+import com.cloud.util.TLogger;
 import com.invoke.web.filter.GateWayAuthenticationFilter;
 
 /**
@@ -18,8 +20,11 @@ import com.invoke.web.filter.GateWayAuthenticationFilter;
 @EnableDiscoveryClient
 @ComponentScan(basePackages = { "com.cloud", "com.invoke" })
 public class InvokeApplication {
+	private static final transient TLogger DB_LOGGER = LoggerUtils.getLogger(InvokeApplication.class);
+
 	public static void main(String[] args) {
 		SpringApplication.run(InvokeApplication.class, args);
+		DB_LOGGER.warn("InvokeApplication started successfully");
 	}
 
 	@Bean

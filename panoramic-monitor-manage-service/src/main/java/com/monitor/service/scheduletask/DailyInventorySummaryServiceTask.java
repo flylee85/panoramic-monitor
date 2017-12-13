@@ -18,7 +18,7 @@ import com.monitor.model.dailyinventorysummary.PanoramicDailyInventorySummary;
 /**
  * @author summer
  */
-@Component
+//@Component
 public class DailyInventorySummaryServiceTask implements Job {
 	private static final transient TLogger DB_LOGGER = LoggerUtils
 			.getLogger(AbnormalInformationRegularlyRefreshTask.class);

@@ -4,6 +4,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
+import com.cloud.util.LoggerUtils;
+import com.cloud.util.TLogger;
+
 /**
  * @author sunmer
  * 启动类
@@ -14,7 +17,10 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 @SpringBootApplication
 @EnableDiscoveryClient
 public class UserApplication {
-    public static void main(String[] args) {
-        SpringApplication.run(UserApplication.class, args);
-    }
+	private static final transient TLogger DB_LOGGER = LoggerUtils.getLogger(UserApplication.class);
+
+	public static void main(String[] args) {
+		SpringApplication.run(UserApplication.class, args);
+		DB_LOGGER.warn("UserApplication started successfully");
+	}
 }

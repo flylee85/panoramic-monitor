@@ -12,6 +12,11 @@ import java.util.List;
  */
 public interface PanoramicProductMaterialsService extends Service<PanoramicProductMaterials> {
 
+
+    /**
+     * 产品实时汇总定时任务
+     */
+    void realTimeProductSummaryTask();
     /**
      * 查询产品分类-定时任务
      *

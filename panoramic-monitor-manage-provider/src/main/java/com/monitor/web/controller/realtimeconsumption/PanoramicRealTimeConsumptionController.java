@@ -3,6 +3,8 @@ package com.monitor.web.controller.realtimeconsumption;
 import com.cloud.api.vo.ResultCode;
 import com.monitor.api.realtimeconsumption.PanoramicRealTimeConsumptionService;
 import com.monitor.model.realtimeconsumption.PanoramicRealTimeConsumption;
+import com.monitor.web.controller.base.AbstractAnnotationController;
+
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -15,7 +17,7 @@ import org.springframework.web.bind.annotation.*;
 @Api
 @RestController
 @RequestMapping("/real/time/consumption")
-public class PanoramicRealTimeConsumptionController {
+public class PanoramicRealTimeConsumptionController extends AbstractAnnotationController {
    @Autowired
    @Qualifier("realTimeConsumptionService")
     private PanoramicRealTimeConsumptionService realTimeConsumptionService;
@@ -24,6 +26,13 @@ public class PanoramicRealTimeConsumptionController {
     public ResultCode<PanoramicRealTimeConsumption> add(PanoramicRealTimeConsumption panoramicRealTimeConsumption) {
     	realTimeConsumptionService.save(panoramicRealTimeConsumption);
         return ResultCode.getSuccessReturn(panoramicRealTimeConsumption);
+    }
+    @PostMapping("/task")
+    public ResultCode<Void> task() {
+    	DB_LOGGER.warn("<--消耗数据定时任务汇总  开始-->");
+    	realTimeConsumptionService.realTimeConsumptionSummaryTask();
+    	DB_LOGGER.warn("<--消耗数据定时任务汇总  结束-->");
+        return ResultCode.SUCCESS;
     }
 
     @DeleteMapping("/{id}")

@@ -17,7 +17,7 @@ import org.springframework.scheduling.quartz.SchedulerFactoryBean;
 /**
  * @author summer
  */
-@Configuration
+//@Configuration
 public class QuartzConfigration {
 
     @Autowired

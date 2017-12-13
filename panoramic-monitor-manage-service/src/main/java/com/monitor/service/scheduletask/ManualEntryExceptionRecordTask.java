@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 /**
  * @author summer
  */
-@Component
+//@Component
 public class ManualEntryExceptionRecordTask implements Job {
     private static final transient TLogger DB_LOGGER = LoggerUtils.getLogger(ManualEntryExceptionRecordTask.class);
     @Autowired

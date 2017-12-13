@@ -33,7 +33,7 @@ public class QuartzConfigration {
             // 用于quartz集群,QuartzScheduler 启动时更新己存在的Job
             schedulerFactoryBean.setOverwriteExistingJobs(true);
             // 延时启动，应用启动1秒后
-            schedulerFactoryBean.setStartupDelay(1);
+            schedulerFactoryBean.setStartupDelay(200);
         } catch (Exception e) {
         }
         return schedulerFactoryBean;

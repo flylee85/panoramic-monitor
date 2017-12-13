@@ -5,6 +5,8 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.monitor.api.intothefactoryrecords.PanoramicIntoTheFactoryRecordsService;
 import com.monitor.model.intothefactoryrecords.PanoramicIntoTheFactoryRecords;
+import com.monitor.web.controller.base.AbstractAnnotationController;
+
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +22,7 @@ import java.util.List;
 @Api
 @RestController
 @RequestMapping("/into/the/factory/records")
-public class PanoramicIntoTheFactoryRecordsController {
+public class PanoramicIntoTheFactoryRecordsController extends AbstractAnnotationController{
     @Autowired
     @Qualifier("intoTheFactoryRecordsService")
     private PanoramicIntoTheFactoryRecordsService intoTheFactoryRecordsService;
@@ -29,6 +31,14 @@ public class PanoramicIntoTheFactoryRecordsController {
     public ResultCode<PanoramicIntoTheFactoryRecords> add(PanoramicIntoTheFactoryRecords panoramicIntoTheFactoryRecords) {
         intoTheFactoryRecordsService.save(panoramicIntoTheFactoryRecords);
         return ResultCode.getSuccessReturn(panoramicIntoTheFactoryRecords);
+    }
+
+    @PostMapping("/task")
+    public ResultCode<PanoramicIntoTheFactoryRecords> task() {
+    	DB_LOGGER.warn("<--异常出库异常信息状态定时任务汇总  开始-->");
+        intoTheFactoryRecordsService.regularlyRefreshTask();
+        DB_LOGGER.warn("<--异常出库异常信息状态定时任务汇总  结束-->");
+        return ResultCode.SUCCESS;
     }
 
     @DeleteMapping("/{id}")

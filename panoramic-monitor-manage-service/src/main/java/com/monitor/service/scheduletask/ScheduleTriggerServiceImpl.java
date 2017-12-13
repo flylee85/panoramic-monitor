@@ -18,7 +18,7 @@ import java.util.List;
 /**
  * @author summer
  */
-@Component
+//@Component
 public class ScheduleTriggerServiceImpl extends AbstractService<ScheduleTrigger> implements ScheduleTriggerService {
 
 	private static final Logger logger = LoggerFactory.getLogger(ScheduleTriggerServiceImpl.class);

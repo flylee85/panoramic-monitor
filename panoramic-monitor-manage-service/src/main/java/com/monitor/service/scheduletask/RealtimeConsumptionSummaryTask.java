@@ -19,7 +19,7 @@ import java.util.List;
  *
  * @author summer 定时任务必须实现Job接口
  */
-@Component
+//@Component
 public class RealtimeConsumptionSummaryTask implements Job {
     private static final transient TLogger DB_LOGGER = LoggerUtils.getLogger(RealtimeConsumptionSummaryTask.class);
     @Autowired

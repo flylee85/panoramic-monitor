@@ -25,4 +25,9 @@ public interface PanoramicRealTimeConsumptionService extends Service<PanoramicRe
      * @return
      */
     List<PanoramicRealTimeConsumption> listRealTimeConsumptionCategoryTask();
+
+    /**
+     * 定时任务
+     */
+    void realTimeConsumptionSummaryTask();
 }

@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 /**
  * @author summer
  */
-@Component
+//@Component
 public class AbnormalInformationRegularlyRefreshTask implements Job {
     private static final transient TLogger DB_LOGGER = LoggerUtils.getLogger(AbnormalInformationRegularlyRefreshTask.class);
     @Autowired

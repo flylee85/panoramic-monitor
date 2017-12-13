@@ -19,7 +19,7 @@ import java.util.List;
  *
  * @author summer
  */
-@Component
+//@Component
 public class RealtimeProductSummaryTask implements Job {
     private static final transient TLogger DB_LOGGER = LoggerUtils.getLogger(RealtimeProductSummaryTask.class);
     @Autowired

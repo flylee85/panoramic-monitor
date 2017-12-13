@@ -3,11 +3,14 @@ package com.monitor.service.productmaterials;
 import com.cloud.core.AbstractService;
 import com.cloud.core.ServiceException;
 import com.cloud.util.DateUtil;
+import com.cloud.util.LoggerUtils;
+import com.cloud.util.TLogger;
 import com.monitor.api.productmaterials.PanoramicProductMaterialsService;
 import com.monitor.mapper.productmaterials.PanoramicProductMaterialsMapper;
 import com.monitor.mapper.realtimeconsumptiongather.PanoramicRealTimeConsumptionGatherMapper;
 import com.monitor.model.productmaterials.PanoramicProductMaterials;
 import com.monitor.model.realtimeconsumptiongather.PanoramicRealTimeConsumptionGather;
+import com.monitor.service.scheduletask.RealtimeProductSummaryTask;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -26,12 +29,31 @@ import java.util.Optional;
 @Service("productMaterialsService")
 @Transactional(readOnly = true, rollbackFor = ServiceException.class)
 public class PanoramicProductMaterialsServiceImpl extends AbstractService<PanoramicProductMaterials> implements PanoramicProductMaterialsService {
+    private static final transient TLogger DB_LOGGER = LoggerUtils.getLogger(PanoramicProductMaterialsServiceImpl.class);
     @Autowired
     @Qualifier("productMaterialsMapper")
     private PanoramicProductMaterialsMapper productMaterialsMapper;
     @Autowired
     @Qualifier("realTimeConsumptionGatherMapper")
     private PanoramicRealTimeConsumptionGatherMapper realTimeConsumptionGatherMapper;
+
+    @Override
+    @Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
+    public void realTimeProductSummaryTask() {
+        try {
+            String date = DateUtil.currentTimeHourStr();
+            List<PanoramicProductMaterials> categoryList = this.listRealTimeProductSummaryCategoryTask();
+            if (null == categoryList || categoryList.size() == 0) {
+                DB_LOGGER.warn("实时消耗表数据为空{}");
+                return;
+            }
+            categoryList.forEach(e -> {
+                this.productSummaryTask(e.getName(), e.getCode(), date);
+            });
+        } catch (Exception e) {
+            DB_LOGGER.warn("实时消耗数据汇总到汇总表{},出现异常"+e);
+        }
+    }
 
     @Override
     @Transactional(propagation = Propagation.NOT_SUPPORTED, rollbackFor = Exception.class)

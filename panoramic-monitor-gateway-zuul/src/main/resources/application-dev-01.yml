@@ -6,24 +6,32 @@ security:
     password: user
 spring:
   application:
-    name: panoramic-monitor-zuul    # 项目名称尽量用小写
+    name: monitor-zuul    # 项目名称尽量用小写
+hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds: 300000
+ribbon:
+    ConnectTimeout: 60000
+    ReadTimeout: 120000
 zuul:
   routes:
     manages:
       path: /manage/**
-      serviceId: panoramic-monitor-manage
+      serviceId: monitor-manage
       sensitive-headers: Cookie,Set-Cookie
     invokes:
       path: /invoke/**
-      serviceId: panoramic-monitor-invoke
+      serviceId: monitor-invoke
       sensitive-headers: Cookie,Set-Cookie
     users:
       path: /user/**
-      serviceId: panoramic-monitor-user
+      serviceId: monitor-user
+      sensitive-headers: Cookie,Set-Cookie
+    tasks:
+      path: /scheduled-task/**
+      serviceId: monitor-scheduled-task
       sensitive-headers: Cookie,Set-Cookie
     risks:
       path: /risk/warning/**
-      serviceId: panoramic-monitor-risk-warning
+      serviceId: monitor-risk-warning
       sensitive-headers: Cookie,Set-Cookie
 eureka:
   client:

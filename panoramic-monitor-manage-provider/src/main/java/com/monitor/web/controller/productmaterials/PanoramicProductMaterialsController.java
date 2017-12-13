@@ -1,8 +1,6 @@
 package com.monitor.web.controller.productmaterials;
 
 import com.cloud.api.vo.ResultCode;
-import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
 import com.monitor.api.productmaterials.PanoramicProductMaterialsService;
 import com.monitor.model.productmaterials.PanoramicProductMaterials;
 import com.monitor.web.controller.base.AbstractAnnotationController;
@@ -10,8 +8,6 @@ import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 /**
  * @author summer
@@ -31,8 +27,16 @@ public class PanoramicProductMaterialsController extends AbstractAnnotationContr
         return ResultCode.getSuccessReturn(panoramicProductMaterials);
     }
 
+    @PostMapping("/task")
+    public ResultCode<PanoramicProductMaterials> task() {
+    	DB_LOGGER.warn("<--产品定时任务汇总  开始-->");
+    	productMaterialsService.realTimeProductSummaryTask();
+        DB_LOGGER.warn("<--产品定时任务汇总  结束-->");
+        return ResultCode.SUCCESS;
+    }
+
     @DeleteMapping("/{id}")
-    public ResultCode<PanoramicProductMaterials> delete(@PathVariable Integer id) {
+    public ResultCode<PanoramicProductMaterials> delete(@PathVariable("id") Integer id) {
         return ResultCode.SUCCESS;
     }
 
@@ -43,7 +47,7 @@ public class PanoramicProductMaterialsController extends AbstractAnnotationContr
     }
 
     @GetMapping("/{id}")
-    public ResultCode<PanoramicProductMaterials> detail(@PathVariable Integer id) {
+    public ResultCode<PanoramicProductMaterials> detail(@PathVariable("id") Integer id) {
         PanoramicProductMaterials panoramicProductMaterials = productMaterialsService.findById(id);
         return ResultCode.getSuccessReturn(panoramicProductMaterials);
     }

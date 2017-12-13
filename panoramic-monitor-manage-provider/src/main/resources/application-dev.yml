@@ -1,7 +1,7 @@
 server:
   port: 9000
   servlet-path: /
-quartzConfig: quartz.properties
+quartzConfig: dev-quartz.properties
 security:
   user:
     name: user
@@ -43,13 +43,13 @@ dev:
       connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
 
 # 日志配置
-#logging:
-#  level:
-#    root: INFO
-#    org.hibernate: INFO
-#    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
-#    org.hibernate.type.descriptor.sql.BasicExtractor: TRACE
-#    com.itmuch.youran.persistence: ERROR
+logging:
+  level:
+    root: INFO
+    org.hibernate: INFO
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+    org.hibernate.type.descriptor.sql.BasicExtractor: TRACE
+    com.itmuch.youran.persistence: ERROR
 
 # 热发布插件
 

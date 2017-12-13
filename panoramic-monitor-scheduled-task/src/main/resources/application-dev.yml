@@ -33,7 +33,6 @@ spring:
     username: root
     password: root
     driverClassName: com.mysql.jdbc.Driver
-     # 参数
     initialSize: 5
     minIdle: 5
     maxActive: 20
@@ -59,9 +58,7 @@ logging:
     com.itmuch.youran.persistence: ERROR
     com.jalja.org.spring.simple.dao.FeignUserClient: DEBUG
     
-#hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds: 300000
 # 热发布插件
-
 #spring:
 #    devtools:
 #        restart:

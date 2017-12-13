@@ -17,7 +17,7 @@ import com.monitor.api.exceptionrecord.PanoramicExceptionRecordService;
  * @author summer 定时任务必须实现Job接口
  *
  */
-@Component
+//@Component
 public class Test implements Job {
 	private static final transient TLogger DB_LOGGER = LoggerUtils.getLogger(Test.class);
 	@Autowired

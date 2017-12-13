@@ -1,6 +1,7 @@
 package com.monitor.web.controller.dailyinventorysummary;
 
 import com.cloud.api.vo.ResultCode;
+import com.cloud.util.DateUtil;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.monitor.api.dailyinventorysummary.PanoramicDailyInventorySummaryService;
@@ -68,12 +69,16 @@ public class PanoramicDailyInventorySummaryController extends AbstractAnnotation
         return ResultCode.getSuccessReturn(result);
     }
 
-//    @PostMapping
-//    public ResultCode<PanoramicDailyInventorySummary> add(
-//            PanoramicDailyInventorySummary panoramicDailyInventorySummary) {
-//        dailyInventorySummaryService.save(panoramicDailyInventorySummary);
-//        return ResultCode.getSuccessReturn(panoramicDailyInventorySummary);
-//    }
+    @PostMapping("/task")
+    public ResultCode<Void> task() {
+    	DB_LOGGER.warn("<--每日库存数据定时任务汇总  开始-->");
+        String date = DateUtil.getCurFullTimestampStr();
+        List<PanoramicDailyInventorySummary> records = dailyInventorySummaryService
+                .listByDateAndCode(DateUtil.getYestoryDate());
+        dailyInventorySummaryService.dailyInventorySummaryTask(date, records);
+        DB_LOGGER.warn("<--每日库存数据定时任务汇总  结束-->");
+        return ResultCode.SUCCESS;
+    }
 
     @DeleteMapping("/{id}")
     public ResultCode<PanoramicDailyInventorySummary> delete(@PathVariable Integer id) {
