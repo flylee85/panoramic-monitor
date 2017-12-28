@@ -68,7 +68,7 @@ public class PanoramicProductMaterialsServiceImpl extends AbstractService<Panora
         // 先查出来，再去更新
         Condition condition = new Condition(PanoramicProductMaterials.class, false);
         condition.createCriteria().andCondition(
-                "  substring(code, 1, 12) = substring('" + code + "', 1, 12) AND f_id=2 AND delete_flag=1 "
+                "  substring(code, 1, 12) = '" + code + "' AND f_id=2 AND delete_flag=1 "
                         + " AND date_format(utime,'%Y%m%d%H') = date_format('" + date + "','%Y%m%d%H')");
         List<PanoramicProductMaterials> consumptionList = productMaterialsMapper.selectByCondition(condition);
         PanoramicProductMaterials record = new PanoramicProductMaterials();
@@ -81,9 +81,14 @@ public class PanoramicProductMaterialsServiceImpl extends AbstractService<Panora
         record.setfId("2");
         record.setUnit("吨");
         record.setDeleteFlag(1);
+        final double[] sumValue = {0.0};
         if (null != consumptionList && consumptionList.size() > 0) {
             consumptionList.forEach(e -> {
-                record.setValue(Double.parseDouble(record.getValue()) + Double.parseDouble(e.getValue()) + "");
+                try {
+                    sumValue[0] +=Double.parseDouble(e.getValue());
+                } catch (NumberFormatException e1) {
+                    sumValue[0]=0;
+                }
                 record.setUtime(e.getUtime());
                 record.setDtime(null);
                 record.setUnit(e.getUnit());
@@ -98,12 +103,12 @@ public class PanoramicProductMaterialsServiceImpl extends AbstractService<Panora
         PanoramicRealTimeConsumptionGather selectOne = realTimeConsumptionGatherMapper.selectByGatherTime(code, date);
         Optional<PanoramicRealTimeConsumptionGather> one = Optional.ofNullable(selectOne);
         if (one.isPresent()) {
-            PanoramicRealTimeConsumptionGather realTimeConsumptionGather = one.get();
-            realTimeConsumptionGather.setValue(Double.parseDouble(record.getValue()));
-            realTimeConsumptionGather.setUtime(DateUtil.getCurFullTimestamp());
-            realTimeConsumptionGather.setOperator("auto_task_update");
-            realTimeConsumptionGather.setGatherTime(date);
-            realTimeConsumptionGatherMapper.updateByPrimaryKeySelective(realTimeConsumptionGather);
+        	selectOne.setValue(sumValue[0]);
+        	selectOne.setUtime(DateUtil.getCurFullTimestamp());
+        	selectOne.setCtime(selectOne.getUtime());
+        	selectOne.setOperator("auto_task_update");
+        	selectOne.setGatherTime(date);
+            realTimeConsumptionGatherMapper.updateByPrimaryKeySelective(selectOne);
         } else {
             PanoramicRealTimeConsumptionGather gather = new PanoramicRealTimeConsumptionGather();
             gather.setCode(code);
@@ -118,7 +123,7 @@ public class PanoramicProductMaterialsServiceImpl extends AbstractService<Panora
             gather.setUnit(record.getUnit());
             gather.setDtime(record.getDtime());
             gather.setUtime(gather.getCtime());
-            gather.setValue(Double.parseDouble(record.getValue()));
+            gather.setValue(sumValue[0]);
             realTimeConsumptionGatherMapper.insert(gather);
         }
     }

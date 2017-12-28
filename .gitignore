@@ -43,3 +43,4 @@ proguard/
 *.class
 *.target
 /target
+target
