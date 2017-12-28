@@ -6,7 +6,10 @@ import com.cloud.util.DateUtil;
 import com.cloud.util.LoggerUtils;
 import com.cloud.util.TLogger;
 import com.monitor.api.productmaterials.PanoramicProductMaterialsService;
+import com.monitor.dto.productmaterials.PanoramicProductMaterialsDto;
+import com.monitor.dto.realtimeconsumption.PanoramicRealTimeConsumptionDto;
 import com.monitor.mapper.productmaterials.PanoramicProductMaterialsMapper;
+import com.monitor.mapper.realtimeconsumption.PanoramicRealTimeConsumptionMapper;
 import com.monitor.mapper.realtimeconsumptiongather.PanoramicRealTimeConsumptionGatherMapper;
 import com.monitor.model.productmaterials.PanoramicProductMaterials;
 import com.monitor.model.realtimeconsumptiongather.PanoramicRealTimeConsumptionGather;
@@ -18,6 +21,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import tk.mybatis.mapper.entity.Condition;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -135,4 +139,53 @@ public class PanoramicProductMaterialsServiceImpl extends AbstractService<Panora
         double outSum = productMaterialsMapper.summaryByCodeAndDate(code, date, 0)==null?0:productMaterialsMapper.summaryByCodeAndDate(code, date, 0);
         return inSum - outSum;
     }
+    
+	@Override
+	@Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
+	public List<PanoramicProductMaterialsDto> listProductMaterialsRealTime(String date) {
+		//数据库中获取分时段数据
+		List<PanoramicProductMaterialsDto> dbresult = productMaterialsMapper.listProductRealTimeInStock(date,"1");
+		
+		//数据库后去早中晚的合计数据
+		PanoramicProductMaterialsDto eveningResult = 
+				productMaterialsMapper.listProductRealTimeInStockAmount(date,"1","00","07");
+		
+		PanoramicProductMaterialsDto morningResult = 
+				productMaterialsMapper.listProductRealTimeInStockAmount(date,"1","08","15");
+		
+		PanoramicProductMaterialsDto noonResult = 
+				productMaterialsMapper.listProductRealTimeInStockAmount(date,"1","16","23");
+		
+		List<PanoramicProductMaterialsDto> result = new ArrayList<PanoramicProductMaterialsDto>();
+	
+		//分时段数据
+		for(int i = 0; i < 27;i++) {
+			PanoramicProductMaterialsDto data = new PanoramicProductMaterialsDto();
+			data.setHour(i);
+			data.setValue(0.0);
+			result.add(data);
+		}
+		
+		for(int i = 0;i < result.size()-3;i++ ) {
+			for(int j=0;j<dbresult.size();j++) {
+				if (result.get(i).getHour() == dbresult.get(j).getHour()) {
+					result.get(i).setValue(dbresult.get(j).getValue());
+					break;
+				}
+			}
+		}
+		
+		if(eveningResult != null) {
+			result.get(24).setValue(eveningResult.getValue());
+		}
+		if(morningResult != null) {
+			result.get(25).setValue(morningResult.getValue());
+		}
+		if(noonResult != null) {
+			result.get(26).setValue(noonResult.getValue());
+		}
+		
+		return result;
+	}
+    
 }
