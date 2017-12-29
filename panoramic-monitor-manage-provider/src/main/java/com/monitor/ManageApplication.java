@@ -1,5 +1,7 @@
 package com.monitor;
 
+import com.cloud.util.LoggerUtils;
+import com.cloud.util.TLogger;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -23,8 +25,10 @@ import org.springframework.web.filter.CorsFilter;
 @EnableAutoConfiguration(exclude = {SecurityAutoConfiguration.class})
 @ComponentScan(basePackages = {"com.cloud", "com.monitor"})
 public class ManageApplication {
+    private static final transient TLogger DB_LOGGER = LoggerUtils.getLogger(ManageApplication.class);
     public static void main(String[] args) {
         SpringApplication.run(ManageApplication.class, args);
+        DB_LOGGER.warn("ManageApplication started successfully");
     }
 
     @Bean

@@ -114,7 +114,6 @@ public class DruidDbConfig {
     }
 
     @Bean
-    @Primary
     public DataSource masterDataSource() {
         DruidDataSource datasource = new DruidDataSource();
         datasource.setUrl(masterUrl);
@@ -145,7 +144,6 @@ public class DruidDbConfig {
         return datasource;
     }
     @Bean
-    @Primary
     public DataSource slaveDataSource() {
         DruidDataSource datasource = new DruidDataSource();
         datasource.setUrl(slaveUrl);

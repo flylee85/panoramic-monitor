@@ -22,7 +22,7 @@ zuul:
       serviceId: monitor-invoke
       sensitive-headers: Cookie,Set-Cookie
     users:
-      path: /user/**
+      path: /users/**
       serviceId: monitor-user
       sensitive-headers: Cookie,Set-Cookie
     tasks:

@@ -19,7 +19,7 @@ import javax.annotation.Resource;
  *@author xuegang
  * 2017/12/27.
  */
-@Service("PanoramicDataVerificationService")
+@Service("panoramicDataVerificationService")
 @Transactional(readOnly = true,rollbackFor = ServiceException.class)
 public class PanoramicDataVerificationServiceImpl extends AbstractService<PanoramicDataVerification> implements PanoramicDataVerificationService {
     @Autowired
