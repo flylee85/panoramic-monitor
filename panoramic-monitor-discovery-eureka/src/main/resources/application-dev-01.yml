@@ -18,10 +18,10 @@ eureka:
   client:
     healthcheck:
           enabled: true
-    registerWithEureka: false
+    registerWithEureka: true
     fetchRegistry: false
     serviceUrl:
-      defaultZone: http://user:user@${eureka.instance.hostname}:${server.port}/eureka/
+      defaultZone: http://user:user@${eureka.instance.hostname}:8761/eureka/,http://user:user@${eureka.instance.hostname}:8762/eureka/
 #spring:
 # devtools:
 #    restart:
