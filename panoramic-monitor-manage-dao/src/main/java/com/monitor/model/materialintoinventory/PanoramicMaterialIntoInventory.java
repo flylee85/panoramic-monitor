@@ -3,6 +3,9 @@ package com.monitor.model.materialintoinventory;
 import java.util.Date;
 import javax.persistence.*;
 
+/**
+ * @author summer
+ */
 @Table(name = "panoramic_material_into_inventory")
 public class PanoramicMaterialIntoInventory {
     /**

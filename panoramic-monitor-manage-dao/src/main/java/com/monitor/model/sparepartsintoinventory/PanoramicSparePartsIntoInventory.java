@@ -3,6 +3,9 @@ package com.monitor.model.sparepartsintoinventory;
 import java.util.Date;
 import javax.persistence.*;
 
+/**
+ * @author summer
+ */
 @Table(name = "panoramic_spare_parts_into_inventory")
 public class PanoramicSparePartsIntoInventory {
     /**

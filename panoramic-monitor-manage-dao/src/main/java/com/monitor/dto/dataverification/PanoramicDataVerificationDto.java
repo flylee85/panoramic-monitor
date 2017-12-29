@@ -3,6 +3,9 @@ package com.monitor.dto.dataverification;
 import java.io.Serializable;
 
 
+/**
+ * @author summer
+ */
 public class PanoramicDataVerificationDto implements Serializable{
 
 	private static final long serialVersionUID = 1L;

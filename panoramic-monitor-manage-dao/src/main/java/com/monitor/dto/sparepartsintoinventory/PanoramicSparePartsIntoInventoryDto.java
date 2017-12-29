@@ -3,6 +3,9 @@ package com.monitor.dto.sparepartsintoinventory;
 import java.io.Serializable;
 import com.cloud.model.BaseObject;
 
+/**
+ * @author summer
+ */
 public class PanoramicSparePartsIntoInventoryDto extends BaseObject{
     
 	private static final long serialVersionUID = 1L;

@@ -6,6 +6,9 @@ import org.springframework.stereotype.Repository;
 import com.cloud.core.Mapper;
 import com.monitor.model.dataverification.PanoramicDataVerification;
 
+/**
+ * @author summer
+ */
 @Repository("dataVerificationMapper")
 public interface PanoramicDataVerificationMapper extends Mapper<PanoramicDataVerification> {
 	

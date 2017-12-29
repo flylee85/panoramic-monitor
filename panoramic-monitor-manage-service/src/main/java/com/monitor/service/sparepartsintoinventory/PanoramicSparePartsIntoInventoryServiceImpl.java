@@ -17,7 +17,7 @@ import java.util.List;
 
 
 /**
- *xuegang
+ *@author xuegang
  * 2017/12/26.
  */
 @Service("sparePartsIntoInventoryService")

@@ -1,5 +1,6 @@
 package com.monitor.service.dataverification;
 
+import com.cloud.core.ServiceException;
 import com.monitor.mapper.dataverification.PanoramicDataVerificationMapper;
 import com.monitor.model.dataverification.PanoramicDataVerification;
 import com.monitor.api.dataverification.PanoramicDataVerificationService;
@@ -15,11 +16,11 @@ import javax.annotation.Resource;
 
 
 /**
- *xuegang
+ *@author xuegang
  * 2017/12/27.
  */
-@Service
-@Transactional
+@Service("PanoramicDataVerificationService")
+@Transactional(readOnly = true,rollbackFor = ServiceException.class)
 public class PanoramicDataVerificationServiceImpl extends AbstractService<PanoramicDataVerification> implements PanoramicDataVerificationService {
     @Autowired
     @Qualifier("dataVerificationMapper")

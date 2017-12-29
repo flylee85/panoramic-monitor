@@ -6,6 +6,7 @@ import com.monitor.api.materialintoinventory.PanoramicMaterialIntoInventoryServi
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 
+import com.monitor.web.controller.base.AbstractAnnotationController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,12 +14,12 @@ import javax.annotation.Resource;
 import java.util.List;
 
 /**
-*xuegang
+*@author xuegang
 * 2017/12/27.
 */
 @RestController
 @RequestMapping("/panoramic/material/into/inventory")
-public class PanoramicMaterialIntoInventoryController {
+public class PanoramicMaterialIntoInventoryController extends AbstractAnnotationController {
    @Autowired
     private PanoramicMaterialIntoInventoryService panoramicMaterialIntoInventoryService;
 

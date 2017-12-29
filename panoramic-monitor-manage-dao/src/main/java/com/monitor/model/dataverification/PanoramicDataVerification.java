@@ -3,6 +3,9 @@ package com.monitor.model.dataverification;
 import java.util.Date;
 import javax.persistence.*;
 
+/**
+ * @author summer
+ */
 @Table(name = "panoramic_data_verification")
 public class PanoramicDataVerification {
     /**

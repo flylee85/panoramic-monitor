@@ -13,7 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 
 /**
- *xuegang
+ *@author xuegang
  * 2017/12/27.
  */
 @Service("materialIntoInventoryService")

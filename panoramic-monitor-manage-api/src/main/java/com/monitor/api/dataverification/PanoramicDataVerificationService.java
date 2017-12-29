@@ -5,7 +5,7 @@ import com.cloud.core.Service;
 
 
 /**
-*xuegang
+*@author xuegang
 * 2017/12/27.
 */
 public interface PanoramicDataVerificationService extends Service<PanoramicDataVerification> {

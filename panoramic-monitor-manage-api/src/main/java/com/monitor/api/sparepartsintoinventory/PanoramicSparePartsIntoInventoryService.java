@@ -9,7 +9,7 @@ import com.cloud.core.Service;
 
 
 /**
-*xuegang
+*@author xuegang
 * 2017/12/26.
 */
 public interface PanoramicSparePartsIntoInventoryService extends Service<PanoramicSparePartsIntoInventory> {

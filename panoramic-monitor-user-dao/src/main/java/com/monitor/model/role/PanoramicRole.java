@@ -3,6 +3,9 @@ package com.monitor.model.role;
 import javax.persistence.*;
 import java.util.Date;
 
+/**
+ * @author summer
+ */
 @Table(name = "panoramic_role")
 public class PanoramicRole {
     /**

@@ -21,8 +21,10 @@ import java.sql.SQLException;
 public class DruidDbConfig {
     private Logger logger = LoggerFactory.getLogger(DruidDbConfig.class);
 
-    @Value("${dev.spring.datasource.url}")
-    private String dbUrl;
+    @Value("${dev.spring.datasource.masterurl}")
+    private String masterUrl;
+    @Value("${dev.spring.datasource.slaveurl}")
+    private String slaveUrl;
 
     @Value("${dev.spring.datasource.username}")
     private String username;
@@ -83,7 +85,70 @@ public class DruidDbConfig {
     @Primary
     public DataSource dataSource() {
         DruidDataSource datasource = new DruidDataSource();
-        datasource.setUrl(dbUrl);
+        datasource.setUrl(masterUrl);
+        datasource.setUsername(username);
+        datasource.setPassword(password);
+        datasource.setDriverClassName(driverClassName);
+
+        //configuration
+        datasource.setInitialSize(initialSize);
+        datasource.setMinIdle(minIdle);
+        datasource.setMaxActive(maxActive);
+        datasource.setMaxWait(maxWait);
+        datasource.setTimeBetweenEvictionRunsMillis(timeBetweenEvictionRunsMillis);
+        datasource.setMinEvictableIdleTimeMillis(minEvictableIdleTimeMillis);
+        datasource.setValidationQuery(validationQuery);
+        datasource.setTestWhileIdle(testWhileIdle);
+        datasource.setTestOnBorrow(testOnBorrow);
+        datasource.setTestOnReturn(testOnReturn);
+        datasource.setPoolPreparedStatements(poolPreparedStatements);
+        datasource.setMaxPoolPreparedStatementPerConnectionSize(maxPoolPreparedStatementPerConnectionSize);
+        try {
+            datasource.setFilters(filters);
+        } catch (SQLException e) {
+            logger.error("druid configuration initialization filter", e);
+        }
+        datasource.setConnectionProperties(connectionProperties);
+
+        return datasource;
+    }
+
+    @Bean
+    @Primary
+    public DataSource masterDataSource() {
+        DruidDataSource datasource = new DruidDataSource();
+        datasource.setUrl(masterUrl);
+        datasource.setUsername(username);
+        datasource.setPassword(password);
+        datasource.setDriverClassName(driverClassName);
+
+        //configuration
+        datasource.setInitialSize(initialSize);
+        datasource.setMinIdle(minIdle);
+        datasource.setMaxActive(maxActive);
+        datasource.setMaxWait(maxWait);
+        datasource.setTimeBetweenEvictionRunsMillis(timeBetweenEvictionRunsMillis);
+        datasource.setMinEvictableIdleTimeMillis(minEvictableIdleTimeMillis);
+        datasource.setValidationQuery(validationQuery);
+        datasource.setTestWhileIdle(testWhileIdle);
+        datasource.setTestOnBorrow(testOnBorrow);
+        datasource.setTestOnReturn(testOnReturn);
+        datasource.setPoolPreparedStatements(poolPreparedStatements);
+        datasource.setMaxPoolPreparedStatementPerConnectionSize(maxPoolPreparedStatementPerConnectionSize);
+        try {
+            datasource.setFilters(filters);
+        } catch (SQLException e) {
+            logger.error("druid configuration initialization filter", e);
+        }
+        datasource.setConnectionProperties(connectionProperties);
+
+        return datasource;
+    }
+    @Bean
+    @Primary
+    public DataSource slaveDataSource() {
+        DruidDataSource datasource = new DruidDataSource();
+        datasource.setUrl(slaveUrl);
         datasource.setUsername(username);
         datasource.setPassword(password);
         datasource.setDriverClassName(driverClassName);

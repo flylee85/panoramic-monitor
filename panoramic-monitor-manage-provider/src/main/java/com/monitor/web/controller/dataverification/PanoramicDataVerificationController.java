@@ -6,25 +6,28 @@ import com.monitor.dto.dataverification.PanoramicDataVerificationDto;
 import com.monitor.model.dataverification.PanoramicDataVerification;
 import com.monitor.service.dataverification.PanoramicDataVerificationServiceImpl;
 
+import com.monitor.web.controller.base.AbstractAnnotationController;
 import io.swagger.annotations.ApiOperation;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.List;
 
 /**
-*xuegang
+*@author xuegang
 * 2017/12/27.
 */
 @RestController
 @RequestMapping("/panoramic/data/verification")
-public class PanoramicDataVerificationController {
+public class PanoramicDataVerificationController extends AbstractAnnotationController {
    @Autowired
+    @Qualifier("panoramicDataVerificationService")
     private PanoramicDataVerificationService panoramicDataVerificationService;
 
     @PostMapping

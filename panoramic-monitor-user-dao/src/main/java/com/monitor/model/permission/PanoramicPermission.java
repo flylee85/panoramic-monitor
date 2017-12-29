@@ -2,6 +2,9 @@ package com.monitor.model.permission;
 
 import javax.persistence.*;
 
+/**
+ * @author summer
+ */
 @Table(name = "panoramic_permission")
 public class PanoramicPermission {
     /**

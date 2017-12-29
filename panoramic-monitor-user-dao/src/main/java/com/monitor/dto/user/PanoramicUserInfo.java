@@ -1,5 +1,8 @@
 package com.monitor.dto.user;
 
+/**
+ * @author summer
+ */
 public class PanoramicUserInfo {
 
 	/**

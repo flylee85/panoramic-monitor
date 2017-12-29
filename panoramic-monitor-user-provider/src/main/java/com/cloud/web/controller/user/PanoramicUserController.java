@@ -20,7 +20,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- * Created by @author sunmer on 2017/11/07.
+ * Created by @author summer on 2017/11/07.
  */
 @RestController
 @RequestMapping("/user")
