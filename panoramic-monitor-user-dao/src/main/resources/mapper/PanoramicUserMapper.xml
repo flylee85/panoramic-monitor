@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.panoramic.user.mapper.PanoramicUserMapper">
-  <resultMap id="BaseResultMap" type="com.panoramic.user.entity.PanoramicUser">
+<mapper namespace="com.monitor.model.user.PanoramicUserMapper">
+  <resultMap id="BaseResultMap" type="com.monitor.model.user.PanoramicUser">
     <!--
       WARNING - @mbg.generated
     -->

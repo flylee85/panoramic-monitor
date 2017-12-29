@@ -27,7 +27,6 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -119,6 +118,22 @@ public class WebMvcConfigurer extends WebMvcConfigurerAdapter {
         super.addResourceHandlers(registry);
     }
 
+    //测试
+    public class LoginInterceptor extends HandlerInterceptorAdapter {
+
+        @Override
+        public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
+                throws Exception {
+            
+            response.setHeader("Access-Control-Allow-Headers", "X-Requested-With, accept, content-type, xxxx");
+            response.setHeader("Access-Control-Allow-Methods", "GET, HEAD, POST, PUT, DELETE, TRACE, OPTIONS, PATCH");
+            response.setHeader("Access-Control-Allow-Origin", "*");  
+           
+            
+            return true;
+        }
+    }
+    
     //添加拦截器
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
@@ -129,6 +144,7 @@ public class WebMvcConfigurer extends WebMvcConfigurerAdapter {
                 @Override
                 public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
                     String sign = request.getParameter("sign");
+
                     //验证签名
                     if (StringUtils.isNotEmpty(sign) && validateSign(request, sign)) {
                         return true;

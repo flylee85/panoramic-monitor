@@ -20,35 +20,35 @@ public class PanoramicRoleController {
     @Autowired
     private PanoramicRoleService panoramicRoleService;
 
-    @PostMapping
-    public ResultCode<PanoramicRole> add(PanoramicRole panoramicRole) {
-        panoramicRoleService.save(panoramicRole);
-        return ResultCode.getSuccessReturn(panoramicRole);
-    }
-
-    @DeleteMapping("/{id}")
-    public ResultCode<PanoramicRole> delete(@PathVariable Integer id) {
-        panoramicRoleService.deleteById(id);
-        return ResultCode.getSuccessMap();
-    }
-
-    @PutMapping
-    public ResultCode<PanoramicRole> update(PanoramicRole panoramicRole) {
-        panoramicRoleService.update(panoramicRole);
-        return ResultCode.getSuccessReturn(panoramicRole);
-    }
-
-    @GetMapping("/{id}")
-    public ResultCode<PanoramicRole> detail(@PathVariable Integer id) {
-        PanoramicRole panoramicRole = panoramicRoleService.findById(id);
-        return ResultCode.getSuccessReturn(panoramicRole);
-    }
-
-    @GetMapping
-    public ResultCode<PageInfo> list(Integer page, Integer size) {
-        PageHelper.startPage(page, size);
-        List<PanoramicRole> list = panoramicRoleService.findAll();
-        PageInfo pageInfo = new PageInfo(list);
-        return ResultCode.getSuccessReturn(pageInfo);
-    }
+//    @PostMapping
+//    public ResultCode<PanoramicRole> add(PanoramicRole panoramicRole) {
+//        panoramicRoleService.save(panoramicRole);
+//        return ResultCode.getSuccessReturn(panoramicRole);
+//    }
+//
+//    @DeleteMapping("/{id}")
+//    public ResultCode<PanoramicRole> delete(@PathVariable Integer id) {
+//        panoramicRoleService.deleteById(id);
+//        return ResultCode.getSuccessMap();
+//    }
+//
+//    @PutMapping
+//    public ResultCode<PanoramicRole> update(PanoramicRole panoramicRole) {
+//        panoramicRoleService.update(panoramicRole);
+//        return ResultCode.getSuccessReturn(panoramicRole);
+//    }
+//
+//    @GetMapping("/{id}")
+//    public ResultCode<PanoramicRole> detail(@PathVariable Integer id) {
+//        PanoramicRole panoramicRole = panoramicRoleService.findById(id);
+//        return ResultCode.getSuccessReturn(panoramicRole);
+//    }
+//
+//    @GetMapping
+//    public ResultCode<PageInfo> list(Integer page, Integer size) {
+//        PageHelper.startPage(page, size);
+//        List<PanoramicRole> list = panoramicRoleService.findAll();
+//        PageInfo pageInfo = new PageInfo(list);
+//        return ResultCode.getSuccessReturn(pageInfo);
+//    }
 }

@@ -18,7 +18,7 @@ import javax.sql.DataSource;
 import java.util.Properties;
 
 /**
- * @author summer
+ * Mybatis & Mapper & PageHelper 配置
  */
 @Configuration
 public class MybatisConfigurer {

@@ -2,10 +2,14 @@ package com.monitor.web.controller.productmaterials;
 
 import com.cloud.api.vo.ResultCode;
 import com.monitor.api.productmaterials.PanoramicProductMaterialsService;
+import com.monitor.dto.productmaterials.PanoramicProductMaterialsDto;
 import com.monitor.model.productmaterials.PanoramicProductMaterials;
 import com.monitor.web.controller.base.AbstractAnnotationController;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
@@ -50,6 +54,13 @@ public class PanoramicProductMaterialsController extends AbstractAnnotationContr
     @GetMapping("/{id}")
     public ResultCode<PanoramicProductMaterials> detail(@PathVariable("id") Integer id) {
         PanoramicProductMaterials panoramicProductMaterials = productMaterialsService.findById(id);
+        return ResultCode.getSuccessReturn(panoramicProductMaterials);
+    }
+    
+    @ApiOperation(value = "分时段数据查询", notes = "根据时间查询分时段库存内容")
+    @GetMapping("/ProductMaterials/{date}")
+    public ResultCode<List<PanoramicProductMaterialsDto>> realTimeProductMaterials(@PathVariable String date) {
+    		List<PanoramicProductMaterialsDto> panoramicProductMaterials = productMaterialsService.listProductMaterialsRealTime(date);
         return ResultCode.getSuccessReturn(panoramicProductMaterials);
     }
 

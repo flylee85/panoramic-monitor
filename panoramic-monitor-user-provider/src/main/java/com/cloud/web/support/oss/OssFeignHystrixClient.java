@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 /**
- * @author summer
+ * 必须配置开启断路器,默认是false
  */
 @FeignClient(name = "oss-provider", fallback = OssFeignHystrixClient.HystrixClientFallback.class)
 public interface OssFeignHystrixClient {
