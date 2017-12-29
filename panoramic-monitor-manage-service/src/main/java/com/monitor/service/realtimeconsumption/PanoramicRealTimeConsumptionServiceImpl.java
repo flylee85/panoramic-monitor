@@ -6,6 +6,7 @@ import com.cloud.util.DateUtil;
 import com.cloud.util.LoggerUtils;
 import com.cloud.util.TLogger;
 import com.monitor.api.realtimeconsumption.PanoramicRealTimeConsumptionService;
+import com.monitor.dto.realtimeconsumption.PanoramicRealTimeConsumptionDto;
 import com.monitor.mapper.realtimeconsumption.PanoramicRealTimeConsumptionMapper;
 import com.monitor.mapper.realtimeconsumptiongather.PanoramicRealTimeConsumptionGatherMapper;
 import com.monitor.model.realtimeconsumption.PanoramicRealTimeConsumption;
@@ -18,6 +19,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import tk.mybatis.mapper.entity.Condition;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -123,4 +125,53 @@ public class PanoramicRealTimeConsumptionServiceImpl extends AbstractService<Pan
             DB_LOGGER.warn("实时消耗数据汇总到汇总表{},出现异常" + e);
         }
     }
+
+	@Override
+	@Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
+	public List<PanoramicRealTimeConsumptionDto> listRealTimeConsumption(String date) {
+		//数据库中获取分时段数据
+		
+		List<PanoramicRealTimeConsumptionDto> dbresult = realTimeConsumptionMapper.listRealTimeConsumption(date);
+		
+		//数据库后去早中晚的合计数据
+		PanoramicRealTimeConsumptionDto eveningResult = 
+				realTimeConsumptionMapper.listRealTimeConsumptionAmount(date,"00","07");
+		
+		PanoramicRealTimeConsumptionDto morningResult = 
+				realTimeConsumptionMapper.listRealTimeConsumptionAmount(date,"08","15");
+		
+		PanoramicRealTimeConsumptionDto noonResult = 
+				realTimeConsumptionMapper.listRealTimeConsumptionAmount(date,"16","23");
+		
+		List<PanoramicRealTimeConsumptionDto> result = new ArrayList<PanoramicRealTimeConsumptionDto>();
+	
+		//分时段数据
+		for(int i = 0; i < 27;i++) {
+			PanoramicRealTimeConsumptionDto data = new PanoramicRealTimeConsumptionDto();
+			data.setHour(i);
+			data.setValue(0.0);
+			result.add(data);
+		}
+		
+		for(int i = 0;i < result.size()-3;i++ ) {
+			for(int j=0;j<dbresult.size();j++) {
+				if (result.get(i).getHour() == dbresult.get(j).getHour()) {
+					result.get(i).setValue(dbresult.get(j).getValue());
+					break;
+				}
+			}
+		}
+		
+		if(eveningResult != null) {
+			result.get(24).setValue(eveningResult.getValue());
+		}
+		if(morningResult != null) {
+			result.get(25).setValue(morningResult.getValue());
+		}
+		if(noonResult != null) {
+			result.get(26).setValue(noonResult.getValue());
+		}
+		
+		return result;
+	}
 }

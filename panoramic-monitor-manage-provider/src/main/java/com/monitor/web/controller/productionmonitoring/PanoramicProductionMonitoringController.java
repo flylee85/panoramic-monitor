@@ -2,8 +2,11 @@ package com.monitor.web.controller.productionmonitoring;
 
 import com.cloud.api.vo.ResultCode;
 import com.monitor.api.productionmonitoring.PanoramicProductionMonitoringService;
+import com.monitor.dto.productionmonitoring.Productionmonitoringinfo;
 import com.monitor.model.productionmonitoring.PanoramicProductionMonitoring;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
@@ -42,7 +45,14 @@ public class PanoramicProductionMonitoringController {
         PanoramicProductionMonitoring panoramicProductionMonitoring = productionMonitoringService.findById(id);
         return ResultCode.getSuccessReturn(panoramicProductionMonitoring);
     }
-
+    
+    @ApiOperation(value = "生产监控内容查询", notes = "根据时间查询各种物料消耗内容")
+    @GetMapping("/content/{date}")
+    public ResultCode<Productionmonitoringinfo> content(@PathVariable String date) {
+    		Productionmonitoringinfo panoramicProductionMonitoring = productionMonitoringService.findByDate(date);
+        return ResultCode.getSuccessReturn(panoramicProductionMonitoring);
+    }
+    
 //    @GetMapping
 //    public ResultCode<PageInfo> list(Integer page, Integer size) {
 //        PageHelper.startPage(page, size);

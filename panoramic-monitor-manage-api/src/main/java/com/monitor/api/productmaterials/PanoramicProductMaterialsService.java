@@ -1,6 +1,7 @@
 package com.monitor.api.productmaterials;
 
 import com.cloud.core.Service;
+import com.monitor.dto.productmaterials.PanoramicProductMaterialsDto;
 import com.monitor.model.productmaterials.PanoramicProductMaterials;
 
 import java.util.List;
@@ -39,4 +40,11 @@ public interface PanoramicProductMaterialsService extends Service<PanoramicProdu
      * @return
      */
     Double summaryByCodeAndDate(String code, String date);
+    
+    /**指定时间的产品在库量
+     * @param date
+     * @return
+     */
+    List<PanoramicProductMaterialsDto> listProductMaterialsRealTime(String date);
+    
 }

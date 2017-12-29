@@ -3,6 +3,7 @@ package com.monitor.service.productionmonitoring;
 import com.cloud.core.AbstractService;
 import com.cloud.core.ServiceException;
 import com.monitor.api.productionmonitoring.PanoramicProductionMonitoringService;
+import com.monitor.dto.productionmonitoring.Productionmonitoringinfo;
 import com.monitor.mapper.productionmonitoring.PanoramicProductionMonitoringMapper;
 import com.monitor.model.productionmonitoring.PanoramicProductionMonitoring;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,5 +23,11 @@ public class PanoramicProductionMonitoringServiceImpl extends AbstractService<Pa
     @Autowired
     @Qualifier("productionMonitoringMapper")
     private PanoramicProductionMonitoringMapper productionMonitoringMapper;
+
+	@Override
+	public Productionmonitoringinfo findByDate(String date) {		
+		Productionmonitoringinfo result = productionMonitoringMapper.findByDate(date);
+        return result;
+	}
 
 }
