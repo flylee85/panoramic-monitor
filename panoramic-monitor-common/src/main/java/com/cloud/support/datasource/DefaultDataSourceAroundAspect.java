@@ -1,10 +1,13 @@
 package com.cloud.support.datasource;
 
+import org.springframework.stereotype.Component;
+
 import java.lang.reflect.Method;
 
 /**
  * @author summer
  */
+@Component("dataSourceAspect")
 public class DefaultDataSourceAroundAspect extends GenericAnnotationAroundAspect {
 
     @Override
