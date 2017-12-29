@@ -1,8 +1,15 @@
 package com.cloud;
 
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.security.SecurityAutoConfiguration;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.security.authentication.AuthenticationEventPublisher;
+import org.springframework.security.authentication.DefaultAuthenticationEventPublisher;
+import org.springframework.security.config.annotation.ObjectPostProcessor;
 
 import com.cloud.util.LoggerUtils;
 import com.cloud.util.TLogger;
@@ -16,6 +23,8 @@ import com.cloud.util.TLogger;
  */
 @SpringBootApplication
 @EnableDiscoveryClient
+@EnableAutoConfiguration(exclude={SecurityAutoConfiguration.class})
+@ComponentScan(basePackages = {"com.monitor","com.cloud" })
 public class UserApplication {
 	private static final transient TLogger DB_LOGGER = LoggerUtils.getLogger(UserApplication.class);
 
@@ -23,4 +32,9 @@ public class UserApplication {
 		SpringApplication.run(UserApplication.class, args);
 		DB_LOGGER.warn("UserApplication started successfully");
 	}
+	
+    @Bean
+    public AuthenticationEventPublisher authenticationEventPublisher() {
+        return new DefaultAuthenticationEventPublisher();
+    }
 }

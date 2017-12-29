@@ -6,6 +6,8 @@ security:
   user:
     name: user
     password: user
+  basic:
+    enabled: false
 eureka:
   client:
     serviceUrl:

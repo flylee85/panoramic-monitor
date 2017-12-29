@@ -1,9 +1,12 @@
-package com.panoramic.user.acl.role;
+package com.monitor.service.role;
 
 import com.cloud.core.AbstractService;
+import com.monitor.mapper.role.PanoramicRoleMapper;
+import com.monitor.model.role.PanoramicRole;
 import com.panoramic.user.acl.PanoramicRoleService;
-import com.panoramic.user.entity.PanoramicRole;
-import com.panoramic.user.mapper.PanoramicRoleMapper;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -14,10 +17,11 @@ import javax.annotation.Resource;
  * @author sunmer
  * on 2017/11/06.
  */
-@Service("panoramicRoleService")
+@Service("roleService")
 @Transactional
 public class PanoramicRoleServiceImpl extends AbstractService<PanoramicRole> implements PanoramicRoleService {
-    @Resource
+	@Autowired
+    @Qualifier("roleMapper")
     private PanoramicRoleMapper panoramicRoleMapper;
 
 }

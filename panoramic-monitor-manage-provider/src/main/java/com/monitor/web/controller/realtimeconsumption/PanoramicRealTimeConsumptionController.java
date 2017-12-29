@@ -2,11 +2,15 @@ package com.monitor.web.controller.realtimeconsumption;
 
 import com.cloud.api.vo.ResultCode;
 import com.monitor.api.realtimeconsumption.PanoramicRealTimeConsumptionService;
+import com.monitor.dto.realtimeconsumption.PanoramicRealTimeConsumptionDto;
 import com.monitor.model.realtimeconsumption.PanoramicRealTimeConsumption;
 import com.monitor.web.controller.base.AbstractAnnotationController;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
@@ -51,6 +55,14 @@ public class PanoramicRealTimeConsumptionController extends AbstractAnnotationCo
     public ResultCode<PanoramicRealTimeConsumption> detail(@PathVariable Integer id) {
         PanoramicRealTimeConsumption panoramicRealTimeConsumption = realTimeConsumptionService.findById(id);
         return ResultCode.getSuccessReturn(panoramicRealTimeConsumption);
+    }
+    
+    @ApiOperation(value = "分时段数据查询", notes = "根据时间查询分时段库存内容")
+    @GetMapping("/realTime/{date}")
+    public ResultCode<List<PanoramicRealTimeConsumptionDto>> realTime(@PathVariable String date) {
+    		List<PanoramicRealTimeConsumptionDto> panoramicRealTimeConsumption = 
+    				realTimeConsumptionService.listRealTimeConsumption(date);
+    		return ResultCode.getSuccessReturn(panoramicRealTimeConsumption);
     }
 
 //    @GetMapping
