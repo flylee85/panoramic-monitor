@@ -7,7 +7,7 @@ security:
     name: user
     password: user
 
-quartzConfig: quartz-dev.properties
+quartzConfig: quartz.properties
 feign:  # 必须配置开启断路器,默认false
    hystrix:
      enabled: true
