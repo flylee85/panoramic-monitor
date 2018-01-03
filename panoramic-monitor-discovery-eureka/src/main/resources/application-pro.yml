@@ -1,5 +1,5 @@
 server:
-  port: 8761
+  port: 8082
 spring:
   application:
     name: monitor-eureka    # 项目名称尽量用小写
@@ -21,7 +21,7 @@ eureka:
     registerWithEureka: true
     fetchRegistry: true
     serviceUrl:
-      defaultZone: http://user:user@${eureka.instance.hostname}:8761/eureka/,http://user:user@${eureka.instance.hostname}:8762/eureka/
+      defaultZone: http://user:user@${eureka.instance.hostname}:8082/eureka/,http://user:user@${eureka.instance.hostname}:8082/eureka/
 #spring:
 # devtools:
 #    restart:
