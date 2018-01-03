@@ -4,6 +4,7 @@ import com.cloud.api.vo.ResultCode;
 import com.monitor.model.productofflinemeasurement.PanoramicProductOfflineMeasurement;
 import com.monitor.model.realtimeconsumption.PanoramicRealTimeConsumption;
 
+import com.monitor.web.controller.base.AbstractAnnotationController;
 import io.swagger.annotations.ApiOperation;
 
 import com.monitor.api.productofflinemeasurement.PanoramicProductOfflineMeasurementService;
@@ -14,6 +15,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -25,8 +27,9 @@ import java.util.List;
 */
 @RestController
 @RequestMapping("/panoramic/product/offline/measurement")
-public class PanoramicProductOfflineMeasurementController {
+public class PanoramicProductOfflineMeasurementController extends AbstractAnnotationController{
    @Autowired
+   @Qualifier("productOfflineMeasurementService")
     private PanoramicProductOfflineMeasurementService panoramicProductOfflineMeasurementService;
 
     @PostMapping
