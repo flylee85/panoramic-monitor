@@ -23,6 +23,20 @@ public class PanoramicDailyInventorySummary extends BaseObject {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    public Integer gettId() {
+        return tId;
+    }
+
+    public void settId(Integer tId) {
+        this.tId = tId;
+    }
+
+    /**
+     * tid
+     */
+    @Column(name = "t_id")
+    private Integer tId;
+
     /**
      * 物料名称
      */
