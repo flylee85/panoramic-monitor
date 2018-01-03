@@ -17,6 +17,7 @@ public interface PanoramicDailyInventorySummaryMapper extends Mapper<PanoramicDa
      * 查询7天数据
      *
      * @param code
+     * @param number
      * @param date
      * @return
      */

@@ -40,11 +40,5 @@ public interface PanoramicProductMaterialsService extends Service<PanoramicProdu
      * @return
      */
     Double summaryByCodeAndDate(String code, String date);
-    
-    /**指定时间的产品在库量
-     * @param date
-     * @return
-     */
-    List<PanoramicProductMaterialsDto> listProductMaterialsRealTime(String date);
-    
+      
 }

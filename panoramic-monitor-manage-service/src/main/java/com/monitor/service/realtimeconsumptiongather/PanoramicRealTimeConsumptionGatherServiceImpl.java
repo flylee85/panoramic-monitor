@@ -29,13 +29,19 @@ import java.util.List;
 public class PanoramicRealTimeConsumptionGatherServiceImpl extends AbstractService<PanoramicRealTimeConsumptionGather>
 		implements PanoramicRealTimeConsumptionGatherService {
 	/**
-	 * 磷钙 111
+	 * 磷钙
 	 */
-	public static final String HG_01_XY_750510 = "HG01XY750510";
+	public static final String HG_01_XY_7505 = "HG01XY7505";
 	/**
 	 * 普钙
 	 */
-	public static final String HG_01_XY_750410 = "HG01XY750410";
+	public static final String HG_01_XY_7504 = "HG01XY7504";
+	
+	/**
+	 * 磷矿粉
+	 */
+	public static final String HG_01_XY_7500 = "HG01XY7500";
+	
 	@Autowired
 	@Qualifier("inventoryEntryService")
 	PanoramicInventoryEntryService inventoryEntryService;
@@ -90,11 +96,16 @@ public class PanoramicRealTimeConsumptionGatherServiceImpl extends AbstractServi
 		return gather;
 	}
 
+	/**
+	 * 取得指定时间的消耗值
+	 */
 	@Override
 	@Transactional(propagation = Propagation.NOT_SUPPORTED, rollbackFor = Exception.class)
 	public PanoramicRealTimeConsumptionGatherDto queryDayStatisticsByDate(String date, String code) {
-		if (StringUtils.equalsIgnoreCase(code, HG_01_XY_750510)
-				|| StringUtils.equalsIgnoreCase(code, HG_01_XY_750410)) {
+		if (StringUtils.equalsIgnoreCase(code, HG_01_XY_7505)
+				|| StringUtils.equalsIgnoreCase(code, HG_01_XY_7504) 
+				|| StringUtils.equalsIgnoreCase(code, HG_01_XY_7500)
+				) {
 			return this.queryStatisticsForDay(date, code);
 		}
 
@@ -133,7 +144,7 @@ public class PanoramicRealTimeConsumptionGatherServiceImpl extends AbstractServi
 		gather.setRecordValues(0.0);
 		gather.setCtime(DateUtil.parseTimestamp(date, "yyyy-MM-dd"));
 		gather.setGatherTime(date);
-		gather.setName(StringUtils.equalsIgnoreCase(code, HG_01_XY_750510) ? "磷钙" : "普钙");
+		gather.setName(StringUtils.equalsIgnoreCase(code, HG_01_XY_7505) ? "磷钙" : "普钙");
 		gather.setDeleteFlag(1);
 		gather.setDtime(null);
 		gather.setfId("2");

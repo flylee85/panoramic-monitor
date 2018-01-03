@@ -13,6 +13,7 @@ import com.monitor.model.materialthresholdconfiguration.PanoramicMaterialThresho
 public interface PanoramicMaterialThresholdConfigurationService extends Service<PanoramicMaterialThresholdConfiguration> {
 
     /**
+     * 物料上下线内容取得
      * @param code
      * @param category
      * @return

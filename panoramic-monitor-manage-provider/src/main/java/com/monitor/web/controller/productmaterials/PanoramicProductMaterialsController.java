@@ -57,13 +57,6 @@ public class PanoramicProductMaterialsController extends AbstractAnnotationContr
         return ResultCode.getSuccessReturn(panoramicProductMaterials);
     }
     
-    @ApiOperation(value = "分时段数据查询", notes = "根据时间查询分时段库存内容")
-    @GetMapping("/ProductMaterials/{date}")
-    public ResultCode<List<PanoramicProductMaterialsDto>> realTimeProductMaterials(@PathVariable String date) {
-    		List<PanoramicProductMaterialsDto> panoramicProductMaterials = productMaterialsService.listProductMaterialsRealTime(date);
-        return ResultCode.getSuccessReturn(panoramicProductMaterials);
-    }
-
 //    @GetMapping
 //    public ResultCode<PageInfo> list(Integer page, Integer size) {
 //        PageHelper.startPage(page, size);

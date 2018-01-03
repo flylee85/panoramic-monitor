@@ -28,12 +28,11 @@ public interface PanoramicRealTimeConsumptionService extends Service<PanoramicRe
      * @return
      */
     List<PanoramicRealTimeConsumption> listRealTimeConsumptionCategoryTask();
-
+    
     /**
-     * 查询当天早中晚班中的分时数据
+     * 消耗数据定时任务汇总
+     * @return
      */
-    List<PanoramicRealTimeConsumptionDto> listRealTimeConsumption(String date);
-
 	void realTimeConsumptionSummaryTask();
     
 }

@@ -18,6 +18,12 @@ import com.monitor.model.sparepartsintoinventory.PanoramicSparePartsIntoInventor
 @Repository("sparePartsIntoInventoryMapper")
 public interface PanoramicSparePartsIntoInventoryMapper extends Mapper<PanoramicSparePartsIntoInventory> {
 	
+	/**
+	 * 指定时间获取本周的备件出入库统计值内容
+	 * @param date
+	 * @param inOutType
+	 * @return
+	 */
 	@Select("SELECT\n" + 
 			"	name AS name ,\n" + 
 			"	round(sum(amount_price),2) AS summary\n" + 
@@ -34,8 +40,13 @@ public interface PanoramicSparePartsIntoInventoryMapper extends Mapper<Panoramic
 			"	name\n" + 
 			"ORDER BY\n" + 
 			"	summary DESC")
-	List<PanoramicSparePartsIntoInventoryDto> findWeeklySummary(@Param("date") String date, @Param("in_out_type") String in_out_type);
+	List<PanoramicSparePartsIntoInventoryDto> findWeeklySummary(@Param("date") String date, @Param("in_out_type") String inOutType);
 	
+	/**
+	 * 指定时间获取本月最大5件的备件出入库货值统计值
+	 * @param date
+	 * @return
+	 */
 	@Select("SELECT\n" + 
 			"	name as name,\n" + 
 			"	round(sum(case when in_out_type  = 0 then amount_price else 0 end),2) as summary\n" + 
@@ -54,6 +65,11 @@ public interface PanoramicSparePartsIntoInventoryMapper extends Mapper<Panoramic
 			"LIMIT 5")
 	List<PanoramicSparePartsIntoInventoryDto> findMonthlyMaxPrice(@Param("date") String date);
 	
+	/**
+	 * 指定时间获取本月最大5件的备件出入库量值统计值
+	 * @param date
+	 * @return
+	 */
 	@Select("SELECT\n" + 
 			"	name as name,\n" + 
 			"	round(sum(case when in_out_type  = 0 then value else 0 end),2) as summary\n" + 

@@ -6,7 +6,6 @@ import com.monitor.dto.dataverification.PanoramicDataVerificationDto;
 import com.monitor.model.dataverification.PanoramicDataVerification;
 import com.monitor.service.dataverification.PanoramicDataVerificationServiceImpl;
 
-import com.monitor.web.controller.base.AbstractAnnotationController;
 import io.swagger.annotations.ApiOperation;
 
 import com.github.pagehelper.PageHelper;
@@ -20,14 +19,14 @@ import javax.annotation.Resource;
 import java.util.List;
 
 /**
-*@author xuegang
+* @author gang
 * 2017/12/27.
 */
 @RestController
-@RequestMapping("/panoramic/data/verification")
-public class PanoramicDataVerificationController extends AbstractAnnotationController {
+@RequestMapping("/data/verification")
+public class PanoramicDataVerificationController {
    @Autowired
-    @Qualifier("panoramicDataVerificationService")
+   @Qualifier("dataVerificationService")
     private PanoramicDataVerificationService panoramicDataVerificationService;
 
     @PostMapping
@@ -58,17 +57,24 @@ public class PanoramicDataVerificationController extends AbstractAnnotationContr
         return ResultCode.getSuccessReturn(list);
     }
     
+    @ApiOperation(value = "指定时间查询校验", notes = "根据时间查询数据校验内容")
+    @GetMapping("/{code}/{date}")
+    public ResultCode<PanoramicDataVerificationDto> findContentByDate(@PathVariable String code,@PathVariable String date ) {
+    		PanoramicDataVerificationDto result = panoramicDataVerificationService.findContentByDate(code,date);
+        return ResultCode.getSuccessReturn(result);
+    }
+    
     @ApiOperation(value = "当前月度偏差查询", notes = "根据时间查询当前月度偏差值")
-    @GetMapping("/thismonthbios/{date}")
-    public ResultCode<PanoramicDataVerificationDto> thismonthbios(@PathVariable String date) {
-    		PanoramicDataVerificationDto result = panoramicDataVerificationService.findLastMonthBiosByDate(date);
+    @GetMapping("/thismonthbios/{code}/{date}")
+    public ResultCode<PanoramicDataVerificationDto> thismonthbios(@PathVariable String code,@PathVariable String date) {
+    		PanoramicDataVerificationDto result = panoramicDataVerificationService.findLastMonthBiosByDate(code,date);
         return ResultCode.getSuccessReturn(result);
     }
     
     @ApiOperation(value = "上月度偏差查询", notes = "根据时间查询上月度偏差值")
-    @GetMapping("/lastmonthbios/{date}")
-    public ResultCode<PanoramicDataVerificationDto> lastmonthbios(@PathVariable String date) {
-    		PanoramicDataVerificationDto result = panoramicDataVerificationService.findLastMonthBiosByDate(date);
+    @GetMapping("/lastmonthbios/{code}/{date}")
+    public ResultCode<PanoramicDataVerificationDto> lastmonthbios(@PathVariable String code,@PathVariable String date) {
+    		PanoramicDataVerificationDto result = panoramicDataVerificationService.findLastMonthBiosByDate(code,date);
         return ResultCode.getSuccessReturn(result);
     }
 }

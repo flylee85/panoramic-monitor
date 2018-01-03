@@ -56,14 +56,6 @@ public class PanoramicRealTimeConsumptionController extends AbstractAnnotationCo
         PanoramicRealTimeConsumption panoramicRealTimeConsumption = realTimeConsumptionService.findById(id);
         return ResultCode.getSuccessReturn(panoramicRealTimeConsumption);
     }
-    
-    @ApiOperation(value = "分时段数据查询", notes = "根据时间查询分时段库存内容")
-    @GetMapping("/realTime/{date}")
-    public ResultCode<List<PanoramicRealTimeConsumptionDto>> realTime(@PathVariable String date) {
-    		List<PanoramicRealTimeConsumptionDto> panoramicRealTimeConsumption = 
-    				realTimeConsumptionService.listRealTimeConsumption(date);
-    		return ResultCode.getSuccessReturn(panoramicRealTimeConsumption);
-    }
 
 //    @GetMapping
 //    public ResultCode<PageInfo> list(Integer page, Integer size) {

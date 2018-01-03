@@ -12,8 +12,8 @@ import com.monitor.model.productionmonitoring.PanoramicProductionMonitoring;
 public interface PanoramicProductionMonitoringService extends Service<PanoramicProductionMonitoring> {
 	
     /**
-     * @param code
-     * @param category
+     * 指定时间取得生产监控内容
+     * @param date
      * @return
      */
 	Productionmonitoringinfo findByDate(String date);

@@ -29,6 +29,7 @@ public interface PanoramicInventoryEntryMapper extends Mapper<PanoramicInventory
                                                 @Param("schedule") String schedule);
 
     /**
+     * 根据时间获取前6条数据
      * @param date
      * @return
      */

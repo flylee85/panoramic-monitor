@@ -2,9 +2,10 @@ package com.monitor.dto.dataverification;
 
 import java.io.Serializable;
 
-
 /**
- * @author summer
+ * 
+ * @author gang
+ *
  */
 public class PanoramicDataVerificationDto implements Serializable{
 
@@ -13,32 +14,32 @@ public class PanoramicDataVerificationDto implements Serializable{
 	/**
 	 * 采集计量
 	 */
-	private double value_auto;
+	private double valueAuto;
 	
 	/**
 	 * 出入库计量
 	 */
-	private double value_manual;
+	private double valueManual;
 	
 	/**
 	 * 偏差
 	 */
 	private double bias;
 	
-	public double getValue_auto() {
-		return value_auto;
+	public double getValueAuto() {
+		return valueAuto;
 	}
 	
-	public void setValue_auto(double value_auto) {
-		this.value_auto = value_auto;
+	public void setValueAuto(double valueAuto) {
+		this.valueAuto = valueAuto;
 	}
 	
-	public double getValue_manual() {
-		return value_manual;
+	public double getValueManual() {
+		return valueManual;
 	}
 	
-	public void setValue_manual(double value_manual) {
-		this.value_manual = value_manual;
+	public void setValueManual(double valueManual) {
+		this.valueManual = valueManual;
 	}
 	
 	public double getBias() {

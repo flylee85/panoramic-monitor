@@ -13,8 +13,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 
 /**
- *@author xuegang
- * 2017/12/27.
+ * 
+ * @author gang
+ *
  */
 @Service("materialIntoInventoryService")
 @Transactional(readOnly = true, rollbackFor = ServiceException.class)

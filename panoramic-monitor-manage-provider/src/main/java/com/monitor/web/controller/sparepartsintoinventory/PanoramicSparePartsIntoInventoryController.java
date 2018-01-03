@@ -1,6 +1,5 @@
 package com.monitor.web.controller.sparepartsintoinventory;
 
-import com.monitor.web.controller.base.AbstractAnnotationController;
 import io.swagger.annotations.ApiOperation;
 
 import com.monitor.api.sparepartsintoinventory.PanoramicSparePartsIntoInventoryService;
@@ -13,12 +12,12 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 /**
-*@author xuegang
+* @author gang
 * 2017/12/26.
 */
 @RestController
 @RequestMapping("/panoramic/spare/parts/into/inventory")
-public class PanoramicSparePartsIntoInventoryController extends AbstractAnnotationController {
+public class PanoramicSparePartsIntoInventoryController {
     @Autowired
     @Qualifier("sparePartsIntoInventoryService")
     private PanoramicSparePartsIntoInventoryService panoramicSparePartsIntoInventoryService;

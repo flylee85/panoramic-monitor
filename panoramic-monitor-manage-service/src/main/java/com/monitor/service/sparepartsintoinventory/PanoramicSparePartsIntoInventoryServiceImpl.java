@@ -17,8 +17,9 @@ import java.util.List;
 
 
 /**
- *@author xuegang
- * 2017/12/26.
+ * 
+ * @author gang
+ *
  */
 @Service("sparePartsIntoInventoryService")
 @Transactional(readOnly = true, rollbackFor = ServiceException.class)
@@ -27,13 +28,15 @@ public class PanoramicSparePartsIntoInventoryServiceImpl extends AbstractService
     @Qualifier("sparePartsIntoInventoryMapper")
     private PanoramicSparePartsIntoInventoryMapper panoramicSparePartsIntoInventoryMapper;
 
-    private List<PanoramicSparePartsIntoInventoryDto> findWeeklySummary(String date,String in_out_type) {
+    private final int INT_MAX_5 = 5;
+    private final int INT_MAX_6 = 6;
+    private List<PanoramicSparePartsIntoInventoryDto> findWeeklySummary(String date,String inouttype) {
     	//入库记录数据库查询
-    			List<PanoramicSparePartsIntoInventoryDto> dbResult = panoramicSparePartsIntoInventoryMapper.findWeeklySummary(date, in_out_type);
+    			List<PanoramicSparePartsIntoInventoryDto> dbResult = panoramicSparePartsIntoInventoryMapper.findWeeklySummary(date, inouttype);
     			List<PanoramicSparePartsIntoInventoryDto> result = new ArrayList<PanoramicSparePartsIntoInventoryDto>();
     			PanoramicSparePartsIntoInventoryDto temp = new PanoramicSparePartsIntoInventoryDto();
     			double summary = 0.0;
-    			double count_summary = 0.0;
+    			double countSummary = 0.0;
     			
     			//内容设置
     			if(dbResult != null) {
@@ -47,10 +50,10 @@ public class PanoramicSparePartsIntoInventoryServiceImpl extends AbstractService
     					} else {
     						summary += dbResult.get(i).getSummary();
     					}
-    					count_summary += dbResult.get(i).getSummary();
+    					countSummary += dbResult.get(i).getSummary();
     				}
     				
-    				if (dbResult.size() > 5) {
+    				if (dbResult.size() > INT_MAX_5) {
     					temp = new PanoramicSparePartsIntoInventoryDto();
     					temp.setName("其他");
     					temp.setSummary(summary);
@@ -59,8 +62,8 @@ public class PanoramicSparePartsIntoInventoryServiceImpl extends AbstractService
     			}
     			
     			//余下内容设置
-    			if (result.size() <= 5) {
-    				for(int i = result.size() - 1; i < 6; i++) {
+    			if (result.size() <= INT_MAX_5) {
+    				for(int i = result.size() - 1; i < INT_MAX_6; i++) {
     					temp = new PanoramicSparePartsIntoInventoryDto();
     					temp.setName("");
     					temp.setSummary(0.0);
@@ -71,7 +74,7 @@ public class PanoramicSparePartsIntoInventoryServiceImpl extends AbstractService
     			//合计值设定
     			temp = new PanoramicSparePartsIntoInventoryDto();
     			temp.setName("合计值");
-    			temp.setSummary(count_summary);
+    			temp.setSummary(countSummary);
 			result.add(temp);
 			
     			return result;

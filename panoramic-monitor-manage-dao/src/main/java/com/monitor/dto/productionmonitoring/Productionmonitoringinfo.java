@@ -1,7 +1,9 @@
 package com.monitor.dto.productionmonitoring;
 
 /**
- * @author summer
+ * 
+ * @author gang
+ *
  */
 public class Productionmonitoringinfo {
 

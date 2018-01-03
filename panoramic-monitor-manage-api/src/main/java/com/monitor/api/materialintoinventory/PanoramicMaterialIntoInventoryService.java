@@ -5,7 +5,8 @@ import com.cloud.core.Service;
 
 
 /**
-*@author xuegang
+* 物料出入库表
+* @author xuegang
 * 2017/12/27.
 */
 public interface PanoramicMaterialIntoInventoryService extends Service<PanoramicMaterialIntoInventory> {

@@ -4,7 +4,9 @@ import java.util.Date;
 import javax.persistence.*;
 
 /**
- * @author summer
+ * 
+ * @author gang
+ *
  */
 @Table(name = "panoramic_spare_parts_into_inventory")
 public class PanoramicSparePartsIntoInventory {

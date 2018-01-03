@@ -14,18 +14,18 @@ public class PanoramicProductMaterialsDto implements Serializable{
 	    /**
 	     * 时间段
 	     */
-	    private int hour;
+	    private String hour;
 
 		/**
 	     * 汇总值
 	     */
 	    private Double value;
 
-		public int getHour() {
+		public String getHour() {
 			return hour;
 		}
 
-		public void setHour(int hour) {
+		public void setHour(String hour) {
 			this.hour = hour;
 		}
 
