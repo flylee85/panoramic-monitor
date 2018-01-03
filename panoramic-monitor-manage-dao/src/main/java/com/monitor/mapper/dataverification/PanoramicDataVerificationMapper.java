@@ -22,17 +22,17 @@ public interface PanoramicDataVerificationMapper extends Mapper<PanoramicDataVer
 	 * @return
 	 */
 	@Select("SELECT " + 
-			"	round(sum(value_auto),2) as valueAuto" + 
+			"	round(sum(value_auto),2) as valueAuto " + 
 			"FROM " + 
 			"	panoramic_data_verification " + 
 			"WHERE " + 
-			"	NAME = #{name}\n" + 
-			"AND DATE_FORMAT(date , \"%Y-%m-%d\") BETWEEN DATE_ADD( " + 
+			"	code = #{code}\n" + 
+			"AND DATE_FORMAT(date , \'%Y-%m-%d\') BETWEEN DATE_ADD( " + 
 			"	#{date} , " + 
 			"	INTERVAL - DAY(#{date}) + 1 DAY " + 
 			") " + 
 			"AND #{date}")
-	Double findThisMonthAutoSummary(@Param("name") String name,@Param("date") String date);
+	Double findThisMonthAutoSummary(@Param("code") String code,@Param("date") String date);
 
 	/**
 	 * 本月累计出库量
@@ -41,17 +41,17 @@ public interface PanoramicDataVerificationMapper extends Mapper<PanoramicDataVer
 	 * @return
 	 */
 	@Select("SELECT " + 
-			"	round(sum(value_manual),2) as valueManual" + 
+			"	round(sum(value_manual),2) as valueManual " + 
 			"FROM " + 
 			"	panoramic_data_verification " + 
 			"WHERE " + 
-			"	NAME = #{name}\n" + 
+			"	code = #{code}\n" + 
 			"AND DATE_FORMAT(date , \"%Y-%m-%d\") BETWEEN DATE_ADD( " + 
 			"	#{date} , " + 
 			"	INTERVAL - DAY(#{date}) + 1 DAY " + 
 			") " + 
 			"AND #{date}")
-	Double findThisMonthManualSummary(@Param("name") String name,@Param("date") String date);
+	Double findThisMonthManualSummary(@Param("code") String code,@Param("date") String date);
 
 	/**
 	 * 上月累计消耗量
@@ -60,16 +60,16 @@ public interface PanoramicDataVerificationMapper extends Mapper<PanoramicDataVer
 	 * @return
 	 */
 	@Select("SELECT " + 
-			"	round(sum(value_auto),2) as valueAuto" + 
+			"	round(sum(value_auto),2) as valueAuto " + 
 			"FROM " + 
 			"	panoramic_data_verification " + 
 			"WHERE " + 
-			"	NAME = #{name}\n" + 
-			"AND DATE_FORMAT(date , '%Y-%m') = date_format( " + 
+			"	code = #{code}\n" + 
+			"AND DATE_FORMAT(date , \"%Y-%m\") = date_format( " + 
 			"	DATE_SUB(#{date} , INTERVAL 1 MONTH) , " + 
-			"	'%Y-%m' " + 
+			"	\"%Y-%m\" " + 
 			")")
-	Double findLastMonthAutoSummary(@Param("name") String name,@Param("date") String date);
+	Double findLastMonthAutoSummary(@Param("code") String code,@Param("date") String date);
 	
 	/**
 	 * 上月累计生产量
@@ -78,16 +78,16 @@ public interface PanoramicDataVerificationMapper extends Mapper<PanoramicDataVer
 	 * @return
 	 */
 	@Select("SELECT " + 
-			"	round(sum(value_manual),2) as valueManual" + 
+			"	round(sum(value_manual),2) as valueManual " + 
 			"FROM " + 
 			"	panoramic_data_verification " + 
 			"WHERE " + 
-			"	NAME = #{name}\n" + 
-			"AND DATE_FORMAT(date , '%Y-%m') = date_format( " + 
+			"	code = #{code}\n" + 
+			"AND DATE_FORMAT(date , \"%Y-%m\") = date_format( " + 
 			"	DATE_SUB(#{date} , INTERVAL 1 MONTH) , " + 
-			"	'%Y-%m' " + 
+			"	\"%Y-%m\" " + 
 			")")
-	Double findLastMonthManualSummary(@Param("name") String name, @Param("date") String date);
+	Double findLastMonthManualSummary(@Param("code") String code, @Param("date") String date);
 	
 	/**
 	 * 指定时间的计量，记录和偏差值
@@ -102,7 +102,7 @@ public interface PanoramicDataVerificationMapper extends Mapper<PanoramicDataVer
 			"FROM\n" + 
 			"	panoramic_data_verification\n" + 
 			"WHERE\n" + 
-			"	NAME = #{name}\n" + 
-			"AND DATE_FORMAT(date , '%Y-%m-%d') = #{date}")
-	PanoramicDataVerificationDto findContentByDate(@Param("date") String date,@Param("name") String name);
+			"	code = #{code}\n" + 
+			"AND DATE_FORMAT(date , \"%Y-%m-%d\") = #{date}")
+	PanoramicDataVerificationDto findContentByDate(@Param("date") String date,@Param("code") String code);
 }
