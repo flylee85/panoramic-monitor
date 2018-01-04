@@ -7,10 +7,10 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * @author summer
+ * @author 
  */
 @Table(name = "panoramic_system_configurationNew")
-public class PanoramicSystemConfigurationNew extends BaseObject {
+public class PanoramicSystemConfigurationnew extends BaseObject {
     /**
      *
      */
@@ -30,17 +30,33 @@ public class PanoramicSystemConfigurationNew extends BaseObject {
      */
     private Integer warntype;
     /**
+     * WarningName
+     */
+    private String warningname;
+    /**
+     * FactoryName
+     */
+    private String factoryname;
+    /**
+     * SectionName
+     */
+    private String sectionname;
+    /**
+     * DeviceName
+     */
+    private String devicename;
+    /**
      * SourceName
      */
     private String subname;
     /**
      * MaxValue
      */
-    private Integer maxvalue;
+    private Double maxvalue;
     /**
      * MinValue
      */
-    private Integer minvalue;
+    private Double minvalue;
     
     private String databaseaddress;
     private String databasename;
@@ -65,6 +81,10 @@ public class PanoramicSystemConfigurationNew extends BaseObject {
      * intervaltime
      */
     private Integer intervaltime;
+
+    private String strsubevent;
+    private String strsubeventname;
+    private String strsubeventvalue;
     
     
 
@@ -149,7 +169,7 @@ public class PanoramicSystemConfigurationNew extends BaseObject {
      *
      * @return maxvalue - MaxValue
      */
-    public Integer getMaxValue() {
+    public Double getMaxValue() {
     	return maxvalue;    	
     }
     
@@ -159,7 +179,7 @@ public class PanoramicSystemConfigurationNew extends BaseObject {
      *
      * @param maxvalue MaxValue
      */
-    public void setMaxValue(Integer maxvalue) {
+    public void setMaxValue(Double maxvalue) {
         this.maxvalue = maxvalue;
     } 
 
@@ -169,7 +189,7 @@ public class PanoramicSystemConfigurationNew extends BaseObject {
      *
      * @return minvalue - MinValue
      */
-    public Integer getMinValue() {
+    public Double getMinValue() {
     	return minvalue;    	
     }
     
@@ -179,7 +199,7 @@ public class PanoramicSystemConfigurationNew extends BaseObject {
      *
      * @param minvalue MinValue
      */
-    public void setMinValue(Integer minvalue) {
+    public void setMinValue(Double minvalue) {
         this.minvalue = minvalue;
     } 
     
@@ -366,9 +386,9 @@ public class PanoramicSystemConfigurationNew extends BaseObject {
 
 
     /**
-     * 获取Rate
+     * 获取Intervaltime
      *
-     * @return rate - Rate
+     * @return intervaltime - Intervaltime
      */
     public Integer setntervaltime() {
     	return intervaltime;    	
@@ -376,12 +396,151 @@ public class PanoramicSystemConfigurationNew extends BaseObject {
     
 
     /**
-     * 设置Rate
+     * 设置Intervaltime
      *
-     * @param rate Rate
+     * @param intervaltime Intervaltime
      */
     public void setIntervaltime(Integer intervaltime) {
         this.intervaltime = intervaltime;
+    } 
+    
+    
+    /**
+     * 获取StrSubEvent
+     *
+     * @return strsubevent - StrSubEvent
+     */
+    public String getStrSubEvent() {
+    	return strsubevent;    	
+    }
+    
+
+    /**
+     * 设置StrSubEvent
+     *
+     * @param strsubevent StrSubEvent
+     */
+    public void setStrSubEvent(String strsubevent) {
+        this.strsubevent = strsubevent;
+    } 
+    
+    
+    /**
+     * 获取StrSubEventName
+     *
+     * @return strsubeventname - StrSubEventName
+     */
+    public String getStrSubEventName() {
+    	return strsubeventname;    	
+    }
+    
+
+    /**
+     * 设置StrSubEventName
+     *
+     * @param strsubeventname StrSubEventName
+     */
+    public void setStrSubEventName(String strsubeventname) {
+        this.strsubeventname = strsubeventname;
+    } 
+    
+    
+    /**
+     * 获取StrSubEventValue
+     *
+     * @return strsubeventvalue - StrSubEventValue
+     */
+    public String getStrSubEventValue() {
+    	return strsubeventvalue;    	
+    }
+    
+
+    /**
+     * 设置StrSubEventValue
+     *
+     * @param strsubeventvalue StrSubEventValue
+     */
+    public void setStrSubEventValue(String strsubeventvalue) {
+        this.strsubeventvalue = strsubeventvalue;
+    } 
+    
+
+    
+    
+    /**
+     * 获取WarningName
+     *
+     * @return warningname - WarningName
+     */
+    public String getWarningName() {
+    	return warningname;    	
+    }
+    
+
+    /**
+     * 设置WarningName
+     *
+     * @param warningname WarningName
+     */
+    public void setWarningName(String warningname) {
+        this.warningname = warningname;
+    } 
+    
+    /**
+     * 获取FactoryName
+     *
+     * @return factoryname - FactoryName
+     */
+    public String getFactoryName() {
+    	return factoryname;    	
+    }
+    
+
+    /**
+     * 设置FactoryName
+     *
+     * @param warningname FactoryName
+     */
+    public void setFactoryName(String factoryname) {
+        this.factoryname = factoryname;
+    } 
+    
+    /**
+     * 获取SectionName
+     *
+     * @return sectionname - SectionName
+     */
+    public String getSectionName() {
+    	return sectionname;    	
+    }
+    
+
+    /**
+     * 设置SectionName
+     *
+     * @param sectionname SectionName
+     */
+    public void setSectionName(String sectionname) {
+        this.sectionname = sectionname;
+    } 
+
+    /**
+     * 获取DeviceName
+     *
+     * @return devicename - DeviceName
+     */
+    public String getDeviceName() {
+    	return devicename;    	
+    }
+    
+
+    /**
+     * 设置DeviceName
+     *
+     * @param devicename DeviceName
+     */
+    public void setDeviceName(String devicename) {
+        this.devicename = devicename;
     } 
     
     @Override

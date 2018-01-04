@@ -46,6 +46,12 @@ public interface ManageFeignHystrixClient {
     void regularlyRefreshTask();
 
     /**
+     * 获取预警数据
+     */
+    @RequestLine("POST /risk-warning/risk/sqlquery/task")
+    void realTimeScanWarningDataTask();
+
+    /**
      * @author summer
      */
     @Component
@@ -84,6 +90,12 @@ public interface ManageFeignHystrixClient {
         @Override
         public void regularlyRefreshTask() {
             DB_LOGGER.warn("异常出库信息状态定时刷新-调度manage服务发生异常，进入fallback方法{},异常出库信息状态定时刷新失败");
+            return;
+        }
+
+        @Override
+        public void realTimeScanWarningDataTask() {
+            DB_LOGGER.warn("扫描预警数据刷新-调度risk-warning服务发生异常，进入fallback方法{},扫描预警数据刷新失败");
             return;
         }
 
