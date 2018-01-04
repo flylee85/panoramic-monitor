@@ -15,7 +15,7 @@ import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
  */
 @SpringBootApplication
 @EnableEurekaServer
-public class EurekaApplication extends SpringBootServletInitializer {
+public class EurekaApplication  {
     private static final transient TLogger DB_LOGGER = LoggerUtils.getLogger(EurekaApplication.class);
 
     /**
@@ -26,8 +26,4 @@ public class EurekaApplication extends SpringBootServletInitializer {
         DB_LOGGER.warn("EurekaApplication started successfully");
     }
 
-    @Override
-    protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
-        return builder.sources(EurekaApplication.class);
-    }
 }
