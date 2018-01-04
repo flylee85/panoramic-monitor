@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.risk.warning.mapper.PanoramicSystemSqlqueryMapper">
+  <resultMap id="BaseResultMap" type="com.risk.warning.model.PanoramicSystemSqlquery">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="WarnConfigurationID" jdbcType="INTEGER" property="warnconfigurationid" />
+    <result column="QuerySql" jdbcType="VARCHAR" property="querysql" />
+    <result column="Available" jdbcType="BIT" property="available" />
+    <result column="IntervalTime" jdbcType="INTEGER" property="intervaltime" />
+    <result column="LastExecuteTime" jdbcType="TIMESTAMP" property="lastexecutetime" />
+  </resultMap>
+</mapper>

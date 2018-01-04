@@ -8,9 +8,11 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import com.cloud.model.BaseObject;
-
+/**
+ * @author 
+ */
 @Table(name = "panoramic_system_WarningReceiver")
-public class PanoramicSystemWarningReceiver extends BaseObject {
+public class PanoramicWarningReceiver extends BaseObject {
 
     /**
      *
@@ -30,6 +32,8 @@ public class PanoramicSystemWarningReceiver extends BaseObject {
     private String username;
     
     private String email;
+    
+    private Integer level;
     
     /**
      * 获取ID
@@ -83,6 +87,15 @@ public class PanoramicSystemWarningReceiver extends BaseObject {
     
     public void setEmail(String email) {
     	this.email = email;
+    }
+
+
+    public Integer getLevel() {
+    	return level;
+    }
+    
+    public void setLevel(Integer level) {
+    	this.level = level;
     }
     
     @Override

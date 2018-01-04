@@ -7,24 +7,27 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * @author summer
+ * @author 
  */
-@Table(name = "PanoramicSystemWarningQuery")
-public class PanoramicSystemWarningQuery extends BaseObject {
+@Table(name = "PanoramicSystemSqlquery")
+public class PanoramicSystemSqlquery extends BaseObject {
     /**
      *
      */
     private static final long serialVersionUID = 1L;
+    @Id
     /**
      * WarnConfigurationID
      */
     private Integer warnconfigurationid;
     
     private String querysql;
+
+    private Integer available;
     
     private Integer intervaltime;
     
-    private Date executetime;
+    private Date lastexecutetime;
 
     /**
      * 获取WarnConfigurationID
@@ -52,6 +55,14 @@ public class PanoramicSystemWarningQuery extends BaseObject {
     public void setQuerySql(String querysql) {
     	this.querysql = querysql;
     }
+
+    public Integer getAvailable() {
+    	return available;
+    }
+    
+    public void setAvailable(Integer available) {
+    	this.available = available;
+    }
     
   
     public Integer getIntervalTime() {
@@ -62,12 +73,12 @@ public class PanoramicSystemWarningQuery extends BaseObject {
     	this.intervaltime = intervaltime;
     }
     
-    public Date getExecuteTime() {
-    	return executetime;
+    public Date getLastExecuteTime() {
+    	return lastexecutetime;
     }
     
-    public void setExecuteTime(Date executetime) {
-    	this.executetime = executetime;
+    public void setLastExecuteTime(Date lastexecutetime) {
+    	this.lastexecutetime = lastexecutetime;
     } 
     
     @Override

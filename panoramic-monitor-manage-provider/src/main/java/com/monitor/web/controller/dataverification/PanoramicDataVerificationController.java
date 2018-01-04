@@ -67,7 +67,7 @@ public class PanoramicDataVerificationController {
     @ApiOperation(value = "当前月度偏差查询", notes = "根据时间查询当前月度偏差值")
     @GetMapping("/thismonthbios/{code}/{date}")
     public ResultCode<PanoramicDataVerificationDto> thismonthbios(@PathVariable String code,@PathVariable String date) {
-    		PanoramicDataVerificationDto result = panoramicDataVerificationService.findThisMonthBiosByDate(code, date);
+    		PanoramicDataVerificationDto result = panoramicDataVerificationService.findLastMonthBiosByDate(code,date);
         return ResultCode.getSuccessReturn(result);
     }
     

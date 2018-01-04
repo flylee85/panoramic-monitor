@@ -6,17 +6,11 @@
       WARNING - @mbg.generated
     -->
     <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="code" jdbcType="VARCHAR" property="code" />
     <result column="date" jdbcType="TIMESTAMP" property="date" />
     <result column="name" jdbcType="VARCHAR" property="name" />
-    <result column="value_auto" jdbcType="DOUBLE" property="valueAuto" />
+    <result column="value_auto" jdbcType="VARCHAR" property="valueAuto" />
     <result column="value_manual" jdbcType="DOUBLE" property="valueManual" />
-    <result column="bias" jdbcType="VARCHAR" property="bias" />
+    <result column="bias" jdbcType="DOUBLE" property="bias" />
     <result column="logo" jdbcType="VARCHAR" property="logo" />
-    <result column="ctime" jdbcType="TIMESTAMP" property="ctime" />
-    <result column="utime" jdbcType="TIMESTAMP" property="utime" />
-    <result column="dtime" jdbcType="TIMESTAMP" property="dtime" />
-    <result column="delete_flag" jdbcType="INTEGER" property="deleteFlag" />
-    <result column="operator" jdbcType="VARCHAR" property="operator" />
   </resultMap>
 </mapper>

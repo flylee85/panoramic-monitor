@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.risk.warning.mapper.PanoramicWarningReceiverMapper">
+  <resultMap id="BaseResultMap" type="com.risk.warning.model.PanoramicWarningReceiver">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="ID" jdbcType="INTEGER" property="id" />
+    <result column="WarningConfigurationID" jdbcType="INTEGER" property="warningconfigurationid" />
+    <result column="UserID" jdbcType="INTEGER" property="userid" />
+    <result column="UserName" jdbcType="VARCHAR" property="username" />
+    <result column="Email" jdbcType="VARCHAR" property="email" />
+    <result column="Level" jdbcType="INTEGER" property="level" />
+  </resultMap>
+</mapper>

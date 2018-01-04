@@ -14,39 +14,39 @@ public class PanoramicDataVerificationDto implements Serializable{
 	/**
 	 * 采集计量
 	 */
-	private String valueAuto;
+	private double valueAuto;
 	
 	/**
 	 * 出入库计量
 	 */
-	private String valueManual;
+	private double valueManual;
 	
 	/**
 	 * 偏差
 	 */
-	private String bias;
+	private double bias;
 	
-	public String getValueAuto() {
+	public double getValueAuto() {
 		return valueAuto;
 	}
 	
-	public void setValueAuto(String valueAuto) {
+	public void setValueAuto(double valueAuto) {
 		this.valueAuto = valueAuto;
 	}
 	
-	public String getValueManual() {
+	public double getValueManual() {
 		return valueManual;
 	}
 	
-	public void setValueManual(String valueManual) {
+	public void setValueManual(double valueManual) {
 		this.valueManual = valueManual;
 	}
 	
-	public String getBias() {
+	public double getBias() {
 		return bias;
 	}
 	
-	public void setBias(String bias) {
+	public void setBias(double bias) {
 		this.bias = bias;
 	}
 	

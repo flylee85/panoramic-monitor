@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.risk.warning.mapper.PanoramicSystemConfigurationnewMapper">
+  <resultMap id="BaseResultMap" type="com.risk.warning.model.PanoramicSystemConfigurationnew">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="ID" jdbcType="INTEGER" property="id" />
+    <result column="WarningName" jdbcType="VARCHAR" property="warningname" />
+    <result column="WarnType" jdbcType="INTEGER" property="warntype" />
+    <result column="FactoryName" jdbcType="VARCHAR" property="factoryname" />
+    <result column="SectionName" jdbcType="VARCHAR" property="sectionname" />
+    <result column="DeviceName" jdbcType="VARCHAR" property="devicename" />
+    <result column="SubID" jdbcType="INTEGER" property="subid" />
+    <result column="SubName" jdbcType="VARCHAR" property="subname" />
+    <result column="MinValue" jdbcType="DOUBLE" property="minvalue" />
+    <result column="MaxValue" jdbcType="DOUBLE" property="maxvalue" />
+    <result column="DataBaseAddress" jdbcType="VARCHAR" property="databaseaddress" />
+    <result column="DataBaseName" jdbcType="VARCHAR" property="databasename" />
+    <result column="DataBaseTable" jdbcType="VARCHAR" property="databasetable" />
+    <result column="DataBaseType" jdbcType="VARCHAR" property="databasetype" />
+    <result column="StrEvent" jdbcType="VARCHAR" property="strevent" />
+    <result column="Available" jdbcType="BIT" property="available" />
+    <result column="IntervalTime" jdbcType="INTEGER" property="intervaltime" />
+    <result column="StrSubEvent" jdbcType="VARCHAR" property="strsubevent" />
+    <result column="StrSubEventName" jdbcType="VARCHAR" property="strsubeventname" />
+    <result column="StrSubEventValue" jdbcType="VARCHAR" property="strsubeventvalue" />
+    <result column="StrDateEvent" jdbcType="VARCHAR" property="strdateevent" />
+    <result column="StrDateEventType" jdbcType="INTEGER" property="strdateeventtype" />
+  </resultMap>
+</mapper>

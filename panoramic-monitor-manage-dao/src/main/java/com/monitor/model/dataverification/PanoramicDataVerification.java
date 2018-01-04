@@ -16,11 +16,6 @@ public class PanoramicDataVerification {
     private Integer id;
 
     /**
-     * 物料编码
-     */
-    private String code;
-
-    /**
      * 时间
      */
     private Date date;
@@ -34,7 +29,7 @@ public class PanoramicDataVerification {
      * 采集计量
      */
     @Column(name = "value_auto")
-    private Double valueAuto;
+    private String valueAuto;
 
     /**
      * 出入库记录量
@@ -45,32 +40,12 @@ public class PanoramicDataVerification {
     /**
      * 偏差
      */
-    private String bias;
+    private Double bias;
 
     /**
      * ETL查询标识
      */
     private String logo;
-
-    /**
-     * 创建时间
-     */
-    private Date ctime;
-
-    private Date utime;
-
-    private Date dtime;
-
-    /**
-     * 1(可用) 0（删除）
-     */
-    @Column(name = "delete_flag")
-    private Integer deleteFlag;
-
-    /**
-     * 操作人
-     */
-    private String operator;
 
     /**
      * 获取ID
@@ -88,24 +63,6 @@ public class PanoramicDataVerification {
      */
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    /**
-     * 获取物料编码
-     *
-     * @return code - 物料编码
-     */
-    public String getCode() {
-        return code;
-    }
-
-    /**
-     * 设置物料编码
-     *
-     * @param code 物料编码
-     */
-    public void setCode(String code) {
-        this.code = code;
     }
 
     /**
@@ -149,7 +106,7 @@ public class PanoramicDataVerification {
      *
      * @return value_auto - 采集计量
      */
-    public Double getValueAuto() {
+    public String getValueAuto() {
         return valueAuto;
     }
 
@@ -158,7 +115,7 @@ public class PanoramicDataVerification {
      *
      * @param valueAuto 采集计量
      */
-    public void setValueAuto(Double valueAuto) {
+    public void setValueAuto(String valueAuto) {
         this.valueAuto = valueAuto;
     }
 
@@ -185,7 +142,7 @@ public class PanoramicDataVerification {
      *
      * @return bias - 偏差
      */
-    public String getBias() {
+    public Double getBias() {
         return bias;
     }
 
@@ -194,7 +151,7 @@ public class PanoramicDataVerification {
      *
      * @param bias 偏差
      */
-    public void setBias(String bias) {
+    public void setBias(Double bias) {
         this.bias = bias;
     }
 
@@ -214,87 +171,5 @@ public class PanoramicDataVerification {
      */
     public void setLogo(String logo) {
         this.logo = logo;
-    }
-
-    /**
-     * 获取创建时间
-     *
-     * @return ctime - 创建时间
-     */
-    public Date getCtime() {
-        return ctime;
-    }
-
-    /**
-     * 设置创建时间
-     *
-     * @param ctime 创建时间
-     */
-    public void setCtime(Date ctime) {
-        this.ctime = ctime;
-    }
-
-    /**
-     * @return utime
-     */
-    public Date getUtime() {
-        return utime;
-    }
-
-    /**
-     * @param utime
-     */
-    public void setUtime(Date utime) {
-        this.utime = utime;
-    }
-
-    /**
-     * @return dtime
-     */
-    public Date getDtime() {
-        return dtime;
-    }
-
-    /**
-     * @param dtime
-     */
-    public void setDtime(Date dtime) {
-        this.dtime = dtime;
-    }
-
-    /**
-     * 获取1(可用) 0（删除）
-     *
-     * @return delete_flag - 1(可用) 0（删除）
-     */
-    public Integer getDeleteFlag() {
-        return deleteFlag;
-    }
-
-    /**
-     * 设置1(可用) 0（删除）
-     *
-     * @param deleteFlag 1(可用) 0（删除）
-     */
-    public void setDeleteFlag(Integer deleteFlag) {
-        this.deleteFlag = deleteFlag;
-    }
-
-    /**
-     * 获取操作人
-     *
-     * @return operator - 操作人
-     */
-    public String getOperator() {
-        return operator;
-    }
-
-    /**
-     * 设置操作人
-     *
-     * @param operator 操作人
-     */
-    public void setOperator(String operator) {
-        this.operator = operator;
     }
 }
