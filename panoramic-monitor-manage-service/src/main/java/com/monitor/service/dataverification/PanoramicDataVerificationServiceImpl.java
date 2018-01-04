@@ -7,6 +7,8 @@ import com.monitor.dto.dataverification.PanoramicDataVerificationDto;
 import com.cloud.core.AbstractService;
 import com.cloud.core.ServiceException;
 
+import java.math.BigDecimal;
+
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -26,24 +28,6 @@ public class PanoramicDataVerificationServiceImpl extends AbstractService<Panora
     @Autowired
     @Qualifier("dataVerificationMapper")
     private PanoramicDataVerificationMapper panoramicDataVerificationMapper;
-
-	/**
-	 * 磷钙
-	 */
-	public static final String HG_01_XY_7505 = "HG01XY7505";
-	public static final String NAME_01_XY_7505 = "磷钙";
-	
-	/**
-	 * 普钙
-	 */
-	public static final String HG_01_XY_7504 = "HG01XY7504";
-	public static final String NAME_01_XY_7504 = "普钙";
-	
-	/**
-	 * 磷矿粉
-	 */
-	public static final String HG_01_XY_7500 = "HG01XY7500";
-	public static final String NAME_01_XY_7500 = "磷矿粉";
 	
     /**
      * 指定时间查询月度偏差值
@@ -63,12 +47,12 @@ public class PanoramicDataVerificationServiceImpl extends AbstractService<Panora
 		if(valueAuto == 0) {
 			bios = 0;
 		} else {
-			bios = Math.round((valueAuto - valueManual)/ valueAuto * 1000000)/10000 ;
+			bios = new BigDecimal((valueAuto - valueManual)/ valueAuto * 100).setScale(2,BigDecimal.ROUND_HALF_UP).doubleValue();
 		}
 		
-		result.setValueAuto(valueAuto);
-		result.setValueManual(valueManual);
-		result.setBias(bios);
+		result.setValueAuto(new java.text.DecimalFormat("#.00").format(valueAuto));
+		result.setValueManual(new java.text.DecimalFormat("#.00").format(valueManual));
+		result.setBias(new java.text.DecimalFormat("#.00").format(bios));
 		
 		return result;
 	}
@@ -92,12 +76,12 @@ public class PanoramicDataVerificationServiceImpl extends AbstractService<Panora
 		if(valueAuto == 0) {
 			bios = 0;
 		} else {
-			bios = Math.round((valueAuto - valueManual)/ valueAuto * 1000000)/10000 ;
+			bios = new BigDecimal((valueAuto - valueManual)/ valueAuto * 100).setScale(2,BigDecimal.ROUND_HALF_UP).doubleValue();
 		}
 		
-		result.setValueAuto(valueAuto);
-		result.setValueManual(valueManual);
-		result.setBias(bios);
+		result.setValueAuto(new java.text.DecimalFormat("#.00").format(valueAuto));
+		result.setValueManual(new java.text.DecimalFormat("#.00").format(valueManual));
+		result.setBias(new java.text.DecimalFormat("#.00").format(bios));
 		
 		return result;
 	}

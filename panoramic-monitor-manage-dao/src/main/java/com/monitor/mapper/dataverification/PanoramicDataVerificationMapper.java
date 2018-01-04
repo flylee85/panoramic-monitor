@@ -19,6 +19,7 @@ public interface PanoramicDataVerificationMapper extends Mapper<PanoramicDataVer
 	 * 本月累计消耗量
 	 * @param name
 	 * @param date
+	 * @param code
 	 * @return
 	 */
 	@Select("SELECT " + 
@@ -38,6 +39,7 @@ public interface PanoramicDataVerificationMapper extends Mapper<PanoramicDataVer
 	 * 本月累计出库量
 	 * @param name
 	 * @param date
+	 * @param code
 	 * @return
 	 */
 	@Select("SELECT " + 
@@ -75,6 +77,7 @@ public interface PanoramicDataVerificationMapper extends Mapper<PanoramicDataVer
 	 * 上月累计生产量
 	 * @param name
 	 * @param date
+	 * @param code
 	 * @return
 	 */
 	@Select("SELECT " + 
@@ -93,12 +96,13 @@ public interface PanoramicDataVerificationMapper extends Mapper<PanoramicDataVer
 	 * 指定时间的计量，记录和偏差值
 	 * @param name
 	 * @param date
+	 * @param code
 	 * @return
 	 */
 	@Select("SELECT\n" + 
-			"	value_auto as valueAuto,\n" + 
-			"	value_manual as valueManual,\n" + 
-			"	bias\n" + 
+			"	format(value_auto,2) as valueAuto,\n" + 
+			"	format(value_manual,2) as valueManual,\n" + 
+			"	format(bias*100,2) as bias \n" + 
 			"FROM\n" + 
 			"	panoramic_data_verification\n" + 
 			"WHERE\n" + 
