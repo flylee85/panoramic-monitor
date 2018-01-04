@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.risk.warning.mapper.PanoramicEmailSendInfoMapper">
+  <resultMap id="BaseResultMap" type="com.risk.warning.model.PanoramicEmailSendInfo">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="ID" jdbcType="INTEGER" property="id" />
+    <result column="ReceiverName" jdbcType="VARCHAR" property="receivername" />
+    <result column="ReceiverEmail" jdbcType="VARCHAR" property="receiveremail" />
+    <result column="WarningSourceID" jdbcType="INTEGER" property="warningsourceid" />
+    <result column="SendStatus" jdbcType="INTEGER" property="sendstatus" />
+    <result column="Reason" jdbcType="VARCHAR" property="reason" />
+    <result column="SendTime" jdbcType="TIMESTAMP" property="sendtime" />
+  </resultMap>
+</mapper>
