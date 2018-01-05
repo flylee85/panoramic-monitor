@@ -62,14 +62,14 @@ public class PanoramicSparePartsIntoInventoryServiceImpl extends AbstractService
     			}
     			
     			//余下内容设置
-    			if (result.size() <= INT_MAX_5) {
-    				for(int i = result.size() - 1; i < INT_MAX_6; i++) {
-    					temp = new PanoramicSparePartsIntoInventoryDto();
-    					temp.setName("");
-    					temp.setSummary(0.0);
-    					result.add(temp);
-    				}
-    			}
+//    			if (result.size() <= INT_MAX_5) {
+//    				for(int i = result.size() - 1; i < INT_MAX_6; i++) {
+//    					temp = new PanoramicSparePartsIntoInventoryDto();
+//    					temp.setName("");
+//    					temp.setSummary(0.0);
+//    					result.add(temp);
+//    				}
+//    			}
     			
     			//合计值设定
     			temp = new PanoramicSparePartsIntoInventoryDto();

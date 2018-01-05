@@ -155,7 +155,7 @@ public class PanoramicDailyInventorySummaryServiceImpl extends AbstractService<P
     public PanoramicDailyInventorySummary queryByDateAndCode(String code, String date) {
         Condition condition = new Condition(PanoramicDailyInventorySummary.class, false);
         condition.createCriteria()
-                .andCondition(" code ='" + code + "' and f_id=2 and delete_flag=1 and utime > '"
+                .andCondition(" code ='" + code + "' and f_id=2 and delete_flag=1 and utime >= '"
                         + DateUtil.parseTimestamp(date, "yyyy-MM-dd") + "' and  utime < '"
                         + DateUtil.parseTimestamp(DateUtil.getSpecifiedDayBefor(date, -1), "yyyy-MM-dd") + "'");
         condition.setOrderByClause(" utime desc ");
@@ -168,7 +168,7 @@ public class PanoramicDailyInventorySummaryServiceImpl extends AbstractService<P
     public List<PanoramicDailyInventorySummary> listByDateAndCode(String date) {
         Condition condition = new Condition(PanoramicDailyInventorySummary.class, false);
         condition.createCriteria()
-                .andCondition(" f_id=2 and delete_flag=1 and utime > '" + DateUtil.parseTimestamp(date, "yyyy-MM-dd")
+                .andCondition(" f_id=2 and delete_flag=1 and utime >= '" + DateUtil.parseTimestamp(date, "yyyy-MM-dd")
                         + "' and  utime < '"
                         + DateUtil.parseTimestamp(DateUtil.getSpecifiedDayBefor(date, -1), "yyyy-MM-dd") + "'");
         condition.setOrderByClause(" utime desc ");
