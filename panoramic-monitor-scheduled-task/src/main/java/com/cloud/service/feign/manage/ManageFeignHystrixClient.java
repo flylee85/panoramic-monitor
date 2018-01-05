@@ -48,8 +48,15 @@ public interface ManageFeignHystrixClient {
     /**
      * 获取预警数据
      */
-    @RequestLine("POST /risk-warning/risk/sqlquery/task")
+    @RequestLine("POST /risk-/Scan/Warning/Data/task")
     void realTimeScanWarningDataTask();
+
+    /**
+     * 处理预警数据
+     */
+    @RequestLine("POST /risk-warning/Deal/Warning/Data/task")
+    void realTimedealWarningDataTask();
+
 
     /**
      * @author summer
@@ -95,6 +102,11 @@ public interface ManageFeignHystrixClient {
 
         @Override
         public void realTimeScanWarningDataTask() {
+            DB_LOGGER.warn("扫描预警数据刷新-调度risk-warning服务发生异常，进入fallback方法{},扫描预警数据刷新失败");
+            return;
+        }
+        @Override
+        public void realTimedealWarningDataTask() {
             DB_LOGGER.warn("扫描预警数据刷新-调度risk-warning服务发生异常，进入fallback方法{},扫描预警数据刷新失败");
             return;
         }

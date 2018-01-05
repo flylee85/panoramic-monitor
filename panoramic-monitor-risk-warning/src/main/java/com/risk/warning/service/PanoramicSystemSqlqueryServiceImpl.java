@@ -46,7 +46,7 @@ public class PanoramicSystemSqlqueryServiceImpl extends AbstractService<Panorami
     private PanoramicWarningDataMapper warningDataMapper;
     
     @Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
-    public void regularlScanWarningData() {
+    public void realTimeScanWarningDataTask() {
     	 try {
              //查询出数据库中需要执行的SQL语句
              List<PanoramicSystemSqlquery> QueryList = systemSqlqueryMapper.GetStrSqlQuery();
@@ -55,22 +55,17 @@ public class PanoramicSystemSqlqueryServiceImpl extends AbstractService<Panorami
  	   				List<PanoramicWarningData> WarningSourceList = warningDataMapper.GetSourceData(warningquery.getQuerySql());
  	   				
  	   				//更新SQL语句执行时间
- 	   			systemSqlqueryMapper.UpdateLastexcuteTime(warningquery.getWarnConfigurationID());
+ 	   				systemSqlqueryMapper.UpdateLastexcuteTime(warningquery.getWarnConfigurationID());
  	   				if(WarningSourceList != null) {
  	   					for (PanoramicWarningData  SourceData : WarningSourceList) {
  	   						//扫描出的预警数据插入预警数据库
- 	   						System.out.println("开始出入数据");
- 	   						System.out.println(String.valueOf(SourceData.getCtime()));
- 	   					warningDataMapper.AddWarningSource(SourceData.getEventName(),SourceData.getStrEvent(), SourceData.getEventValue(), SourceData.getStatus(),SourceData.getCtime(),SourceData.getSourceId(),warningquery.getWarnConfigurationID(),1);
+ 	   						warningDataMapper.AddWarningSource(SourceData.getEventName(),SourceData.getStrEvent(), SourceData.getEventValue(), SourceData.getStatus(),SourceData.getCtime(),SourceData.getSourceId(),warningquery.getWarnConfigurationID(),1);
  	   					}
  	   				}
                 }
              }
-
-	         	DB_LOGGER.warn("OK");
          } catch (Exception e) {
-
-         	DB_LOGGER.warn(String.valueOf(e));
+         	DB_LOGGER.warn("操作异常!");
          }
     }
 }

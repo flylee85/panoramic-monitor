@@ -21,13 +21,13 @@ import com.cloud.util.TLogger;
 import com.risk.warning.api.PanoramicSystemSqlqueryService;
 
 /**
- * 实时消耗数据汇总到汇总表
+ * 扫描预警数据
  *
- * @author summer 定时任务必须实现Job接口
+ * @author  定时任务必须实现Job接口
  */
 //@Component
-public class panoramicSystemSqlqueryTask implements Job {
-    private static final transient TLogger DB_LOGGER = LoggerUtils.getLogger(panoramicSystemSqlqueryTask.class);
+public class RealTimeScanWarningDataTask implements Job {
+    private static final transient TLogger DB_LOGGER = LoggerUtils.getLogger(RealTimeScanWarningDataTask.class);
     @Autowired
     @Qualifier("panoramicSystemSqlqueryService")
     private PanoramicSystemSqlqueryService panoramicSystemSqlqueryService;
@@ -35,9 +35,11 @@ public class panoramicSystemSqlqueryTask implements Job {
     @Override
     public void execute(JobExecutionContext context) throws JobExecutionException {
         try {
-        	DB_LOGGER.warn("abc");
+            DB_LOGGER.warn("<----------扫描预警数据定时刷新开始---------->");
+        	panoramicSystemSqlqueryService.realTimeScanWarningDataTask();
+            DB_LOGGER.warn("<----------扫描预警数据定时刷新刷新结束---------->");
         } catch (Exception e) {
-            DB_LOGGER.warn("");
+        	DB_LOGGER.warn("扫描预警数据定时刷新定时刷新出错{}" + e);
         }
     }
 
