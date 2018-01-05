@@ -7,6 +7,8 @@ package com.risk.warning.service;
 
 import com.cloud.core.AbstractService;
 import com.cloud.core.ServiceException;
+import com.cloud.util.LoggerUtils;
+import com.cloud.util.TLogger;
 import com.risk.warning.api.PanoramicWarningReceiverService;
 import com.risk.warning.mapper.PanoramicWarningReceiverMapper;
 import com.risk.warning.mapper.PanoramicWarningDataMapper;
@@ -36,6 +38,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Service("panoramicWarningReceiverService")
 @Transactional(readOnly = true, rollbackFor = ServiceException.class)
 public class PanoramicWarningReceiverServiceImpl extends AbstractService<PanoramicWarningReceiver>  implements PanoramicWarningReceiverService {
+	private static final transient TLogger DB_LOGGER = LoggerUtils.getLogger(PanoramicSystemSqlqueryServiceImpl.class);
     
     @Autowired
     @Qualifier("warningDataMapper")
@@ -70,7 +73,7 @@ public class PanoramicWarningReceiverServiceImpl extends AbstractService<Panoram
 	   					}
 	   				}
          } catch (Exception e) {
-        	 System.out.println("操作异常");
+          	DB_LOGGER.warn("操作异常!");
          }
     }
     
