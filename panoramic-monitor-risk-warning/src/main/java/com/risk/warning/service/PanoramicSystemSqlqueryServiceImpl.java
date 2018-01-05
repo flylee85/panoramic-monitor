@@ -45,6 +45,7 @@ public class PanoramicSystemSqlqueryServiceImpl extends AbstractService<Panorami
     @Qualifier("warningDataMapper")
     private PanoramicWarningDataMapper warningDataMapper;
     
+    @Override
     @Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
     public void realTimeScanWarningDataTask() {
     	 try {

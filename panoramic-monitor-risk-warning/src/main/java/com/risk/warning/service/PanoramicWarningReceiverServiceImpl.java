@@ -51,6 +51,7 @@ public class PanoramicWarningReceiverServiceImpl extends AbstractService<Panoram
     private PanoramicEmailSendInfoMapper emailSendInfoMapper;
     
       
+    @Override
     @Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
     public void regularlDealWarningData() {
     	 try {
@@ -100,6 +101,7 @@ public class PanoramicWarningReceiverServiceImpl extends AbstractService<Panoram
 
         // 获取默认session对象
         Session session = Session.getDefaultInstance(properties,new Authenticator(){
+            @Override
             public PasswordAuthentication getPasswordAuthentication()
             {
              return new PasswordAuthentication(fromEmailAddress, fromEmailPassword); //发件人邮件用户名、密码
