@@ -26,6 +26,44 @@ public class PanoramicMaterialIntoInventory {
      * 物料编码
      */
     private String code;
+    /**
+     * 责任人
+     */
+    private String personLiable;
+
+    /**
+     * @return
+     */
+    public String getPersonLiable() {
+        return personLiable;
+    }
+
+    /**
+     * @param personLiable
+     */
+    public void setPersonLiable(String personLiable) {
+        this.personLiable = personLiable;
+    }
+
+    /**
+     * @return
+     */
+    public String getInOutCompany() {
+        return inOutCompany;
+    }
+
+    /**
+     * @param inOutCompany
+     */
+    public void setInOutCompany(String inOutCompany) {
+        this.inOutCompany = inOutCompany;
+    }
+
+    /**
+     * 出入库单位
+
+     */
+    private String inOutCompany;
 
     /**
      * 出入库时间
