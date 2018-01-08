@@ -78,4 +78,13 @@ public class PanoramicSparePartsIntoInventoryController {
         List<PanoramicSparePartsIntoInventoryDto> list = panoramicSparePartsIntoInventoryService.findMonthlyMaxValue(date);
         return ResultCode.getSuccessReturn(list);
     }
+    
+    @ApiOperation(value = "当日备品备件入出库量", notes = "仓库监管-备品备件库 当日入出库量")
+    @GetMapping("/{date}/{type}")
+	public ResultCode<List<PanoramicSparePartsIntoInventory>> listDayInventory(@PathVariable("date") String date,
+			@PathVariable("type") String type) {
+		List<PanoramicSparePartsIntoInventory> list = panoramicSparePartsIntoInventoryService.listDayInventory(date,
+				type);
+		return ResultCode.getSuccessReturn(list);
+	}
 }
