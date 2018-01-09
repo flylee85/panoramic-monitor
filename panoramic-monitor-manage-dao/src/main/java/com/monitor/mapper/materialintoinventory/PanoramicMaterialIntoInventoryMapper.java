@@ -79,6 +79,7 @@ public interface PanoramicMaterialIntoInventoryMapper extends Mapper<PanoramicMa
 	
 	/**
 	 * 指定时间入出库总量以及最后更新时间
+	 * @param code 
 	 * @param type
 	 * @param date
 	 * @return

@@ -37,4 +37,16 @@ public class PanoramicSparePartsMaterialsServiceImpl extends AbstractService<Pan
 		return lstResult;
 	}
 
+	@Override
+	public List<PanoramicSparePartsMaterials> listHighValueByDate(String date) {
+		List<PanoramicSparePartsMaterials> lstResult = panoramicSparePartsMaterialsMapper.listHighValueByDate(date);
+		return lstResult;
+	}
+
+	@Override
+	public List<PanoramicSparePartsMaterials> listLowValueByDate(String date) {
+		List<PanoramicSparePartsMaterials> lstResult = panoramicSparePartsMaterialsMapper.listLowValueByDate(date);
+		return lstResult;
+	}
+
 }

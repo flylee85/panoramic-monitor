@@ -62,5 +62,21 @@ public class PanoramicSparePartsMaterialsController {
     public ResultCode<List<PanoramicSparePartsMaterials>> listSummaryByDate(@PathVariable("date") String date) {
         List<PanoramicSparePartsMaterials> listPanoramicSparePartsMaterials = panoramicSparePartsMaterialsService.listSummaryByDate(date);
         return ResultCode.getSuccessReturn(listPanoramicSparePartsMaterials);
-    } 
+    }
+    
+    @ApiOperation(value = "当日高库存列表", notes = "仓库监管-备品备件库货值高库存列表")
+    @GetMapping("/summary/high/detail/{date}")
+    public ResultCode<List<PanoramicSparePartsMaterials>> listHighValueByDate(@PathVariable("date") String date) {
+        List<PanoramicSparePartsMaterials> listPanoramicSparePartsMaterials = 
+        		panoramicSparePartsMaterialsService.listHighValueByDate(date);
+        return ResultCode.getSuccessReturn(listPanoramicSparePartsMaterials);
+    }
+    
+    @ApiOperation(value = "当日低库存列表", notes = "仓库监管-备品备件库货值低库存列表")
+    @GetMapping("/summary/low/detail/{date}")
+    public ResultCode<List<PanoramicSparePartsMaterials>> listLowValueByDate(@PathVariable("date") String date) {
+        List<PanoramicSparePartsMaterials> listPanoramicSparePartsMaterials = 
+        		panoramicSparePartsMaterialsService.listLowValueByDate(date);
+        return ResultCode.getSuccessReturn(listPanoramicSparePartsMaterials);
+    }
 }

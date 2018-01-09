@@ -25,5 +25,19 @@ public interface PanoramicSparePartsMaterialsService extends Service<PanoramicSp
 	 * @return
 	 */
 	List<PanoramicSparePartsMaterials> listSummaryByDate(String date);
+	
+	/**
+	 * 获取当日高库存列表
+	 * @param date
+	 * @return
+	 */
+	List<PanoramicSparePartsMaterials> listHighValueByDate(String date);
+	
+	/**
+	 * 获取当日低库存列表
+	 * @param date
+	 * @return
+	 */
+	List<PanoramicSparePartsMaterials> listLowValueByDate(String date);
 
 }

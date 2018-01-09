@@ -53,4 +53,44 @@ public interface PanoramicSparePartsMaterialsMapper extends Mapper<PanoramicSpar
 			"LIMIT 10")
 	List<PanoramicSparePartsMaterials> listSummaryByDate(@Param("date") String date);
 	
+	/**
+	 * 备品备件中高库存前10列表
+	 * @param date
+	 * @return
+	 */
+	@Select("SELECT\n" + 
+			"	NAME AS NAME ,\n" + 
+			"	reference_price AS referencePrice ,\n" + 
+			"	inventory AS inventory\n" + 
+			"FROM\n" + 
+			"	panoramic_spare_parts_materials\n" + 
+			"WHERE\n" + 
+			"	delete_flag = 1\n" + 
+			"AND f_id = 2\n" + 
+			"AND DATE_FORMAT(ctime , '%Y-%m-%d') = #{date}\n" + 
+			"ORDER BY\n" + 
+			"	inventory desc\n" + 
+			"LIMIT 10")
+	List<PanoramicSparePartsMaterials> listHighValueByDate(@Param("date") String date);
+	
+	/**
+	 * 备品备件中低库存前10列表
+	 * @param date
+	 * @return
+	 */
+	@Select("SELECT\n" + 
+			"	NAME AS NAME ,\n" + 
+			"	reference_price AS referencePrice ,\n" + 
+			"	inventory AS inventory\n" + 
+			"FROM\n" + 
+			"	panoramic_spare_parts_materials\n" + 
+			"WHERE\n" + 
+			"	delete_flag = 1\n" + 
+			"AND f_id = 2\n" + 
+			"AND DATE_FORMAT(ctime , '%Y-%m-%d') = #{date}\n" + 
+			"ORDER BY\n" + 
+			"	inventory\n" + 
+			"LIMIT 10")
+	List<PanoramicSparePartsMaterials> listLowValueByDate(@Param("date") String date);
+	
 }
