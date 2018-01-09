@@ -50,18 +50,21 @@ public class PanoramicSystemSqlqueryServiceImpl extends AbstractService<Panorami
     public void realTimeScanWarningDataTask() {
     	 try {
              //查询出数据库中需要执行的SQL语句
-             List<PanoramicSystemSqlquery> QueryList = systemSqlqueryMapper.GetStrSqlQuery();
+             List<PanoramicSystemSqlquery> QueryList = systemSqlqueryMapper.getStrSqlQuery();
 	 		   	if (QueryList != null) {
  	   			for (PanoramicSystemSqlquery warningquery : QueryList) {
  	   				List<PanoramicWarningData> WarningSourceList = warningDataMapper.GetSourceData(warningquery.getQuerySql());
  	   				
  	   				//更新SQL语句执行时间
- 	   				systemSqlqueryMapper.UpdateLastexcuteTime(warningquery.getWarnConfigurationID());
+ 	   				systemSqlqueryMapper.updateLastexcuteTime(warningquery.getWarnConfigurationID());
  	   				if(WarningSourceList != null) {
  	   					for (PanoramicWarningData  SourceData : WarningSourceList) {
  	   						//扫描出的预警数据插入预警数据库
- 	   						warningDataMapper.AddWarningSource(SourceData.getEventName(),SourceData.getStrEvent(), SourceData.getEventValue(), SourceData.getStatus(),SourceData.getCtime(),SourceData.getSourceId(),warningquery.getWarnConfigurationID(),1);
+ 	   						warningDataMapper.addWarningSource(SourceData.getEventName(),SourceData.getStrEvent(), SourceData.getEventValue(), SourceData.getStatus(),SourceData.getCtime(),SourceData.getSourceId(),warningquery.getWarnConfigurationID(),1);
+ 	   						warningDataMapper.finishDataForNoSendEmail(warningquery.getWarnConfigurationID());
  	   					}
+ 	   				}else {
+ 	   					warningDataMapper.finishDataForSendEmail(warningquery.getWarnConfigurationID());
  	   				}
                 }
              }

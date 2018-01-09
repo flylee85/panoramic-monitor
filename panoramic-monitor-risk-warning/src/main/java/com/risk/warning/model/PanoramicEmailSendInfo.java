@@ -42,7 +42,8 @@ public class PanoramicEmailSendInfo extends BaseObject {
     private Integer warningsourceid;
 
     /**
-     * SendStatus
+     * SendStatus 
+     * 1：成功 2:失败
      */
     private Integer sendstatus;
     

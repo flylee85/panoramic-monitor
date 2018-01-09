@@ -17,17 +17,47 @@ public class PanoramicWarningData extends BaseObject {
    private static final long serialVersionUID = 1L;
    
 
+   /**
+    * ID
+    */
    @Id
    @GeneratedValue(strategy = GenerationType.IDENTITY)
    private Integer id;
+   /**
+    * EventName
+    */
    private String eventname;
+   /**
+    * StrEvent
+    */
    private String strevent;
+   /**
+    * EventValue
+    */
    private Double eventvalue;
+   /**
+    * Status
+    */
    private Integer status;
+   /**
+    * Ctime
+    */
    private Timestamp  ctime;
+   /**
+    * Utime
+    */
    private Timestamp  utime;
+   /**
+    * SourceID
+    */
    private Integer sourceid;
+   /**
+    * Level
+    */
    private Integer level;
+   /**
+    * WarningName
+    */
    private String warningname;
    /**
     * FactoryName
@@ -263,7 +293,7 @@ public class PanoramicWarningData extends BaseObject {
     * @return factoryname - FactoryName
     */
    public String getFactoryName() {
-   	return factoryname;    	
+   		return factoryname;    	
    }
    
 
@@ -301,7 +331,7 @@ public class PanoramicWarningData extends BaseObject {
     * @return devicename - DeviceName
     */
    public String getDeviceName() {
-   	return devicename;    	
+   		return devicename;    	
    }
    
 
@@ -321,7 +351,7 @@ public class PanoramicWarningData extends BaseObject {
     * @return maxvalue - MaxValue
     */
    public Double getMaxValue() {
-   	return maxvalue;    	
+   		return maxvalue;    	
    }
    
 
@@ -341,7 +371,7 @@ public class PanoramicWarningData extends BaseObject {
     * @return minvalue - MinValue
     */
    public Double getMinValue() {
-   	return minvalue;    	
+   		return minvalue;    	
    }
    
 

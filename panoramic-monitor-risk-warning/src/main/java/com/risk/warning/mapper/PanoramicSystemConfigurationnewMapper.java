@@ -11,9 +11,9 @@ import org.springframework.stereotype.Repository;
 /**
  * @author summer
  */
-@Repository("panoramicSystemConfigurationnewMapper")
+@Repository("systemConfigurationnewMapper")
 public interface PanoramicSystemConfigurationnewMapper extends Mapper<PanoramicSystemConfigurationnew> {
 
     @Select(" Select * from panoramic_system_configurationnew where Available = 1 ")
-    List<PanoramicSystemConfigurationnew> GetStrToSql();
+    List<PanoramicSystemConfigurationnew> getStrToSql();
 }

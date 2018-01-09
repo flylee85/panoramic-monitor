@@ -24,12 +24,8 @@ public class PanoramicSystemConfigurationnew extends BaseObject {
     private Integer id;
     
     /**
-     * SubID
-     */
-    private Integer subid;
-    
-    /**
      * WarnType
+     * 1：阈值预警
      */
     private Integer warntype;
     
@@ -52,6 +48,11 @@ public class PanoramicSystemConfigurationnew extends BaseObject {
      * DeviceName
      */
     private String devicename;
+    
+    /**
+     * StrSub
+     */
+    private String strsub;
     
     /**
      * SourceName
@@ -134,6 +135,30 @@ public class PanoramicSystemConfigurationnew extends BaseObject {
      */
     private String strsubeventvalue;
     
+    /**
+     * MaxLevel
+     */
+    private Integer maxlevel;
+    
+    /**
+     * LevelUpTime
+     */
+    private Integer leveluptime;
+    
+    /**
+     * LogicType
+     */
+    private Integer logictype;
+    
+    /**
+     * StrDateEvent
+     */
+    private String strdateevent;
+    /**
+     * StrDateEventType
+     */
+    private Integer strdateeventtype;
+    
     
 
     /**
@@ -155,26 +180,6 @@ public class PanoramicSystemConfigurationnew extends BaseObject {
     } 
     
     /**
-     * 获取SubID
-     *
-     * @return subid - SubID
-     */
-    public Integer getSubId() {
-        return subid;
-    }
-
-
-
-    /**
-     * 设置SubID
-     *
-     * @param subid SubID
-     */
-    public void setSubId(Integer subid) {
-        this.subid = subid;
-    } 
-    
-    /**
      * 获取WarnType
      *
      * @return warntype - WarnType
@@ -191,6 +196,26 @@ public class PanoramicSystemConfigurationnew extends BaseObject {
      */
     public void setWarnType(Integer warntype) {
         this.warntype = warntype;
+    } 
+    
+    /**
+     * 获取StrSub
+     *
+     * @return strsub - StrSub
+     */
+    public String getStrSub() {
+        return strsub;
+    }
+
+
+
+    /**
+     * 设置StrSub
+     *
+     * @param strsub StrSub
+     */
+    public void setStrSub(String strsub) {
+        this.strsub = strsub;
     } 
     
     /**
@@ -438,7 +463,7 @@ public class PanoramicSystemConfigurationnew extends BaseObject {
      *
      * @return intervaltime - Intervaltime
      */
-    public Integer setntervaltime() {
+    public Integer getIntervaltime() {
     	return intervaltime;    	
     }
     
@@ -590,6 +615,114 @@ public class PanoramicSystemConfigurationnew extends BaseObject {
     public void setDeviceName(String devicename) {
         this.devicename = devicename;
     } 
+    
+
+
+
+    /**
+     * 获取MaxLevel
+     *
+     * @return maxlevel - MaxLevel
+     */
+    public Integer getMaxLevel() {
+    	return maxlevel;    	
+    }
+    
+
+    /**
+     * 设置MaxLevel
+     *
+     * @param maxlevel MaxLevel
+     */
+    public void setMaxLevel(Integer maxlevel) {
+        this.maxlevel = maxlevel;
+    } 
+    
+
+
+
+    /**
+     * 获取LevelUpTime
+     *
+     * @return leveluptime - LevelUpTime
+     */
+    public Integer getLevelUpTime() {
+    	return leveluptime;    	
+    }
+    
+
+    /**
+     * 设置LevelUpTime
+     *
+     * @param intervaltime LevelUpTime
+     */
+    public void setLevelUpTime(Integer leveluptime) {
+        this.leveluptime = leveluptime;
+    } 
+
+
+
+    /**
+     * 获取LogicType
+     *
+     * @return leveluptime - LogicType
+     */
+    public Integer getLogicType() {
+    	return logictype;    	
+    }
+    
+    
+
+    /**
+     * 获取StrDateEvent
+     *
+     * @return strdateevent - StrDateEvent
+     */
+    public String getStrDateEvent() {
+    	return strdateevent;    	
+    }
+    
+
+    /**
+     * 设置StrDateEvent
+     *
+     * @param strdateevent StrDateEvent
+     */
+    public void setStrDateEvent(String strdateevent) {
+        this.strdateevent = strdateevent;
+    } 
+    
+
+
+
+    /**
+     * 获取StrDateEventType
+     *
+     * @return strdateeventtype - StrDateEventType
+     */
+    public Integer getStrDateEventType() {
+    	return strdateeventtype;    	
+    }
+    
+
+    /**
+     * 设置StrDateEventType
+     *
+     * @param strdateeventtype StrDateEventType
+     */
+    public void setStrDateEventType(Integer strdateeventtype) {
+        this.strdateeventtype = strdateeventtype;
+    } 
+
+    /**
+     * 设置LogicType
+     *
+     * @param intervaltime LogicType
+     */
+    public void setLogicType(Integer logictype) {
+        this.logictype = logictype;
+    } 
+    
     
     @Override
     public Serializable realId() {
