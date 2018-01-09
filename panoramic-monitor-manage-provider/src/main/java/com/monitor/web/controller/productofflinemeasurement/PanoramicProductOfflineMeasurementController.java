@@ -3,6 +3,7 @@ package com.monitor.web.controller.productofflinemeasurement;
 import com.cloud.api.vo.ResultCode;
 import com.monitor.model.productofflinemeasurement.PanoramicProductOfflineMeasurement;
 import com.monitor.model.realtimeconsumption.PanoramicRealTimeConsumption;
+import com.monitor.web.controller.base.AbstractAnnotationController;
 
 import io.swagger.annotations.ApiOperation;
 
@@ -14,6 +15,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -24,9 +26,10 @@ import java.util.List;
 * 2017/12/29.
 */
 @RestController
-@RequestMapping("/panoramic/product/offline/measurement")
-public class PanoramicProductOfflineMeasurementController {
-   @Autowired
+@RequestMapping("/product/offline/measurement")
+public class PanoramicProductOfflineMeasurementController extends AbstractAnnotationController{
+	@Autowired
+	@Qualifier("productOfflineMeasurementService")
     private PanoramicProductOfflineMeasurementService panoramicProductOfflineMeasurementService;
 
     @PostMapping
@@ -71,5 +74,14 @@ public class PanoramicProductOfflineMeasurementController {
     	List<PanoramicProductMaterialsDto> panoramicProductionMonitoring = 
     			panoramicProductOfflineMeasurementService.findCalciumsuperphosphateByDate(date);
         return ResultCode.getSuccessReturn(panoramicProductionMonitoring);
+    }
+    
+    @ApiOperation(value = "下线数据定时任务汇总", notes = "下线数据定时任务汇总")
+    @PostMapping("/task")
+    public ResultCode<Void> task() {
+	    	DB_LOGGER.warn("<--下线数据定时任务汇总  开始-->");
+	    	panoramicProductOfflineMeasurementService.productOfflineMeasurementSummaryTask();
+	    	DB_LOGGER.warn("<--下线数据定时任务汇总  结束-->");
+	    return ResultCode.SUCCESS;
     }
 }

@@ -1,100 +1,83 @@
-package com.monitor.model.dailyinventorysummary;
+package com.monitor.model.sparepartsmaterials;
 
-import com.cloud.model.BaseObject;
-
-import javax.persistence.*;
-import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.*;
 
 /**
- * @author summer
- * 库存
+ * @author xuegang
  */
-@Table(name = "panoramic_daily_inventory_summary")
-public class PanoramicDailyInventorySummary extends BaseObject {
-    /**
-     *
-     */
-    private static final long serialVersionUID = 1L;
+@Table(name = "panoramic_spare_parts_materials")
+public class PanoramicSparePartsMaterials {
     /**
      * ID
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
     /**
-     * tid
-     */
-    @Column(name = "t_id")
-    private String tId;
-    /**
-     * 物料名称
+     * 产品名称
      */
     private String name;
+
     /**
-     * 物料编码
+     * 产品编码
      */
     private String code;
+
+    /**
+     * 参考单价
+     */
+    @Column(name = "reference_price")
+    private Integer referencePrice;
+
     /**
      * 库存量
      */
-    private Double value;
+    private Double inventory;
+
     /**
      * 单位
      */
     private String unit;
+
+    /**
+     * 库存货值
+     */
+    @Column(name = "inventory_value")
+    private Long inventoryValue;
+
     /**
      * 删除标记（1：未删除；0：删除）
      */
     @Column(name = "delete_flag")
     private Integer deleteFlag;
-    /**
-     * 分类标记（1:原料；2：产品）
-     */
-    private Integer category;
+
     /**
      * 创建时间
      */
     private Date ctime;
+
     /**
      * 更新时间
      */
     private Date utime;
+
     /**
      * 删除时间
      */
     private Date dtime;
+
     /**
      * 操作人
      */
     private String operator;
+
     /**
      * 工厂id
      */
     @Column(name = "f_id")
     private String fId;
-
-    public String gettId() {
-        return tId;
-    }
-
-    public void settId(String tId) {
-        this.tId = tId;
-    }
-
-    /**
-     * @return
-     */
-    public Integer getCategory() {
-        return category;
-    }
-
-    /**
-     * @param category
-     */
-    public void setCategory(Integer category) {
-        this.category = category;
-    }
 
     /**
      * 获取ID
@@ -115,58 +98,75 @@ public class PanoramicDailyInventorySummary extends BaseObject {
     }
 
     /**
-     * 获取物料名称
+     * 获取产品名称
      *
-     * @return name - 物料名称
+     * @return name - 产品名称
      */
     public String getName() {
         return name;
     }
 
     /**
-     * 设置物料名称
+     * 设置产品名称
      *
-     * @param name 物料名称
+     * @param name 产品名称
      */
     public void setName(String name) {
         this.name = name;
     }
 
     /**
-     * 获取物料编码
+     * 获取产品编码
      *
-     * @return code - 物料编码
+     * @return code - 产品编码
      */
     public String getCode() {
         return code;
     }
 
     /**
-     * 设置物料编码
+     * 设置产品编码
      *
-     * @param code 物料编码
+     * @param code 产品编码
      */
     public void setCode(String code) {
         this.code = code;
     }
 
     /**
+     * 获取参考单价
+     *
+     * @return reference_price - 参考单价
+     */
+    public Integer getReferencePrice() {
+        return referencePrice;
+    }
+
+    /**
+     * 设置参考单价
+     *
+     * @param referencePrice 参考单价
+     */
+    public void setReferencePrice(Integer referencePrice) {
+        this.referencePrice = referencePrice;
+    }
+
+    /**
      * 获取库存量
      *
-     * @return value - 库存量
+     * @return inventory - 库存量
      */
-    public Double getValue() {
-
-        return value < 0 ? 0 : value;
+    public Double getInventory() {
+        return inventory;
     }
 
     /**
      * 设置库存量
      *
-     * @param value 库存量
+     * @param inventory 库存量
      */
-    public void setValue(Double value) {
-        this.value = value;
+    public void setInventory(Double inventory) {
+        this.inventory = inventory;
     }
 
     /**
@@ -185,6 +185,24 @@ public class PanoramicDailyInventorySummary extends BaseObject {
      */
     public void setUnit(String unit) {
         this.unit = unit;
+    }
+
+    /**
+     * 获取库存货值
+     *
+     * @return inventory_value - 库存货值
+     */
+    public Long getInventoryValue() {
+        return inventoryValue;
+    }
+
+    /**
+     * 设置库存货值
+     *
+     * @param inventoryValue 库存货值
+     */
+    public void setInventoryValue(Long inventoryValue) {
+        this.inventoryValue = inventoryValue;
     }
 
     /**
@@ -293,11 +311,5 @@ public class PanoramicDailyInventorySummary extends BaseObject {
      */
     public void setfId(String fId) {
         this.fId = fId;
-    }
-
-
-    @Override
-    public Serializable realId() {
-        return null;
     }
 }

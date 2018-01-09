@@ -87,4 +87,25 @@ public interface PanoramicSparePartsIntoInventoryMapper extends Mapper<Panoramic
 			"	summary DESC\n" + 
 			"LIMIT 5")
 	List<PanoramicSparePartsIntoInventoryDto> findMonthlyMaxValue(@Param("date") String date);
+
+	/**
+	 * 指定日期的备品备件入出库量
+	 * @param date
+	 * @param type
+	 * @return
+	 */
+	@Select("SELECT\n" + 
+			"	VALUE as value,\n" + 
+			"	amount_price as amountPrice,\n" + 
+			"	NAME as name,\n" + 
+			"	in_out_time as inOutTime\n" + 
+			"FROM\n" + 
+			"	panoramic_spare_parts_into_inventory\n" + 
+			"WHERE\n" + 
+			"	DATE_FORMAT(in_out_time , \"%Y-%m-%d\") = #{date}\n" + 
+			"AND in_out_type = #{type}\n" + 
+			"ORDER BY\n" + 
+			"	in_out_time\n" + 
+			"")
+	List<PanoramicSparePartsIntoInventory> listDayInventory(@Param("date") String date, @Param("type") String type);
 }

@@ -27,5 +27,11 @@ public interface PanoramicProductOfflineMeasurementService extends Service<Panor
      * @return
      */
 	List<PanoramicProductMaterialsDto> findCalciumsuperphosphateByDate(String date);
+	    
+    /**
+     * 产品下线数据定时任务汇总
+     * @return
+     */
+	void productOfflineMeasurementSummaryTask();
 
 }
