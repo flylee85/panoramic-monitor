@@ -6,6 +6,7 @@ import com.monitor.mapper.sparepartsintoinventory.PanoramicSparePartsIntoInvento
 import com.monitor.model.sparepartsintoinventory.PanoramicSparePartsIntoInventory;
 import com.cloud.core.AbstractService;
 import com.cloud.core.ServiceException;
+import com.cloud.util.MathUtil;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -47,9 +48,9 @@ public class PanoramicSparePartsIntoInventoryServiceImpl extends AbstractService
     						temp.setSummary(dbResult.get(i).getSummary());
     						result.add(temp);
     					} else {
-    						summary += dbResult.get(i).getSummary();
+    						summary = MathUtil.add(summary,dbResult.get(i).getSummary());
     					}
-    					countSummary += dbResult.get(i).getSummary();
+    					countSummary = MathUtil.add(countSummary,dbResult.get(i).getSummary());
     				}
     				
     				if (dbResult.size() > INT_MAX_5) {
@@ -104,4 +105,6 @@ public class PanoramicSparePartsIntoInventoryServiceImpl extends AbstractService
 				.listDayInventory(date, type);
 		return valueResult;
 	}
+	
+	
 }
