@@ -13,6 +13,6 @@ import com.risk.warning.model.PanoramicWarningReceiver;
 public interface PanoramicWarningReceiverMapper extends Mapper<PanoramicWarningReceiver> {
 
     @Select(" Select ID,WarningConfigurationID,UserID,UserName,Email from panoramic_warning_receiver where WarningConfigurationID = ${WarningConfigurationID} and Level = ${Level} ")
-    List<PanoramicWarningReceiver> GetDataByWarningConfigurationID(@Param("WarningConfigurationID") Integer warningconfigurationid,@Param("Level") Integer level);
+    List<PanoramicWarningReceiver> getDataByWarningConfigurationID(@Param("WarningConfigurationID") Integer warningconfigurationid,@Param("Level") Integer level);
     
 }

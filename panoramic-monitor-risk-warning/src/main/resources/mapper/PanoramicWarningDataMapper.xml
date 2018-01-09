@@ -6,6 +6,9 @@
       WARNING - @mbg.generated
     -->
     <id column="ID" jdbcType="INTEGER" property="id" />
+    <result column="FactoryName" jdbcType="VARCHAR" property="factoryname" />
+    <result column="SectionName" jdbcType="VARCHAR" property="sectionname" />
+    <result column="DeviceName" jdbcType="VARCHAR" property="devicename" />
     <result column="EventName" jdbcType="VARCHAR" property="eventname" />
     <result column="StrEvent" jdbcType="VARCHAR" property="strevent" />
     <result column="EventValue" jdbcType="DOUBLE" property="eventvalue" />
@@ -15,5 +18,6 @@
     <result column="SourceID" jdbcType="INTEGER" property="sourceid" />
     <result column="WarnConfigurationID" jdbcType="INTEGER" property="warnconfigurationid" />
     <result column="Level" jdbcType="INTEGER" property="level" />
+    <result column="IsSendEmail" jdbcType="BIT" property="issendemail" />
   </resultMap>
 </mapper>

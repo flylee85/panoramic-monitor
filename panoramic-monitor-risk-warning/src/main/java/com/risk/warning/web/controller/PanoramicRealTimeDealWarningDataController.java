@@ -38,5 +38,4 @@ public class PanoramicRealTimeDealWarningDataController{
         DB_LOGGER.warn("<--处理预警数据  结束-->");
         return ResultCode.SUCCESS;
     }
-
 }

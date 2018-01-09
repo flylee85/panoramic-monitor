@@ -11,7 +11,7 @@
     <result column="FactoryName" jdbcType="VARCHAR" property="factoryname" />
     <result column="SectionName" jdbcType="VARCHAR" property="sectionname" />
     <result column="DeviceName" jdbcType="VARCHAR" property="devicename" />
-    <result column="SubID" jdbcType="INTEGER" property="subid" />
+    <result column="StrSub" jdbcType="VARCHAR" property="strsub" />
     <result column="SubName" jdbcType="VARCHAR" property="subname" />
     <result column="MinValue" jdbcType="DOUBLE" property="minvalue" />
     <result column="MaxValue" jdbcType="DOUBLE" property="maxvalue" />
@@ -27,5 +27,8 @@
     <result column="StrSubEventValue" jdbcType="VARCHAR" property="strsubeventvalue" />
     <result column="StrDateEvent" jdbcType="VARCHAR" property="strdateevent" />
     <result column="StrDateEventType" jdbcType="INTEGER" property="strdateeventtype" />
+    <result column="MaxLevel" jdbcType="INTEGER" property="maxlevel" />
+    <result column="LevelUpTime" jdbcType="INTEGER" property="leveluptime" />
+    <result column="LogicType" jdbcType="INTEGER" property="logicType" />
   </resultMap>
 </mapper>

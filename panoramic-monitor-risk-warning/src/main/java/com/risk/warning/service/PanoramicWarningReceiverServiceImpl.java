@@ -14,9 +14,11 @@ import com.risk.warning.mapper.PanoramicWarningReceiverMapper;
 import com.risk.warning.mapper.PanoramicWarningDataMapper;
 import com.risk.warning.mapper.PanoramicEmailSendInfoMapper;
 import com.risk.warning.model.PanoramicWarningReceiver;
+import com.sun.mail.util.MailSSLSocketFactory;
 import com.risk.warning.model.PanoramicEmailSendInfo;
 import com.risk.warning.model.PanoramicWarningData;
 
+import java.security.GeneralSecurityException;
 import java.util.Date;
 import java.util.List;
 import java.util.Properties;
@@ -27,6 +29,7 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -59,18 +62,18 @@ public class PanoramicWarningReceiverServiceImpl extends AbstractService<Panoram
     public void regularlDealWarningData() {
     	 try {
     		 //提升未处理的数据等级
-    		 warningDataMapper.UpdatewarningSourceLevel();
+    		 warningDataMapper.updatewarningSourceLevel();
     		//获取未处理的预警数据
-    		 List<PanoramicWarningData> ListWarningData = warningDataMapper.GetDealWarningData();
+    		 List<PanoramicWarningData> ListWarningData = warningDataMapper.getDealWarningData();
     			if(ListWarningData != null) {
 	   					for (PanoramicWarningData  SourceData : ListWarningData) {
 	   						//获取发送邮件对象
-	   						List<PanoramicWarningReceiver> listReceiver = warningReceiverMapper.GetDataByWarningConfigurationID(SourceData.getWarnConfigurationID(),SourceData.getLevel());
+	   						List<PanoramicWarningReceiver> listReceiver = warningReceiverMapper.getDataByWarningConfigurationID(SourceData.getWarnConfigurationID(),SourceData.getLevel());
 	   						if(listReceiver != null) {
 	   							//发送邮件
 	   							sendEmail(listReceiver,SourceData);
 	   						}
-	   						warningDataMapper.UpdatewarningSourceStatus(2,SourceData.getId());
+	   						warningDataMapper.updatewarningSourceStatus(SourceData.getId());
 	   					}
 	   				}
          } catch (Exception e) {
@@ -88,6 +91,9 @@ public class PanoramicWarningReceiverServiceImpl extends AbstractService<Panoram
     @Value("${Email.Config.password}")
     private String fromEmailPassword;
     
+    @Value("${Email.Config.needSSL}")
+    private Boolean needSSL;
+    
     private void sendEmail(List<PanoramicWarningReceiver> listReceiver,PanoramicWarningData  SourceData )  {
   	  // 1. 创建一封邮件
         // 指定发送邮件的主机为本机
@@ -101,6 +107,18 @@ public class PanoramicWarningReceiverServiceImpl extends AbstractService<Panoram
         properties.setProperty("mail.smtp.host", host);
         
         properties.put("mail.smtp.auth", "true");
+        
+        if(needSSL) {
+	        MailSSLSocketFactory sf = null;
+	        try {
+	            sf = new MailSSLSocketFactory();
+	        } catch (GeneralSecurityException e) {
+	        	DB_LOGGER.warn(String.valueOf(e));
+	        }
+	        sf.setTrustAllHosts(true);
+	        properties.put("mail.smtp.ssl.enable", "true");
+	        properties.put("mail.smtp.ssl.socketFactory", sf);
+        }
 
         // 获取默认session对象
         Session session = Session.getDefaultInstance(properties,new Authenticator(){
@@ -149,7 +167,7 @@ public class PanoramicWarningReceiverServiceImpl extends AbstractService<Panoram
 	        	sendInfo.setReason(String.valueOf(e));
 	        	
 	        }finally {
-	        	emailSendInfoMapper.AddSendInfo(sendInfo.getReceiverName(),sendInfo.getReceiverEmail(),sendInfo.getWarningSourceID(),sendInfo.getSendStatus(),sendInfo.getReason());
+	        	emailSendInfoMapper.addSendInfo(sendInfo.getReceiverName(),sendInfo.getReceiverEmail(),sendInfo.getWarningSourceID(),sendInfo.getSendStatus(),sendInfo.getReason());
 	        }
         }
     }

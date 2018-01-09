@@ -18,5 +18,5 @@ import org.springframework.stereotype.Repository;
 public interface PanoramicEmailSendInfoMapper extends Mapper<PanoramicEmailSendInfo> {
 	
 	   @Insert("Insert into risk.panoramic_email_send_info (ReceiverName,ReceiverEmail,WarningSourceID,SendStatus,Reason,SendTime) values(\'${ReceiverName}\',\'${ReceiverEmail}\',${WarningSourceID},${SendStatus},\'${Reason}\',now()) ")
-	    void AddSendInfo(@Param("ReceiverName") String receivername,@Param("ReceiverEmail") String receiveremail,@Param("WarningSourceID") Integer warningsourceid,@Param("SendStatus") Integer sendstatus,@Param("Reason") String reason);	 
+	    void addSendInfo(@Param("ReceiverName") String receivername,@Param("ReceiverEmail") String receiveremail,@Param("WarningSourceID") Integer warningsourceid,@Param("SendStatus") Integer sendstatus,@Param("Reason") String reason);	 
 }
