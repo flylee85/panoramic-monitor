@@ -24,7 +24,7 @@ import io.swagger.annotations.ApiOperation;
 
 @Api
 @RestController
-@RequestMapping("/Scan/Warning/Data")
+@RequestMapping("/scan/warning/data")
 public class PanoramicRealTimeScanWarningDataController{
     private static final transient TLogger DB_LOGGER = LoggerUtils.getLogger(PanoramicRealTimeScanWarningDataController.class);
     @Autowired

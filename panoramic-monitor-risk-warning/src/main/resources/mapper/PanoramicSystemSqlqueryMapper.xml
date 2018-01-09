@@ -5,10 +5,10 @@
     <!--
       WARNING - @mbg.generated
     -->
-    <id column="WarnConfigurationID" jdbcType="INTEGER" property="warnconfigurationid" />
-    <result column="QuerySql" jdbcType="VARCHAR" property="querysql" />
-    <result column="Available" jdbcType="BIT" property="available" />
-    <result column="IntervalTime" jdbcType="INTEGER" property="intervaltime" />
-    <result column="LastExecuteTime" jdbcType="TIMESTAMP" property="lastexecutetime" />
+    <id column="warn_configuration_id" jdbcType="INTEGER" property="warnConfigurationId" />
+    <result column="query_sql" jdbcType="VARCHAR" property="querySql" />
+    <result column="available" jdbcType="BIT" property="available" />
+    <result column="interval_time" jdbcType="INTEGER" property="intervalTime" />
+    <result column="last_excute_time" jdbcType="TIMESTAMP" property="lastExcuteTime" />
   </resultMap>
 </mapper>

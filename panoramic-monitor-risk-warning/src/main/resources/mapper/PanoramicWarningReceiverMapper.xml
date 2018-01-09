@@ -5,11 +5,11 @@
     <!--
       WARNING - @mbg.generated
     -->
-    <id column="ID" jdbcType="INTEGER" property="id" />
-    <result column="WarningConfigurationID" jdbcType="INTEGER" property="warningconfigurationid" />
-    <result column="UserID" jdbcType="INTEGER" property="userid" />
-    <result column="UserName" jdbcType="VARCHAR" property="username" />
-    <result column="Email" jdbcType="VARCHAR" property="email" />
-    <result column="Level" jdbcType="INTEGER" property="level" />
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="warning_configuration_id" jdbcType="INTEGER" property="warningConfigurationId" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="level" jdbcType="INTEGER" property="level" />
   </resultMap>
 </mapper>

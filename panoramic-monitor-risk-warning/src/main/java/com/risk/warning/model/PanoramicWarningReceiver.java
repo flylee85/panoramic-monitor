@@ -28,17 +28,17 @@ public class PanoramicWarningReceiver extends BaseObject {
     /**
      * WarningConfigurationID
      */
-    private Integer warningconfigurationid;
+    private Integer warning_configuration_id;
     
     /**
      * UserID
      */
-    private Integer userid;
+    private Integer user_id;
     
     /**
      * UserName
      */
-    private String username;
+    private String user_name;
     
     /**
      * Email
@@ -71,10 +71,10 @@ public class PanoramicWarningReceiver extends BaseObject {
     /**
      * 获取getWarningConfigurationID
      *
-     * @return warningconfigurationid - getWarningConfigurationID
+     * @return warning_configuration_id - getWarningConfigurationID
      */
     public Integer getWarningConfigurationID() {
-    	return warningconfigurationid;
+    	return warning_configuration_id;
     }
     
     /**
@@ -83,16 +83,16 @@ public class PanoramicWarningReceiver extends BaseObject {
      * @param warningconfigurationid getWarningConfigurationID
      */
     public void setWarningConfigurationID(Integer warningconfigurationid) {
-    	this.warningconfigurationid = warningconfigurationid;
+    	this.warning_configuration_id = warningconfigurationid;
     }
     
     /**
      * 获取UserID
      *
-     * @return userid - UserID
+     * @return user_id - UserID
      */
     public Integer getUserID() {
-    	return userid;
+    	return user_id;
     }
     
     /**
@@ -101,16 +101,16 @@ public class PanoramicWarningReceiver extends BaseObject {
      * @param userid UserID
      */ 
     public void setUserID(Integer userid) {
-    	this.userid = userid;
+    	this.user_id = userid;
     }
     
     /**
      * 获取UserName
      *
-     * @return username - UserName
+     * @return user_name - UserName
      */
     public String getUserName() {
-    	return username;
+    	return user_name;
     }
     
     /**
@@ -119,7 +119,7 @@ public class PanoramicWarningReceiver extends BaseObject {
      * @param username UserName
      */ 
     public void setUserName(String username) {
-    	this.username = username;
+    	this.user_name = username;
     }
     
     /**

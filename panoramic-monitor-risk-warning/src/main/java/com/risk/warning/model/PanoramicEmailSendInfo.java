@@ -29,23 +29,23 @@ public class PanoramicEmailSendInfo extends BaseObject {
     /**
      * ReceiveNname
      */
-    private String receivername;
+    private String receiver_name;
 
     /**
      * ReceiverEmail
      */
-    private String receiveremail;
+    private String receiver_email;
 
     /**
      * WarningSourceID
      */
-    private Integer warningsourceid;
+    private Integer warning_source_id;
 
     /**
      * SendStatus 
      * 1：成功 2:失败
      */
-    private Integer sendstatus;
+    private Integer send_status;
     
     /**
      * Reason
@@ -55,7 +55,7 @@ public class PanoramicEmailSendInfo extends BaseObject {
     /**
      * SendTime
      */
-    private Timestamp sendtime;
+    private Timestamp send_time;
     
     /**
      * 获取ID
@@ -78,10 +78,10 @@ public class PanoramicEmailSendInfo extends BaseObject {
     /**
      * 获取ReceiverName
      *
-     * @return receivername - ReceiverName
+     * @return receiver_name - ReceiverName
      */
     public String getReceiverName() {
-    	return receivername;
+    	return receiver_name;
     }
 
     /**
@@ -90,16 +90,16 @@ public class PanoramicEmailSendInfo extends BaseObject {
      * @param receivername ReceiverName
      */
     public void setReceiverName(String receivername) {
-    	this.receivername = receivername;
+    	this.receiver_name = receivername;
     }
     
     /**
      * 获取ReceiverEmail
      *
-     * @return receiveremail - ReceiverEmail
+     * @return receiver_email - ReceiverEmail
      */
     public String getReceiverEmail() {
-    	return receiveremail;
+    	return receiver_email;
     }
 
     /**
@@ -108,17 +108,17 @@ public class PanoramicEmailSendInfo extends BaseObject {
      * @param receiveremail ReceiverEmail
      */
     public void setReceiverEmail(String receiveremail) {
-    	this.receiveremail = receiveremail;
+    	this.receiver_email = receiveremail;
     }
 
     
     /**
      * 获取WarningSourceID
      *
-     * @return warningsourceid - WarningSourceID
+     * @return warning_source_id - WarningSourceID
      */
     public Integer getWarningSourceID() {
-    	return warningsourceid;
+    	return warning_source_id;
     }
 
 
@@ -128,16 +128,16 @@ public class PanoramicEmailSendInfo extends BaseObject {
      * @param warningsourceid WarningSourceID
      */
     public void setWarningSourceID(Integer warningsourceid) {
-    	this.warningsourceid = warningsourceid;
+    	this.warning_source_id = warningsourceid;
     }
 
     /**
      * 获取SendStatus
      *
-     * @return sendstatus - SendStatus
+     * @return send_status - SendStatus
      */
     public Integer getSendStatus() {
-    	return sendstatus;
+    	return send_status;
     }
 
     /**
@@ -146,7 +146,7 @@ public class PanoramicEmailSendInfo extends BaseObject {
      * @param sendstatus SendStatus
      */
     public void setSendStatus(Integer sendstatus) {
-    	this.sendstatus = sendstatus;
+    	this.send_status = sendstatus;
     }
 
     /**
@@ -174,7 +174,7 @@ public class PanoramicEmailSendInfo extends BaseObject {
      * @return sendtime - SendTime
      */
     public Timestamp getSendTime() {
-    	return sendtime;
+    	return send_time;
     }
 
 
@@ -184,7 +184,7 @@ public class PanoramicEmailSendInfo extends BaseObject {
      * @param sendtime SendTime
      */
     public void setSendTime(Timestamp sendtime) {
-    	this.sendtime = sendtime;
+    	this.send_time = sendtime;
     }
     
     

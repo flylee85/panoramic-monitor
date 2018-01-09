@@ -23,7 +23,7 @@ import io.swagger.annotations.ApiOperation;
 
 @Api
 @RestController
-@RequestMapping("/Deal/Warning/Data")
+@RequestMapping("/deal/warning/data")
 public class PanoramicRealTimeDealWarningDataController{
 	 private static final transient TLogger DB_LOGGER = LoggerUtils.getLogger(PanoramicRealTimeDealWarningDataController.class);
     @Autowired

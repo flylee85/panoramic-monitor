@@ -5,30 +5,30 @@
     <!--
       WARNING - @mbg.generated
     -->
-    <id column="ID" jdbcType="INTEGER" property="id" />
-    <result column="WarningName" jdbcType="VARCHAR" property="warningname" />
-    <result column="WarnType" jdbcType="INTEGER" property="warntype" />
-    <result column="FactoryName" jdbcType="VARCHAR" property="factoryname" />
-    <result column="SectionName" jdbcType="VARCHAR" property="sectionname" />
-    <result column="DeviceName" jdbcType="VARCHAR" property="devicename" />
-    <result column="StrSub" jdbcType="VARCHAR" property="strsub" />
-    <result column="SubName" jdbcType="VARCHAR" property="subname" />
-    <result column="MinValue" jdbcType="DOUBLE" property="minvalue" />
-    <result column="MaxValue" jdbcType="DOUBLE" property="maxvalue" />
-    <result column="DataBaseAddress" jdbcType="VARCHAR" property="databaseaddress" />
-    <result column="DataBaseName" jdbcType="VARCHAR" property="databasename" />
-    <result column="DataBaseTable" jdbcType="VARCHAR" property="databasetable" />
-    <result column="DataBaseType" jdbcType="VARCHAR" property="databasetype" />
-    <result column="StrEvent" jdbcType="VARCHAR" property="strevent" />
-    <result column="Available" jdbcType="BIT" property="available" />
-    <result column="IntervalTime" jdbcType="INTEGER" property="intervaltime" />
-    <result column="StrSubEvent" jdbcType="VARCHAR" property="strsubevent" />
-    <result column="StrSubEventName" jdbcType="VARCHAR" property="strsubeventname" />
-    <result column="StrSubEventValue" jdbcType="VARCHAR" property="strsubeventvalue" />
-    <result column="StrDateEvent" jdbcType="VARCHAR" property="strdateevent" />
-    <result column="StrDateEventType" jdbcType="INTEGER" property="strdateeventtype" />
-    <result column="MaxLevel" jdbcType="INTEGER" property="maxlevel" />
-    <result column="LevelUpTime" jdbcType="INTEGER" property="leveluptime" />
-    <result column="LogicType" jdbcType="INTEGER" property="logicType" />
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="warning_name" jdbcType="VARCHAR" property="warningName" />
+    <result column="warn_type" jdbcType="INTEGER" property="warnType" />
+    <result column="factory_name" jdbcType="VARCHAR" property="factoryName" />
+    <result column="section_name" jdbcType="VARCHAR" property="sectionName" />
+    <result column="device_name" jdbcType="VARCHAR" property="deviceName" />
+    <result column="str_sub" jdbcType="VARCHAR" property="strSub" />
+    <result column="sub_name" jdbcType="VARCHAR" property="subName" />
+    <result column="min_value" jdbcType="DOUBLE" property="minValue" />
+    <result column="max_value" jdbcType="DOUBLE" property="maxValue" />
+    <result column="data_base_address" jdbcType="VARCHAR" property="dataBaseAddress" />
+    <result column="data_base_name" jdbcType="VARCHAR" property="dataBaseName" />
+    <result column="data_base_table" jdbcType="VARCHAR" property="dataBaseTable" />
+    <result column="data_base_type" jdbcType="VARCHAR" property="dataBaseType" />
+    <result column="str_event" jdbcType="VARCHAR" property="strEvent" />
+    <result column="available" jdbcType="BIT" property="available" />
+    <result column="interval_time" jdbcType="INTEGER" property="intervalTime" />
+    <result column="str_sub_event" jdbcType="VARCHAR" property="strSubEvent" />
+    <result column="str_sub_event_name" jdbcType="VARCHAR" property="strSubEventName" />
+    <result column="str_sub_event_value" jdbcType="VARCHAR" property="strSubEventValue" />
+    <result column="str_date_event" jdbcType="VARCHAR" property="strDateEvent" />
+    <result column="str_date_event_type" jdbcType="INTEGER" property="strDateEventType" />
+    <result column="max_level" jdbcType="INTEGER" property="maxLevel" />
+    <result column="level_up_Time" jdbcType="INTEGER" property="levelUpTime" />
+    <result column="logic_type" jdbcType="INTEGER" property="logicType" />
   </resultMap>
 </mapper>

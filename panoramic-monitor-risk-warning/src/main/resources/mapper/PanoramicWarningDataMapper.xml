@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.risk.warning.model.PanoramicWarningDataMapper">
+<mapper namespace="com.risk.warning.mapper.PanoramicWarningDataMapper">
   <resultMap id="BaseResultMap" type="com.risk.warning.model.PanoramicWarningData">
     <!--
       WARNING - @mbg.generated
     -->
-    <id column="ID" jdbcType="INTEGER" property="id" />
-    <result column="FactoryName" jdbcType="VARCHAR" property="factoryname" />
-    <result column="SectionName" jdbcType="VARCHAR" property="sectionname" />
-    <result column="DeviceName" jdbcType="VARCHAR" property="devicename" />
-    <result column="EventName" jdbcType="VARCHAR" property="eventname" />
-    <result column="StrEvent" jdbcType="VARCHAR" property="strevent" />
-    <result column="EventValue" jdbcType="DOUBLE" property="eventvalue" />
-    <result column="Status" jdbcType="INTEGER" property="status" />
-    <result column="Ctime" jdbcType="TIMESTAMP" property="ctime" />
-    <result column="Utime" jdbcType="TIMESTAMP" property="utime" />
-    <result column="SourceID" jdbcType="INTEGER" property="sourceid" />
-    <result column="WarnConfigurationID" jdbcType="INTEGER" property="warnconfigurationid" />
-    <result column="Level" jdbcType="INTEGER" property="level" />
-    <result column="IsSendEmail" jdbcType="BIT" property="issendemail" />
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="factory_name" jdbcType="VARCHAR" property="factoryName" />
+    <result column="section_name" jdbcType="VARCHAR" property="sectionName" />
+    <result column="device_name" jdbcType="VARCHAR" property="deviceName" />
+    <result column="event_name" jdbcType="VARCHAR" property="eventName" />
+    <result column="str_event" jdbcType="VARCHAR" property="strEvent" />
+    <result column="event_value" jdbcType="DOUBLE" property="eventValue" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="ctime" jdbcType="TIMESTAMP" property="ctime" />
+    <result column="utime" jdbcType="TIMESTAMP" property="utime" />
+    <result column="source_id" jdbcType="INTEGER" property="sourceId" />
+    <result column="warn_configuration_id" jdbcType="INTEGER" property="warnConfigurationId" />
+    <result column="level" jdbcType="INTEGER" property="level" />
+    <result column="is_send_email" jdbcType="BIT" property="isSendEmail" />
   </resultMap>
 </mapper>
