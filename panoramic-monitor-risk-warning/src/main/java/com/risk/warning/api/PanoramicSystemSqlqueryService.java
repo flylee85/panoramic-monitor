@@ -23,7 +23,7 @@ public interface PanoramicSystemSqlqueryService extends Service<PanoramicSystemS
     /**
      * 定时任务 -扫描预警数据
      */
-    void regularlScanWarningData();
+    void realTimeScanWarningDataTask();
     
 
 }

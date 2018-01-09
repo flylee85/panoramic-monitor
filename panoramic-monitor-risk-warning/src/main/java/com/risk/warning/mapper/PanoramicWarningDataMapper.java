@@ -25,6 +25,9 @@ public interface PanoramicWarningDataMapper extends Mapper<PanoramicWarningData>
     @Insert(" Insert into risk.panoramic_warning_data (EventName,StrEvent,EventValue,Status,Ctime,SourceID,WarnConfigurationID,Level) values (\'${EventName}\',\'${StrEvent}\',${EventValue},${Status},\'${Ctime}\',${SourceID},${WarnConfigurationID},${Level}) ")
     void AddWarningSource(@Param("EventName") String eventname,@Param("StrEvent") String strevent,@Param("EventValue") Double eventvalue,@Param("Status") Integer status,@Param("Ctime") Timestamp ctime,@Param("SourceID") Integer sourceid,@Param("WarnConfigurationID") Integer warnconfigurationid,@Param("Level") Integer level);
     
+    /**
+     * 提升未处理预警数据等级
+     */
     @Update("update panoramic_warning_data set level = 2 where datediff(now(),ctime) > 0 and Status = 1")
     void UpdatewarningSourceLevel();
     

@@ -23,7 +23,7 @@ import io.swagger.annotations.ApiOperation;
 
 @Api
 @RestController
-@RequestMapping("/risk/sqlquery")
+@RequestMapping("/Scan/Warning/Data")
 public class PanoramicRealTimeScanWarningDataController{
     private static final transient TLogger DB_LOGGER = LoggerUtils.getLogger(PanoramicRealTimeScanWarningDataController.class);
     @Autowired
@@ -32,11 +32,10 @@ public class PanoramicRealTimeScanWarningDataController{
     
     @ApiOperation(value = "扫描预警数据", notes = "扫描预警数据")
     @PostMapping("/task")
-    public ResultCode<PanoramicSystemSqlquery> Task() {
-    	//DB_LOGGER.warn("<--异常出库异常信息状态定时任务汇总  开始-->");
-    	DB_LOGGER.warn("SDFDS");
-    	panoramicSystemSqlqueryService.regularlScanWarningData();
-        //DB_LOGGER.warn("<--异常出库异常信息状态定时任务汇总  结束-->");
+    public ResultCode<Void> Task() {
+    	DB_LOGGER.warn("<--预警数据扫描  开始-->");
+    	panoramicSystemSqlqueryService.realTimeScanWarningDataTask();
+        DB_LOGGER.warn("<--预警数据扫描 结束-->");
         return ResultCode.SUCCESS;
     }
 }

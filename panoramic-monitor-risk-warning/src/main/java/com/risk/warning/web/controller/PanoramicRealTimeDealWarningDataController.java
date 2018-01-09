@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cloud.api.vo.ResultCode;
+import com.cloud.util.LoggerUtils;
+import com.cloud.util.TLogger;
 import com.risk.warning.api.PanoramicWarningReceiverService;
 import com.risk.warning.model.PanoramicSystemSqlquery;
 
@@ -21,18 +23,19 @@ import io.swagger.annotations.ApiOperation;
 
 @Api
 @RestController
-@RequestMapping("/risk/sendEmail")
-public class PanoramicWarningReceiverController{
+@RequestMapping("/Deal/Warning/Data")
+public class PanoramicRealTimeDealWarningDataController{
+	 private static final transient TLogger DB_LOGGER = LoggerUtils.getLogger(PanoramicRealTimeDealWarningDataController.class);
     @Autowired
     @Qualifier("panoramicWarningReceiverService")
     private PanoramicWarningReceiverService panoramicWarningReceiverService;
     
     @ApiOperation(value = "处理预警数据", notes = "处理预警数据")
     @PostMapping("/task")
-    public ResultCode<PanoramicSystemSqlquery> task() {
-    	//DB_LOGGER.warn("<--异常出库异常信息状态定时任务汇总  开始-->");
+    public ResultCode<Void> task() {
+    	DB_LOGGER.warn("<--处理预警数据  开始-->");
     	panoramicWarningReceiverService.regularlDealWarningData();
-        //DB_LOGGER.warn("<--异常出库异常信息状态定时任务汇总  结束-->");
+        DB_LOGGER.warn("<--处理预警数据  结束-->");
         return ResultCode.SUCCESS;
     }
 

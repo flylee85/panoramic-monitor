@@ -64,7 +64,7 @@ public class PanoramicRealTimeConsumptionServiceImpl extends AbstractService<Pan
                 sumValue[0] += e.getValue();
                 record.setUtime(e.getUtime());
                 record.setDtime(null);
-                record.setOperator(e.getOperator());
+                record.setOperator("auto_task");
                 record.setfId(e.getfId());
                 record.setName(e.getName());
                 record.setDeleteFlag(e.getDeleteFlag());

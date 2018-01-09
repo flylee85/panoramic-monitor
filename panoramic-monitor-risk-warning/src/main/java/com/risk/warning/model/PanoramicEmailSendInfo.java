@@ -25,17 +25,35 @@ public class PanoramicEmailSendInfo extends BaseObject {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    
+    /**
+     * ReceiveNname
+     */
     private String receivername;
-    
+
+    /**
+     * ReceiverEmail
+     */
     private String receiveremail;
-    
+
+    /**
+     * WarningSourceID
+     */
     private Integer warningsourceid;
-    
+
+    /**
+     * SendStatus
+     */
     private Integer sendstatus;
     
-    
+    /**
+     * Reason
+     */
     private String reason;
-    
+
+    /**
+     * SendTime
+     */
     private Timestamp sendtime;
     
     /**
@@ -56,57 +74,114 @@ public class PanoramicEmailSendInfo extends BaseObject {
         this.id = id;
     } 
     
-    
-    
-    
+    /**
+     * 获取ReceiverName
+     *
+     * @return receivername - ReceiverName
+     */
     public String getReceiverName() {
     	return receivername;
     }
-    
+
+    /**
+     * 设置ReceiverName
+     *
+     * @param receivername ReceiverName
+     */
     public void setReceiverName(String receivername) {
     	this.receivername = receivername;
     }
-
-
+    
+    /**
+     * 获取ReceiverEmail
+     *
+     * @return receiveremail - ReceiverEmail
+     */
     public String getReceiverEmail() {
     	return receiveremail;
     }
-    
+
+    /**
+     * 设置ReceiverEmail
+     *
+     * @param receiveremail ReceiverEmail
+     */
     public void setReceiverEmail(String receiveremail) {
     	this.receiveremail = receiveremail;
     }
 
-
+    
+    /**
+     * 获取WarningSourceID
+     *
+     * @return warningsourceid - WarningSourceID
+     */
     public Integer getWarningSourceID() {
     	return warningsourceid;
     }
-    
+
+
+    /**
+     * 设置WarningSourceID
+     *
+     * @param warningsourceid WarningSourceID
+     */
     public void setWarningSourceID(Integer warningsourceid) {
     	this.warningsourceid = warningsourceid;
     }
 
+    /**
+     * 获取SendStatus
+     *
+     * @return sendstatus - SendStatus
+     */
     public Integer getSendStatus() {
     	return sendstatus;
     }
-    
+
+    /**
+     * 设置SendStatus
+     *
+     * @param sendstatus SendStatus
+     */
     public void setSendStatus(Integer sendstatus) {
     	this.sendstatus = sendstatus;
     }
-    
-    
 
+    /**
+     * 获取Reason
+     *
+     * @return reason - Reason
+     */
     public String getReason() {
     	return reason;
     }
-    
+
+    /**
+     * 设置Reason
+     *
+     * @param reason Reason
+     */
     public void setReason(String reason) {
     	this.reason = reason;
     }
-    
+
+
+    /**
+     * 获取SendTime
+     *
+     * @return sendtime - SendTime
+     */
     public Timestamp getSendTime() {
     	return sendtime;
     }
-    
+
+
+    /**
+     * 设置SendTime
+     *
+     * @param sendtime SendTime
+     */
     public void setSendTime(Timestamp sendtime) {
     	this.sendtime = sendtime;
     }

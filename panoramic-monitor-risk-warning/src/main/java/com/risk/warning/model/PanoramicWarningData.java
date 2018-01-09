@@ -63,65 +63,139 @@ public class PanoramicWarningData extends BaseObject {
    public Integer getId() {
 	   return id;
    }
-   
-   
+
+   /**
+    * 设置ID
+    *
+    * @param id ID
+    */
    public void setId(Integer id) {
 	   this.id = id;
    }
-   
+
+   /**
+    * 获取EventName
+    * 
+    * @return eventname -EventName
+    */
    public String getEventName() {
 	   return eventname;
    }
-   
+
+   /**
+    * 设置ID
+    *
+    * @param eventname EventName
+    */
    public void setEventName(String eventname) {
 	   this.eventname = eventname;
    }
-   
+
+   /**
+    * 获取StrEvent
+    * 
+    * @return strevent -StrEvent
+    */
    public String getStrEvent() {
 	   return strevent;
    }
-
+   
+   /**
+    * 设置StrEvent
+    *
+    * @param strevent StrEvent
+    */
    public void setStrEvent(String strevent) {
 	   this.strevent = strevent;
    }
    
+   /**
+    * 获取EventValue
+    * 
+    * @return eventvalue -EventValue
+    */
    public Double getEventValue() {
 	   return eventvalue;
    }
-   
+
+   /**
+    * 设置EventValue
+    *
+    * @param eventvalue EventValue
+    */
    public void strEventValue(Double eventvalue) {
 	   this.eventvalue = eventvalue;
    }
-   
+
+   /**
+    * 获取Status
+    * 
+    * @return status -Status
+    */
    public Integer getStatus() {
 	   return status;
    }
-   
+
+   /**
+    * 设置Status
+    *
+    * @param status Status
+    */
    public void SetStatus(Integer status) {
 	   this.status = status;
    }
    
+   /**
+    * 获取Ctime
+    * 
+    * @return ctime -Ctime
+    */
    public Timestamp getCtime() {
 	   return ctime;
    }
    
+   /**
+    * 设置Ctime
+    *
+    * @param ctime Ctime
+    */
    public void setCtime(Timestamp ctime) {
 	   this.ctime = ctime;
    }
+
    
+   /**
+    * 获取Utime
+    * 
+    * @return utime -Utime
+    */
    public Timestamp getUtime() {
 	   return utime;
    }
    
+   /**
+    * 设置Utime
+    *
+    * @param utime Utime
+    */
    public void setUtime(Timestamp utime) {
 	   this.utime = utime;
    }
    
+   /**
+    * 获取SourceId
+    * 
+    * @return sourceid -SourceId
+    */
    public Integer getSourceId() {
 	   return sourceid;
    }
    
-   
+   /**
+    * 设置SourceId
+    *
+    * @param sourceid SourceId
+    */
    public void setSourceId(Integer sourceid) {
 	   this.sourceid = sourceid;
    }
@@ -130,7 +204,7 @@ public class PanoramicWarningData extends BaseObject {
    /**
     * 获取WarnConfigurationID
     *
-    * @return WarnConfigurationID - ID
+    * @return warnconfigurationid - WarnConfigurationID
     */
    public Integer getWarnConfigurationID() {
        return warnconfigurationid;
@@ -139,25 +213,44 @@ public class PanoramicWarningData extends BaseObject {
    /**
     * 设置WarnConfigurationID
     *
-    * @param WarnConfigurationID ID
+    * @param warnconfigurationid WarnConfigurationID
     */
    public void setWarnConfigurationID(Integer warnconfigurationid) {
        this.warnconfigurationid = warnconfigurationid;
    } 
    
-
+   /**
+    * 获取Level
+    *
+    * @return level - Level
+    */
    public Integer getLevel() {
 	   return level;
    }
    
+   /**
+    * 设置Level
+    *
+    * @param level Level
+    */
    public void SetLevel(Integer level) {
 	   this.level = level;
    }
-   
+
+   /**
+    * 获取Warningname
+    *
+    * @return warningname - Warningname
+    */
    public String getWarningname() {
 	   return warningname;
    }
-   
+
+   /**
+    * 设置Warningname
+    *
+    * @param warningname Warningname
+    */
    public void setWarningname(String warningname) {
 	   this.warningname = warningname;
    }

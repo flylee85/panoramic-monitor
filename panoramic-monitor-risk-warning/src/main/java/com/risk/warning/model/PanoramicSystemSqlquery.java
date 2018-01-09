@@ -20,19 +20,31 @@ public class PanoramicSystemSqlquery extends BaseObject {
      * WarnConfigurationID
      */
     private Integer warnconfigurationid;
-    
+
+    /**
+     * QuerySql
+     */
     private String querysql;
 
+    /**
+     * Available
+     */
     private Integer available;
-    
+
+    /**
+     * IntervalTime
+     */
     private Integer intervaltime;
-    
+
+    /**
+     * LastExecuteTime
+     */
     private Date lastexecutetime;
 
     /**
      * 获取WarnConfigurationID
      *
-     * @return WarnConfigurationID - ID
+     * @return WarnConfigurationID - warnconfigurationid
      */
     public Integer getWarnConfigurationID() {
         return warnconfigurationid;
@@ -41,42 +53,80 @@ public class PanoramicSystemSqlquery extends BaseObject {
     /**
      * 设置WarnConfigurationID
      *
-     * @param WarnConfigurationID ID
+     * @param WarnConfigurationID WarnConfigurationID
      */
     public void setWarnConfigurationID(Integer warnconfigurationid) {
         this.warnconfigurationid = warnconfigurationid;
     } 
-    
+
+    /**
+     * 获取QuerySql
+     *
+     * @return QuerySql - querysql
+     */
     public String getQuerySql() {
     	return querysql;
-    	
     }
-    
+
+    /**
+     * 设置QuerySql
+     *
+     * @param querysql QuerySql
+     */
     public void setQuerySql(String querysql) {
     	this.querysql = querysql;
     }
 
+    /**
+     * 获取Available
+     *
+     * @return Available - available
+     */
     public Integer getAvailable() {
     	return available;
     }
-    
+
+    /**
+     * 设置Available
+     *
+     * @param available Available
+     */
     public void setAvailable(Integer available) {
     	this.available = available;
     }
-    
-  
+
+    /**
+     * 获取IntervalTime
+     *
+     * @return Available - intervaltime
+     */
     public Integer getIntervalTime() {
     	return intervaltime;
     }
     
+    /**
+     * 设置IntervalTime
+     *
+     * @param intervaltime IntervalTime
+     */
     public void setIntervalTime(Integer intervaltime) {
     	this.intervaltime = intervaltime;
     }
     
+    /**
+     * 获取LastExecuteTime
+     *
+     * @return LastExecuteTime - lastexecutetime
+     */
     public Date getLastExecuteTime() {
     	return lastexecutetime;
     }
     
+    /**
+     * 设置LastExecuteTime
+     *
+     * @param lastexecutetime LastExecuteTime
+     */
     public void setLastExecuteTime(Date lastexecutetime) {
     	this.lastexecutetime = lastexecutetime;
     } 

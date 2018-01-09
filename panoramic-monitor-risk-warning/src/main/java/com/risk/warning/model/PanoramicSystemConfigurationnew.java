@@ -15,75 +15,123 @@ public class PanoramicSystemConfigurationnew extends BaseObject {
      *
      */
     private static final long serialVersionUID = 1L;
+    
     /**
      * ID
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    
     /**
      * SubID
      */
     private Integer subid;
+    
     /**
      * WarnType
      */
     private Integer warntype;
+    
     /**
      * WarningName
      */
     private String warningname;
+    
     /**
      * FactoryName
      */
     private String factoryname;
+    
     /**
      * SectionName
      */
     private String sectionname;
+    
     /**
      * DeviceName
      */
     private String devicename;
+    
     /**
      * SourceName
      */
     private String subname;
+    
     /**
      * MaxValue
      */
     private Double maxvalue;
+    
     /**
      * MinValue
      */
     private Double minvalue;
     
+
+    /**
+     * DataBaseAddress
+     */
     private String databaseaddress;
+
+    /**
+     * DataBaseName
+     */
     private String databasename;
+
+    /**
+     * DataBaseTable
+     */
     private String databasetable;
+
+    /**
+     * DataBaseType
+     */
     private String databasetype;
+
+    /**
+     * StrEvent
+     */
     private String strevent;
-    
+
+    /**
+     * CheckField
+     */
     private String checkfield;
+    
     /**
      * CheckCondition
      */
     private String checkcondition;
+    
     /**
      * CheckValue
      */
     private Integer checkvalue;
+    
     /**
      * Available
      */
     private Boolean available;
+    
     /**
      * intervaltime
      */
     private Integer intervaltime;
-
+    
+    /**
+     * StrSubEvent
+     */
     private String strsubevent;
+    
+    /**
+     * StrSubEventName
+     */
     private String strsubeventname;
+    
+    /**
+     * StrSubEventValue
+     */
     private String strsubeventvalue;
     
     
