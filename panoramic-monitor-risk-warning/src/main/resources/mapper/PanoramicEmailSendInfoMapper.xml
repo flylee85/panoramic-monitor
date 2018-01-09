@@ -5,12 +5,12 @@
     <!--
       WARNING - @mbg.generated
     -->
-    <id column="ID" jdbcType="INTEGER" property="id" />
-    <result column="ReceiverName" jdbcType="VARCHAR" property="receivername" />
-    <result column="ReceiverEmail" jdbcType="VARCHAR" property="receiveremail" />
-    <result column="WarningSourceID" jdbcType="INTEGER" property="warningsourceid" />
-    <result column="SendStatus" jdbcType="INTEGER" property="sendstatus" />
-    <result column="Reason" jdbcType="VARCHAR" property="reason" />
-    <result column="SendTime" jdbcType="TIMESTAMP" property="sendtime" />
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="receiver_name" jdbcType="VARCHAR" property="receiverName" />
+    <result column="receiver_email" jdbcType="VARCHAR" property="receiverEmail" />
+    <result column="warning_source_id" jdbcType="INTEGER" property="warningSourceId" />
+    <result column="send_status" jdbcType="INTEGER" property="sendStatus" />
+    <result column="reason" jdbcType="VARCHAR" property="reason" />
+    <result column="send_time" jdbcType="TIMESTAMP" property="sendTime" />
   </resultMap>
 </mapper>

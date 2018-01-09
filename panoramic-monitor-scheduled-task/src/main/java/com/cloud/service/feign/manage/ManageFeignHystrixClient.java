@@ -48,13 +48,13 @@ public interface ManageFeignHystrixClient {
     /**
      * 获取预警数据
      */
-    @RequestLine("POST /risk-warning/Scan/Warning/Data/task")
+    @RequestLine("POST /risk-warning/scan/warning/data/task")
     void realTimeScanWarningDataTask();
 
     /**
      * 处理预警数据
      */
-    @RequestLine("POST /risk-warning/Deal/Warning/Data/task")
+    @RequestLine("POST /risk-warning/deal/warning/data/task")
     void realTimedealWarningDataTask();
 
 

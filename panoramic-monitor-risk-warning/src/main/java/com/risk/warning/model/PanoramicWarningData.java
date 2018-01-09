@@ -26,15 +26,15 @@ public class PanoramicWarningData extends BaseObject {
    /**
     * EventName
     */
-   private String eventname;
+   private String event_name;
    /**
     * StrEvent
     */
-   private String strevent;
+   private String str_event;
    /**
     * EventValue
     */
-   private Double eventvalue;
+   private Double event_value;
    /**
     * Status
     */
@@ -50,7 +50,7 @@ public class PanoramicWarningData extends BaseObject {
    /**
     * SourceID
     */
-   private Integer sourceid;
+   private Integer source_id;
    /**
     * Level
     */
@@ -58,31 +58,31 @@ public class PanoramicWarningData extends BaseObject {
    /**
     * WarningName
     */
-   private String warningname;
+   private String warning_name;
    /**
     * FactoryName
     */
-   private String factoryname;
+   private String factory_name;
    /**
     * SectionName
     */
-   private String sectionname;
+   private String section_name;
    /**
     * DeviceName
     */
-   private String devicename;
+   private String device_name;
    /**
     * WarnConfigurationID
     */
-   private Integer warnconfigurationid;
+   private Integer warn_configuration_id;
    /**
     * MaxValue
     */
-   private Double maxvalue;
+   private Double max_value;
    /**
     * MinValue
     */
-   private Double minvalue;
+   private Double min_value;
    
    
    /**
@@ -106,10 +106,10 @@ public class PanoramicWarningData extends BaseObject {
    /**
     * 获取EventName
     * 
-    * @return eventname -EventName
+    * @return event_name -EventName
     */
    public String getEventName() {
-	   return eventname;
+	   return event_name;
    }
 
    /**
@@ -118,16 +118,16 @@ public class PanoramicWarningData extends BaseObject {
     * @param eventname EventName
     */
    public void setEventName(String eventname) {
-	   this.eventname = eventname;
+	   this.event_name = eventname;
    }
 
    /**
     * 获取StrEvent
     * 
-    * @return strevent -StrEvent
+    * @return str_event -StrEvent
     */
    public String getStrEvent() {
-	   return strevent;
+	   return str_event;
    }
    
    /**
@@ -136,16 +136,16 @@ public class PanoramicWarningData extends BaseObject {
     * @param strevent StrEvent
     */
    public void setStrEvent(String strevent) {
-	   this.strevent = strevent;
+	   this.str_event = strevent;
    }
    
    /**
     * 获取EventValue
     * 
-    * @return eventvalue -EventValue
+    * @return event_value -EventValue
     */
    public Double getEventValue() {
-	   return eventvalue;
+	   return event_value;
    }
 
    /**
@@ -153,8 +153,8 @@ public class PanoramicWarningData extends BaseObject {
     *
     * @param eventvalue EventValue
     */
-   public void strEventValue(Double eventvalue) {
-	   this.eventvalue = eventvalue;
+   public void setEventValue(Double eventvalue) {
+	   this.event_value = eventvalue;
    }
 
    /**
@@ -215,10 +215,10 @@ public class PanoramicWarningData extends BaseObject {
    /**
     * 获取SourceId
     * 
-    * @return sourceid -SourceId
+    * @return source_id -SourceId
     */
    public Integer getSourceId() {
-	   return sourceid;
+	   return source_id;
    }
    
    /**
@@ -227,17 +227,17 @@ public class PanoramicWarningData extends BaseObject {
     * @param sourceid SourceId
     */
    public void setSourceId(Integer sourceid) {
-	   this.sourceid = sourceid;
+	   this.source_id = sourceid;
    }
    
 
    /**
     * 获取WarnConfigurationID
     *
-    * @return warnconfigurationid - WarnConfigurationID
+    * @return warn_configuration_id - WarnConfigurationID
     */
    public Integer getWarnConfigurationID() {
-       return warnconfigurationid;
+       return warn_configuration_id;
    }
 
    /**
@@ -246,7 +246,7 @@ public class PanoramicWarningData extends BaseObject {
     * @param warnconfigurationid WarnConfigurationID
     */
    public void setWarnConfigurationID(Integer warnconfigurationid) {
-       this.warnconfigurationid = warnconfigurationid;
+       this.warn_configuration_id = warnconfigurationid;
    } 
    
    /**
@@ -270,10 +270,10 @@ public class PanoramicWarningData extends BaseObject {
    /**
     * 获取Warningname
     *
-    * @return warningname - Warningname
+    * @return warning_name - Warningname
     */
    public String getWarningname() {
-	   return warningname;
+	   return warning_name;
    }
 
    /**
@@ -282,7 +282,7 @@ public class PanoramicWarningData extends BaseObject {
     * @param warningname Warningname
     */
    public void setWarningname(String warningname) {
-	   this.warningname = warningname;
+	   this.warning_name = warningname;
    }
    
 
@@ -290,10 +290,10 @@ public class PanoramicWarningData extends BaseObject {
    /**
     * 获取FactoryName
     *
-    * @return factoryname - FactoryName
+    * @return factory_name - FactoryName
     */
    public String getFactoryName() {
-   		return factoryname;    	
+   		return factory_name;    	
    }
    
 
@@ -303,16 +303,16 @@ public class PanoramicWarningData extends BaseObject {
     * @param warningname FactoryName
     */
    public void setFactoryName(String factoryname) {
-       this.factoryname = factoryname;
+       this.factory_name = factoryname;
    } 
    
    /**
     * 获取SectionName
     *
-    * @return sectionname - SectionName
+    * @return section_name - SectionName
     */
    public String getSectionName() {
-   		return sectionname;    	
+   		return section_name;    	
    }
    
 
@@ -322,16 +322,16 @@ public class PanoramicWarningData extends BaseObject {
     * @param sectionname SectionName
     */
    public void setSectionName(String sectionname) {
-       this.sectionname = sectionname;
+       this.section_name = sectionname;
    } 
 
    /**
     * 获取DeviceName
     *
-    * @return devicename - DeviceName
+    * @return device_name - DeviceName
     */
    public String getDeviceName() {
-   		return devicename;    	
+   		return device_name;    	
    }
    
 
@@ -341,17 +341,17 @@ public class PanoramicWarningData extends BaseObject {
     * @param devicename DeviceName
     */
    public void setDeviceName(String devicename) {
-       this.devicename = devicename;
+       this.device_name = devicename;
    } 
    
 
    /**
     * 获取MaxValue
     *
-    * @return maxvalue - MaxValue
+    * @return max_value - MaxValue
     */
    public Double getMaxValue() {
-   		return maxvalue;    	
+   		return max_value;    	
    }
    
 
@@ -361,17 +361,17 @@ public class PanoramicWarningData extends BaseObject {
     * @param maxvalue MaxValue
     */
    public void setMaxValue(Double maxvalue) {
-       this.maxvalue = maxvalue;
+       this.max_value = maxvalue;
    } 
 
    
    /**
     * 获取MinValue
     *
-    * @return minvalue - MinValue
+    * @return min_value - MinValue
     */
    public Double getMinValue() {
-   		return minvalue;    	
+   		return min_value;    	
    }
    
 
@@ -381,7 +381,7 @@ public class PanoramicWarningData extends BaseObject {
     * @param minvalue MinValue
     */
    public void setMinValue(Double minvalue) {
-       this.minvalue = minvalue;
+       this.min_value = minvalue;
    } 
    
    

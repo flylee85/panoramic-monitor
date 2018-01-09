@@ -128,7 +128,7 @@ public class PanoramicWarningReceiverServiceImpl extends AbstractService<Panoram
              return new PasswordAuthentication(fromEmailAddress, fromEmailPassword); //发件人邮件用户名、密码
             }
         });  // 根据参数配置，创建会话对象（为了发送邮件准备的）
-        
+   
         MimeMessage message = new MimeMessage(session);     // 创建邮件对象
 
 

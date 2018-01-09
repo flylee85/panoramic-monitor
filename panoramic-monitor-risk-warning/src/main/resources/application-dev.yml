@@ -57,6 +57,13 @@ logging:
     org.hibernate.type.descriptor.sql.BasicExtractor: TRACE
     com.itmuch.youran.persistence: ERROR
 
+Email:
+  Config:
+    host: smtp.qq.com
+    address: slayersfox@vip.qq.com
+    password: vpmjwahcoqmlbgjg
+    needSSL : true
+    
 
 # 热发布插件
 

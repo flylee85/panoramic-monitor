@@ -27,88 +27,73 @@ public class PanoramicSystemConfigurationnew extends BaseObject {
      * WarnType
      * 1：阈值预警
      */
-    private Integer warntype;
+    private Integer warn_type;
     
     /**
      * WarningName
      */
-    private String warningname;
+    private String warning_name;
     
     /**
      * FactoryName
      */
-    private String factoryname;
+    private String factory_name;
     
     /**
      * SectionName
      */
-    private String sectionname;
+    private String section_name;
     
     /**
      * DeviceName
      */
-    private String devicename;
+    private String device_name;
     
     /**
      * StrSub
      */
-    private String strsub;
+    private String str_sub;
     
     /**
      * SourceName
      */
-    private String subname;
+    private String sub_name;
     
     /**
      * MaxValue
      */
-    private Double maxvalue;
+    private Double max_value;
     
     /**
      * MinValue
      */
-    private Double minvalue;
+    private Double min_value;
     
 
     /**
      * DataBaseAddress
      */
-    private String databaseaddress;
+    private String data_base_address;
 
     /**
      * DataBaseName
      */
-    private String databasename;
+    private String data_base_name;
 
     /**
      * DataBaseTable
      */
-    private String databasetable;
+    private String data_base_table;
 
     /**
      * DataBaseType
      */
-    private String databasetype;
+    private String data_base_type;
 
     /**
      * StrEvent
      */
-    private String strevent;
-
-    /**
-     * CheckField
-     */
-    private String checkfield;
-    
-    /**
-     * CheckCondition
-     */
-    private String checkcondition;
-    
-    /**
-     * CheckValue
-     */
-    private Integer checkvalue;
+    private String str_event;
     
     /**
      * Available
@@ -118,46 +103,46 @@ public class PanoramicSystemConfigurationnew extends BaseObject {
     /**
      * intervaltime
      */
-    private Integer intervaltime;
+    private Integer interval_time;
     
     /**
      * StrSubEvent
      */
-    private String strsubevent;
+    private String str_sub_event;
     
     /**
      * StrSubEventName
      */
-    private String strsubeventname;
+    private String str_sub_event_name;
     
     /**
      * StrSubEventValue
      */
-    private String strsubeventvalue;
+    private String str_sub_event_value;
     
     /**
      * MaxLevel
      */
-    private Integer maxlevel;
+    private Integer max_level;
     
     /**
      * LevelUpTime
      */
-    private Integer leveluptime;
+    private Integer level_up_Time;
     
     /**
      * LogicType
      */
-    private Integer logictype;
+    private Integer logic_type;
     
     /**
      * StrDateEvent
      */
-    private String strdateevent;
+    private String str_date_event;
     /**
      * StrDateEventType
      */
-    private Integer strdateeventtype;
+    private Integer str_date_event_type;
     
     
 
@@ -182,10 +167,10 @@ public class PanoramicSystemConfigurationnew extends BaseObject {
     /**
      * 获取WarnType
      *
-     * @return warntype - WarnType
+     * @return warn_type - WarnType
      */
     public Integer getWarnType() {
-    	return warntype;    	
+    	return warn_type;    	
     }
     
 
@@ -195,16 +180,16 @@ public class PanoramicSystemConfigurationnew extends BaseObject {
      * @param warntype WarnType
      */
     public void setWarnType(Integer warntype) {
-        this.warntype = warntype;
+        this.warn_type = warntype;
     } 
     
     /**
      * 获取StrSub
      *
-     * @return strsub - StrSub
+     * @return str_sub - StrSub
      */
     public String getStrSub() {
-        return strsub;
+        return str_sub;
     }
 
 
@@ -215,16 +200,16 @@ public class PanoramicSystemConfigurationnew extends BaseObject {
      * @param strsub StrSub
      */
     public void setStrSub(String strsub) {
-        this.strsub = strsub;
+        this.str_sub = strsub;
     } 
     
     /**
      * 获取SubName
      *
-     * @return subname - SubName
+     * @return sub_name - SubName
      */
     public String getSubName() {
-    	return subname;    	
+    	return sub_name;    	
     }
     
 
@@ -234,16 +219,16 @@ public class PanoramicSystemConfigurationnew extends BaseObject {
      * @param subname SubName
      */
     public void setSourceName(String subname) {
-        this.subname = subname;
+        this.sub_name = subname;
     } 
     
     /**
      * 获取MaxValue
      *
-     * @return maxvalue - MaxValue
+     * @return max_value - MaxValue
      */
     public Double getMaxValue() {
-    	return maxvalue;    	
+    	return max_value;    	
     }
     
 
@@ -253,17 +238,17 @@ public class PanoramicSystemConfigurationnew extends BaseObject {
      * @param maxvalue MaxValue
      */
     public void setMaxValue(Double maxvalue) {
-        this.maxvalue = maxvalue;
+        this.max_value = maxvalue;
     } 
 
     
     /**
      * 获取MinValue
      *
-     * @return minvalue - MinValue
+     * @return min_value - MinValue
      */
     public Double getMinValue() {
-    	return minvalue;    	
+    	return min_value;    	
     }
     
 
@@ -273,17 +258,17 @@ public class PanoramicSystemConfigurationnew extends BaseObject {
      * @param minvalue MinValue
      */
     public void setMinValue(Double minvalue) {
-        this.minvalue = minvalue;
+        this.min_value = minvalue;
     } 
     
 
     /**
      * 获取DataBaseAddress
      *
-     * @return databaseaddress - DataBaseAddress
+     * @return data_base_address - DataBaseAddress
      */
     public String getDataBaseAddress() {
-    	return databaseaddress;    	
+    	return data_base_address;    	
     }
     
 
@@ -293,17 +278,17 @@ public class PanoramicSystemConfigurationnew extends BaseObject {
      * @param databaseaddress DataBaseAddress
      */
     public void setDataBaseAddress(String databaseaddress) {
-        this.databaseaddress = databaseaddress;
+        this.data_base_address = databaseaddress;
     } 
     
 
     /**
      * 获取DataBaseName
      *
-     * @return databasename - DataBaseName
+     * @return data_base_name - DataBaseName
      */
     public String getDataBaseName() {
-    	return databasename;    	
+    	return data_base_name;    	
     }
     
 
@@ -313,17 +298,17 @@ public class PanoramicSystemConfigurationnew extends BaseObject {
      * @param databasename DataBaseName
      */
     public void setDataBaseName(String databasename) {
-        this.databasename = databasename;
+        this.data_base_name = databasename;
     } 
     
 
     /**
      * 获取DataBaseTable
      *
-     * @return databasetable - DataBaseTable
+     * @return data_base_table - DataBaseTable
      */
     public String getDataBaseTable() {
-    	return databasetable;    	
+    	return data_base_table;    	
     }
     
 
@@ -333,17 +318,17 @@ public class PanoramicSystemConfigurationnew extends BaseObject {
      * @param databasetable DataBaseTable
      */
     public void setDataBaseTable(String databasetable) {
-        this.databasetable = databasetable;
+        this.data_base_table = databasetable;
     } 
     
 
     /**
      * 获取DataBaseType
      *
-     * @return databasetype - DataBaseType
+     * @return data_base_type - DataBaseType
      */
     public String getDataBaseType() {
-    	return databasetype;    	
+    	return data_base_type;    	
     }
     
 
@@ -353,17 +338,17 @@ public class PanoramicSystemConfigurationnew extends BaseObject {
      * @param databasetype DataBaseType
      */
     public void setDataBaseType(String databasetype) {
-        this.databasetype = databasetype;
+        this.data_base_type = databasetype;
     } 
     
 
     /**
      * 获取StrEvent
      *
-     * @return strevent - StrEvent
+     * @return str_event - StrEvent
      */
     public String getStrEvent() {
-    	return strevent;    	
+    	return str_event;    	
     }
     
 
@@ -373,71 +358,9 @@ public class PanoramicSystemConfigurationnew extends BaseObject {
      * @param strevent StrEvent
      */
     public void setStrEvent(String strevent) {
-        this.strevent = strevent;
+        this.str_event = strevent;
     } 
     
-    
-    
-    /**
-     * 获取CheckField
-     *
-     * @return checkfield - CheckField
-     */
-    public String getCheckField() {
-    	return checkfield;    	
-    }
-    
-
-    /**
-     * 设置CheckField
-     *
-     * @param checkfield CheckField
-     */
-    public void setCheckField(String checkfield) {
-        this.checkfield = checkfield;
-    } 
-    
-
-    /**
-     * 获取CheckCondition
-     *
-     * @return checkcondition - CheckCondition
-     */
-    public String setCheckCondition() {
-    	return checkcondition;    	
-    }
-    
-
-    /**
-     * 设置CheckCondition
-     *
-     * @param checkcondition CheckCondition
-     */
-    public void setCheckCondition(String checkcondition) {
-        this.checkcondition = checkcondition;
-    } 
-    
-    
-    /**
-     * 获取CheckValue
-     *
-     * @return checkvalue - CheckValue
-     */
-    public Integer setCheckValue() {
-    	return checkvalue;    	
-    }
-    
-
-    /**
-     * 设置CheckValue
-     *
-     * @param checkvalue CheckValue
-     */
-    public void setCheckValue(Integer checkvalue) {
-        this.checkvalue = checkvalue;
-    }
-    
-
     /**
      * 获取Available
      *
@@ -461,10 +384,10 @@ public class PanoramicSystemConfigurationnew extends BaseObject {
     /**
      * 获取Intervaltime
      *
-     * @return intervaltime - Intervaltime
+     * @return interval_time - Intervaltime
      */
     public Integer getIntervaltime() {
-    	return intervaltime;    	
+    	return interval_time;    	
     }
     
 
@@ -474,17 +397,17 @@ public class PanoramicSystemConfigurationnew extends BaseObject {
      * @param intervaltime Intervaltime
      */
     public void setIntervaltime(Integer intervaltime) {
-        this.intervaltime = intervaltime;
+        this.interval_time = intervaltime;
     } 
     
     
     /**
      * 获取StrSubEvent
      *
-     * @return strsubevent - StrSubEvent
+     * @return str_sub_event - StrSubEvent
      */
     public String getStrSubEvent() {
-    	return strsubevent;    	
+    	return str_sub_event;    	
     }
     
 
@@ -494,17 +417,17 @@ public class PanoramicSystemConfigurationnew extends BaseObject {
      * @param strsubevent StrSubEvent
      */
     public void setStrSubEvent(String strsubevent) {
-        this.strsubevent = strsubevent;
+        this.str_sub_event = strsubevent;
     } 
     
     
     /**
      * 获取StrSubEventName
      *
-     * @return strsubeventname - StrSubEventName
+     * @return str_sub_event_name - StrSubEventName
      */
     public String getStrSubEventName() {
-    	return strsubeventname;    	
+    	return str_sub_event_name;    	
     }
     
 
@@ -514,17 +437,17 @@ public class PanoramicSystemConfigurationnew extends BaseObject {
      * @param strsubeventname StrSubEventName
      */
     public void setStrSubEventName(String strsubeventname) {
-        this.strsubeventname = strsubeventname;
+        this.str_sub_event_name = strsubeventname;
     } 
     
     
     /**
      * 获取StrSubEventValue
      *
-     * @return strsubeventvalue - StrSubEventValue
+     * @return str_sub_event_value - StrSubEventValue
      */
     public String getStrSubEventValue() {
-    	return strsubeventvalue;    	
+    	return str_sub_event_value;    	
     }
     
 
@@ -534,7 +457,7 @@ public class PanoramicSystemConfigurationnew extends BaseObject {
      * @param strsubeventvalue StrSubEventValue
      */
     public void setStrSubEventValue(String strsubeventvalue) {
-        this.strsubeventvalue = strsubeventvalue;
+        this.str_sub_event_value = strsubeventvalue;
     } 
     
 
@@ -543,48 +466,48 @@ public class PanoramicSystemConfigurationnew extends BaseObject {
     /**
      * 获取WarningName
      *
-     * @return warningname - WarningName
+     * @return warning_name - WarningName
      */
     public String getWarningName() {
-    	return warningname;    	
+    	return warning_name;    	
     }
     
 
     /**
      * 设置WarningName
      *
-     * @param warningname WarningName
+     * @param warning_name WarningName
      */
     public void setWarningName(String warningname) {
-        this.warningname = warningname;
+        this.warning_name = warningname;
     } 
     
     /**
      * 获取FactoryName
      *
-     * @return factoryname - FactoryName
+     * @return factory_name - FactoryName
      */
     public String getFactoryName() {
-    	return factoryname;    	
+    	return factory_name;    	
     }
     
 
     /**
      * 设置FactoryName
      *
-     * @param warningname FactoryName
+     * @param factoryname FactoryName
      */
     public void setFactoryName(String factoryname) {
-        this.factoryname = factoryname;
+        this.factory_name = factoryname;
     } 
     
     /**
      * 获取SectionName
      *
-     * @return sectionname - SectionName
+     * @return section_name - SectionName
      */
     public String getSectionName() {
-    	return sectionname;    	
+    	return section_name;    	
     }
     
 
@@ -594,16 +517,16 @@ public class PanoramicSystemConfigurationnew extends BaseObject {
      * @param sectionname SectionName
      */
     public void setSectionName(String sectionname) {
-        this.sectionname = sectionname;
+        this.section_name = sectionname;
     } 
 
     /**
      * 获取DeviceName
      *
-     * @return devicename - DeviceName
+     * @return device_name - DeviceName
      */
     public String getDeviceName() {
-    	return devicename;    	
+    	return device_name;    	
     }
     
 
@@ -613,7 +536,7 @@ public class PanoramicSystemConfigurationnew extends BaseObject {
      * @param devicename DeviceName
      */
     public void setDeviceName(String devicename) {
-        this.devicename = devicename;
+        this.device_name = devicename;
     } 
     
 
@@ -622,10 +545,10 @@ public class PanoramicSystemConfigurationnew extends BaseObject {
     /**
      * 获取MaxLevel
      *
-     * @return maxlevel - MaxLevel
+     * @return max_level - MaxLevel
      */
     public Integer getMaxLevel() {
-    	return maxlevel;    	
+    	return max_level;    	
     }
     
 
@@ -635,7 +558,7 @@ public class PanoramicSystemConfigurationnew extends BaseObject {
      * @param maxlevel MaxLevel
      */
     public void setMaxLevel(Integer maxlevel) {
-        this.maxlevel = maxlevel;
+        this.max_level = maxlevel;
     } 
     
 
@@ -644,10 +567,10 @@ public class PanoramicSystemConfigurationnew extends BaseObject {
     /**
      * 获取LevelUpTime
      *
-     * @return leveluptime - LevelUpTime
+     * @return level_up_Time - LevelUpTime
      */
     public Integer getLevelUpTime() {
-    	return leveluptime;    	
+    	return level_up_Time;    	
     }
     
 
@@ -657,7 +580,7 @@ public class PanoramicSystemConfigurationnew extends BaseObject {
      * @param intervaltime LevelUpTime
      */
     public void setLevelUpTime(Integer leveluptime) {
-        this.leveluptime = leveluptime;
+        this.level_up_Time = leveluptime;
     } 
 
 
@@ -668,28 +591,37 @@ public class PanoramicSystemConfigurationnew extends BaseObject {
      * @return leveluptime - LogicType
      */
     public Integer getLogicType() {
-    	return logictype;    	
+    	return logic_type;    	
     }
     
-    
+
+
+    /**
+     * 设置LogicType
+     *
+     * @param intervaltime LogicType
+     */
+    public void setLogicType(Integer logictype) {
+        this.logic_type = logictype;
+    } 
 
     /**
      * 获取StrDateEvent
      *
-     * @return strdateevent - StrDateEvent
+     * @return str_date_event - StrDateEvent
      */
     public String getStrDateEvent() {
-    	return strdateevent;    	
+    	return str_date_event;    	
     }
     
 
     /**
      * 设置StrDateEvent
      *
-     * @param strdateevent StrDateEvent
+     * @param str_date_event StrDateEvent
      */
     public void setStrDateEvent(String strdateevent) {
-        this.strdateevent = strdateevent;
+        this.str_date_event = strdateevent;
     } 
     
 
@@ -698,10 +630,10 @@ public class PanoramicSystemConfigurationnew extends BaseObject {
     /**
      * 获取StrDateEventType
      *
-     * @return strdateeventtype - StrDateEventType
+     * @return str_date_event_type - StrDateEventType
      */
     public Integer getStrDateEventType() {
-    	return strdateeventtype;    	
+    	return str_date_event_type;    	
     }
     
 
@@ -711,16 +643,7 @@ public class PanoramicSystemConfigurationnew extends BaseObject {
      * @param strdateeventtype StrDateEventType
      */
     public void setStrDateEventType(Integer strdateeventtype) {
-        this.strdateeventtype = strdateeventtype;
-    } 
-
-    /**
-     * 设置LogicType
-     *
-     * @param intervaltime LogicType
-     */
-    public void setLogicType(Integer logictype) {
-        this.logictype = logictype;
+        this.str_date_event_type = strdateeventtype;
     } 
     
     

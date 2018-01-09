@@ -17,7 +17,7 @@ import io.swagger.annotations.ApiOperation;
 
 @Api
 @RestController
-@RequestMapping("/Create/Sql")
+@RequestMapping("/create/sql")
 public class PanoramicCreateSqlController{
 	 private static final transient TLogger DB_LOGGER = LoggerUtils.getLogger(PanoramicCreateSqlController.class);
     @Autowired

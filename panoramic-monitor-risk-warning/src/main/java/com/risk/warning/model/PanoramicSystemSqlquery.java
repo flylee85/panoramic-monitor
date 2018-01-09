@@ -19,12 +19,12 @@ public class PanoramicSystemSqlquery extends BaseObject {
     /**
      * WarnConfigurationID
      */
-    private Integer warnconfigurationid;
+    private Integer warn_configuration_id;
 
     /**
      * QuerySql
      */
-    private String querysql;
+    private String query_sql;
 
     /**
      * Available
@@ -34,20 +34,20 @@ public class PanoramicSystemSqlquery extends BaseObject {
     /**
      * IntervalTime
      */
-    private Integer intervaltime;
+    private Integer interval_time;
 
     /**
      * LastExecuteTime
      */
-    private Date lastexecutetime;
+    private Date last_excute_time;
 
     /**
      * 获取WarnConfigurationID
      *
-     * @return WarnConfigurationID - warnconfigurationid
+     * @return warn_configuration_id - warnconfigurationid
      */
     public Integer getWarnConfigurationID() {
-        return warnconfigurationid;
+        return warn_configuration_id;
     }
 
     /**
@@ -56,16 +56,16 @@ public class PanoramicSystemSqlquery extends BaseObject {
      * @param WarnConfigurationID WarnConfigurationID
      */
     public void setWarnConfigurationID(Integer warnconfigurationid) {
-        this.warnconfigurationid = warnconfigurationid;
+        this.warn_configuration_id = warnconfigurationid;
     } 
 
     /**
      * 获取QuerySql
      *
-     * @return QuerySql - querysql
+     * @return query_sql - querysql
      */
     public String getQuerySql() {
-    	return querysql;
+    	return query_sql;
     }
 
     /**
@@ -74,7 +74,7 @@ public class PanoramicSystemSqlquery extends BaseObject {
      * @param querysql QuerySql
      */
     public void setQuerySql(String querysql) {
-    	this.querysql = querysql;
+    	this.query_sql = querysql;
     }
 
     /**
@@ -98,10 +98,10 @@ public class PanoramicSystemSqlquery extends BaseObject {
     /**
      * 获取IntervalTime
      *
-     * @return Available - intervaltime
+     * @return interval_time - intervaltime
      */
     public Integer getIntervalTime() {
-    	return intervaltime;
+    	return interval_time;
     }
     
     /**
@@ -110,16 +110,16 @@ public class PanoramicSystemSqlquery extends BaseObject {
      * @param intervaltime IntervalTime
      */
     public void setIntervalTime(Integer intervaltime) {
-    	this.intervaltime = intervaltime;
+    	this.interval_time = intervaltime;
     }
     
     /**
      * 获取LastExecuteTime
      *
-     * @return LastExecuteTime - lastexecutetime
+     * @return last_excute_time - lastexecutetime
      */
     public Date getLastExecuteTime() {
-    	return lastexecutetime;
+    	return last_excute_time;
     }
     
     /**
@@ -128,7 +128,7 @@ public class PanoramicSystemSqlquery extends BaseObject {
      * @param lastexecutetime LastExecuteTime
      */
     public void setLastExecuteTime(Date lastexecutetime) {
-    	this.lastexecutetime = lastexecutetime;
+    	this.last_excute_time = lastexecutetime;
     } 
     
     @Override
