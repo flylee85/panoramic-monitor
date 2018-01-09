@@ -30,7 +30,7 @@ public class PanoramicSparePartsIntoInventoryServiceImpl extends AbstractService
 
     private final int INT_MAX_5 = 5;
     private List<PanoramicSparePartsIntoInventoryDto> findWeeklySummary(String date,String inouttype) {
-    	//入库记录数据库查询
+    			//入库记录数据库查询
     			List<PanoramicSparePartsIntoInventoryDto> dbResult = panoramicSparePartsIntoInventoryMapper.findWeeklySummary(date, inouttype);
     			List<PanoramicSparePartsIntoInventoryDto> result = new ArrayList<PanoramicSparePartsIntoInventoryDto>();
     			PanoramicSparePartsIntoInventoryDto temp = new PanoramicSparePartsIntoInventoryDto();
