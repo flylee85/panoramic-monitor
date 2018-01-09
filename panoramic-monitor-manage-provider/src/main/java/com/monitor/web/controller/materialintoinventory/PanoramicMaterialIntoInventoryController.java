@@ -64,11 +64,12 @@ public class PanoramicMaterialIntoInventoryController{
     } 
     
     @ApiOperation(value = "当日入出库总量以及最新更新时间", notes = "仓库监管-原料库 当日入出库")
-    @GetMapping("/summary/{type}/{date}")
+    @GetMapping("/summary/{code}/{type}/{date}")
     public ResultCode<PanoramicMaterialIntoInventory> findSummaryByDate(
+    					@PathVariable("code") String code,
     					@PathVariable("type") String type,
     					@PathVariable("date") String date) {
-        PanoramicMaterialIntoInventory panoramicMaterialIntoInventory = panoramicMaterialIntoInventoryService.findSummaryByDate(type,date);
+        PanoramicMaterialIntoInventory panoramicMaterialIntoInventory = panoramicMaterialIntoInventoryService.findSummaryByDate(code,type,date);
         return ResultCode.getSuccessReturn(panoramicMaterialIntoInventory);
     }
 }

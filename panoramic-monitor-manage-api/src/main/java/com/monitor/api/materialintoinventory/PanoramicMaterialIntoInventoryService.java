@@ -25,10 +25,11 @@ public interface PanoramicMaterialIntoInventoryService extends Service<Panoramic
 	
 	/**
 	 * 当日入出库总量以及最新更新时间
+	 * @param code
 	 * @param type
 	 * @param date
 	 * @return
 	 */
-	PanoramicMaterialIntoInventory findSummaryByDate(String type,String date);
+	PanoramicMaterialIntoInventory findSummaryByDate(String code,String type,String date);
 
 }

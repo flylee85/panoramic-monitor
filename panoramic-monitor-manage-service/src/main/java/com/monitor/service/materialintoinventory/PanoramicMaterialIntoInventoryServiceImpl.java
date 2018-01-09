@@ -38,8 +38,8 @@ public class PanoramicMaterialIntoInventoryServiceImpl extends AbstractService<P
 	}
 
 	@Override
-	public PanoramicMaterialIntoInventory findSummaryByDate(String type,String date) {
-		PanoramicMaterialIntoInventory reult = panoramicMaterialIntoInventoryMapper.findSummaryByDate(type,date);
+	public PanoramicMaterialIntoInventory findSummaryByDate(String code,String type,String date) {
+		PanoramicMaterialIntoInventory reult = panoramicMaterialIntoInventoryMapper.findSummaryByDate(code,type,date);
 		return reult;
 	}
 

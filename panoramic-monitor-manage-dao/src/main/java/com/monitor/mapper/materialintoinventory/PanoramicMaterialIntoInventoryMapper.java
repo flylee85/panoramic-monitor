@@ -90,6 +90,7 @@ public interface PanoramicMaterialIntoInventoryMapper extends Mapper<PanoramicMa
 			"	panoramic_material_into_inventory\n" + 
 			"WHERE\n" + 
 			"	in_out_type = #{type}\n" + 
+			"AND CODE = #{code}\n" +
 			"AND DATE_FORMAT(in_out_time , '%Y-%m-%d') = #{date}")
-	PanoramicMaterialIntoInventory findSummaryByDate(@Param("type") String type,@Param("date") String date);
+	PanoramicMaterialIntoInventory findSummaryByDate(@Param("code") String code, @Param("type") String type,@Param("date") String date);
 }
