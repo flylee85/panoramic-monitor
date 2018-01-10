@@ -88,6 +88,14 @@ public class PanoramicWarningData extends BaseObject {
     * LogicType
     */
    private Integer logic_type;
+   /**
+    * MaxLevel
+    */
+   private Integer max_level;
+   /**
+    * DayCount
+    */
+   private Integer day_count;
    
    
    
@@ -409,6 +417,48 @@ public class PanoramicWarningData extends BaseObject {
     */
    public void setLogicType(Integer logictype) {
        this.logic_type = logictype;
+   } 
+   
+
+   /**
+    * 获取MaxLevel
+    *
+    * @return max_level - MaxLevel
+    */
+   public Integer getMaxLevel() {
+   	return max_level;    	
+   }
+   
+
+
+   /**
+    * 设置MaxLevel
+    *
+    * @param maxlevel MaxLevel
+    */
+   public void setMaxLevel(Integer maxlevel) {
+       this.max_level = maxlevel;
+   } 
+   
+
+   /**
+    * 获取DayCount
+    *
+    * @return day_count - DayCount
+    */
+   public Integer getDayCount() {
+   	return day_count;    	
+   }
+   
+
+
+   /**
+    * 设置DayCount
+    *
+    * @param daycount DayCount
+    */
+   public void setDayCount(Integer daycount) {
+       this.day_count = daycount;
    } 
    
     @Override
