@@ -61,9 +61,12 @@ public class PanoramicSystemSqlqueryServiceImpl extends AbstractService<Panorami
  	   					for (PanoramicWarningData  SourceData : WarningSourceList) {
  	   						//扫描出的预警数据插入预警数据库
  	   						warningDataMapper.addWarningSource(SourceData.getFactoryName(),SourceData.getSectionName(),SourceData.getDeviceName(),  SourceData.getEventName(),SourceData.getStrEvent(), SourceData.getEventValue(), SourceData.getStatus(),SourceData.getCtime(),SourceData.getSourceId(),warningquery.getWarnConfigurationID(),1);
- 	   						warningDataMapper.finishDataForNoSendEmail(warningquery.getWarnConfigurationID());
+ 	   						if(warningquery.getLogicType() == 1) {
+ 	   							warningDataMapper.finishDataForNoSendEmail(warningquery.getWarnConfigurationID());
+ 	   						}
  	   					}
  	   				}else {
+ 	   					if(warningquery.getLogicType() == 2 ||  warningquery.getLogicType() == 3 )
  	   					warningDataMapper.finishDataForSendEmail(warningquery.getWarnConfigurationID());
  	   				}
                 }

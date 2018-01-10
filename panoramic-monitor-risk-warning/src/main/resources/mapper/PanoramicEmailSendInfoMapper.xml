@@ -12,5 +12,6 @@
     <result column="send_status" jdbcType="INTEGER" property="sendStatus" />
     <result column="reason" jdbcType="VARCHAR" property="reason" />
     <result column="send_time" jdbcType="TIMESTAMP" property="sendTime" />
+    <result column="return_content" jdbcType="VARCHAR" property="returnContent" />
   </resultMap>
 </mapper>

@@ -50,12 +50,17 @@ public class PanoramicEmailSendInfo extends BaseObject {
     /**
      * Reason
      */
-    private String reason;
+    private String return_content;
 
     /**
      * SendTime
      */
     private Timestamp send_time;
+    
+    /**
+     * Reason
+     */
+    private String reason;
     
     /**
      * 获取ID
@@ -185,6 +190,23 @@ public class PanoramicEmailSendInfo extends BaseObject {
      */
     public void setSendTime(Timestamp sendtime) {
     	this.send_time = sendtime;
+    }
+    /**
+     * 获取ReturnContent
+     *
+     * @return return_content - ReturnContent
+     */
+    public String getReturnContent() {
+    	return return_content;
+    }
+
+    /**
+     * 设置ReturnContent
+     *
+     * @param returncontent ReturnContent
+     */
+    public void setReturnContent(String returncontent) {
+    	this.return_content = returncontent;
     }
     
     

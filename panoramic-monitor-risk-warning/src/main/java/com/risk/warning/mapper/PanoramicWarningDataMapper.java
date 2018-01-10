@@ -35,7 +35,7 @@ public interface PanoramicWarningDataMapper extends Mapper<PanoramicWarningData>
     void updatewarningSourceLevel();
     
 
-    @Select(" select  T1.ID, T1.event_name, T1.str_event, T1.event_name, T1.status, T1.ctime, T1.utime, T1.source_id, T1.warn_configuration_id, T1.level ,T2.warning_name,T1.factory_name,T1.section_name,T1.device_name,T2.max_value,T2.min_value,T1.event_value from panoramic_warning_data T1 LEFT JOIN panoramic_system_configurationnew T2 ON T1.warn_configuration_id = T2.id where  T1.status = 1 ")
+    @Select(" select  T1.ID, T1.event_name, T1.str_event, T1.event_name, T1.status, T1.ctime, T1.utime, T1.source_id, T1.warn_configuration_id, T1.level ,T2.warning_name,T1.factory_name,T1.section_name,T1.device_name,T2.max_value,T2.min_value,T1.event_value,T2.logic_type from panoramic_warning_data T1 LEFT JOIN panoramic_system_configurationnew T2 ON T1.warn_configuration_id = T2.id where  T1.status = 1 and T1.is_send_email = 0 ")
     List<PanoramicWarningData> getDealWarningData();
     
     //修改发送状态

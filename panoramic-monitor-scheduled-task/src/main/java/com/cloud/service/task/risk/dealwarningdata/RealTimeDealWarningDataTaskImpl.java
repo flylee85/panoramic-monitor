@@ -28,7 +28,7 @@ public class RealTimeDealWarningDataTaskImpl implements RealTimeDealWarningDataT
     public void execute(JobExecutionContext context) {
         try {
             DB_LOGGER.warn("<--处理预警数据定时任务  开始-->");
-            manageFeignHystrixClient.realTimeScanWarningDataTask();
+            manageFeignHystrixClient.realTimedealWarningDataTask();
             DB_LOGGER.warn("<--处理预警数据定时任务 结束-->");
         } catch (Exception e) {
             DB_LOGGER.error("处理预警数据定时任务出现异常{}" + e);

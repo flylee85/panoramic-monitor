@@ -84,6 +84,12 @@ public class PanoramicWarningData extends BaseObject {
     */
    private Double min_value;
    
+   /**
+    * LogicType
+    */
+   private Integer logic_type;
+   
+   
    
    /**
     * 获取ID
@@ -383,7 +389,27 @@ public class PanoramicWarningData extends BaseObject {
    public void setMinValue(Double minvalue) {
        this.min_value = minvalue;
    } 
+
+
+   /**
+    * 获取LogicType
+    *
+    * @return logic_type - LogicType
+    */
+   public Integer getLogicType() {
+   	return logic_type;    	
+   }
    
+
+
+   /**
+    * 设置LogicType
+    *
+    * @param logictype LogicType
+    */
+   public void setLogicType(Integer logictype) {
+       this.logic_type = logictype;
+   } 
    
     @Override
     public Serializable realId() {
