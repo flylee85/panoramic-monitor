@@ -33,6 +33,8 @@ public interface PanoramicProductionMonitoringMapper extends Mapper<PanoramicPro
     		"FROM\n" + 
     		"	panoramic_production_monitoring\n" + 
     		"WHERE\n" + 
-    		"	DATE_FORMAT(ctime,\"%Y-%m-%d\") = DATE_SUB(#{date},INTERVAL 1 day)")
+    		"	DATE_FORMAT(ctime,\"%Y-%m-%d\") = DATE_SUB(#{date},INTERVAL 1 day)\n" +
+    		"   delete_flag = 1" +
+    		"")
     Productionmonitoringinfo findByDate(@Param("date") String date);
 }
