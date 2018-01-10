@@ -29,4 +29,20 @@ public class PanoramicSparePartsIntoInventoryDto extends BaseObject {
     public Serializable realId() {
         return null;
     }
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public double getSummary() {
+		return summary;
+	}
+
+	public void setSummary(double summary) {
+		this.summary = summary;
+	}
 }

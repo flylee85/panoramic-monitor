@@ -28,4 +28,28 @@ public class PanoramicDataVerificationDto implements Serializable{
 	 * 偏差
 	 */
 	private String bias;
+
+	public String getValueAuto() {
+		return valueAuto;
+	}
+
+	public void setValueAuto(String valueAuto) {
+		this.valueAuto = valueAuto;
+	}
+
+	public String getValueManual() {
+		return valueManual;
+	}
+
+	public void setValueManual(String valueManual) {
+		this.valueManual = valueManual;
+	}
+
+	public String getBias() {
+		return bias;
+	}
+
+	public void setBias(String bias) {
+		this.bias = bias;
+	}
 }
