@@ -40,6 +40,11 @@ public class PanoramicSystemSqlquery extends BaseObject {
      * LastExecuteTime
      */
     private Date last_excute_time;
+    
+    /**
+     * LogicType
+     */
+    private Integer logic_type;
 
     /**
      * 获取WarnConfigurationID
@@ -129,6 +134,28 @@ public class PanoramicSystemSqlquery extends BaseObject {
      */
     public void setLastExecuteTime(Date lastexecutetime) {
     	this.last_excute_time = lastexecutetime;
+    } 
+    
+
+
+    /**
+     * 获取LogicType
+     *
+     * @return logic_type - LogicType
+     */
+    public Integer getLogicType() {
+    	return logic_type;    	
+    }
+    
+
+
+    /**
+     * 设置LogicType
+     *
+     * @param logictype LogicType
+     */
+    public void setLogicType(Integer logictype) {
+        this.logic_type = logictype;
     } 
     
     @Override

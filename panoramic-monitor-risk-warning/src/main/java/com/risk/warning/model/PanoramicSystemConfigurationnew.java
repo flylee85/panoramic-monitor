@@ -588,7 +588,7 @@ public class PanoramicSystemConfigurationnew extends BaseObject {
     /**
      * 获取LogicType
      *
-     * @return leveluptime - LogicType
+     * @return logic_type - LogicType
      */
     public Integer getLogicType() {
     	return logic_type;    	
@@ -599,7 +599,7 @@ public class PanoramicSystemConfigurationnew extends BaseObject {
     /**
      * 设置LogicType
      *
-     * @param intervaltime LogicType
+     * @param logictype LogicType
      */
     public void setLogicType(Integer logictype) {
         this.logic_type = logictype;

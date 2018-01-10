@@ -2,7 +2,7 @@ package com.risk.warning.web.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -25,7 +25,7 @@ public class PanoramicCreateSqlController{
     private PanoramicSystemConfigurationnewService panoramicSystemConfigurationnewService;
     
     @ApiOperation(value = "生成SQL文", notes = "生成SQL文")
-    @PostMapping("/task")
+    @GetMapping("/task")
     public ResultCode<Void> task() {
     	DB_LOGGER.warn("<--生成SQL文  开始-->");
     	panoramicSystemConfigurationnewService.createSqlService();
