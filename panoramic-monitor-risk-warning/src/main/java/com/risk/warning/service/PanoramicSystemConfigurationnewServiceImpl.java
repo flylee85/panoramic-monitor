@@ -52,7 +52,7 @@ public class PanoramicSystemConfigurationnewServiceImpl extends AbstractService<
             
          	if (QueryList != null) {
          		for (PanoramicSystemConfigurationnew configuration : QueryList) {
-         			String strSql = "Select ''%s'' as FactoryName , ''%s'' as SectionName, %s as DeviceName , ''%s'' as EventName,''%s'' as StrEvent, %s as EventValue,1 as Status,%s as Ctime,%d as WarnConfigurationID,1 as Level,%s as SourceID from %s.%s where (%s > %f OR %s < %f) and %s> date_add(now(),interval %d minute) %s ";
+         			String strSql = "Select ''%s'' as FactoryName , ''%s'' as SectionName, %s as DeviceName , ''%s'' as EventName,''%s'' as StrEvent, %s as EventValue,1 as Status,%s as Ctime,%d as WarnConfigurationID,1 as Level,%s as SourceID from %s.%s where (%s > %f OR %s < %f) and %s>= '\'%s'\' %s ";
          	   
          			String strDeviceName = configuration.getDeviceName();
          			String strCondition = "";
@@ -72,7 +72,9 @@ public class PanoramicSystemConfigurationnewServiceImpl extends AbstractService<
          					break;
          			}
          			
-         			strSql = String.format(strSql, configuration.getFactoryName(),configuration.getSectionName(),strDeviceName,configuration.getSubName(),configuration.getStrEvent(),configuration.getStrEvent(),configuration.getStrDateEvent(),configuration.getId(),"id",configuration.getDataBaseName(),configuration.getDataBaseTable(),configuration.getStrEvent(),configuration.getMaxValue(),configuration.getStrEvent(),configuration.getMinValue(),configuration.getStrDateEvent(),configuration.getIntervaltime() * -1,strCondition);
+         			strSql = String.format(strSql, configuration.getFactoryName(),configuration.getSectionName(),strDeviceName,configuration.getSubName(),configuration.getStrEvent(),configuration.getStrEvent(),configuration.getStrDateEvent(),configuration.getId(),"id",configuration.getDataBaseName(),configuration.getDataBaseTable(),configuration.getStrEvent(),configuration.getMaxValue(),configuration.getStrEvent(),configuration.getMinValue(),configuration.getStrDateEvent(),"${LastExcuteTime}",strCondition);
+
+                 	DB_LOGGER.warn(strSql);
          			systemSqlqueryMapper.addStrSqlQuery(configuration.getId(), strSql, configuration.getIntervaltime());
                 }
          	}

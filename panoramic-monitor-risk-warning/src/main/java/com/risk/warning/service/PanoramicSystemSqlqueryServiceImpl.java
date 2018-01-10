@@ -19,6 +19,7 @@ import com.risk.warning.web.controller.PanoramicRealTimeScanWarningDataControlle
 import com.risk.warning.model.PanoramicWarningData;
 
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Properties;
@@ -53,22 +54,40 @@ public class PanoramicSystemSqlqueryServiceImpl extends AbstractService<Panorami
              List<PanoramicSystemSqlquery> QueryList = systemSqlqueryMapper.getStrSqlQuery();
 	 		   	if (QueryList != null) {
  	   			for (PanoramicSystemSqlquery warningquery : QueryList) {
- 	   				List<PanoramicWarningData> WarningSourceList = warningDataMapper.GetSourceData(warningquery.getQuerySql());
+ 	   				SimpleDateFormat sdf =   new SimpleDateFormat( " yyyy-MM-dd HH:mm:ss " );
+ 	   				List<PanoramicWarningData> WarningSourceList = warningDataMapper.GetSourceData(warningquery.getQuerySql(),sdf.format(warningquery.getLastExecuteTime()));
  	   				
  	   				//更新SQL语句执行时间
- 	   				systemSqlqueryMapper.updateLastexcuteTime(warningquery.getWarnConfigurationID());
  	   				if(WarningSourceList != null) {
  	   					for (PanoramicWarningData  SourceData : WarningSourceList) {
- 	   						//扫描出的预警数据插入预警数据库
- 	   						warningDataMapper.addWarningSource(SourceData.getFactoryName(),SourceData.getSectionName(),SourceData.getDeviceName(),  SourceData.getEventName(),SourceData.getStrEvent(), SourceData.getEventValue(), SourceData.getStatus(),SourceData.getCtime(),SourceData.getSourceId(),warningquery.getWarnConfigurationID(),1);
- 	   						if(warningquery.getLogicType() == 1) {
- 	   							warningDataMapper.finishDataForNoSendEmail(warningquery.getWarnConfigurationID());
+ 	   						Boolean issendemail = false;
+ 	   						if(warningquery.getLogicType() == 2 ||  warningquery.getLogicType() == 3) {
+ 	   							//查询报警数据库离是否存在昨天的报警数据
+ 	   							List<PanoramicWarningData> ListData = warningDataMapper.getLastWarningDataByConfigurationID(4,warningquery.getWarnConfigurationID());
+ 	   							if(ListData != null && ListData.size() > 0) {
+ 	   							PanoramicWarningData lastData =(PanoramicWarningData) ListData.get(0);
+ 	   								//判断需要不需要提升报警等级
+ 	   								if(lastData.getDayCount() == 1 && lastData.getMaxLevel() > lastData.getLevel()) {
+ 	   									//插入报警等级提升之后的数据
+ 	   									warningDataMapper.addWarningSource(lastData.getFactoryName(),lastData.getSectionName(),lastData.getDeviceName(),  lastData.getEventName(),lastData.getStrEvent(), lastData.getEventValue(), lastData.getStatus(),lastData.getCtime(),lastData.getSourceId(),lastData.getWarnConfigurationID(),lastData.getLevel() + 1,issendemail);	
+ 	   								}
+ 	   								if(ListData.size() < 5) {
+ 	   									issendemail = true;
+ 	   								}
+ 	   							}
  	   						}
+ 	   						//扫描出的预警数据插入预警数据库
+ 	   						warningDataMapper.addWarningSource(SourceData.getFactoryName(),SourceData.getSectionName(),SourceData.getDeviceName(),  SourceData.getEventName(),SourceData.getStrEvent(), SourceData.getEventValue(), SourceData.getStatus(),SourceData.getCtime(),SourceData.getSourceId(),warningquery.getWarnConfigurationID(),1,issendemail);
+ 	   						
  	   					}
+ 	   					if(warningquery.getLogicType() == 1) {
+							warningDataMapper.finishDataForNoSendEmail(warningquery.getWarnConfigurationID());
+						}
  	   				}else {
  	   					if(warningquery.getLogicType() == 2 ||  warningquery.getLogicType() == 3 )
  	   					warningDataMapper.finishDataForSendEmail(warningquery.getWarnConfigurationID());
  	   				}
+ 	   				systemSqlqueryMapper.updateLastexcuteTime(warningquery.getWarnConfigurationID());
                 }
              }
          } catch (Exception e) {
