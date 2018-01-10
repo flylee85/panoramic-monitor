@@ -1,44 +1,31 @@
 package com.monitor.dto.sparepartsintoinventory;
 
-import java.io.Serializable;
 import com.cloud.model.BaseObject;
+import lombok.Data;
+
+import java.io.Serializable;
 
 /**
  * 备件出入库表
- * @author xuegang
  *
+ * @author xuegang
  */
-public class PanoramicSparePartsIntoInventoryDto extends BaseObject{
-    
-	private static final long serialVersionUID = 1L;
-   
-	/**
-	 * 入出库产品名称
-	 */
-	private String name;
-	
-	/**
-	 * 入出库产品统计值
-	 */
-	private double summary;
+@Data
+public class PanoramicSparePartsIntoInventoryDto extends BaseObject {
 
-	public String getName() {
-		return name;
-	}
+    private static final long serialVersionUID = 1L;
 
-	public void setName(String name) {
-		this.name = name;
-	}
-	
-    public double getSummary() {
-		return summary;
-	}
+    /**
+     * 入出库产品名称
+     */
+    private String name;
 
-	public void setSummary(double summary) {
-		this.summary = summary;
-	}
+    /**
+     * 入出库产品统计值
+     */
+    private double summary;
 
-	@Override
+    @Override
     public Serializable realId() {
         return null;
     }
