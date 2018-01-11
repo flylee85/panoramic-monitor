@@ -104,7 +104,7 @@ public class PanoramicDailyInventorySummaryController extends AbstractAnnotation
     public ResultCode<PageInfo<PanoramicDailyInventorySummary>> list(@PathVariable String date,
                                                                      @PathVariable Integer page, @PathVariable Integer size) {
         PageHelper.startPage(page, size);
-        List<PanoramicDailyInventorySummary> list = dailyInventorySummaryService.listByDateAndCode(date, DailyInventorySummaryCodeConstant.codeList);
+        List<PanoramicDailyInventorySummary> list = dailyInventorySummaryService.listByDateAndCode(date, DailyInventorySummaryCodeConstant.CODE_LIST);
         PageInfo<PanoramicDailyInventorySummary> pageInfo = new PageInfo<>(list);
         return ResultCode.getSuccessReturn(pageInfo);
     }
