@@ -25,7 +25,7 @@ public interface PanoramicSparePartsIntoInventoryMapper extends Mapper<Panoramic
 	 * @return
 	 */
 	@Select("SELECT\n" + 
-			"	name AS name ,\n" + 
+			"	name ,\n" +
 			"	round(sum(amount_price),2) AS summary\n" + 
 			"FROM\n" + 
 			"	panoramic_spare_parts_into_inventory\n" + 
@@ -48,7 +48,7 @@ public interface PanoramicSparePartsIntoInventoryMapper extends Mapper<Panoramic
 	 * @return
 	 */
 	@Select("SELECT\n" + 
-			"	name as name,\n" + 
+			"	name,\n" +
 			"	round(sum(case when in_out_type  = 0 then amount_price else 0 end),2) as summary\n" + 
 			"FROM\n" + 
 			"	panoramic_spare_parts_into_inventory\n" + 
@@ -71,7 +71,7 @@ public interface PanoramicSparePartsIntoInventoryMapper extends Mapper<Panoramic
 	 * @return
 	 */
 	@Select("SELECT\n" + 
-			"	name as name,\n" + 
+			"	name,\n" +
 			"	round(sum(case when in_out_type  = 0 then value else 0 end),2) as summary\n" + 
 			"FROM\n" + 
 			"	panoramic_spare_parts_into_inventory\n" + 
@@ -95,9 +95,9 @@ public interface PanoramicSparePartsIntoInventoryMapper extends Mapper<Panoramic
 	 * @return
 	 */
 	@Select("SELECT\n" + 
-			"	VALUE as value,\n" + 
+			"	value,\n" +
 			"	amount_price as amountPrice,\n" + 
-			"	NAME as name,\n" + 
+			"	name,\n" +
 			"	in_out_time as inOutTime\n" + 
 			"FROM\n" + 
 			"	panoramic_spare_parts_into_inventory\n" + 
