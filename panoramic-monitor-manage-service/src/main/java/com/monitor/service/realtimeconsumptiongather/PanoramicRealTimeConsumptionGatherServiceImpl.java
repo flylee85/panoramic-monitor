@@ -56,10 +56,11 @@ public class PanoramicRealTimeConsumptionGatherServiceImpl extends AbstractServi
 	@Transactional(propagation = Propagation.NOT_SUPPORTED, rollbackFor = Exception.class)
 	public List<PanoramicRealTimeConsumptionGather> listByCodeAndDate(String date, String code) {
 		Condition condition = new Condition(PanoramicRealTimeConsumptionGather.class, false);
+		date.concat(" 08:00");
 		condition.createCriteria()
-				.andCondition(" code ='" + code + "' and f_id=2 and delete_flag=1 and ctime > '"
-						+ DateUtil.parseTimestamp(date, "yyyy-MM-dd") + "' and  utime < '"
-						+ DateUtil.parseTimestamp(DateUtil.getSpecifiedDayBefor(date, -1), "yyyy-MM-dd") + "'");
+				.andCondition(" code ='" + code + "' and f_id=2 and delete_flag=1 and ctime >= '"
+						+ DateUtil.parseTimestamp(date.concat(" 08:00"), "yyyy-MM-dd HH:mm") + "' and  utime < '"
+						+ DateUtil.parseTimestamp(DateUtil.getSpecifiedDayBefor(date, -1).concat(" 08:00"), "yyyy-MM-dd HH:mm") + "'");
 		condition.setOrderByClause(" gather_time asc ");
 		List<PanoramicRealTimeConsumptionGather> recordList = realTimeConsumptionGatherMapper
 				.selectByCondition(condition);
@@ -179,6 +180,12 @@ public class PanoramicRealTimeConsumptionGatherServiceImpl extends AbstractServi
 		}
 
 		return gather;
+	}
+
+	@Override
+	public Double findNumberdayData(String code, Integer number, String date) {
+		Double result = realTimeConsumptionGatherMapper.findNumberdayData(code, number, date);
+		return result;
 	}
 
 }

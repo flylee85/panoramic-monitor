@@ -9,7 +9,9 @@ import com.monitor.api.dailyinventorysummary.PanoramicDailyInventorySummaryServi
 import com.monitor.api.materialthresholdconfiguration.PanoramicMaterialThresholdConfigurationService;
 import com.monitor.api.productmaterials.PanoramicProductMaterialsService;
 import com.monitor.api.rawmaterials.PanoramicRawMaterialsService;
+import com.monitor.api.realtimeconsumptiongather.PanoramicRealTimeConsumptionGatherService;
 import com.monitor.mapper.dailyinventorysummary.PanoramicDailyInventorySummaryMapper;
+import com.monitor.mapper.realtimeconsumptiongather.PanoramicRealTimeConsumptionGatherMapper;
 import com.monitor.model.dailyinventorysummary.PanoramicDailyInventorySummary;
 import com.monitor.model.materialthresholdconfiguration.PanoramicMaterialThresholdConfiguration;
 import com.monitor.model.productmaterials.PanoramicProductMaterials;
@@ -47,31 +49,24 @@ public class PanoramicDailyInventorySummaryServiceImpl extends AbstractService<P
     @Autowired
     @Qualifier("productMaterialsService")
     private PanoramicProductMaterialsService productMaterialsService;
+    @Autowired
+    @Qualifier("realTimeConsumptionGatherService")
+    private PanoramicRealTimeConsumptionGatherService realTimeConsumptionGatherService;
 
     @Override
     @Transactional(propagation = Propagation.NOT_SUPPORTED, rollbackFor = Exception.class)
     public Integer countUsable(String code, String date) {
-        Double avg = 0.0;
-        boolean flag = false;
-        List<PanoramicDailyInventorySummary> recordList = dailyInventorySummaryMapper.findNumberdayData(code, 7, date);
-        if (null == recordList || recordList.size() == 0) {
-            recordList = dailyInventorySummaryMapper.findNumberdayData(code, 30, date);
-            if (null == recordList || recordList.size() == 0) {
-                return 0;
-            }
-            flag = true;
-        }
-        final Double[] sum = {0.0};
-        recordList.forEach(e -> {
-            sum[0] += e.getValue();
-        });
-        avg = flag ? sum[0] / 30 : sum[0] / 7;
-
-        PanoramicDailyInventorySummary summary = queryByDateAndCode(code, date);
-        if (Optional.ofNullable(summary).isPresent()) {
-            return Integer.parseInt(new java.text.DecimalFormat("0").format(summary.getValue() / avg));
-        }
-        return 0;
+    		Double sum = realTimeConsumptionGatherService.findNumberdayData(code, 7, date);
+    		
+    		if (null != sum && sum.doubleValue() != 0.0) {
+        		PanoramicDailyInventorySummary summary = queryByDateAndCode(code, date);
+        		if (Optional.ofNullable(summary).isPresent()) {
+              return Integer.parseInt(new java.text.DecimalFormat("0").format(summary.getValue() / sum.doubleValue() * 7));
+        		}
+        		return null;
+    		} else {
+    			return null;
+    		}
     }
 
     @Override
