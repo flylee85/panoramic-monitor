@@ -36,8 +36,8 @@ public interface PanoramicSparePartsMaterialsMapper extends Mapper<PanoramicSpar
 	 * @return
 	 */
 	@Select("SELECT\n" + 
-			"	NAME as name,\n" + 
-			"	inventory as inventory,\n" + 
+			"	name,\n" +
+			"	inventory,\n" +
 			"	reference_price as referencePrice,\n" + 
 			"	inventory_value as inventoryValue\n" + 
 			"FROM\n" + 
@@ -59,9 +59,9 @@ public interface PanoramicSparePartsMaterialsMapper extends Mapper<PanoramicSpar
 	 * @return
 	 */
 	@Select("SELECT\n" + 
-			"	NAME AS NAME ,\n" + 
+			"	NAME ,\n" +
 			"	reference_price AS referencePrice ,\n" + 
-			"	inventory AS inventory\n" + 
+			"	inventory\n" +
 			"FROM\n" + 
 			"	panoramic_spare_parts_materials\n" + 
 			"WHERE\n" + 
@@ -79,9 +79,9 @@ public interface PanoramicSparePartsMaterialsMapper extends Mapper<PanoramicSpar
 	 * @return
 	 */
 	@Select("SELECT\n" + 
-			"	NAME AS NAME ,\n" + 
+			"	NAME ,\n" +
 			"	reference_price AS referencePrice ,\n" + 
-			"	inventory AS inventory\n" + 
+			"	inventory\n" +
 			"FROM\n" + 
 			"	panoramic_spare_parts_materials\n" + 
 			"WHERE\n" + 

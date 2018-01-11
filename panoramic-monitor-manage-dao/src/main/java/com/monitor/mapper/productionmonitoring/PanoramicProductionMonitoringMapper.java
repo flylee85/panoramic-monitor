@@ -15,7 +15,7 @@ public interface PanoramicProductionMonitoringMapper extends Mapper<PanoramicPro
 	
     /**
      * 指定时间获取生产监控内容
-     * @param category
+     * @param
      * @param date
      * @return
      */
