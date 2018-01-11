@@ -27,4 +27,8 @@ public class Productionmonitoringinfo {
      * 普钙电耗
      */
     private double cpc;
+    /**
+     * 磷钙电耗
+     */
+    private double pcc;
 }
