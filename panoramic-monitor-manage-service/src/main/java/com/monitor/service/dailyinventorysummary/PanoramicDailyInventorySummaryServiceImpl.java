@@ -56,7 +56,7 @@ public class PanoramicDailyInventorySummaryServiceImpl extends AbstractService<P
     @Transactional(propagation = Propagation.NOT_SUPPORTED, rollbackFor = Exception.class)
     public Integer countUsable(String code, String date) {
         Double sum = realTimeConsumptionGatherService.findNumberdayData(code, 7, date);
-        // TODO 本身算法不合理，如果消耗为0，库存可使用天数就会变成无限大
+        // TODO 本身算法不合理，如果7天内只有6天有消耗数据，用6天的总消耗去取7天平均消耗是不合理的。
         if (null != sum && sum.doubleValue() != 0.0) {
             PanoramicDailyInventorySummary summary = queryByDateAndCode(code, date);
             if (Optional.ofNullable(summary).isPresent()) {
