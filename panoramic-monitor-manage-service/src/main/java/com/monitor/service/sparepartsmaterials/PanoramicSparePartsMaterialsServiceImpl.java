@@ -5,7 +5,7 @@ import com.monitor.mapper.sparepartsmaterials.PanoramicSparePartsMaterialsMapper
 import com.monitor.model.sparepartsmaterials.PanoramicSparePartsMaterials;
 import com.cloud.core.AbstractService;
 import com.cloud.core.ServiceException;
-
+import com.cloud.util.DateUtil;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,25 +27,33 @@ public class PanoramicSparePartsMaterialsServiceImpl extends AbstractService<Pan
 
 	@Override
 	public PanoramicSparePartsMaterials getSummaryByDate(String date) {
-		PanoramicSparePartsMaterials result = panoramicSparePartsMaterialsMapper.getSummaryByDate(date);
+		PanoramicSparePartsMaterials result = panoramicSparePartsMaterialsMapper.getSummaryByDate(
+				DateUtil.parseTimestamp(date,"yyyy-MM-dd"),
+				DateUtil.parseTimestamp(DateUtil.getSpecifiedDayBefor(date, -1),"yyyy-MM-dd"));
 		return result;
 	}
 
 	@Override
 	public List<PanoramicSparePartsMaterials> listSummaryByDate(String date) {
-		List<PanoramicSparePartsMaterials> lstResult = panoramicSparePartsMaterialsMapper.listSummaryByDate(date);
+		List<PanoramicSparePartsMaterials> lstResult = panoramicSparePartsMaterialsMapper.listSummaryByDate(
+				DateUtil.parseTimestamp(date,"yyyy-MM-dd"),
+				DateUtil.parseTimestamp(DateUtil.getSpecifiedDayBefor(date, -1),"yyyy-MM-dd"));
 		return lstResult;
 	}
 
 	@Override
 	public List<PanoramicSparePartsMaterials> listHighValueByDate(String date) {
-		List<PanoramicSparePartsMaterials> lstResult = panoramicSparePartsMaterialsMapper.listHighValueByDate(date);
+		List<PanoramicSparePartsMaterials> lstResult = panoramicSparePartsMaterialsMapper.listHighValueByDate(
+				DateUtil.parseTimestamp(date,"yyyy-MM-dd"),
+				DateUtil.parseTimestamp(DateUtil.getSpecifiedDayBefor(date, -1),"yyyy-MM-dd"));
 		return lstResult;
 	}
 
 	@Override
 	public List<PanoramicSparePartsMaterials> listLowValueByDate(String date) {
-		List<PanoramicSparePartsMaterials> lstResult = panoramicSparePartsMaterialsMapper.listLowValueByDate(date);
+		List<PanoramicSparePartsMaterials> lstResult = panoramicSparePartsMaterialsMapper.listLowValueByDate(
+				DateUtil.parseTimestamp(date,"yyyy-MM-dd"),
+				DateUtil.parseTimestamp(DateUtil.getSpecifiedDayBefor(date, -1),"yyyy-MM-dd"));
 		return lstResult;
 	}
 

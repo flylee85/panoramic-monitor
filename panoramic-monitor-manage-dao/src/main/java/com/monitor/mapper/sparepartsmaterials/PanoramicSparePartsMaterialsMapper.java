@@ -1,5 +1,6 @@
 package com.monitor.mapper.sparepartsmaterials;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
@@ -18,6 +19,7 @@ public interface PanoramicSparePartsMaterialsMapper extends Mapper<PanoramicSpar
 	/**
 	 * 指定时间的备品备件库存值
 	 * @param date
+	 * @param nextdate
 	 * @return
 	 */
 	@Select("SELECT\n" + 
@@ -27,12 +29,15 @@ public interface PanoramicSparePartsMaterialsMapper extends Mapper<PanoramicSpar
 			"WHERE\n" + 
 			"	delete_flag = 1\n" + 
 			"AND f_id = 2\n" + 
-			"AND DATE_FORMAT(ctime , '%Y-%m-%d') = #{date}")
-	PanoramicSparePartsMaterials getSummaryByDate(@Param("date") String date);
+			"AND ctime >= #{date}\n" +
+			"AND ctime <  #{nextdate}"
+			)
+	PanoramicSparePartsMaterials getSummaryByDate(@Param("date") Timestamp date, @Param("nextdate") Timestamp nextdate);
 	
 	/**
 	 * 指定时间的备品备件库存明细内容
 	 * @param date
+	 * @param nextdate
 	 * @return
 	 */
 	@Select("SELECT\n" + 
@@ -45,17 +50,19 @@ public interface PanoramicSparePartsMaterialsMapper extends Mapper<PanoramicSpar
 			"WHERE\n" + 
 			"	delete_flag = 1\n" + 
 			"AND f_id = 2\n" + 
-			"AND DATE_FORMAT(ctime , '%Y-%m-%d') = #{date}\n" + 
+			"AND ctime >= #{date}\n" +
+			"AND ctime <  #{nextdate}\n" +
 			"GROUP BY\n" + 
 			"	NAME\n" + 
 			"ORDER BY\n" + 
 			"	sum(inventory_value) DESC\n" + 
 			"LIMIT 10")
-	List<PanoramicSparePartsMaterials> listSummaryByDate(@Param("date") String date);
+	List<PanoramicSparePartsMaterials> listSummaryByDate(@Param("date") Timestamp date,@Param("nextdate") Timestamp nextdate);
 	
 	/**
 	 * 备品备件中高库存前10列表
 	 * @param date
+	 * @param nextdate
 	 * @return
 	 */
 	@Select("SELECT\n" + 
@@ -67,15 +74,17 @@ public interface PanoramicSparePartsMaterialsMapper extends Mapper<PanoramicSpar
 			"WHERE\n" + 
 			"	delete_flag = 1\n" + 
 			"AND f_id = 2\n" + 
-			"AND DATE_FORMAT(ctime , '%Y-%m-%d') = #{date}\n" + 
+			"AND ctime >= #{date}\n" +
+			"AND ctime <  #{nextdate}\n" +
 			"ORDER BY\n" + 
 			"	inventory desc\n" + 
 			"LIMIT 10")
-	List<PanoramicSparePartsMaterials> listHighValueByDate(@Param("date") String date);
+	List<PanoramicSparePartsMaterials> listHighValueByDate(@Param("date") Timestamp date,@Param("nextdate") Timestamp nextdate);
 	
 	/**
 	 * 备品备件中低库存前10列表
 	 * @param date
+	 * @param nextdate
 	 * @return
 	 */
 	@Select("SELECT\n" + 
@@ -87,10 +96,11 @@ public interface PanoramicSparePartsMaterialsMapper extends Mapper<PanoramicSpar
 			"WHERE\n" + 
 			"	delete_flag = 1\n" + 
 			"AND f_id = 2\n" + 
-			"AND DATE_FORMAT(ctime , '%Y-%m-%d') = #{date}\n" + 
+			"AND ctime >= #{date}\n" +
+			"AND ctime <  #{nextdate}\n" +
 			"ORDER BY\n" + 
 			"	inventory\n" + 
 			"LIMIT 10")
-	List<PanoramicSparePartsMaterials> listLowValueByDate(@Param("date") String date);
+	List<PanoramicSparePartsMaterials> listLowValueByDate(@Param("date") Timestamp date,@Param("nextdate") Timestamp nextdate);
 	
 }
