@@ -11,7 +11,6 @@ import com.monitor.api.productmaterials.PanoramicProductMaterialsService;
 import com.monitor.api.rawmaterials.PanoramicRawMaterialsService;
 import com.monitor.api.realtimeconsumptiongather.PanoramicRealTimeConsumptionGatherService;
 import com.monitor.mapper.dailyinventorysummary.PanoramicDailyInventorySummaryMapper;
-import com.monitor.mapper.realtimeconsumptiongather.PanoramicRealTimeConsumptionGatherMapper;
 import com.monitor.model.dailyinventorysummary.PanoramicDailyInventorySummary;
 import com.monitor.model.materialthresholdconfiguration.PanoramicMaterialThresholdConfiguration;
 import com.monitor.model.productmaterials.PanoramicProductMaterials;
@@ -56,17 +55,15 @@ public class PanoramicDailyInventorySummaryServiceImpl extends AbstractService<P
     @Override
     @Transactional(propagation = Propagation.NOT_SUPPORTED, rollbackFor = Exception.class)
     public Integer countUsable(String code, String date) {
-    		Double sum = realTimeConsumptionGatherService.findNumberdayData(code, 7, date);
-    		
-    		if (null != sum && sum.doubleValue() != 0.0) {
-        		PanoramicDailyInventorySummary summary = queryByDateAndCode(code, date);
-        		if (Optional.ofNullable(summary).isPresent()) {
-              return Integer.parseInt(new java.text.DecimalFormat("0").format(summary.getValue() / sum.doubleValue() * 7));
-        		}
-        		return null;
-    		} else {
-    			return null;
-    		}
+        Double sum = realTimeConsumptionGatherService.findNumberdayData(code, 7, date);
+        // TODO 本身算法不合理，如果消耗为0，库存可使用天数就会变成无限大
+        if (null != sum && sum.doubleValue() != 0.0) {
+            PanoramicDailyInventorySummary summary = queryByDateAndCode(code, date);
+            if (Optional.ofNullable(summary).isPresent()) {
+                return Integer.parseInt(new java.text.DecimalFormat("0").format(summary.getValue() / sum.doubleValue() * 7));
+            }
+        }
+        return 0;
     }
 
     @Override
