@@ -98,6 +98,7 @@ public interface PanoramicSparePartsIntoInventoryMapper extends Mapper<Panoramic
 			"	value,\n" +
 			"	amount_price as amountPrice,\n" + 
 			"	name,\n" +
+			"	unit,\n" + 
 			"	in_out_time as inOutTime\n" + 
 			"FROM\n" + 
 			"	panoramic_spare_parts_into_inventory\n" + 
