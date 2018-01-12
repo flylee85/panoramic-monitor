@@ -3,6 +3,7 @@ package com.monitor.service.dailyinventorysummary;
 import com.cloud.core.AbstractService;
 import com.cloud.core.ServiceException;
 import com.cloud.util.DateUtil;
+import com.cloud.util.MathUtil;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.monitor.api.dailyinventorysummary.PanoramicDailyInventorySummaryService;
@@ -16,6 +17,7 @@ import com.monitor.model.dailyinventorysummary.PanoramicDailyInventorySummary;
 import com.monitor.model.materialthresholdconfiguration.PanoramicMaterialThresholdConfiguration;
 import com.monitor.model.productmaterials.PanoramicProductMaterials;
 import com.monitor.model.rawmaterials.PanoramicRawMaterials;
+import com.monitor.model.realtimeconsumptiongather.PanoramicRealTimeConsumptionGather;
 import com.monitor.support.ExceptionRecordStatusEnum;
 import com.monitor.support.ThresholdConfigConstant;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,12 +58,18 @@ public class PanoramicDailyInventorySummaryServiceImpl extends AbstractService<P
     @Override
     @Transactional(propagation = Propagation.NOT_SUPPORTED, rollbackFor = Exception.class)
     public Integer countUsable(String code, String date) {
-    		Double sum = realTimeConsumptionGatherService.findNumberdayData(code, 7, date);
+    		//最近7天历史消耗量数据值获取
+    		List<PanoramicRealTimeConsumptionGather> sum = realTimeConsumptionGatherService.findNumberdayData(code, 7, date);
+    		double sumSingle = 0.0;
     		
-    		if (null != sum && sum.doubleValue() != 0.0) {
+    		if (null != sum && sum.size() != 0) {
+    			//当前仓库存量值获取
         		PanoramicDailyInventorySummary summary = queryByDateAndCode(code, date);
         		if (Optional.ofNullable(summary).isPresent()) {
-              return Integer.parseInt(new java.text.DecimalFormat("0").format(summary.getValue() / sum.doubleValue() * 7));
+        		  for(int i = 0;i < sum.size();i++) {
+        			  sumSingle = MathUtil.add(sumSingle, sum.get(i).getValue());
+        		  }
+              return Integer.parseInt(new java.text.DecimalFormat("0").format(summary.getValue() / sumSingle * sum.size()));
         		}
         		return null;
     		} else {

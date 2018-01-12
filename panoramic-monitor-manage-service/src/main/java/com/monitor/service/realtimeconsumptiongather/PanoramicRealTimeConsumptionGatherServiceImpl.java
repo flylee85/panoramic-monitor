@@ -183,8 +183,8 @@ public class PanoramicRealTimeConsumptionGatherServiceImpl extends AbstractServi
 	}
 
 	@Override
-	public Double findNumberdayData(String code, Integer number, String date) {
-		Double result = realTimeConsumptionGatherMapper.findNumberdayData(code, number, date);
+	public List<PanoramicRealTimeConsumptionGather> findNumberdayData(String code, Integer number, String date) {
+		List<PanoramicRealTimeConsumptionGather> result = realTimeConsumptionGatherMapper.findNumberdayData(code, number, date);
 		return result;
 	}
 

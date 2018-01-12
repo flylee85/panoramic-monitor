@@ -49,5 +49,5 @@ public interface PanoramicRealTimeConsumptionGatherService extends Service<Panor
      * @param date
      * @return
      */
-    Double findNumberdayData(String code,Integer number,String date);
+    List<PanoramicRealTimeConsumptionGather> findNumberdayData(String code,Integer number,String date);
 }

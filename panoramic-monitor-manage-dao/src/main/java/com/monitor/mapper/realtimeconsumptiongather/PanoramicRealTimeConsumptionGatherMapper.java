@@ -2,6 +2,10 @@ package com.monitor.mapper.realtimeconsumptiongather;
 
 import com.cloud.core.Mapper;
 import com.monitor.model.realtimeconsumptiongather.PanoramicRealTimeConsumptionGather;
+
+import java.sql.Timestamp;
+import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
@@ -32,15 +36,22 @@ public interface PanoramicRealTimeConsumptionGatherMapper extends Mapper<Panoram
      * @return
      */
     @Select("SELECT\n" + 
-    		"	sum(value)\n" + 
+    		"	sum(value) as value \n" + 
     		"FROM\n" + 
     		"	panoramic_real_time_consumption_gather\n" + 
     		"WHERE\n" + 
-    		"	CODE = #{code}\n" + 
-    		"AND date_sub(#{date} , INTERVAL #{number} DAY) <= date(gather_time)\n" + 
-    		"AND date_add(#{date} , INTERVAL 1 DAY) > date(gather_time)\n" + 
-    		"and f_id = 2\n" + 
-    		"and delete_flag = 1")
-    Double findNumberdayData(@Param("code") String code,@Param("number") Integer number, @Param("date") String date);
+    		"	CODE = #{code} AND\n" + 
+    		"	delete_flag =  1 AND\n" + 
+    		"	f_id = 2 AND\n" + 
+    		"	date(gather_time) < #{date}\n" + 
+    		"GROUP BY\n" + 
+    		"	TO_DAYS(gather_time)\n" +
+    		"HAVING \n" + 
+    		"	value > 1\n" +     		
+    		"ORDER BY\n" + 
+    		"	gather_time DESC\n" + 
+    		"limit #{number};\n" + 
+    		"")
+    List<PanoramicRealTimeConsumptionGather> findNumberdayData(@Param("code") String code,@Param("number") Integer number, @Param("date") String date);
 
 }
