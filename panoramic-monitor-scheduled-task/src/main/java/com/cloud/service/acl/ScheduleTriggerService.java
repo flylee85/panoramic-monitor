@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
-import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 /**
@@ -26,6 +25,10 @@ public class ScheduleTriggerService {
      * 状态 0 无效 1有效
      */
     private static final String STATUS = "0";
+    /**
+     * 获取锁的最大延迟时间（s）
+     */
+    private static final int DELAY = 10;
     @Autowired
     private Scheduler scheduler;
 
@@ -38,12 +41,11 @@ public class ScheduleTriggerService {
      */
     @Scheduled(fixedRate = 1000 * 30)
     public void refreshTrigger() {
-        Lock lock = new ReentrantLock();
+        ReentrantLock lock = new ReentrantLock();
         try {
-            if (lock.tryLock(10, TimeUnit.SECONDS)) {
+            if (lock.tryLock(DELAY, TimeUnit.SECONDS)) {
                 List<ScheduleTrigger> jobList = scheduleTriggerMapper.selectAll();
                 if (null != jobList && jobList.size() > 0) {
-                    lock.lock();
                     for (ScheduleTrigger scheduleJob : jobList) {
                         String status = scheduleJob.getStatus();
                         TriggerKey triggerKey = TriggerKey.triggerKey(scheduleJob.getJobName(), scheduleJob.getJobGroup());
@@ -98,9 +100,6 @@ public class ScheduleTriggerService {
             }
         } catch (Exception e) {
             logger.error("定时任务每日刷新触发器任务异常，在ScheduleTriggerService的方法refreshTrigger中，异常信息：", e);
-        } finally {
-            lock.unlock();
-            logger.info("释放锁");
         }
     }
 }
