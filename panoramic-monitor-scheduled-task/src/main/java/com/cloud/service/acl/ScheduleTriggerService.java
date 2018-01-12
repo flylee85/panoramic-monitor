@@ -38,12 +38,11 @@ public class ScheduleTriggerService {
      */
     @Scheduled(fixedRate = 1000 * 30)
     public void refreshTrigger() {
-        Lock lock = new ReentrantLock();
+        ReentrantLock lock = new ReentrantLock();
         try {
             if (lock.tryLock(10, TimeUnit.SECONDS)) {
                 List<ScheduleTrigger> jobList = scheduleTriggerMapper.selectAll();
                 if (null != jobList && jobList.size() > 0) {
-                    lock.lock();
                     for (ScheduleTrigger scheduleJob : jobList) {
                         String status = scheduleJob.getStatus();
                         TriggerKey triggerKey = TriggerKey.triggerKey(scheduleJob.getJobName(), scheduleJob.getJobGroup());
@@ -98,9 +97,6 @@ public class ScheduleTriggerService {
             }
         } catch (Exception e) {
             logger.error("定时任务每日刷新触发器任务异常，在ScheduleTriggerService的方法refreshTrigger中，异常信息：", e);
-        } finally {
-            lock.unlock();
-            logger.info("释放锁");
         }
     }
 }
