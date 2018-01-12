@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
-import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 /**
@@ -26,6 +25,10 @@ public class ScheduleTriggerService {
      * 状态 0 无效 1有效
      */
     private static final String STATUS = "0";
+    /**
+     * 获取锁的最大延迟时间（s）
+     */
+    private static final int DELAY = 10;
     @Autowired
     private Scheduler scheduler;
 
@@ -40,7 +43,7 @@ public class ScheduleTriggerService {
     public void refreshTrigger() {
         ReentrantLock lock = new ReentrantLock();
         try {
-            if (lock.tryLock(10, TimeUnit.SECONDS)) {
+            if (lock.tryLock(DELAY, TimeUnit.SECONDS)) {
                 List<ScheduleTrigger> jobList = scheduleTriggerMapper.selectAll();
                 if (null != jobList && jobList.size() > 0) {
                     for (ScheduleTrigger scheduleJob : jobList) {
