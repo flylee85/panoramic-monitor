@@ -2,10 +2,7 @@ package com.monitor.mapper.realtimeconsumptiongather;
 
 import com.cloud.core.Mapper;
 import com.monitor.model.realtimeconsumptiongather.PanoramicRealTimeConsumptionGather;
-
-import java.sql.Timestamp;
 import java.util.List;
-
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
