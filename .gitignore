@@ -44,3 +44,5 @@ proguard/
 *.target
 /target
 target
+/.metadata/
+/.gitignore

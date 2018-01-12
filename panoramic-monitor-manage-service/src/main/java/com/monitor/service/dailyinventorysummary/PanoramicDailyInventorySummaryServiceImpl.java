@@ -172,6 +172,17 @@ public class PanoramicDailyInventorySummaryServiceImpl extends AbstractService<P
     }
 
     @Override
+    public List<PanoramicDailyInventorySummary> listByDateAndCode(String date, List<String> codeList) {
+        List<PanoramicDailyInventorySummary> records = Lists.newArrayList();
+        codeList.forEach((String e) -> {
+            PanoramicDailyInventorySummary dailyInventorySummary = this.queryByDateAndCode(e,
+                    date);
+            records.add(dailyInventorySummary);
+        });
+        return records;
+    }
+
+    @Override
     @Transactional(propagation = Propagation.NOT_SUPPORTED, rollbackFor = Exception.class)
     public Map<String, String> check(List<String> codeList, String date) {
         Map<String, String> result = Maps.newHashMap();
