@@ -71,6 +71,12 @@ public class XSSFilter {
     private static Pattern P2 = Pattern.compile("([a-z0-9]+)=([\"'])(.*?)\\2", REGEX_FLAGS_SI);
     private static Pattern P3 = Pattern.compile("([a-z0-9]+)(=)([^\"\\s']+)", REGEX_FLAGS_SI);
     private static Pattern P = Pattern.compile("^!--(.*)--$", REGEX_FLAGS_SI);
+    private static Pattern PROCESS_PARAM_PROTOCOL = Pattern.compile("^([^:]+):", REGEX_FLAGS_SI);
+    private static Pattern DECODE_ENTITIES_1 = Pattern.compile("&#(\\d+);?");
+    private static Pattern DECODE_ENTITIES_2 =  Pattern.compile("&#x([0-9a-f]+);?");
+    private static Pattern DECODE_ENTITIES_3 = Pattern.compile("%([0-9a-f]{2});?");
+    private static  Pattern VALIDATE_ENTITIES = Pattern.compile("&([^&;]*)(?=(;|&|$))");
+    private static  Pattern VALIDATE_ENTITIES_1 = Pattern.compile("(>|^)([^<]+?)(<|$)", Pattern.DOTALL);
     /**
      * set of allowed html elements, along with allowed attributes for each
      * element
@@ -430,8 +436,7 @@ public class XSSFilter {
 
     protected String processParamProtocol(String s) {
         s = decodeEntities(s);
-        Pattern p = Pattern.compile("^([^:]+):", REGEX_FLAGS_SI);
-        Matcher m = p.matcher(s);
+        Matcher m = PROCESS_PARAM_PROTOCOL.matcher(s);
         if (m.find()) {
             String protocol = m.group(1);
             if (!inArray(protocol, vAllowedProtocols)) {
@@ -448,9 +453,7 @@ public class XSSFilter {
 
     protected String decodeEntities(String s) {
         StringBuffer buf = new StringBuffer();
-
-        Pattern p = Pattern.compile("&#(\\d+);?");
-        Matcher m = p.matcher(s);
+        Matcher m = DECODE_ENTITIES_1.matcher(s);
         while (m.find()) {
             String match = m.group(1);
             int decimal = Integer.decode(match).intValue();
@@ -460,8 +463,7 @@ public class XSSFilter {
         s = buf.toString();
 
         buf = new StringBuffer();
-        p = Pattern.compile("&#x([0-9a-f]+);?");
-        m = p.matcher(s);
+        m = DECODE_ENTITIES_2.matcher(s);
         while (m.find()) {
             String match = m.group(1);
             int decimal = Integer.decode(match).intValue();
@@ -471,8 +473,7 @@ public class XSSFilter {
         s = buf.toString();
 
         buf = new StringBuffer();
-        p = Pattern.compile("%([0-9a-f]{2});?");
-        m = p.matcher(s);
+        m = DECODE_ENTITIES_3.matcher(s);
         while (m.find()) {
             String match = m.group(1);
             int decimal = Integer.decode(match).intValue();
@@ -487,8 +488,7 @@ public class XSSFilter {
 
     protected String validateEntities(String s) {
         // validate entities throughout the string
-        Pattern p = Pattern.compile("&([^&;]*)(?=(;|&|$))");
-        Matcher m = p.matcher(s);
+        Matcher m = VALIDATE_ENTITIES.matcher(s);
         if (m.find()) {
             String one = m.group(1); // ([^&;]*)
             String two = m.group(2); // (?=(;|&|$))
@@ -496,8 +496,7 @@ public class XSSFilter {
         }
 
         // validate quotes outside of tags
-        p = Pattern.compile("(>|^)([^<]+?)(<|$)", Pattern.DOTALL);
-        m = p.matcher(s);
+        m = VALIDATE_ENTITIES_1.matcher(s);
         StringBuffer buf = new StringBuffer();
         if (m.find()) {
             String one = m.group(1); // (>|^)
