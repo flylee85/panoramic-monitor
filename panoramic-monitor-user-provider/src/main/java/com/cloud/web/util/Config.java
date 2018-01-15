@@ -3,7 +3,7 @@ package com.cloud.web.util;
 import com.cloud.support.ErrorCode;
 import com.cloud.support.TraceErrorException;
 import com.cloud.util.DateUtil;
-import com.cloud.util.IpConfig;
+import com.cloud.util.AbstractIpConfig;
 import com.cloud.util.SystemUtils;
 import com.google.common.collect.Maps;
 import org.apache.commons.collections.map.UnmodifiableMap;
@@ -34,7 +34,7 @@ public class Config implements InitializingBean {
         }
 
         SYSTEMID =SYSTEMID+ PROPS.getProperty("systemid");
-        DEPLOYID = SYSTEMID + "-" + SystemUtils.getShortHostname(IpConfig.getHostname());
+        DEPLOYID = SYSTEMID + "-" + SystemUtils.getShortHostname(AbstractIpConfig.getHostname());
         if (StringUtils.isNotBlank(PROPS.getProperty("sessionCookieName"))) {
             SESSION_COOKIE_NAME = PROPS.getProperty("sessionCookieName");
         } else {
@@ -84,15 +84,15 @@ public class Config implements InitializingBean {
     }
 
     public static String getServerIp() {
-        return IpConfig.getServerip();
+        return AbstractIpConfig.getServerip();
     }
 
     public static String getHostname() {
-        return IpConfig.getHostname();
+        return AbstractIpConfig.getHostname();
     }
 
     public static boolean isGewaServerIp(String ip) {
-        return IpConfig.isGewaServerIp(ip);
+        return AbstractIpConfig.isGewaServerIp(ip);
     }
 
     public String getGlobalProp(String key) {
@@ -100,7 +100,7 @@ public class Config implements InitializingBean {
     }
 
     public String getString(String key) {
-        String result = (String) this.configMap.get(key);
+        String result = this.configMap.get(key);
         if (StringUtils.isBlank(result)) {
             result = pageTools.get(key) == null ? null : "" + pageTools.get(key);
         }

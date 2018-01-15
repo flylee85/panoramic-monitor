@@ -17,8 +17,8 @@ import java.util.*;
  * @author ge.biao(acerge@163.com)
  * @since 2016年9月19日下午4:59:38
  */
-public abstract class IpConfig {
-	private static final transient TLogger DB_LOGGER = LoggerUtils.getLogger(IpConfig.class);
+public abstract class AbstractIpConfig {
+	private static final transient TLogger DB_LOGGER = LoggerUtils.getLogger(AbstractIpConfig.class);
 
 	private static final String serverIp;
 	private static final String hostname;
@@ -46,19 +46,19 @@ public abstract class IpConfig {
 
 	static{
 		searchList = new ArrayList<>();
-		searchList.addAll(Arrays.asList(new String[]{"192.168.2.", "192.168.8.", "192.168.3.", "172.28."/*bs*/, "172.22."/*nh*/}));
+		searchList.addAll(Arrays.asList("192.168.2.", "192.168.8.", "192.168.3.", "172.28."/*bs*/, "172.22."/*nh*/));
 
 		//aliyun local
 		searchList.add("10.47.");
 		searchList.add("10.147.");
 
 		innerLocalIp = new ArrayList<>();
-		innerLocalIp.addAll(Arrays.asList(new String[]{"172.22.1.", "172.28."}));
+		innerLocalIp.addAll(Arrays.asList("172.22.1.", "172.28."));
 
 		//aliyun local
 		innerLocalIp.add("10.47.");
 		innerLocalIp.add("10.147.");
-		try(InputStream is = IpConfig.class.getClassLoader().getResourceAsStream("searchip.txt");){
+		try(InputStream is = AbstractIpConfig.class.getClassLoader().getResourceAsStream("searchip.txt")){
 			if(is!=null){
 				List<String> ips = IOUtils.readLines(is);
 				searchList.addAll(ips);
@@ -67,7 +67,7 @@ public abstract class IpConfig {
 		} catch (Exception e) {
 		}
 
-		try(InputStream is = IpConfig.class.getClassLoader().getResourceAsStream("inner_local_ip.txt");){
+		try(InputStream is = AbstractIpConfig.class.getClassLoader().getResourceAsStream("inner_local_ip.txt")){
 			if(is!=null){
 				List<String> ips = IOUtils.readLines(is);
 				innerLocalIp.addAll(ips);
@@ -75,7 +75,7 @@ public abstract class IpConfig {
 		} catch (Exception e) {
 		}
 
-		String[] host = IpConfig.getServerAddr();
+		String[] host = AbstractIpConfig.getServerAddr();
 		serverIp = host[0];
 		DB_LOGGER.warn("GetServerIP:" + serverIp);
 		//hostname = host[1];

@@ -136,7 +136,7 @@ public abstract class AbstractMonitorService implements MonitorService {
             ((Map) info).put("nomemberid", "Y");
         }
 
-        this.addMonitorEntry("MEMBERLOG", (Map) info);
+        this.addMonitorEntry("MEMBERLOG", info);
     }
 
     @Override
@@ -156,7 +156,7 @@ public abstract class AbstractMonitorService implements MonitorService {
         }
 
         ((Map) info).put("membername", membername);
-        this.addMonitorEntry("MEMBERLOG2", (Map) info);
+        this.addMonitorEntry("MEMBERLOG2", info);
     }
 
     @Override
@@ -168,7 +168,7 @@ public abstract class AbstractMonitorService implements MonitorService {
 
     @Override
     public void saveSysWarn(String title, String content, RoleTag role) {
-        this.saveSysWarn((Class) null, (Serializable) null, title, content, role);
+        this.saveSysWarn(null, null, title, content, role);
     }
 
     @Override
@@ -179,7 +179,7 @@ public abstract class AbstractMonitorService implements MonitorService {
 
     @Override
     public void saveSysTemplateWarn(String title, String template, Map model, RoleTag role) {
-        this.saveSysTemplateWarn((Class) null, (Serializable) null, title, template, model, role);
+        this.saveSysTemplateWarn(null, null, title, template, model, role);
     }
 
     @Override
@@ -260,7 +260,7 @@ public abstract class AbstractMonitorService implements MonitorService {
 
     @Override
     public void incrementCallCount(String callname) {
-        AtomicInteger counter = (AtomicInteger) this.callcountMap.get(callname);
+        AtomicInteger counter = this.callcountMap.get(callname);
         if (counter == null) {
             counter = this.createCounter(callname);
         }
@@ -270,7 +270,7 @@ public abstract class AbstractMonitorService implements MonitorService {
 
     @Override
     public void decrementCallCount(String callname) {
-        AtomicInteger counter = (AtomicInteger) this.callcountMap.get(callname);
+        AtomicInteger counter = this.callcountMap.get(callname);
         if (counter == null) {
             counter = this.createCounter(callname);
         }
@@ -291,7 +291,7 @@ public abstract class AbstractMonitorService implements MonitorService {
 
         while (var3.hasNext()) {
             String key = (String) var3.next();
-            result.put(key, ((AtomicInteger) this.callcountMap.get(key)).get());
+            result.put(key, this.callcountMap.get(key).get());
         }
 
         return result;
@@ -299,7 +299,7 @@ public abstract class AbstractMonitorService implements MonitorService {
 
     @Override
     public int getCallCount(String callname) {
-        AtomicInteger counter = (AtomicInteger) this.callcountMap.get(callname);
+        AtomicInteger counter = this.callcountMap.get(callname);
         return counter == null ? 0 : counter.get();
     }
 
@@ -358,11 +358,11 @@ public abstract class AbstractMonitorService implements MonitorService {
         row.put("adddate", exceptionTrace.substring(0, 10));
         this.addMonitorEntry("LOG_ENTRY", row);
         if (otherinfo != null) {
-            remoteIp = (String) otherinfo.get("remoteIp");
-            if (StringUtils.isNotBlank(remoteIp) && !IpConfig.isGewaInnerIp(remoteIp) && StringUtils.equals(exceptionType, "AttackException")) {
-                String reqUri = (String) otherinfo.get("reqUri");
-                String reqParams = (String) otherinfo.get("reqParams");
-                String exceptionName = (String) row.get("exceptionName");
+            remoteIp = otherinfo.get("remoteIp");
+            if (StringUtils.isNotBlank(remoteIp) && !AbstractIpConfig.isGewaInnerIp(remoteIp) && StringUtils.equals(exceptionType, "AttackException")) {
+                String reqUri = otherinfo.get("reqUri");
+                String reqParams = otherinfo.get("reqParams");
+                String exceptionName = row.get("exceptionName");
                 Map<String, String> params = Maps.newHashMap();
                 params.put("reqParams", reqParams);
                 params.put("exceptionType", "AttackException");
