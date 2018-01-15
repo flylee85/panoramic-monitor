@@ -26,6 +26,23 @@ public interface PanoramicSystemWebService extends Service<PanoramicWarningData>
      * @param endDate
      * @return
      */
-	List<PanoramicRiskForWebInfo> getRiskListByDate(String startDate,String endDate);
+	List<PanoramicRiskForWebInfo> getRiskListByDate(String startDate,String endDate,Integer status, String name);
+	
+	/**
+     * 手动解除预警信息
+     *
+     * @param responsiblecontent
+     * @param responsiblename
+     * @param id
+     * @return
+     */
+	Boolean finishDataByManual(String responsiblecontent,String responsiblename,Integer id);
+	
+	/**
+     * 获取所有责任人
+     *
+     * @return
+     */
+	List<String> getResponsibleNameList();
 
 }
