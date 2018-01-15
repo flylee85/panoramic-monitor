@@ -20,8 +20,10 @@ import org.springframework.transaction.annotation.Transactional;
 import tk.mybatis.mapper.entity.Condition;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 /**
  * @author summer 2017/11/21.
@@ -41,12 +43,12 @@ public class PanoramicRealTimeConsumptionServiceImpl extends AbstractService<Pan
 
     @Override
     @Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
-    public void realtimeConsumptionSummaryTask(String name, String code, String date) {
+    public void realtimeConsumptionSummaryTask(String name, String code, String dateBefore, String dateEnd) {
         // 先查出来，再去更新
         Condition condition = new Condition(PanoramicRealTimeConsumption.class, false);
         condition.createCriteria().andCondition(
                 "  substring(code, 1, 12) = '" + code + "' AND f_id=2 AND delete_flag=1 "
-                        + " AND date_format(utime,'%Y%m%d%H') = date_format('" + date + "','%Y%m%d%H')");
+                + " AND utime > '" + dateBefore + "' AND utime < '" + dateEnd + "'");
         List<PanoramicRealTimeConsumption> consumptionList = realTimeConsumptionMapper.selectByCondition(condition);
         PanoramicRealTimeConsumption record = new PanoramicRealTimeConsumption();
         record.setCode(code);
@@ -72,14 +74,14 @@ public class PanoramicRealTimeConsumptionServiceImpl extends AbstractService<Pan
                 record.setId(null);
             });
         }
-        PanoramicRealTimeConsumptionGather selectOne = realTimeConsumptionGatherMapper.selectByGatherTime(code, date);
+        PanoramicRealTimeConsumptionGather selectOne = realTimeConsumptionGatherMapper.selectByGatherTime(code, dateBefore);
         Optional<PanoramicRealTimeConsumptionGather> one = Optional.ofNullable(selectOne);
         if (one.isPresent()) {
         	selectOne.setValue(sumValue[0] );
         	selectOne.setUtime(DateUtil.getCurFullTimestamp());
         	selectOne.setCtime(selectOne.getUtime());
         	selectOne.setOperator("auto_task_update");
-        	selectOne.setGatherTime(date);
+        	selectOne.setGatherTime(dateBefore);
             realTimeConsumptionGatherMapper.updateByPrimaryKeySelective(selectOne);
         } else {
             PanoramicRealTimeConsumptionGather gather = new PanoramicRealTimeConsumptionGather();
@@ -87,7 +89,7 @@ public class PanoramicRealTimeConsumptionServiceImpl extends AbstractService<Pan
             gather.setName(name);
             gather.setDeleteFlag(record.getDeleteFlag());
             gather.setfId(record.getfId());
-            gather.setGatherTime(date);
+            gather.setGatherTime(dateBefore);
             gather.setId(null);
             gather.setCtime(DateUtil.getCurFullTimestamp());
             gather.setName(record.getName());
@@ -104,22 +106,27 @@ public class PanoramicRealTimeConsumptionServiceImpl extends AbstractService<Pan
     @Override
     @Transactional(propagation = Propagation.NOT_SUPPORTED, rollbackFor = Exception.class)
     public List<PanoramicRealTimeConsumption> listRealTimeConsumptionCategoryTask() {
-        List<PanoramicRealTimeConsumption> recordList = realTimeConsumptionMapper.listRealTimeConsumptionCategory();
-        return recordList;
+    		List<PanoramicRealTimeConsumption> recordList = realTimeConsumptionMapper.listRealTimeConsumptionCategory();
+    		HashSet<PanoramicRealTimeConsumption> temp = new HashSet<>(recordList);
+    		recordList.clear();
+    		recordList.addAll(temp);
+    		return recordList;
     }
 
     @Override
     @Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
     public void realTimeConsumptionSummaryTask() {
         try {
-            String date = DateUtil.currentTimeHourStr();
+            String dateBefore = DateUtil.currentTimeHourStr();
+            String dateEnd = DateUtil.dateBeforeOrAfterHoursStr(DateUtil.currentTime(),1);
+            
             List<PanoramicRealTimeConsumption> consumptionCategoryList = this.listRealTimeConsumptionCategoryTask();
             if (null == consumptionCategoryList || consumptionCategoryList.size() == 0) {
                 DB_LOGGER.warn("实时消耗表数据为空{}");
                 return;
             }
             consumptionCategoryList.forEach((PanoramicRealTimeConsumption e) -> {
-                this.realtimeConsumptionSummaryTask(e.getName(), e.getCode(), date);
+                this.realtimeConsumptionSummaryTask(e.getName(), e.getCode(), dateBefore, dateEnd);
             });
         } catch (Exception e) {
             DB_LOGGER.warn("实时消耗数据汇总到汇总表{},出现异常" + e);

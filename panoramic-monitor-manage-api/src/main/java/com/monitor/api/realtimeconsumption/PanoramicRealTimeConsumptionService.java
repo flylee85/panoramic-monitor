@@ -22,7 +22,7 @@ public interface PanoramicRealTimeConsumptionService extends Service<PanoramicRe
      * @param code
      * @param date
      */
-    void realtimeConsumptionSummaryTask(String name ,String code, String date);
+	void realtimeConsumptionSummaryTask(String name, String code, String dateBefore, String dateEnd);
 
     /** 查询所有消耗分类(定时任务)
      * @return

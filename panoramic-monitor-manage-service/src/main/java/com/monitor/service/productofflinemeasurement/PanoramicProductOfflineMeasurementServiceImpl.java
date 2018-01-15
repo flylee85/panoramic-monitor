@@ -3,6 +3,7 @@ package com.monitor.service.productofflinemeasurement;
 import com.monitor.mapper.productofflinemeasurement.PanoramicProductOfflineMeasurementMapper;
 import com.monitor.mapper.realtimeconsumptiongather.PanoramicRealTimeConsumptionGatherMapper;
 import com.monitor.model.productofflinemeasurement.PanoramicProductOfflineMeasurement;
+import com.monitor.model.realtimeconsumption.PanoramicRealTimeConsumption;
 import com.monitor.model.realtimeconsumptiongather.PanoramicRealTimeConsumptionGather;
 import com.monitor.service.realtimeconsumption.PanoramicRealTimeConsumptionServiceImpl;
 import tk.mybatis.mapper.entity.Condition;
@@ -17,6 +18,8 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 
@@ -45,9 +48,10 @@ public class PanoramicProductOfflineMeasurementServiceImpl extends AbstractServi
     @Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
     public void productOfflineMeasurementSummaryTask() {
 		try {
-            String date = DateUtil.currentTimeHourStr();
-            List<PanoramicProductOfflineMeasurement> productOfflineCategoryList = 
-            		panoramicProductOfflineMeasurementMapper.listProductOfflineCategory();
+            String dateStart = DateUtil.currentTimeHourStr();
+            String dateEnd = DateUtil.dateBeforeOrAfterHoursStr(DateUtil.currentTime(),1);
+            
+            List<PanoramicProductOfflineMeasurement> productOfflineCategoryList = this.getListProductOfflineCategory();
             
             if (null == productOfflineCategoryList || productOfflineCategoryList.size() == 0) {
                 DB_LOGGER.warn("产品下线表数据为空{}");
@@ -55,7 +59,7 @@ public class PanoramicProductOfflineMeasurementServiceImpl extends AbstractServi
             }
             
             productOfflineCategoryList.forEach((PanoramicProductOfflineMeasurement e) -> {
-                this.productOfflineSummaryTask(e.getName(), e.getCode(), date);
+                this.productOfflineSummaryTask(e.getName(), e.getCode(), dateStart, dateEnd);
             });
         } catch (Exception e) {
             DB_LOGGER.warn("产品下线表数据汇总到汇总表{},出现异常" + e);
@@ -68,14 +72,15 @@ public class PanoramicProductOfflineMeasurementServiceImpl extends AbstractServi
 	 * @param code
 	 * @param date
 	 */
-	private void productOfflineSummaryTask(String name, String code, String date) {
-		
-        // 
+	private void productOfflineSummaryTask(String name, String code, String dateStart, String dateEnd ) {
+				
         Condition condition = new Condition(PanoramicProductOfflineMeasurement.class, false);
         condition.createCriteria().andCondition(
-                "	code = '" + code + "' "
-                	+	"AND f_id=2 AND delete_flag=1 "
-                +	"AND date_format(utime,'%Y%m%d%H') = date_format('" + date + "','%Y%m%d%H')");
+                "	code = '" + code + "'"
+                	+	" AND f_id=2 AND delete_flag=1"
+                +	" AND utime > '" + dateStart + "'"
+                +	" AND utime < '" + dateEnd + "'"
+                +   " ");
         List<PanoramicProductOfflineMeasurement> offlineMeasurementList = 
         		panoramicProductOfflineMeasurementMapper.selectByCondition(condition);
         
@@ -104,14 +109,14 @@ public class PanoramicProductOfflineMeasurementServiceImpl extends AbstractServi
                 record.setId(null);
             });
         }
-        PanoramicRealTimeConsumptionGather selectOne = realTimeConsumptionGatherMapper.selectByGatherTime(code, date);
+        PanoramicRealTimeConsumptionGather selectOne = realTimeConsumptionGatherMapper.selectByGatherTime(code, dateStart);
         Optional<PanoramicRealTimeConsumptionGather> one = Optional.ofNullable(selectOne);
         if (one.isPresent()) {
         	selectOne.setValue(sumValue[0] );
         	selectOne.setUtime(DateUtil.getCurFullTimestamp());
         	selectOne.setCtime(selectOne.getUtime());
         	selectOne.setOperator("auto_task_update");
-        	selectOne.setGatherTime(date);
+        	selectOne.setGatherTime(dateStart);
             realTimeConsumptionGatherMapper.updateByPrimaryKeySelective(selectOne);
         } else {
             PanoramicRealTimeConsumptionGather gather = new PanoramicRealTimeConsumptionGather();
@@ -119,7 +124,7 @@ public class PanoramicProductOfflineMeasurementServiceImpl extends AbstractServi
             gather.setName(name);
             gather.setDeleteFlag(record.getDeleteFlag());
             gather.setfId(record.getfId());
-            gather.setGatherTime(date);
+            gather.setGatherTime(dateStart);
             gather.setId(null);
             gather.setCtime(DateUtil.getCurFullTimestamp());
             gather.setName(record.getName());
@@ -131,4 +136,17 @@ public class PanoramicProductOfflineMeasurementServiceImpl extends AbstractServi
             realTimeConsumptionGatherMapper.insert(gather);
         }
 	}
+	
+	/**
+	 * 获取下线数据条目
+	 * @return
+	 */
+    private List<PanoramicProductOfflineMeasurement> getListProductOfflineCategory() {
+    		List<PanoramicProductOfflineMeasurement> productOfflineCategoryList = 
+        		panoramicProductOfflineMeasurementMapper.listProductOfflineCategory();
+		HashSet<PanoramicProductOfflineMeasurement> temp = new HashSet<PanoramicProductOfflineMeasurement>(productOfflineCategoryList);
+		productOfflineCategoryList.clear();
+		productOfflineCategoryList.addAll(temp);
+		return productOfflineCategoryList;
+    }
 }
