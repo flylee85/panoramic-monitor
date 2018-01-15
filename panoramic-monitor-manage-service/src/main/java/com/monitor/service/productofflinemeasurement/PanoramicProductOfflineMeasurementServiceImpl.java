@@ -3,7 +3,6 @@ package com.monitor.service.productofflinemeasurement;
 import com.monitor.mapper.productofflinemeasurement.PanoramicProductOfflineMeasurementMapper;
 import com.monitor.mapper.realtimeconsumptiongather.PanoramicRealTimeConsumptionGatherMapper;
 import com.monitor.model.productofflinemeasurement.PanoramicProductOfflineMeasurement;
-import com.monitor.model.realtimeconsumption.PanoramicRealTimeConsumption;
 import com.monitor.model.realtimeconsumptiongather.PanoramicRealTimeConsumptionGather;
 import com.monitor.service.realtimeconsumption.PanoramicRealTimeConsumptionServiceImpl;
 import tk.mybatis.mapper.entity.Condition;
@@ -19,8 +18,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.HashSet;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 /**
@@ -144,9 +145,25 @@ public class PanoramicProductOfflineMeasurementServiceImpl extends AbstractServi
     private List<PanoramicProductOfflineMeasurement> getListProductOfflineCategory() {
     		List<PanoramicProductOfflineMeasurement> productOfflineCategoryList = 
         		panoramicProductOfflineMeasurementMapper.listProductOfflineCategory();
-		HashSet<PanoramicProductOfflineMeasurement> temp = new HashSet<PanoramicProductOfflineMeasurement>(productOfflineCategoryList);
-		productOfflineCategoryList.clear();
-		productOfflineCategoryList.addAll(temp);
-		return productOfflineCategoryList;
+
+    		if(productOfflineCategoryList != null && productOfflineCategoryList.size() != 0) {
+        		List<PanoramicProductOfflineMeasurement> nodupCastegoryList = 
+        				new ArrayList<PanoramicProductOfflineMeasurement>();
+        		
+    			Map<String, PanoramicProductOfflineMeasurement> map = 
+    					new HashMap<String,PanoramicProductOfflineMeasurement>(productOfflineCategoryList.size());
+        		
+        		for(PanoramicProductOfflineMeasurement temp:productOfflineCategoryList) {
+        			if(map.get(temp.getCode()) == null) {
+        				map.put(temp.getCode(), temp);
+        				nodupCastegoryList.add(temp);
+        			} 
+        		}
+        		
+        		return nodupCastegoryList;
+        		
+    		} else {
+    			return null;
+		}
     }
 }

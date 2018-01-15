@@ -6,7 +6,6 @@ import com.cloud.util.DateUtil;
 import com.cloud.util.LoggerUtils;
 import com.cloud.util.TLogger;
 import com.monitor.api.realtimeconsumption.PanoramicRealTimeConsumptionService;
-import com.monitor.dto.realtimeconsumption.PanoramicRealTimeConsumptionDto;
 import com.monitor.mapper.realtimeconsumption.PanoramicRealTimeConsumptionMapper;
 import com.monitor.mapper.realtimeconsumptiongather.PanoramicRealTimeConsumptionGatherMapper;
 import com.monitor.model.realtimeconsumption.PanoramicRealTimeConsumption;
@@ -19,11 +18,13 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import tk.mybatis.mapper.entity.Condition;
 
+import static org.hamcrest.CoreMatchers.nullValue;
+
 import java.util.ArrayList;
-import java.util.HashSet;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
-import java.util.Set;
 
 /**
  * @author summer 2017/11/21.
@@ -107,10 +108,21 @@ public class PanoramicRealTimeConsumptionServiceImpl extends AbstractService<Pan
     @Transactional(propagation = Propagation.NOT_SUPPORTED, rollbackFor = Exception.class)
     public List<PanoramicRealTimeConsumption> listRealTimeConsumptionCategoryTask() {
     		List<PanoramicRealTimeConsumption> recordList = realTimeConsumptionMapper.listRealTimeConsumptionCategory();
-    		HashSet<PanoramicRealTimeConsumption> temp = new HashSet<>(recordList);
-    		recordList.clear();
-    		recordList.addAll(temp);
-    		return recordList;
+ 
+    		if(recordList != null && recordList.size() != 0 ) {
+    	   		Map<String, PanoramicRealTimeConsumption> map = new HashMap<String,PanoramicRealTimeConsumption>(recordList.size());
+    	   		List<PanoramicRealTimeConsumption> nodupList = new ArrayList<PanoramicRealTimeConsumption>();
+        		for(PanoramicRealTimeConsumption temp:recordList) {
+        			if(map.get(temp.getCode()) == null) {
+        				map.put(temp.getCode(), temp);
+        				nodupList.add(temp);
+        			} 
+        		}
+        		return nodupList;    			
+    		} else {
+    			return null;
+    		}
+
     }
 
     @Override
