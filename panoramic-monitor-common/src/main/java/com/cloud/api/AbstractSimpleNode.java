@@ -4,9 +4,9 @@ import com.cloud.util.BeanUtil;
 /**
  * @author summer
  */
-public class SimpleNode extends ApiNode{
+public class AbstractSimpleNode extends AbstractApiNode {
 	private Object simpleValue;
-	public SimpleNode(String nodeName, Object simpleValue, boolean ignoreEmpty){
+	public AbstractSimpleNode(String nodeName, Object simpleValue, boolean ignoreEmpty){
 		if(simpleValue!=null && BeanUtil.isSimpleValueType(simpleValue.getClass())){
 			throw new IllegalArgumentException(simpleValue + " must be simple!");
 		}

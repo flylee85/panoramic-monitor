@@ -6,7 +6,7 @@ import java.util.Map;
 /**
  * @author summer
  */
-public class ListNode extends ApiNode {
+public class AbstractListNode extends AbstractApiNode {
 	private List beanList;
 	private List<Map<String, ?>> dataMapList = new ArrayList<Map<String, ?>>();
 	private String singleNodeName;
@@ -19,7 +19,7 @@ public class ListNode extends ApiNode {
 	public String getSingleNodeName() {
 		return singleNodeName;
 	}
-	public ListNode(List beanList, String nodeName, String singleNodeName, boolean ignoreEmpty, String... outputFields){
+	public AbstractListNode(List beanList, String nodeName, String singleNodeName, boolean ignoreEmpty, String... outputFields){
 		this.beanList = beanList;
 		this.nodeName = nodeName;
 		this.ignoreEmpty = ignoreEmpty;

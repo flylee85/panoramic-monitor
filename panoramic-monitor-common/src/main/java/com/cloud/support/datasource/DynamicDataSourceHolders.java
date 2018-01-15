@@ -5,13 +5,26 @@ package com.cloud.support.datasource;
  */
 public class DynamicDataSourceHolders {
 
-    public static final ThreadLocal<String> holder = new ThreadLocal<>();
+    public static final ThreadLocal<String> HOLDER = new ThreadLocal<>();
 
+    /** 设置
+     * @param name
+     */
     public static void putDataSource(String name) {
-        holder.set(name);
+        HOLDER.set(name);
     }
 
+    /**获取
+     * @return
+     */
     public static String getDataSource() {
-        return holder.get();
+        return HOLDER.get();
+    }
+
+    /**
+     * 移除
+     */
+    public static void removeDataSource() {
+        HOLDER.remove();
     }
 }
