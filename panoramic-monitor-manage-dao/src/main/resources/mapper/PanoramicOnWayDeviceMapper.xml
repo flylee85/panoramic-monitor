@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.monitor.mapper.onwaydevice.PanoramicOnWayDeviceMapper">
+  <resultMap id="BaseResultMap" type="com.monitor.model.onwaydevice.PanoramicOnWayDevice">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="device_no" jdbcType="VARCHAR" property="deviceNo" />
+    <result column="device_type" jdbcType="INTEGER" property="deviceType" />
+    <result column="bind" jdbcType="BIT" property="bind" />
+    <result column="online_status" jdbcType="BIT" property="onlineStatus" />
+    <result column="battery" jdbcType="INTEGER" property="battery" />
+    <result column="lng" jdbcType="DOUBLE" property="lng" />
+    <result column="lat" jdbcType="DOUBLE" property="lat" />
+    <result column="gps_time" jdbcType="TIMESTAMP" property="gpsTime" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+  </resultMap>
+</mapper>
