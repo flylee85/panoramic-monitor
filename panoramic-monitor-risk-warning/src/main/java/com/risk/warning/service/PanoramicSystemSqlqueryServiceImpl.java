@@ -68,7 +68,7 @@ public class PanoramicSystemSqlqueryServiceImpl extends AbstractService<Panorami
  	   							//查询报警数据库离是否存在昨天的报警数据
  	   							List<PanoramicWarningData> ListData = warningDataMapper.getLastWarningDataByConfigurationID(4,warningquery.getWarnConfigurationID());
  	   							if(ListData != null && ListData.size() > 0) {
- 	   							PanoramicWarningData lastData =(PanoramicWarningData) ListData.get(0);
+ 	   							PanoramicWarningData lastData = ListData.get(0);
  	   								//判断需要不需要提升报警等级
  	   								if(lastData.getDayCount() == 1 && lastData.getMaxLevel() > lastData.getLevel()) {
  	   									//插入报警等级提升之后的数据
