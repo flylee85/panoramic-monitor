@@ -49,7 +49,7 @@ public class PanoramicSystemWebController{
     
     
     @ApiOperation(value = "手动解除预警信息", notes = "手动解除预警信息")
-    @GetMapping("/finishbymanual/{responsiblecontent}/{responsiblename}/{id}")
+    @PostMapping("/finishbymanual/{responsiblecontent}/{responsiblename}/{id}")
     public ResultCode<Boolean> finishDataByManual(@PathVariable("responsiblecontent") String responsiblecontent, @PathVariable("responsiblename") String responsiblename,@PathVariable("id") Integer id) {
     	Boolean result = panoramicSystemWebService.finishDataByManual(responsiblecontent,responsiblename,id);
         return ResultCode.getSuccessReturn(result);
