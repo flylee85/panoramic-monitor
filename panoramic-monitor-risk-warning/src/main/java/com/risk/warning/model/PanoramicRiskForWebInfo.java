@@ -11,6 +11,10 @@ public class PanoramicRiskForWebInfo extends BaseObject {
     */
    private static final long serialVersionUID = 1L;
    /**
+    * id
+    */
+   private String id;
+   /**
     * StatusName
     */
    private String status_name;
@@ -45,7 +49,25 @@ public class PanoramicRiskForWebInfo extends BaseObject {
     */
    private Integer level;
    
+
+   /**
+    * 获取Id
+    *
+    * @return id - Id
+    */
+   public String getId() {
+   		return id;    	
+   }
    
+
+   /**
+    * 设置Id
+    *
+    * @param id Id
+    */
+   public void setId(String id) {
+       this.id = id;
+   } 
 
    /**
     * 获取StatusName
