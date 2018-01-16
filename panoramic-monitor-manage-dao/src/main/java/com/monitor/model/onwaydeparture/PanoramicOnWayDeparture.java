@@ -1,167 +1,109 @@
-/**
- * 
- */
-/**
- * @author fgh
- *
- */
 package com.monitor.model.onwaydeparture;
 
-import java.io.Serializable;
-import java.sql.Timestamp;
+import java.util.Date;
+import javax.persistence.*;
 
-import com.cloud.model.BaseObject;
+@Table(name = "panoramic_on_way_departure")
+public class PanoramicOnWayDeparture {
+    @Id
+    @Column(name = "departure_id")
+    private String departureId;
 
-public class PanoramicOnWayDeparture extends BaseObject {
+    @Column(name = "start_time")
+    private Date startTime;
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	/**
-     * Departure_Id
-     */
-	private String departure_id;
-	/**
-     * Start_Time
-     */
-	private Timestamp start_time;
-	/**
-     * Arrive_Time
-     */
-	private Timestamp arrive_time;
-	/**
-     * Postman
-     */
-	private String postman;
-	/**
-     * Postman_Phone
-     */
-	private String postman_phone;
-	/**
-     * Device_No
-     */
-	private String device_no;
-	
+    @Column(name = "arrive_time")
+    private Date arriveTime;
+
+    private String postman;
+
+    @Column(name = "postman_phone")
+    private String postmanPhone;
+
+    @Column(name = "device_no")
+    private String deviceNo;
 
     /**
-     * 获取DepartureId
-     *
-     * @return departure_id - DepartureId
+     * @return departure_id
      */
     public String getDepartureId() {
-        return departure_id;
+        return departureId;
     }
 
     /**
-     * 设置DepartureId
-     *
-     * @param departureid DepartureId
+     * @param departureId
      */
-    public void setDepartureId(String departureid) {
-        this.departure_id = departureid;
+    public void setDepartureId(String departureId) {
+        this.departureId = departureId;
     }
-	
 
     /**
-     * 获取StartTime
-     *
-     * @return start_time - StartTime
+     * @return start_time
      */
-    public Timestamp getStartTime() {
-        return start_time;
+    public Date getStartTime() {
+        return startTime;
     }
 
     /**
-     * 设置StartTime
-     *
-     * @param starttime StartTime
+     * @param startTime
      */
-    public void setStartTime(Timestamp starttime) {
-        this.start_time = starttime;
+    public void setStartTime(Date startTime) {
+        this.startTime = startTime;
     }
 
-
     /**
-     * 获取ArriveTime
-     *
-     * @return arrive_time - ArriveTime
+     * @return arrive_time
      */
-    public Timestamp getArriveTime() {
-        return arrive_time;
+    public Date getArriveTime() {
+        return arriveTime;
     }
 
     /**
-     * 设置ArriveTime
-     *
-     * @param arrivetime ArriveTime
+     * @param arriveTime
      */
-    public void setArriveTime(Timestamp arrivetime) {
-        this.arrive_time = arrivetime;
+    public void setArriveTime(Date arriveTime) {
+        this.arriveTime = arriveTime;
     }
 
     /**
-     * 获取DeviceNo
-     *
-     * @return device_no - DeviceNo
-     */
-    public String getDeviceNo() {
-        return device_no;
-    }
-
-    /**
-     * 设置DeviceNo
-     *
-     * @param deviceno DeviceNo
-     */
-    public void setDeviceNo(String deviceno) {
-        this.device_no = deviceno;
-    }
-    
-
-
-    /**
-     * 获取Postman
-     *
-     * @return postman - Postman
+     * @return postman
      */
     public String getPostman() {
         return postman;
     }
 
     /**
-     * 设置Postman
-     *
-     * @param postman Postman
+     * @param postman
      */
     public void setPostman(String postman) {
         this.postman = postman;
     }
-	
 
     /**
-     * 获取PostmanPhone
-     *
-     * @return postman_phone - PostmanPhone
+     * @return postman_phone
      */
     public String getPostmanPhone() {
-        return postman_phone;
+        return postmanPhone;
     }
 
     /**
-     * 设置PostmanPhone
-     *
-     * @param postmanphone PostmanPhone
+     * @param postmanPhone
      */
-    public void setPostmanPhone(String postmanphone) {
-        this.postman_phone = postmanphone;
+    public void setPostmanPhone(String postmanPhone) {
+        this.postmanPhone = postmanPhone;
     }
-	
 
-
-    @Override
-    public Serializable realId() {
-        return null;
+    /**
+     * @return device_no
+     */
+    public String getDeviceNo() {
+        return deviceNo;
     }
-	
+
+    /**
+     * @param deviceNo
+     */
+    public void setDeviceNo(String deviceNo) {
+        this.deviceNo = deviceNo;
+    }
 }

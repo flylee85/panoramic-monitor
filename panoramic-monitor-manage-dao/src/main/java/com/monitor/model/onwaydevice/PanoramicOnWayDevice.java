@@ -1,238 +1,156 @@
-/**
- * 
- */
-/**
- * @author fgh
- *
- */
 package com.monitor.model.onwaydevice;
 
-import java.io.Serializable;
-import java.sql.Timestamp;
+import java.util.Date;
+import javax.persistence.*;
 
-import com.cloud.model.BaseObject;
+@Table(name = "panoramic_on_way_device")
+public class PanoramicOnWayDevice {
+    @Id
+    @Column(name = "device_no")
+    private String deviceNo;
 
-public class PanoramicOnWayDevice extends BaseObject {
+    @Column(name = "device_type")
+    private Integer deviceType;
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	/**
-     * Device_No
-     */
-	private String device_no;
-	/**
-     * Device_Type
-     */
-	private Integer device_type;
-	/**
-     * Bind
-     */
-	private Integer bind;
-	/**
-     * Online_Status
-     */
-	private Integer online_status;
-	/**
-     * Battery
-     */
-	private Integer battery;
-	/**
-     * Lng
-     */
-	private Double lng;
-	/**
-     * lat
-     */
-	private Double lat;
-	/**
-     * Gps_Time
-     */
-	private Timestamp gps_time;
-	/**
-     * Address
-     */
-	private String address;
-	
+    private Boolean bind;
 
+    @Column(name = "online_status")
+    private Boolean onlineStatus;
+
+    private Integer battery;
+
+    private Double lng;
+
+    private Double lat;
+
+    @Column(name = "gps_time")
+    private Date gpsTime;
+
+    private String address;
 
     /**
-     * 获取DeviceNo
-     *
-     * @return device_no - DeviceNo
+     * @return device_no
      */
     public String getDeviceNo() {
-        return device_no;
+        return deviceNo;
     }
 
     /**
-     * 设置DeviceNo
-     *
-     * @param deviceno DeviceNo
+     * @param deviceNo
      */
-    public void setDeviceNo(String deviceno) {
-        this.device_no = deviceno;
+    public void setDeviceNo(String deviceNo) {
+        this.deviceNo = deviceNo;
     }
-    
 
     /**
-     * 获取DeviceType
-     *
-     * @return device_type - DeviceType
+     * @return device_type
      */
     public Integer getDeviceType() {
-        return device_type;
+        return deviceType;
     }
 
     /**
-     * 设置DeviceType
-     *
-     * @param devicetype DeviceType
+     * @param deviceType
      */
-    public void setDeviceType(Integer devicetype) {
-        this.device_type = devicetype;
+    public void setDeviceType(Integer deviceType) {
+        this.deviceType = deviceType;
     }
-    
 
     /**
-     * 获取Bind
-     *
-     * @return bind - Bind
+     * @return bind
      */
-    public Integer getBind() {
+    public Boolean getBind() {
         return bind;
     }
 
     /**
-     * 设置Bind
-     *
-     * @param bind Bind
+     * @param bind
      */
-    public void setBind(Integer bind) {
+    public void setBind(Boolean bind) {
         this.bind = bind;
     }
-    
 
     /**
-     * 获取OnlineStatus
-     *
-     * @return online_status - OnlineStatus
+     * @return online_status
      */
-    public Integer getOnlineStatus() {
-        return online_status;
+    public Boolean getOnlineStatus() {
+        return onlineStatus;
     }
 
     /**
-     * 设置OnlineStatus
-     *
-     * @param onlinestatus OnlineStatus
+     * @param onlineStatus
      */
-    public void setOnlineStatus(Integer onlinestatus) {
-        this.online_status = onlinestatus;
+    public void setOnlineStatus(Boolean onlineStatus) {
+        this.onlineStatus = onlineStatus;
     }
-    
 
     /**
-     * 获取Battery
-     *
-     * @return battery - Battery
+     * @return battery
      */
     public Integer getBattery() {
         return battery;
     }
 
     /**
-     * 设置Battery
-     *
-     * @param battery Battery
+     * @param battery
      */
     public void setBattery(Integer battery) {
         this.battery = battery;
     }
 
-
     /**
-     * 获取Lng
-     *
-     * @return lng - Lng
+     * @return lng
      */
     public Double getLng() {
         return lng;
     }
 
     /**
-     * 设置Lng
-     *
-     * @param lng Lng
+     * @param lng
      */
     public void setLng(Double lng) {
         this.lng = lng;
     }
-	
-    
 
     /**
-     * 获取Lat
-     *
-     * @return lat - Lat
+     * @return lat
      */
     public Double getLat() {
         return lat;
     }
 
     /**
-     * 设置Lat
-     *
-     * @param lat Lat
+     * @param lat
      */
     public void setLat(Double lat) {
         this.lat = lat;
     }
-	
-
 
     /**
-     * 获取GpsTime
-     *
-     * @return gps_time - GpsTime
+     * @return gps_time
      */
-    public Timestamp getGpsTime() {
-        return gps_time;
+    public Date getGpsTime() {
+        return gpsTime;
     }
 
     /**
-     * 设置GpsTime
-     *
-     * @param gpstime GpsTime
+     * @param gpsTime
      */
-    public void setGpsTime(Timestamp gpstime) {
-        this.gps_time = gpstime;
+    public void setGpsTime(Date gpsTime) {
+        this.gpsTime = gpsTime;
     }
-    
 
     /**
-     * 获取Address
-     *
-     * @return address - Address
+     * @return address
      */
     public String getAddress() {
         return address;
     }
 
     /**
-     * 设置Address
-     *
-     * @param address Address
+     * @param address
      */
     public void setAddress(String address) {
         this.address = address;
     }
-    
-
-    @Override
-    public Serializable realId() {
-        return null;
-    }
-	
 }

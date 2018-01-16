@@ -1,413 +1,294 @@
-/**
- * 
- */
-/**
- * @author fgh
- *
- */
 package com.monitor.model.onwayorder;
 
-import java.io.Serializable;
-import java.sql.Timestamp;
+import java.util.Date;
+import javax.persistence.*;
 
-import com.cloud.model.BaseObject;
+@Table(name = "panoramic_on_way_order")
+public class PanoramicOnWayOrder {
+    @Id
+    @Column(name = "order_no")
+    private String orderNo;
 
-public class PanoramicOnWayOrder extends BaseObject {
-    /**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	/**
-     * Order_No
-     */
-	private String order_no;
-    /**
-     * User_Order_No
-     */
-	private String user_order_no;
-    /**
-     * Sender_Address
-     */
-	private String send_address;
-    /**
-     * Sender_Name
-     */
-	private String send_name;
-    /**
-     * Sender_Mobile
-     */
-	private String send_mobile;
-    /**
-     * Receive_Address
-     */
-	private String receive_address;
-    /**
-     * Receive_Name
-     */
-	private String receive_name;
-    /**
-     * Receive_Mobile
-     */
-	private String receive_mobile;
-    /**
-     * Request_Receive_Time
-     */
-	private Timestamp request_receive_time;
-    /**
-     * Ctime
-     */
-	private Timestamp ctime;
-    /**
-     * Utime
-     */
-	private Timestamp utime;
-    /**
-     * Current_Status
-     */
-	private String current_status;
-    /**
-     * Current_Trans_Type
-     */
-	private String current_trans_type;
-    /**
-     * Org_Code
-     */
-	private String org_code;
-    /**
-     * From_Org_Code
-     */
-	private String from_org_code;
-    /**
-     * From_Time
-     */
-	private String from_time;
-    /**
-     * Deleted
-     */
-	private String deleted;
-	
+    @Column(name = "user_order_no")
+    private String userOrderNo;
+
+    @Column(name = "send_address")
+    private String sendAddress;
+
+    @Column(name = "send_name")
+    private String sendName;
+
+    @Column(name = "send_mobile")
+    private String sendMobile;
+
+    @Column(name = "receive_address")
+    private String receiveAddress;
+
+    @Column(name = "receive_name")
+    private String receiveName;
+
+    @Column(name = "receive_mobile")
+    private String receiveMobile;
+
+    @Column(name = "request_receive_time")
+    private Date requestReceiveTime;
+
+    private Date ctime;
+
+    private Date utime;
+
+    @Column(name = "current_status")
+    private String currentStatus;
+
+    @Column(name = "current_trans_type")
+    private String currentTransType;
+
+    @Column(name = "org_code")
+    private String orgCode;
+
+    @Column(name = "from_org_code")
+    private String fromOrgCode;
+
+    @Column(name = "from_time")
+    private Date fromTime;
+
+    private String deleted;
 
     /**
-     * 获取OrderNo
-     *
-     * @return order_no - OrderNo
+     * @return order_no
      */
     public String getOrderNo() {
-        return order_no;
+        return orderNo;
     }
 
     /**
-     * 设置OrderNo
-     *
-     * @param orderno OrderNo
+     * @param orderNo
      */
-    public void setOrderNo(String orderno) {
-        this.order_no = orderno;
+    public void setOrderNo(String orderNo) {
+        this.orderNo = orderNo;
     }
-    
 
     /**
-     * 获取UserOrderNo
-     *
-     * @return user_order_no - UserOrderNo
+     * @return user_order_no
      */
     public String getUserOrderNo() {
-        return user_order_no;
+        return userOrderNo;
     }
 
     /**
-     * 设置UserOrderNo
-     *
-     * @param userorderno UserOrderNo
+     * @param userOrderNo
      */
-    public void setUserOrderNo(String userorderno) {
-        this.user_order_no = userorderno;
+    public void setUserOrderNo(String userOrderNo) {
+        this.userOrderNo = userOrderNo;
     }
-    
 
     /**
-     * 获取SendAddress
-     *
-     * @return send_address - SendAddress
+     * @return send_address
      */
     public String getSendAddress() {
-        return send_address;
+        return sendAddress;
     }
 
     /**
-     * 设置SendAddress
-     *
-     * @param sendaddress SendAddress
+     * @param sendAddress
      */
-    public void setSendAddress(String sendaddress) {
-        this.send_address = sendaddress;
+    public void setSendAddress(String sendAddress) {
+        this.sendAddress = sendAddress;
     }
-    
 
     /**
-     * 获取SendName
-     *
-     * @return send_name - SendName
+     * @return send_name
      */
     public String getSendName() {
-        return send_name;
+        return sendName;
     }
 
     /**
-     * 设置SendName
-     *
-     * @param sendname SendName
+     * @param sendName
      */
-    public void setSendName(String sendname) {
-        this.send_name = sendname;
+    public void setSendName(String sendName) {
+        this.sendName = sendName;
     }
-    
 
     /**
-     * 获取SendMobile
-     *
-     * @return send_mobile - SendMobile
+     * @return send_mobile
      */
     public String getSendMobile() {
-        return send_mobile;
+        return sendMobile;
     }
 
     /**
-     * 设置SendMobile
-     *
-     * @param sendmobile SendMobile
+     * @param sendMobile
      */
-    public void setSendMobile(String sendmobile) {
-        this.send_mobile = sendmobile;
+    public void setSendMobile(String sendMobile) {
+        this.sendMobile = sendMobile;
     }
 
-    
-
     /**
-     * 获取ReceiveAddress
-     *
-     * @return receive_address - ReceiveAddress
+     * @return receive_address
      */
     public String getReceiveAddress() {
-        return receive_address;
+        return receiveAddress;
     }
 
     /**
-     * 设置ReceiveAddress
-     *
-     * @param receiveaddress ReceiveAddress
+     * @param receiveAddress
      */
-    public void setReceiveAddress(String receiveaddress) {
-        this.receive_address = receiveaddress;
+    public void setReceiveAddress(String receiveAddress) {
+        this.receiveAddress = receiveAddress;
     }
-    
 
     /**
-     * 获取ReceiveName
-     *
-     * @return receive_name - ReceiveName
+     * @return receive_name
      */
     public String getReceiveName() {
-        return receive_name;
+        return receiveName;
     }
 
     /**
-     * 设置ReceiveName
-     *
-     * @param receivename ReceiveName
+     * @param receiveName
      */
-    public void setReceiveName(String receivename) {
-        this.receive_name = receivename;
+    public void setReceiveName(String receiveName) {
+        this.receiveName = receiveName;
     }
 
-
     /**
-     * 获取ReceiveMobile
-     *
-     * @return receive_mobile - ReceiveMobile
+     * @return receive_mobile
      */
     public String getReceiveMobile() {
-        return receive_mobile;
+        return receiveMobile;
     }
 
     /**
-     * 设置ReceiveMobile
-     *
-     * @param receivemobile ReceiveMobile
+     * @param receiveMobile
      */
-    public void setReceiveMobile(String receivemobile) {
-        this.receive_mobile = receivemobile;
-    }
-	
-
-    /**
-     * 获取RequestReceiveTime
-     *
-     * @return request_receive_time - RequestReceiveTime
-     */
-    public Timestamp getRequestReceiveTime() {
-        return request_receive_time;
+    public void setReceiveMobile(String receiveMobile) {
+        this.receiveMobile = receiveMobile;
     }
 
     /**
-     * 设置RequestReceiveTime
-     *
-     * @param requestreceivetime RequestReceiveTime
+     * @return request_receive_time
      */
-    public void setRequestReceiveTime(Timestamp requestreceivetime) {
-        this.request_receive_time = requestreceivetime;
+    public Date getRequestReceiveTime() {
+        return requestReceiveTime;
     }
-	
 
     /**
-     * 获取Ctime
-     *
-     * @return ctime - Ctime
+     * @param requestReceiveTime
      */
-    public Timestamp getCtime() {
+    public void setRequestReceiveTime(Date requestReceiveTime) {
+        this.requestReceiveTime = requestReceiveTime;
+    }
+
+    /**
+     * @return ctime
+     */
+    public Date getCtime() {
         return ctime;
     }
 
     /**
-     * 设置Ctime
-     *
-     * @param ctime Ctime
+     * @param ctime
      */
-    public void setCtime(Timestamp ctime) {
+    public void setCtime(Date ctime) {
         this.ctime = ctime;
     }
-	
 
     /**
-     * 获取Utime
-     *
-     * @return utime - Utime
+     * @return utime
      */
-    public Timestamp getUtime() {
+    public Date getUtime() {
         return utime;
     }
 
     /**
-     * 设置Utime
-     *
-     * @param utime Utime
+     * @param utime
      */
-    public void setUtime(Timestamp utime) {
+    public void setUtime(Date utime) {
         this.utime = utime;
     }
-	
 
     /**
-     * 获取CurrentStatus
-     *
-     * @return current_status - CurrentStatus
+     * @return current_status
      */
     public String getCurrentStatus() {
-        return current_status;
+        return currentStatus;
     }
 
     /**
-     * 设置CurrentStatus
-     *
-     * @param currentstatus CurrentStatus
+     * @param currentStatus
      */
-    public void setCurrentStatus(String currentstatus) {
-        this.current_status = currentstatus;
+    public void setCurrentStatus(String currentStatus) {
+        this.currentStatus = currentStatus;
     }
 
     /**
-     * 获取CurrentTransType
-     *
-     * @return current_trans_type - CurrentTransType
+     * @return current_trans_type
      */
     public String getCurrentTransType() {
-        return current_trans_type;
+        return currentTransType;
     }
 
     /**
-     * 设置CurrentTransType
-     *
-     * @param currenttranstype CurrentTransType
+     * @param currentTransType
      */
-    public void setCurrentTransType(String currenttranstype) {
-        this.current_trans_type = currenttranstype;
+    public void setCurrentTransType(String currentTransType) {
+        this.currentTransType = currentTransType;
     }
 
     /**
-     * 获取OrgCode
-     *
-     * @return org_code - OrgCode
+     * @return org_code
      */
     public String getOrgCode() {
-        return org_code;
+        return orgCode;
     }
 
     /**
-     * 设置OrgCode
-     *
-     * @param orgcode OrgCode
+     * @param orgCode
      */
-    public void setOrgCode(String orgcode) {
-        this.org_code = orgcode;
+    public void setOrgCode(String orgCode) {
+        this.orgCode = orgCode;
     }
 
     /**
-     * 获取FromOrgCode
-     *
-     * @return from_org_code - FromOrgCode
+     * @return from_org_code
      */
     public String getFromOrgCode() {
-        return from_org_code;
+        return fromOrgCode;
     }
 
     /**
-     * 设置FromOrgCode
-     *
-     * @param fromorgcode FromOrgCode
+     * @param fromOrgCode
      */
-    public void setFromOrgCode(String fromorgcode) {
-        this.from_org_code = fromorgcode;
+    public void setFromOrgCode(String fromOrgCode) {
+        this.fromOrgCode = fromOrgCode;
     }
 
     /**
-     * 获取FromTime
-     *
-     * @return from_time - FromTime
+     * @return from_time
      */
-    public String getFromTime() {
-        return from_time;
+    public Date getFromTime() {
+        return fromTime;
     }
 
     /**
-     * 设置FromTime
-     *
-     * @param fromtime FromTime
+     * @param fromTime
      */
-    public void setFromTime(String fromtime) {
-        this.from_time = fromtime;
+    public void setFromTime(Date fromTime) {
+        this.fromTime = fromTime;
     }
 
     /**
-     * 获取Deleted
-     *
-     * @return deleted - Deleted
+     * @return deleted
      */
     public String getDeleted() {
         return deleted;
     }
 
     /**
-     * 设置Deleted
-     *
-     * @param deleted Deleted
+     * @param deleted
      */
     public void setDeleted(String deleted) {
         this.deleted = deleted;
     }
-
-    @Override
-    public Serializable realId() {
-        return null;
-    }
-	
 }

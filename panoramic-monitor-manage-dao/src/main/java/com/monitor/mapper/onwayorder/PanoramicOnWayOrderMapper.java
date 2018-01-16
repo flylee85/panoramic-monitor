@@ -12,6 +12,7 @@ import java.sql.Timestamp;
 
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 import org.springframework.stereotype.Repository;
 
@@ -84,4 +85,9 @@ public interface PanoramicOnWayOrderMapper extends Mapper<PanoramicOnWayOrder> {
     		,@Param("fromtime") String fromtime
     		,@Param("deleted") String deleted
     		,@Param("ordero") String ordero);
+	
+	@Select(" Select date_format(max(ctime) ,'%Y-%m-%d %T')  from panoramic_on_way_order  ")
+	String getStartTime();
+	
+	
 }
