@@ -46,8 +46,12 @@ public class PanoramicSystemWebServiceImpl extends AbstractService<PanoramicWarn
     @Transactional(propagation = Propagation.NOT_SUPPORTED, rollbackFor = Exception.class)
     public List<PanoramicRiskForWebInfo> getRiskListByDate(String startDate, String endDate,Integer status,String name) {
     	String strWhere = "";
-    	if(status > 0) {
-    		strWhere += " and T1.status = " + status;
+    	if(status == 0) {
+    		//未解除预警
+    		strWhere += " and T1.status = 1" ;
+    	}else if(status == 1) {
+    		//已解除预警
+    		strWhere += " and T1.status = 2" ;
     	}
     	
     	if (name != null && !name.equals("")) {

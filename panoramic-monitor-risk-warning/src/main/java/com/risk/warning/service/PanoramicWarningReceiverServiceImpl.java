@@ -65,8 +65,6 @@ public class PanoramicWarningReceiverServiceImpl extends AbstractService<Panoram
     @Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
     public void regularlDealWarningData() {
     	 try {
-    		 //提升未处理的数据等级
-    		 warningDataMapper.updatewarningSourceLevel();
     		//获取未处理的预警数据
     		 List<PanoramicWarningData> ListWarningData = warningDataMapper.getDealWarningData();
     			if(ListWarningData != null) {
