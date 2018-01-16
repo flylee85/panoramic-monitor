@@ -44,9 +44,34 @@ public class PanoramicSystemWebServiceImpl extends AbstractService<PanoramicWarn
     
     @Override
     @Transactional(propagation = Propagation.NOT_SUPPORTED, rollbackFor = Exception.class)
-    public List<PanoramicRiskForWebInfo> getRiskListByDate(String startDate, String endDate) {
-        List<PanoramicRiskForWebInfo> recordList = warningDataMapper.getRiskListByDate(startDate, endDate);
-        return recordList;
+    public List<PanoramicRiskForWebInfo> getRiskListByDate(String startDate, String endDate,Integer status,String name) {
+    	String strWhere = "";
+    	if(status > 0) {
+    		strWhere += " and T1.status = " + status;
+    	}
+    	
+    	if (name != null && !name.equals("")) {
+    		strWhere += " and T1.responsible_name = '" + name + "' ";
+    	}
+    	
+    	DB_LOGGER.warn(strWhere);
+        List<PanoramicRiskForWebInfo> recordList = warningDataMapper.getRiskListByDate(startDate, endDate,strWhere);
+        return (null == recordList || recordList.size() == 0) ? null :recordList;
+    }
+    
+    @Override
+    @Transactional(propagation = Propagation.NOT_SUPPORTED, rollbackFor = Exception.class)
+    public Boolean finishDataByManual(String responsiblecontent,String responsiblename,Integer id){
+    	Boolean result = warningDataMapper.finishDataByManual(responsiblecontent,responsiblename,id);
+        return result;
+    }
+    
+
+    @Override
+    @Transactional(propagation = Propagation.NOT_SUPPORTED, rollbackFor = Exception.class)
+    public List<String> getResponsibleNameList(){
+    	List<String> recordList = warningDataMapper.getResponsibleNameList();
+    	   return (null == recordList || recordList.size() == 0) ? null :recordList;
     }
     
 }

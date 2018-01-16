@@ -19,5 +19,7 @@
     <result column="warn_configuration_id" jdbcType="INTEGER" property="warnConfigurationId" />
     <result column="level" jdbcType="INTEGER" property="level" />
     <result column="is_send_email" jdbcType="BIT" property="isSendEmail" />
+    <result column="responsible_content" jdbcType="VARCHAR" property="responsibleContent" />
+    <result column="responsible_name" jdbcType="VARCHAR" property="responsibleName" />
   </resultMap>
 </mapper>

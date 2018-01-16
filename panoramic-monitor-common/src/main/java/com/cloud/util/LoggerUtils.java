@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -94,7 +95,7 @@ public class LoggerUtils {
 		if(notUseJson) {
             return new SimpleLogger(logger);
         }
-		return new JsonLogger(logger, AbstractIpConfig.getServerip(), null);
+		return new JsonLogger(logger, IpConfig.getServerip(), null);
 	}
 	public static TLogger getLogger(Class clazz, String serverIp, String systemId) {
 		Logger logger = LoggerFactory.getLogger(clazz);

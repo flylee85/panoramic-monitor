@@ -97,6 +97,16 @@ public class PanoramicWarningData extends BaseObject {
     */
    private Integer day_count;
    
+   /**
+    * ResponsibleContent
+    */
+   private String responsible_content;
+   
+   /**
+    * ResponsibleName
+    */
+   private String responsible_name;
+   
    
    
    /**
@@ -459,6 +469,44 @@ public class PanoramicWarningData extends BaseObject {
     */
    public void setDayCount(Integer daycount) {
        this.day_count = daycount;
+   } 
+
+   /**
+    * 获取ResponsibleContent
+    *
+    * @return return_content - ResponsibleContent
+    */
+   public String getResponsibleContent() {
+   		return responsible_content;    	
+   }
+   
+
+   /**
+    * 设置ResponsibleContent
+    *
+    * @param responsiblecontent ResponsibleContent
+    */
+   public void setResponsibleContent(String responsiblecontent) {
+       this.responsible_content = responsiblecontent;
+   } 
+
+   /**
+    * 获取ResponsibleName
+    *
+    * @return responsible_name - ResponsibleName
+    */
+   public String getResponsibleName() {
+   		return responsible_name;    	
+   }
+   
+
+   /**
+    * 设置ResponsibleName
+    *
+    * @param responsiblename ResponsibleName
+    */
+   public void setResponsibleName(String responsiblename) {
+       this.responsible_name = responsiblename;
    } 
    
     @Override

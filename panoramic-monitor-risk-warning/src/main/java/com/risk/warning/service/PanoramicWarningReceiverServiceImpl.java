@@ -18,12 +18,16 @@ import com.sun.mail.util.MailSSLSocketFactory;
 import com.risk.warning.model.PanoramicEmailSendInfo;
 import com.risk.warning.model.PanoramicWarningData;
 
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.security.GeneralSecurityException;
+import java.text.DecimalFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Properties;
 
 import javax.mail.Authenticator;
+import javax.mail.MessagingException;
 import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 import javax.mail.Transport;
@@ -80,10 +84,15 @@ public class PanoramicWarningReceiverServiceImpl extends AbstractService<Panoram
           	DB_LOGGER.warn("操作异常!");
          }
     }
-    
+
+    @Value("${Email.Config.protocol}")
+    private String protocol;
     
     @Value("${Email.Config.host}")
     private String host;
+    
+    @Value("${Email.Config.port}")
+    private String port;
 
     @Value("${Email.Config.address}")
     private String fromEmailAddress;
@@ -94,6 +103,9 @@ public class PanoramicWarningReceiverServiceImpl extends AbstractService<Panoram
     @Value("${Email.Config.needSSL}")
     private Boolean needSSL;
     
+    @Value("${Email.Config.mailContent}")
+    private String mailContent;
+    
     private void sendEmail(List<PanoramicWarningReceiver> listReceiver,PanoramicWarningData  SourceData )  {
   	  // 1. 创建一封邮件
         // 指定发送邮件的主机为本机
@@ -102,9 +114,13 @@ public class PanoramicWarningReceiverServiceImpl extends AbstractService<Panoram
         
         // 获取系统属性
         Properties properties = System.getProperties();
+        //协议
+        properties.setProperty("mail.transport.protocol", protocol);
    
         // 设置邮件服务器
         properties.setProperty("mail.smtp.host", host);
+        // 设置邮件服务器端口号
+        properties.setProperty("mail.smtp.port", port);
         
         properties.put("mail.smtp.auth", "true");
         
@@ -150,7 +166,10 @@ public class PanoramicWarningReceiverServiceImpl extends AbstractService<Panoram
 	            message.setSubject(SourceData.getWarningname());
 	
 	            // 5. Content: 邮件正文（可以使用html标签）
-	            String mailContent = "您好，"+ SourceData.getFactoryName() + SourceData.getSectionName() + SourceData.getDeviceName() + "    " +  SourceData.getEventName() + "=" + SourceData.getEventValue() + "超出阈值(" + SourceData.getMinValue() + "," + SourceData.getMaxValue() +"),触发" + SourceData.getLevel() + "级预警  请及时查看" ;
+
+	            DecimalFormat decimalFormat = new DecimalFormat("###################.###########");  
+	            mailContent=  String.format(mailContent,SourceData.getFactoryName(),SourceData.getSectionName(),SourceData.getDeviceName(),SourceData.getEventName(),decimalFormat.format(SourceData.getEventValue()) ,decimalFormat.format(SourceData.getMinValue()), decimalFormat.format(SourceData.getMaxValue()) , SourceData.getLevel());
+	            
 	            message.setContent(mailContent, "text/html;charset=UTF-8");
 	
 	            // 6. 设置显示的发件时间
@@ -162,10 +181,15 @@ public class PanoramicWarningReceiverServiceImpl extends AbstractService<Panoram
 	            Transport.send(message);
 	        	sendInfo.setReason("发送成功");
 	        	sendInfo.setSendStatus(1);
-	        }catch (Exception e) {
+	        } catch (MessagingException e) {
 	        	sendInfo.setSendStatus(2);
 	        	sendInfo.setReason(String.valueOf(e));
-	        	
+	        } catch (UnsupportedEncodingException e) {
+	        	sendInfo.setSendStatus(2);
+	        	sendInfo.setReason(String.valueOf(e));
+	        } catch (IOException e) {
+	        	sendInfo.setSendStatus(2);
+	        	sendInfo.setReason(String.valueOf(e));
 	        }finally {
 	        	emailSendInfoMapper.addSendInfo(sendInfo.getReceiverName(),sendInfo.getReceiverEmail(),sendInfo.getWarningSourceID(),sendInfo.getSendStatus(),sendInfo.getReason());
 	        }

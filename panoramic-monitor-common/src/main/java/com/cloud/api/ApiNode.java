@@ -6,7 +6,7 @@ import java.util.Map;
 /**
  * @author summer
  */
-public abstract class AbstractApiNode {
+public abstract class ApiNode {
 	protected String nodeName;
 	protected String[] outputFields;
 	protected boolean ignoreEmpty;

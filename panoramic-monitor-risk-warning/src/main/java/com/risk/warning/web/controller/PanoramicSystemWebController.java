@@ -38,11 +38,31 @@ public class PanoramicSystemWebController{
     private PanoramicSystemWebService panoramicSystemWebService;
     
     @ApiOperation(value = "预警信息一览查询接口", notes = "分页查询所有预警信息一览")
-    @GetMapping("/getrisklist/{startdate}/{enddate}/{page}/{size}")
-    public ResultCode<PageInfo<PanoramicRiskForWebInfo>> getrisklist(@PathVariable("startdate") String startdate, @PathVariable("enddate") String enddate, @PathVariable("page") Integer page, @PathVariable("size") Integer size) {
+    @GetMapping(value = {"/getrisklist/{startdate}/{enddate}/{page}/{size}/{status}/{name}" , "/getrisklist/{startdate}/{enddate}/{page}/{size}/{status}"})
+    public ResultCode<PageInfo<PanoramicRiskForWebInfo>> getrisklist(@PathVariable("startdate") String startdate, @PathVariable("enddate") String enddate, @PathVariable("page") Integer page, @PathVariable("size") Integer size, @PathVariable("status") Integer status, @PathVariable(value ="name",required = false)  String name) {
+    	DB_LOGGER.warn(name);
         PageHelper.startPage(page, size);
-        List<PanoramicRiskForWebInfo> list = panoramicSystemWebService.getRiskListByDate(startdate + " 00:00:00", enddate + " 23:59:59");
+        List<PanoramicRiskForWebInfo> list = panoramicSystemWebService.getRiskListByDate(startdate + " 00:00:00", enddate + " 23:59:59",status,name);
         PageInfo<PanoramicRiskForWebInfo> pageInfo = new PageInfo<>(list);
         return ResultCode.getSuccessReturn(pageInfo);
     }
+    
+    
+    @ApiOperation(value = "手动解除预警信息", notes = "手动解除预警信息")
+    @GetMapping("/finishbymanual/{responsiblecontent}/{responsiblename}/{id}")
+    public ResultCode<Boolean> finishDataByManual(@PathVariable("responsiblecontent") String responsiblecontent, @PathVariable("responsiblename") String responsiblename,@PathVariable("id") Integer id) {
+    	Boolean result = panoramicSystemWebService.finishDataByManual(responsiblecontent,responsiblename,id);
+        return ResultCode.getSuccessReturn(result);
+    }
+    
+
+    
+    
+    @ApiOperation(value = "获取所有责任人", notes = "获取所有责任人")
+    @GetMapping("/getresponsiblenameList")
+    public ResultCode<List<String>> getResponsibleNameList() {
+    	List<String> list = panoramicSystemWebService.getResponsibleNameList();
+        return ResultCode.getSuccessReturn(list);
+    }
+    
 }

@@ -15,28 +15,28 @@ import java.util.Map;
 public class ApiResponse {
 	private String errorCode;
 	private String msg;
-	private Map<String, AbstractApiNode> apiNodeMap = new LinkedHashMap<String, AbstractApiNode>();
-	public void addDataNode(AbstractApiNode node){
+	private Map<String, ApiNode> apiNodeMap = new LinkedHashMap<String, ApiNode>();
+	public void addDataNode(ApiNode node){
 		apiNodeMap.put(node.getNodeName(), node);
 	}
 	public void addBeanNode(String nodeName, Object bean, boolean ignoreEmpty, String... outputFields){
-		apiNodeMap.put(nodeName, new AbstractBeanNode(bean, nodeName, ignoreEmpty, outputFields));
+		apiNodeMap.put(nodeName, new BeanNode(bean, nodeName, ignoreEmpty, outputFields));
 	}
 	public void addSimpleNode(String key, Object simpleValue, boolean ignoreEmpty){
-		apiNodeMap.put(key, new AbstractSimpleNode(key, simpleValue, ignoreEmpty));
+		apiNodeMap.put(key, new SimpleNode(key, simpleValue, ignoreEmpty));
 	}
 	public Map getJsonMap(){
 		Map result = new LinkedHashMap();
 		result.put("errorCode", errorCode);
 		result.put("msg", msg);
 		for(String nodeName: apiNodeMap.keySet()){
-			AbstractApiNode node = apiNodeMap.get(nodeName);
-			if(node instanceof AbstractSimpleNode){
-				result.put(nodeName, ((AbstractSimpleNode)node).getSimpleValue());
-			}else if(node instanceof AbstractBeanNode){
-				result.put(nodeName, ((AbstractBeanNode)node).getDataMap());
-			}else if(node instanceof AbstractListNode){
-				result.put(nodeName, ((AbstractListNode)node).getDataMapList());
+			ApiNode node = apiNodeMap.get(nodeName);
+			if(node instanceof SimpleNode){
+				result.put(nodeName, ((SimpleNode)node).getSimpleValue());
+			}else if(node instanceof BeanNode){
+				result.put(nodeName, ((BeanNode)node).getDataMap());
+			}else if(node instanceof ListNode){
+				result.put(nodeName, ((ListNode)node).getDataMapList());
 			}
 		}
 		return result;
@@ -87,16 +87,16 @@ public class ApiResponse {
 			}
 		}
 	}
-	private static void wrapXmlNode(Writer writer, AbstractApiNode dataNode){
-		if(dataNode instanceof AbstractSimpleNode){
-			AbstractSimpleNode node = (AbstractSimpleNode)dataNode;
+	private static void wrapXmlNode(Writer writer, ApiNode dataNode){
+		if(dataNode instanceof SimpleNode){
+			SimpleNode node = (SimpleNode)dataNode;
 			writeSingleElement(writer, node.getNodeName(), node.getSimpleValue(), node.ignoreEmpty);
-		}else if(dataNode instanceof AbstractBeanNode){
-			AbstractBeanNode node = (AbstractBeanNode)dataNode;
+		}else if(dataNode instanceof BeanNode){
+			BeanNode node = (BeanNode)dataNode;
 			Map<String, ?> dataMap = node.getDataMap();
 			writeXmlMap(writer, node.nodeName, dataMap, node.ignoreEmpty);
-		}else if(dataNode instanceof AbstractListNode){
-			AbstractListNode node = (AbstractListNode)dataNode;
+		}else if(dataNode instanceof ListNode){
+			ListNode node = (ListNode)dataNode;
 			if(!node.ignoreEmpty || node.getBeanList()!=null && !node.getBeanList().isEmpty()){
 				try{
 					writer.write(xmlStart(node.nodeName));

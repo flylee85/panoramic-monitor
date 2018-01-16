@@ -54,7 +54,7 @@ public class BaseWebUtils {
             for (int i = ipList.length - 1; i >= 0; --i) {
                 String ip = ipList[i];
                 ip = StringUtils.trim(ip);
-                if (AbstractIpConfig.isGewaServerIp(ip)) {
+                if (IpConfig.isGewaServerIp(ip)) {
                     gewaip = ip;
                 } else if (!"127.0.0.1".equals(ip) && !"localhost".equals(ip)) {
                     return ip;
@@ -87,7 +87,7 @@ public class BaseWebUtils {
 
     public static final boolean isLocalRequest(HttpServletRequest request) {
         String ip = getRemoteIp(request);
-        return AbstractIpConfig.isLocalIp(ip);
+        return IpConfig.isLocalIp(ip);
     }
 
     /**
@@ -123,6 +123,7 @@ public class BaseWebUtils {
             writer.write("var data=" + JsonUtils.writeObjectToJson(jsonMap));
             res.flushBuffer();
         } catch (IOException var5) {
+            ;
         }
 
     }
@@ -149,7 +150,7 @@ public class BaseWebUtils {
         String key = null;
 
         while (it.hasMoreElements()) {
-            key = it.nextElement();
+            key = (String) it.nextElement();
             result.put(key, request.getParameter(key));
         }
 
@@ -162,7 +163,7 @@ public class BaseWebUtils {
 
         String value;
         for (String key = null; it.hasMoreElements(); result.put(key, value)) {
-            key = it.nextElement();
+            key = (String) it.nextElement();
             value = request.getHeader(key);
             if (StringUtils.containsIgnoreCase(key, "cookie")) {
                 value = "*******";
@@ -178,7 +179,7 @@ public class BaseWebUtils {
 
         String value;
         for (String key = null; it.hasMoreElements(); result.put("head4" + StringUtils.lowerCase(key), value)) {
-            key = it.nextElement();
+            key = (String) it.nextElement();
             value = request.getHeader(key);
             if (StringUtils.containsIgnoreCase(key, "cookie")) {
                 value = "*******";
@@ -201,7 +202,7 @@ public class BaseWebUtils {
     }
 
     public static final void clearCookie(HttpServletResponse response, String path, String cookieName) {
-        Cookie cookie = new Cookie(cookieName, null);
+        Cookie cookie = new Cookie(cookieName, (String) null);
         cookie.setMaxAge(0);
         cookie.setPath(path);
         response.addCookie(cookie);
@@ -299,6 +300,7 @@ public class BaseWebUtils {
                 }
             }
         } catch (Exception var4) {
+            ;
         }
 
         return false;
@@ -353,6 +355,7 @@ public class BaseWebUtils {
                 return str[str.length - 1].trim();
             }
         } catch (Exception var5) {
+            ;
         }
 
         return browserInfo;
@@ -410,7 +413,7 @@ public class BaseWebUtils {
 
         while (var4.hasNext()) {
             String key = (String) var4.next();
-            flatMap.put(key, StringUtils.join(reqMap.get(key), joinChar));
+            flatMap.put(key, StringUtils.join((Object[]) reqMap.get(key), joinChar));
         }
 
         return flatMap;
@@ -425,7 +428,7 @@ public class BaseWebUtils {
                 String name = (String) var4.next();
 
                 try {
-                    sb.append(name).append("=").append(URLEncoder.encode(requestMap.get(name), encode)).append("&");
+                    sb.append(name).append("=").append(URLEncoder.encode((String) requestMap.get(name), encode)).append("&");
                 } catch (UnsupportedEncodingException var6) {
                 }
             }
@@ -445,7 +448,7 @@ public class BaseWebUtils {
             String key = (String) var5.next();
 
             try {
-                sb.append("&").append(key).append("=").append(URLEncoder.encode(paramMap.get(key), encode));
+                sb.append("&").append(key).append("=").append(URLEncoder.encode((String) paramMap.get(key), encode));
             } catch (UnsupportedEncodingException var7) {
                 var7.printStackTrace();
             }
@@ -477,7 +480,7 @@ public class BaseWebUtils {
         List<String> keyList = null;
         if (keys != null) {
             keyList = new ArrayList(DEFAULT_SENSITIVE);
-            keyList.addAll(Arrays.asList(keys));
+            ((List) keyList).addAll(Arrays.asList(keys));
         } else {
             keyList = DEFAULT_SENSITIVE;
         }
@@ -492,9 +495,9 @@ public class BaseWebUtils {
                 }
 
                 pname = (String) var4.next();
-                int valueLen = StringUtils.length(params.get(pname));
+                int valueLen = StringUtils.length((String) params.get(pname));
                 if (valueLen > 1000) {
-                    params.put(pname, StringUtils.substring(params.get(pname), 1000) + "->LEN:" + valueLen);
+                    params.put(pname, StringUtils.substring((String) params.get(pname), 1000) + "->LEN:" + valueLen);
                 }
             } while (IGNORE_KEYS.contains(pname));
 
@@ -502,8 +505,8 @@ public class BaseWebUtils {
 
             while (var7.hasNext()) {
                 String key = (String) var7.next();
-                if (StringUtils.containsIgnoreCase(pname, key) && StringUtils.isNotBlank(params.get(pname))) {
-                    params.put(pname, "MG" + StringUtil.md5("kcj3STidSC" + params.get(pname)));
+                if (StringUtils.containsIgnoreCase(pname, key) && StringUtils.isNotBlank((String) params.get(pname))) {
+                    params.put(pname, "MG" + StringUtil.md5("kcj3STidSC" + (String) params.get(pname)));
                 }
             }
         }

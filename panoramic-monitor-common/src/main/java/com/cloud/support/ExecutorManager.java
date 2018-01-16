@@ -10,7 +10,7 @@ import java.util.concurrent.ThreadPoolExecutor;
 /**
  * @author summer
  */
-public abstract class AbstractExecutorManager {
+public abstract class ExecutorManager {
 	private static final transient TLogger DB_LOGGER = LoggerUtils.getLogger(HttpUtils.class);
 	/**
 	 * 注册的线程池，当系统重新启动时，先等待线程池中的任务完成，最大30s

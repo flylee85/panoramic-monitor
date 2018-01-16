@@ -40,6 +40,10 @@ public class PanoramicRiskForWebInfo extends BaseObject {
     * Utime
     */
    private Timestamp  utime;
+   /**
+    * Level
+    */
+   private Integer level;
    
    
 
@@ -173,7 +177,26 @@ public class PanoramicRiskForWebInfo extends BaseObject {
    public void setReturnContent(String returncontent) {
        this.return_content = returncontent;
    } 
+
    
+   /**
+    * 获取Level
+    *
+    * @return level - Level
+    */
+   public Integer getLevel() {
+	   return level;
+   }
+   
+   /**
+    * 设置Level
+    *
+    * @param level Level
+    */
+   public void SetLevel(Integer level) {
+	   this.level = level;
+   }
+
    
 
 	@Override
