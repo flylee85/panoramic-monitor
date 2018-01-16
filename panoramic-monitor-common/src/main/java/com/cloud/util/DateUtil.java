@@ -109,6 +109,17 @@ public class DateUtil implements Util4Script {
         return org.apache.commons.lang3.StringUtils.substring(formatTimestamp(currentTime()), 0, 13);
     }
 
+    
+    /**
+     * 指定时间的前后小时计算
+     * @return
+     */
+    public static String dateBeforeOrAfterHoursStr(Date fromDate ,int iHour) {
+    	
+    		Date date = getDateBeforeOrAfterHours(fromDate ,iHour);
+    		return org.apache.commons.lang3.StringUtils.substring(formatTimestamp(date), 0, 13);
+    }
+    
     /**
      * 获取当前日期 <br>
      * 参见{@link #timeMillis()}

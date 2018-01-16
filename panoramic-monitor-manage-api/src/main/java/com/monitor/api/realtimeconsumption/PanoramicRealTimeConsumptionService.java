@@ -1,12 +1,9 @@
 package com.monitor.api.realtimeconsumption;
 
 import com.cloud.core.Service;
-import com.monitor.dto.realtimeconsumption.PanoramicRealTimeConsumptionDto;
 import com.monitor.model.realtimeconsumption.PanoramicRealTimeConsumption;
-
 import java.util.List;
 
-import org.apache.ibatis.annotations.Param;
 
 
 /**
@@ -20,9 +17,10 @@ public interface PanoramicRealTimeConsumptionService extends Service<PanoramicRe
      *
      * @param name
      * @param code
-     * @param date
+     * @param dateBefore
+     * @param dateEnd
      */
-    void realtimeConsumptionSummaryTask(String name ,String code, String date);
+	void realtimeConsumptionSummaryTask(String name, String code, String dateBefore, String dateEnd);
 
     /** 查询所有消耗分类(定时任务)
      * @return

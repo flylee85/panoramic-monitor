@@ -25,7 +25,7 @@ public interface PanoramicProductOfflineMeasurementMapper extends Mapper<Panoram
      * @return
      */
     @Select("SELECT\n" + 
-    		"	distinct code,name\n" + 
+    		"	code,name\n" + 
     		"FROM\n" + 
     		"	panoramic_product_offline_measurement\n" + 
     		"WHERE\n" + 

@@ -29,14 +29,16 @@ public class RealtimeConsumptionSummaryTask implements Job {
     @Override
     public void execute(JobExecutionContext context) throws JobExecutionException {
         try {
-            String date = DateUtil.currentTimeHourStr();
+            String dateBefore = DateUtil.currentTimeHourStr();
+            String dateEnd = DateUtil.dateBeforeOrAfterHoursStr(DateUtil.currentTime(),1);
+            
             List<PanoramicRealTimeConsumption> consumptionCategoryList = realTimeConsumptionService.listRealTimeConsumptionCategoryTask();
             if (null == consumptionCategoryList || consumptionCategoryList.size() == 0) {
                 DB_LOGGER.warn("实时消耗表数据为空{}");
                 return;
             }
             consumptionCategoryList.forEach((PanoramicRealTimeConsumption e) -> {
-                realTimeConsumptionService.realtimeConsumptionSummaryTask(e.getName(), e.getCode(), date);
+                realTimeConsumptionService.realtimeConsumptionSummaryTask(e.getName(), e.getCode(), dateBefore, dateEnd);
             });
         } catch (Exception e) {
             DB_LOGGER.warn("实时消耗数据汇总到汇总表{},出现异常"+e);
