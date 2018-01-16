@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cloud.api.vo.ResultCode;
@@ -49,8 +50,8 @@ public class PanoramicSystemWebController{
     
     
     @ApiOperation(value = "手动解除预警信息", notes = "手动解除预警信息")
-    @PostMapping("/finishbymanual/{responsiblecontent}/{responsiblename}/{id}")
-    public ResultCode<Boolean> finishDataByManual(@PathVariable("responsiblecontent") String responsiblecontent, @PathVariable("responsiblename") String responsiblename,@PathVariable("id") Integer id) {
+    @PostMapping("/finishbymanual")
+    public ResultCode<Boolean> finishDataByManual(@RequestParam(value="responsiblecontent") String responsiblecontent, @RequestParam(value="responsiblename") String responsiblename,@RequestParam(value="id") Integer id) {
     	Boolean result = panoramicSystemWebService.finishDataByManual(responsiblecontent,responsiblename,id);
         return ResultCode.getSuccessReturn(result);
     }
