@@ -1,5 +1,7 @@
 package com.cloud.util;
 
+import org.apache.commons.collections.map.UnmodifiableMap;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -9,18 +11,23 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.apache.commons.collections.map.UnmodifiableMap;
 /**
  * @author summer
  */
-public abstract class IDCardUtil {
-    private static final String[] ValCodeArr = { "1", "0", "x", "9", "8", "7", "6", "5", "4",
-            "3", "2" };
-    private static final String[] Wi = { "7", "9", "10", "5", "8", "4", "2", "1", "6", "3", "7",
-            "9", "10", "5", "8", "4", "2" };
+public abstract class AbstractIDCardUtil {
+    private static final String[] ValCodeArr = {"1", "0", "x", "9", "8", "7", "6", "5", "4",
+            "3", "2"};
+    private static final String[] Wi = {"7", "9", "10", "5", "8", "4", "2", "1", "6", "3", "7",
+            "9", "10", "5", "8", "4", "2"};
     private static final Map<String, String> AREACODEMAP;
+    /**
+     * 正则表达式需要预编译，不要放在方法体中
+     */
+    private static Pattern PATTERN = Pattern.compile("[0-9]*");
+    private static Pattern PATTERN_ISDATE = Pattern
+            .compile("^((\\d{2}(([02468][048])|([13579][26]))[\\-\\/\\s]?((((0?[13578])|(1[02]))[\\-\\/\\s]?((0?[1-9])|([1-2][0-9])|(3[01])))|(((0?[469])|(11))[\\-\\/\\s]?((0?[1-9])|([1-2][0-9])|(30)))|(0?2[\\-\\/\\s]?((0?[1-9])|([1-2][0-9])))))|(\\d{2}(([02468][1235679])|([13579][01345789]))[\\-\\/\\s]?((((0?[13578])|(1[02]))[\\-\\/\\s]?((0?[1-9])|([1-2][0-9])|(3[01])))|(((0?[469])|(11))[\\-\\/\\s]?((0?[1-9])|([1-2][0-9])|(30)))|(0?2[\\-\\/\\s]?((0?[1-9])|(1[0-9])|(2[0-8]))))))(\\s(((0?[0-9])|([1-2][0-3]))\\:([0-5]?[0-9])((\\s)|(\\:([0-5]?[0-9])))))?$");
 
-    static{
+    static {
         Hashtable areacodeTmp = new Hashtable();
         areacodeTmp.put("11", "北京");
         areacodeTmp.put("12", "天津");
@@ -75,11 +82,11 @@ public abstract class IDCardUtil {
     /**
      * 功能：身份证的有效验证
      *
-     * @param IDStr  身份证号
+     * @param IDStr 身份证号
      * @return 有效：返回"" 无效：返回String信息
      * @throws ParseException
      */
-    public static String IDCardValidate(String IDStr){
+    public static String IDCardValidate(String IDStr) {
         String errorInfo = "";// 记录错误信息
         String Ai = "";
         // ================ 号码的长度 15位或18位 ================
@@ -172,13 +179,8 @@ public abstract class IDCardUtil {
      * @return
      */
     private static boolean isNumeric(String str) {
-        Pattern pattern = Pattern.compile("[0-9]*");
-        Matcher isNum = pattern.matcher(str);
-        if (isNum.matches()) {
-            return true;
-        } else {
-            return false;
-        }
+        Matcher isNum = PATTERN.matcher(str);
+        return isNum.matches();
     }
 
     /**
@@ -188,13 +190,7 @@ public abstract class IDCardUtil {
      * @return
      */
     public static boolean isDate(String strDate) {
-        Pattern pattern = Pattern
-                .compile("^((\\d{2}(([02468][048])|([13579][26]))[\\-\\/\\s]?((((0?[13578])|(1[02]))[\\-\\/\\s]?((0?[1-9])|([1-2][0-9])|(3[01])))|(((0?[469])|(11))[\\-\\/\\s]?((0?[1-9])|([1-2][0-9])|(30)))|(0?2[\\-\\/\\s]?((0?[1-9])|([1-2][0-9])))))|(\\d{2}(([02468][1235679])|([13579][01345789]))[\\-\\/\\s]?((((0?[13578])|(1[02]))[\\-\\/\\s]?((0?[1-9])|([1-2][0-9])|(3[01])))|(((0?[469])|(11))[\\-\\/\\s]?((0?[1-9])|([1-2][0-9])|(30)))|(0?2[\\-\\/\\s]?((0?[1-9])|(1[0-9])|(2[0-8]))))))(\\s(((0?[0-9])|([1-2][0-3]))\\:([0-5]?[0-9])((\\s)|(\\:([0-5]?[0-9])))))?$");
-        Matcher m = pattern.matcher(strDate);
-        if (m.matches()) {
-            return true;
-        } else {
-            return false;
-        }
+        Matcher m = PATTERN_ISDATE.matcher(strDate);
+        return m.matches();
     }
 }
