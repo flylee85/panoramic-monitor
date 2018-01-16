@@ -1,7 +1,7 @@
 package com.cloud.util.key;
 
 import java.sql.Timestamp;
-import java.util.concurrent.*;
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicLong;
 
 /**
@@ -18,8 +18,6 @@ import java.util.concurrent.atomic.AtomicLong;
  * @author sunmer
  */
 public class SystemClock {
-    private static RejectedExecutionHandler handler = new ThreadPoolExecutor.AbortPolicy();
-    private static BlockingQueue<Runnable> workQueue = new LinkedBlockingQueue<>(1);
     private final long period;
     private final AtomicLong now;
 
@@ -42,17 +40,8 @@ public class SystemClock {
     }
 
     private void scheduleClockUpdating() {
-
-
         ScheduledThreadPoolExectuorWithDynamicSize scheduler = new ScheduledThreadPoolExectuorWithDynamicSize(1
-                , new ThreadFactory() {
-            @Override
-            public Thread newThread(Runnable runnable) {
-                Thread thread = new Thread(runnable, "System Clock");
-                thread.setDaemon(true);
-                return thread;
-            }
-        });
+                , new NamedThreadFactory("System Clock", true));
         scheduler.scheduleAtFixedRate(new Runnable() {
             @Override
             public void run() {

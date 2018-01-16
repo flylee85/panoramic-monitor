@@ -64,20 +64,20 @@ public class XSSFilter {
     /**
      * 正则表达式最好抽调到工具类中
      */
-    private static Pattern ESCAPE_COMMENTS = Pattern.compile("<!--(.*?)-->", Pattern.DOTALL);
-    private static Pattern CHECK_TAGS = Pattern.compile("<(.*?)>", Pattern.DOTALL);
-    private static Pattern PROCESS_TAG1 = Pattern.compile("^([a-z0-9]+)(.*?)(/?)$", REGEX_FLAGS_SI);
-    private static Pattern PROCESS_TAG2 = Pattern.compile("^([a-z0-9]+)(.*?)(/?)$", REGEX_FLAGS_SI);
-    private static Pattern P2 = Pattern.compile("([a-z0-9]+)=([\"'])(.*?)\\2", REGEX_FLAGS_SI);
-    private static Pattern P3 = Pattern.compile("([a-z0-9]+)(=)([^\"\\s']+)", REGEX_FLAGS_SI);
-    private static Pattern P = Pattern.compile("^!--(.*)--$", REGEX_FLAGS_SI);
-    private static Pattern PROCESS_PARAM_PROTOCOL = Pattern.compile("^([^:]+):", REGEX_FLAGS_SI);
-    private static Pattern DECODE_ENTITIES_1 = Pattern.compile("&#(\\d+);?");
-    private static Pattern DECODE_ENTITIES_2 =  Pattern.compile("&#x([0-9a-f]+);?");
-    private static Pattern DECODE_ENTITIES_3 = Pattern.compile("%([0-9a-f]{2});?");
-    private static  Pattern VALIDATE_ENTITIES = Pattern.compile("&([^&;]*)(?=(;|&|$))");
-    private static  Pattern VALIDATE_ENTITIES_1 = Pattern.compile("(>|^)([^<]+?)(<|$)", Pattern.DOTALL);
-    /**
+    private static final Pattern ESCAPE_COMMENTS = Pattern.compile("<!--(.*?)-->", Pattern.DOTALL);
+    private static final Pattern CHECK_TAGS = Pattern.compile("<(.*?)>", Pattern.DOTALL);
+    private static final Pattern PROCESS_TAG1 = Pattern.compile("^([a-z0-9]+)(.*?)(/?)$", REGEX_FLAGS_SI);
+    private static final Pattern PROCESS_TAG2 = Pattern.compile("^([a-z0-9]+)(.*?)(/?)$", REGEX_FLAGS_SI);
+    private static final Pattern P2 = Pattern.compile("([a-z0-9]+)=([\"'])(.*?)\\2", REGEX_FLAGS_SI);
+    private static final Pattern P3 = Pattern.compile("([a-z0-9]+)(=)([^\"\\s']+)", REGEX_FLAGS_SI);
+    private static final Pattern P = Pattern.compile("^!--(.*)--$", REGEX_FLAGS_SI);
+    private static final Pattern PROCESS_PARAM_PROTOCOL = Pattern.compile("^([^:]+):", REGEX_FLAGS_SI);
+    private static final Pattern DECODE_ENTITIES_1 = Pattern.compile("&#(\\d+);?");
+    private static final Pattern DECODE_ENTITIES_2 =  Pattern.compile("&#x([0-9a-f]+);?");
+    private static final Pattern DECODE_ENTITIES_3 = Pattern.compile("%([0-9a-f]{2});?");
+    private static final Pattern VALIDATE_ENTITIES = Pattern.compile("&([^&;]*)(?=(;|&|$))");
+    private static final Pattern VALIDATE_ENTITIES_1 = Pattern.compile("(>|^)([^<]+?)(<|$)", Pattern.DOTALL);
+    /** final
      * set of allowed html elements, along with allowed attributes for each
      * element
      **/
@@ -355,8 +355,7 @@ public class XSSFilter {
         }
 
         // starting tags
-        PROCESS_TAG1 = PROCESS_TAG2;
-        m = PROCESS_TAG1.matcher(s);
+        m = PROCESS_TAG2.matcher(s);
         if (m.find()) {
             String name = m.group(1).toLowerCase();
             String body = m.group(2);
