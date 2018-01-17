@@ -10,7 +10,6 @@ import java.io.Serializable;
  * @author gang
  *
  */
-@Data
 public class PanoramicRealTimeConsumpationReviationDto extends BaseObject {
 
 	/**
@@ -22,7 +21,31 @@ public class PanoramicRealTimeConsumpationReviationDto extends BaseObject {
 	 * 出入库数量
 	 */
 	private double productmaterialStock;
-	
+
+	public double getRealtimeConsumption() {
+		return realtimeConsumption;
+	}
+
+	public void setRealtimeConsumption(double realtimeConsumption) {
+		this.realtimeConsumption = realtimeConsumption;
+	}
+
+	public double getProductmaterialStock() {
+		return productmaterialStock;
+	}
+
+	public void setProductmaterialStock(double productmaterialStock) {
+		this.productmaterialStock = productmaterialStock;
+	}
+
+	public double getConsumptionReviation() {
+		return consumptionReviation;
+	}
+
+	public void setConsumptionReviation(double consumptionReviation) {
+		this.consumptionReviation = consumptionReviation;
+	}
+
 	/**
 	 * 偏差对比
 	 */
