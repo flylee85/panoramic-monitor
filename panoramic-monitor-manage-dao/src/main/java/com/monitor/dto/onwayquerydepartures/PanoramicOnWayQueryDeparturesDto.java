@@ -1,5 +1,8 @@
 /**
- * 
+ * @author fgh
+ * @author fgh
+ * @author fgh
+ * @author fgh
  */
 /**
  * @author fgh
@@ -7,39 +10,35 @@
  */
 package com.monitor.dto.onwayquerydepartures;
 
-import java.io.Serializable;
 import java.sql.Timestamp;
 
-import com.cloud.model.BaseObject;
-
-public class PanoramicOnWayQueryDeparturesDto  {
+public class PanoramicOnWayQueryDeparturesDto {
 
     /**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	/**
+     *
+     */
+    private static final long serialVersionUID = 1L;
+    /**
      * DepartureId
      */
-	private String departureid;
+    private String departureid;
     /**
      * GStartTime
      */
-	private Timestamp gstarttime;
+    private Timestamp gstarttime;
     /**
      * GArriveTime
      */
-	private Timestamp garrivetime;
+    private Timestamp garrivetime;
     /**
      * Postman
      */
-	private String postman;
+    private String postman;
     /**
      * PostmanPhone
      */
-	private String postmanphone;
-	
-	
+    private String postmanphone;
+
 
     /**
      * 获取DepartureId
@@ -58,7 +57,6 @@ public class PanoramicOnWayQueryDeparturesDto  {
     public void setDepartureId(String departureid) {
         this.departureid = departureid;
     }
-    
 
 
     /**
@@ -78,7 +76,7 @@ public class PanoramicOnWayQueryDeparturesDto  {
     public void setGStartTime(Timestamp gstarttime) {
         this.gstarttime = gstarttime;
     }
-    
+
 
     /**
      * 获取GArriveTime
@@ -97,8 +95,8 @@ public class PanoramicOnWayQueryDeparturesDto  {
     public void setGArriveTime(Timestamp garrivetime) {
         this.garrivetime = garrivetime;
     }
-    
-    
+
+
     /**
      * 获取Postman
      *
@@ -117,7 +115,6 @@ public class PanoramicOnWayQueryDeparturesDto  {
         this.postman = postman;
     }
 
-    
 
     /**
      * 获取PostmanPhone
@@ -136,6 +133,6 @@ public class PanoramicOnWayQueryDeparturesDto  {
     public void setPostmanPhone(String postmanphone) {
         this.postmanphone = postmanphone;
     }
-    
-    
+
+
 }

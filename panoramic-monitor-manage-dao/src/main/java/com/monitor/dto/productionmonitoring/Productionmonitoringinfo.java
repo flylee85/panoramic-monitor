@@ -1,12 +1,13 @@
 package com.monitor.dto.productionmonitoring;
 
-import lombok.Data;
+import com.cloud.model.BaseObject;
+
+import java.io.Serializable;
 
 /**
  * @author gang
  */
-@Data
-public class Productionmonitoringinfo {
+public class Productionmonitoringinfo extends BaseObject {
 
     /**
      * 磷钙矿耗
@@ -31,4 +32,9 @@ public class Productionmonitoringinfo {
      * 磷钙电耗
      */
     private double pcc;
+
+    @Override
+    public Serializable realId() {
+        return null;
+    }
 }

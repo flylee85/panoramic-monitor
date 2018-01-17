@@ -1,5 +1,8 @@
 /**
- * 
+ * @author fgh
+ * @author fgh
+ * @author fgh
+ * @author fgh
  */
 /**
  * @author fgh
@@ -7,17 +10,14 @@
  */
 package com.monitor.dto.onwayquerydevice;
 
-import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.List;
-
-import com.cloud.model.BaseObject;
 
 /**
  * @author fgh
  * 	G7设备相关查询
  */
-public class PanoramicOnWayQueryDeviceDto  {
+public class PanoramicOnWayQueryDeviceDto {
 
     /**
      * Dtype
@@ -59,7 +59,6 @@ public class PanoramicOnWayQueryDeviceDto  {
      * Orders
      */
     private List<String> orders;
-  
 
 
     /**
@@ -79,7 +78,7 @@ public class PanoramicOnWayQueryDeviceDto  {
     public void setDType(Integer dtype) {
         this.dtype = dtype;
     }
-    
+
 
     /**
      * 获取DeviceNo
@@ -98,7 +97,7 @@ public class PanoramicOnWayQueryDeviceDto  {
     public void setDeviceNo(String deviceno) {
         this.deviceno = deviceno;
     }
-    
+
 
     /**
      * 获取Bind
@@ -117,7 +116,6 @@ public class PanoramicOnWayQueryDeviceDto  {
     public void setBind(Boolean bind) {
         this.bind = bind;
     }
-    
 
 
     /**
@@ -191,7 +189,7 @@ public class PanoramicOnWayQueryDeviceDto  {
     public void setLng(Double lng) {
         this.lng = lng;
     }
-    
+
     /**
      * 获取GpsTime
      *
@@ -209,9 +207,8 @@ public class PanoramicOnWayQueryDeviceDto  {
     public void setGpsTime(Timestamp gpstime) {
         this.gpstime = gpstime;
     }
-    
 
-    
+
     /**
      * 获取Address
      *
@@ -229,7 +226,7 @@ public class PanoramicOnWayQueryDeviceDto  {
     public void setAddress(String address) {
         this.address = address;
     }
-    
+
     /**
      * 获取Orders
      *

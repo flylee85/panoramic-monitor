@@ -1,31 +1,30 @@
 /**
- * 
+ * @author fgh
+ * @author fgh
+ * @author fgh
+ * @author fgh
  */
 /**
  * @author fgh
  *
  */
 package com.monitor.dto.onwaytitleresult;/**
- * 
+ *
  */
+
 /**
  * @author fgh
  *
  */
 
-import java.util.Date;
+public class PanoramicOnWayTitleResultDto {
 
-import javax.persistence.Column;
-
-public class PanoramicOnWayTitleResultDto  {
-    
     private Integer allcount;
-    
+
     private Integer bindcount;
-    
+
     private Integer overdaycount;
 
-    
 
     /**
      * @return allcount
@@ -41,7 +40,6 @@ public class PanoramicOnWayTitleResultDto  {
         this.allcount = allcount;
     }
 
-    
 
     /**
      * @return bindcount
@@ -56,7 +54,7 @@ public class PanoramicOnWayTitleResultDto  {
     public void setBindCount(Integer bindcount) {
         this.bindcount = bindcount;
     }
-    
+
 
     /**
      * @return overdaycount

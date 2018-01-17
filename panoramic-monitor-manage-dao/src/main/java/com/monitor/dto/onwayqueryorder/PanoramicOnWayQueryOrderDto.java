@@ -1,5 +1,8 @@
 /**
- * 
+ * @author fgh
+ * @author fgh
+ * @author fgh
+ * @author fgh
  */
 /**
  * @author fgh
@@ -7,12 +10,10 @@
  */
 package com.monitor.dto.onwayqueryorder;
 
-import java.io.Serializable;
+import com.monitor.dto.onwayquerydepartures.PanoramicOnWayQueryDeparturesDto;
+
 import java.sql.Timestamp;
 import java.util.List;
-
-import com.cloud.model.BaseObject;
-import com.monitor.dto.onwayquerydepartures.PanoramicOnWayQueryDeparturesDto;
 
 /**
  * @author fgh
@@ -21,115 +22,114 @@ import com.monitor.dto.onwayquerydepartures.PanoramicOnWayQueryDeparturesDto;
 public class PanoramicOnWayQueryOrderDto {
 
     /**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	/**
+     *
+     */
+    private static final long serialVersionUID = 1L;
+    /**
      * OrderNo
      */
-	private String orderno;
+    private String orderno;
     /**
      * SebindStatus
      */
-	private String sebindstatus;
+    private String sebindstatus;
     /**
      * UserOrderNo
      */
-	private String userorderno;
+    private String userorderno;
     /**
      * SCompany
      */
-	private String scompany;
+    private String scompany;
     /**
      * SProvince
      */
-	private String sprovince;
+    private String sprovince;
     /**
      * SCity
      */
-	private String scity;
+    private String scity;
     /**
      * SDistricts
      */
-	private String sdistricts;
+    private String sdistricts;
     /**
      * SLocation
      */
-	private String slocation;
+    private String slocation;
     /**
      * SName
      */
-	private String sname;
+    private String sname;
     /**
      * SPhone
      */
-	private String sphone;
+    private String sphone;
     /**
      * RCompany
      */
-	private String rcompany;
+    private String rcompany;
     /**
      * RProvince
      */
-	private String rprovince;
+    private String rprovince;
     /**
      * RCity
      */
-	private String rcity;
+    private String rcity;
     /**
      * RDistricts
      */
-	private String rdistricts;
+    private String rdistricts;
     /**
      * RLocation
      */
-	private String rlocation;
+    private String rlocation;
     /**
      * RName
      */
-	private String rname;
+    private String rname;
     /**
      * RPhone
      */
-	private String rphone;
+    private String rphone;
     /**
      * RDateTime
      */
-	private Timestamp rdatetime;
+    private Timestamp rdatetime;
     /**
      * UpdateTime
      */
-	private Timestamp updatetime;
+    private Timestamp updatetime;
     /**
      * CurrentStatus
      */
-	private String currentstatus;
+    private String currentstatus;
     /**
      * CurrentStatusType
      */
-	private String currenttranstype;
+    private String currenttranstype;
     /**
      * OrgCode
      */
-	private String orgcode;
+    private String orgcode;
     /**
      * Deleted
      */
-	private String deleted;
+    private String deleted;
     /**
      * FromOrgCode
      */
-	private String fromorgcode;
+    private String fromorgcode;
     /**
      * FromTime
      */
-	private Timestamp fromtime;
+    private Timestamp fromtime;
 
     /**
      * departures
      */
-	private List<PanoramicOnWayQueryDeparturesDto> departures;
-	
+    private List<PanoramicOnWayQueryDeparturesDto> departures;
 
 
     /**
@@ -149,7 +149,7 @@ public class PanoramicOnWayQueryOrderDto {
     public void setOrderNo(String orderno) {
         this.orderno = orderno;
     }
-    
+
 
     /**
      * 获取SebindStatus
@@ -186,7 +186,7 @@ public class PanoramicOnWayQueryOrderDto {
     public void setUserOrderNo(String userorderno) {
         this.userorderno = userorderno;
     }
-    
+
     /**
      * 获取SCompany
      *
@@ -204,7 +204,7 @@ public class PanoramicOnWayQueryOrderDto {
     public void setSCompany(String scompany) {
         this.scompany = scompany;
     }
-    
+
     /**
      * 获取SProvince
      *
@@ -258,7 +258,7 @@ public class PanoramicOnWayQueryOrderDto {
     public void setSDistricts(String sdistricts) {
         this.sdistricts = sdistricts;
     }
-    
+
     /**
      * 获取SLocation
      *
@@ -312,7 +312,7 @@ public class PanoramicOnWayQueryOrderDto {
     public void setSPhone(String sphone) {
         this.sphone = sphone;
     }
-    
+
     /**
      * 获取RCompany
      *
@@ -330,7 +330,7 @@ public class PanoramicOnWayQueryOrderDto {
     public void setRCompany(String rcompany) {
         this.rcompany = rcompany;
     }
-    
+
     /**
      * 获取RProvince
      *
@@ -348,7 +348,7 @@ public class PanoramicOnWayQueryOrderDto {
     public void setRProvince(String rprovince) {
         this.rprovince = rprovince;
     }
-    
+
     /**
      * 获取RCity
      *
@@ -366,7 +366,7 @@ public class PanoramicOnWayQueryOrderDto {
     public void setRCity(String rcity) {
         this.rcity = rcity;
     }
-    
+
     /**
      * 获取RDistricts
      *
@@ -384,7 +384,7 @@ public class PanoramicOnWayQueryOrderDto {
     public void setRDistricts(String rdistricts) {
         this.rdistricts = rdistricts;
     }
-    
+
     /**
      * 获取RLocation
      *
@@ -402,7 +402,7 @@ public class PanoramicOnWayQueryOrderDto {
     public void setRLocation(String rlocation) {
         this.rlocation = rlocation;
     }
-    
+
     /**
      * 获取RName
      *
@@ -420,7 +420,7 @@ public class PanoramicOnWayQueryOrderDto {
     public void setRName(String rname) {
         this.rname = rname;
     }
-    
+
     /**
      * 获取RPhone
      *
@@ -438,7 +438,7 @@ public class PanoramicOnWayQueryOrderDto {
     public void setRPhone(String rphone) {
         this.rphone = rphone;
     }
-    
+
     /**
      * 获取RDateTime
      *
@@ -456,7 +456,7 @@ public class PanoramicOnWayQueryOrderDto {
     public void setRDateTime(Timestamp rdatetime) {
         this.rdatetime = rdatetime;
     }
-    
+
     /**
      * 获取UpdateTime
      *
@@ -474,7 +474,7 @@ public class PanoramicOnWayQueryOrderDto {
     public void setUpdateTime(Timestamp updatetime) {
         this.updatetime = updatetime;
     }
-    
+
     /**
      * 获取CurrentStatus
      *
@@ -492,7 +492,7 @@ public class PanoramicOnWayQueryOrderDto {
     public void setCurrentStatus(String currentstatus) {
         this.currentstatus = currentstatus;
     }
-    
+
     /**
      * 获取CurrentStatusType
      *
@@ -510,7 +510,7 @@ public class PanoramicOnWayQueryOrderDto {
     public void setCurrentStatusType(String currenttranstype) {
         this.currenttranstype = currenttranstype;
     }
-    
+
     /**
      * 获取OrgCode
      *
@@ -528,7 +528,7 @@ public class PanoramicOnWayQueryOrderDto {
     public void setOrgCode(String orgcode) {
         this.orgcode = orgcode;
     }
-    
+
     /**
      * 获取Deleted
      *
@@ -546,7 +546,7 @@ public class PanoramicOnWayQueryOrderDto {
     public void setDeleted(String deleted) {
         this.deleted = deleted;
     }
-    
+
     /**
      * 获取FromOrgCode
      *
@@ -564,7 +564,7 @@ public class PanoramicOnWayQueryOrderDto {
     public void setFromOrgCode(String fromorgcode) {
         this.fromorgcode = fromorgcode;
     }
-    
+
     /**
      * 获取FromTime
      *
@@ -582,7 +582,7 @@ public class PanoramicOnWayQueryOrderDto {
     public void setFromTime(Timestamp fromtime) {
         this.fromtime = fromtime;
     }
-    
+
     /**
      * 获取Departures
      *
@@ -600,8 +600,6 @@ public class PanoramicOnWayQueryOrderDto {
     public void setDepartures(List<PanoramicOnWayQueryDeparturesDto> departures) {
         this.departures = departures;
     }
-    
-    
-    
-	
+
+
 }
