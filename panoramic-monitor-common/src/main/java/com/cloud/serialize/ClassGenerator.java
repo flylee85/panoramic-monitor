@@ -10,7 +10,7 @@ import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicLong;
 
-//import com.alibaba.dubbo.common.utils.ReflectUtils;
+//import com.cloud.commons.utils.ReflectUtils;
 
 /**
  * ClassGenerator
@@ -19,7 +19,7 @@ import java.util.concurrent.atomic.AtomicLong;
  */
 
 public final class ClassGenerator {
-	public static interface DC {
+	public interface DC {
 	} // dynamic class tag interface.
 
 	private static final AtomicLong CLASS_NAME_COUNTER = new AtomicLong(0);
