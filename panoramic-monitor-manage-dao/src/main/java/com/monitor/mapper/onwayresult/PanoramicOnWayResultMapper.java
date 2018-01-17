@@ -19,6 +19,9 @@ import com.monitor.dto.onwayresult.PanoramicOnWayResultDto;
 @Repository("onWayResultMapper")
 public interface PanoramicOnWayResultMapper extends Mapper<PanoramicOnWayResultDto> {
 	
+	 /**
+     * 获取在途物资一览
+     */
 	@Select(" select t1.order_no,t1.receive_address,t3.address,t5.start_time,timestampdiff(day,t1.request_receive_time,now()) as overday,t5.arrive_time,timestampdiff(day,t5.start_time,t5.arrive_time) as useday from panoramic_on_way_order t1" + 
 			" left join panoramic_on_way_order_device_relationship t2 " + 
 			" on t1.order_no = t2.order_no " + 
@@ -33,7 +36,9 @@ public interface PanoramicOnWayResultMapper extends Mapper<PanoramicOnWayResultD
 	
 
 	
-	
+	 /**
+     * 获取在途超时物资数
+     */
 	@Select("select count(0) from panoramic_on_way_order where  current_status =1  and now() > request_receive_time")
 	Integer getOverDayCount();
 	
