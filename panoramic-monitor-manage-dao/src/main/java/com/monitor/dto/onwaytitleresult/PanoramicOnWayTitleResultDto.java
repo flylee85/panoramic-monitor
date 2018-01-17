@@ -12,12 +12,16 @@ package com.monitor.dto.onwaytitleresult;/**
  *
  */
 
+import com.cloud.model.BaseObject;
+
+import java.io.Serializable;
+
 /**
  * @author fgh
  *
  */
 
-public class PanoramicOnWayTitleResultDto {
+public class PanoramicOnWayTitleResultDto extends BaseObject{
 
     private Integer allcount;
 
@@ -64,9 +68,14 @@ public class PanoramicOnWayTitleResultDto {
     }
 
     /**
-     * @param OverDayCount
+     * @param
      */
     public void setOverDayCount(Integer overdaycount) {
         this.overdaycount = overdaycount;
+    }
+
+    @Override
+    public Serializable realId() {
+        return null;
     }
 }

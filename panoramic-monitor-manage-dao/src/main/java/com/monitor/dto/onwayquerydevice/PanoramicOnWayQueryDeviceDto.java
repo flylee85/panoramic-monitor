@@ -10,6 +10,9 @@
  */
 package com.monitor.dto.onwayquerydevice;
 
+import com.cloud.model.BaseObject;
+
+import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.List;
 
@@ -17,7 +20,7 @@ import java.util.List;
  * @author fgh
  * 	G7设备相关查询
  */
-public class PanoramicOnWayQueryDeviceDto {
+public class PanoramicOnWayQueryDeviceDto extends BaseObject {
 
     /**
      * Dtype
@@ -245,4 +248,8 @@ public class PanoramicOnWayQueryDeviceDto {
         this.orders = orders;
     }
 
+    @Override
+    public Serializable realId() {
+        return null;
+    }
 }

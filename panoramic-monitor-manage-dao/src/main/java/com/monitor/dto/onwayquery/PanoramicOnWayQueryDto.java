@@ -11,7 +11,11 @@
  */
 package com.monitor.dto.onwayquery;
 
-public class PanoramicOnWayQueryDto {
+import com.cloud.model.BaseObject;
+
+import java.io.Serializable;
+
+public class PanoramicOnWayQueryDto extends BaseObject {
 
     /**
      *
@@ -109,4 +113,8 @@ public class PanoramicOnWayQueryDto {
     }
 
 
+    @Override
+    public Serializable realId() {
+        return null;
+    }
 }

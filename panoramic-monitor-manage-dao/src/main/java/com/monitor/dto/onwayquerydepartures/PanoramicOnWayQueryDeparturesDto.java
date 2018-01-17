@@ -10,9 +10,12 @@
  */
 package com.monitor.dto.onwayquerydepartures;
 
+import com.cloud.model.BaseObject;
+
+import java.io.Serializable;
 import java.sql.Timestamp;
 
-public class PanoramicOnWayQueryDeparturesDto {
+public class PanoramicOnWayQueryDeparturesDto extends BaseObject {
 
     /**
      *
@@ -135,4 +138,8 @@ public class PanoramicOnWayQueryDeparturesDto {
     }
 
 
+    @Override
+    public Serializable realId() {
+        return null;
+    }
 }

@@ -10,8 +10,10 @@
  */
 package com.monitor.dto.onwayqueryorder;
 
+import com.cloud.model.BaseObject;
 import com.monitor.dto.onwayquerydepartures.PanoramicOnWayQueryDeparturesDto;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.List;
 
@@ -19,7 +21,7 @@ import java.util.List;
  * @author fgh
  * 	G7订单相关查询
  */
-public class PanoramicOnWayQueryOrderDto {
+public class PanoramicOnWayQueryOrderDto extends BaseObject {
 
     /**
      *
@@ -602,4 +604,8 @@ public class PanoramicOnWayQueryOrderDto {
     }
 
 
+    @Override
+    public Serializable realId() {
+        return null;
+    }
 }

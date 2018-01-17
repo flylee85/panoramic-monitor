@@ -1,6 +1,9 @@
 package com.monitor.dto.realtimeconsumption;
 
+import com.cloud.model.BaseObject;
 import lombok.Data;
+
+import java.io.Serializable;
 
 /**
  * 实时消耗偏差
@@ -8,7 +11,7 @@ import lombok.Data;
  *
  */
 @Data
-public class PanoramicRealTimeConsumpationReviationDto {
+public class PanoramicRealTimeConsumpationReviationDto extends BaseObject {
 
 	/**
 	 * 消耗计量
@@ -24,4 +27,9 @@ public class PanoramicRealTimeConsumpationReviationDto {
 	 * 偏差对比
 	 */
 	private double consumptionReviation;
+
+	@Override
+	public Serializable realId() {
+		return null;
+	}
 }
