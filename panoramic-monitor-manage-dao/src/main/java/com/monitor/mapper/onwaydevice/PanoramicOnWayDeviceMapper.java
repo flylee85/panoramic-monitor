@@ -9,9 +9,11 @@ package com.monitor.mapper.onwaydevice;
 
 import java.sql.Date;
 import java.sql.Timestamp;
+import java.util.List;
 
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 import org.springframework.stereotype.Repository;
 
@@ -57,5 +59,11 @@ public interface PanoramicOnWayDeviceMapper extends Mapper<PanoramicOnWayDevice>
 		    		,@Param("gpstime") Timestamp gpstime
 		    		,@Param("address") String address
 		    		,@Param("deviceno") String ordero);
+	
+	@Select("select * from panoramic_on_way_device")
+	List<PanoramicOnWayDevice> getDeviceList();
+	
+	@Select("select Count(0) from panoramic_on_way_device where bind = 1")
+	Integer getBindCount();
 	
 }

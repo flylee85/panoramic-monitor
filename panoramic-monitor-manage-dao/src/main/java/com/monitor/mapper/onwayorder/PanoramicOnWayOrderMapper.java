@@ -89,5 +89,4 @@ public interface PanoramicOnWayOrderMapper extends Mapper<PanoramicOnWayOrder> {
 	@Select(" Select date_format(max(ctime) ,'%Y-%m-%d %T')  from panoramic_on_way_order  ")
 	String getStartTime();
 	
-	
 }
