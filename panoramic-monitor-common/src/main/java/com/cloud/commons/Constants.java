@@ -95,7 +95,10 @@ public class Constants {
 
     public static final int DEFAULT_FORKS = 2;
 
-    public static final String DEFAULT_THREAD_NAME = "Dubbo";
+    /**
+     * 默认线程名为当前线程名
+     */
+    public static final String DEFAULT_THREAD_NAME = Thread.currentThread().getName();
 
     public static final int DEFAULT_CORE_THREADS = 0;
 
@@ -193,6 +196,9 @@ public class Constants {
 
     public static final String IO_THREADS_KEY = "iothreads";
 
+    /**
+     * 初始基础(核心)线程数
+     */
     public static final String CORE_THREADS_KEY = "corethreads";
 
     public static final String THREADS_KEY = "threads";
