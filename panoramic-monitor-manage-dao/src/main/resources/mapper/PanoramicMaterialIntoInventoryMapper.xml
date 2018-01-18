@@ -3,13 +3,11 @@
 <mapper namespace="com.monitor.mapper.materialintoinventory.PanoramicMaterialIntoInventoryMapper">
   <resultMap id="BaseResultMap" type="com.monitor.model.materialintoinventory.PanoramicMaterialIntoInventory">
     <!--
-      WARNING - @mbg.generated
+      WARNING - @mbg
     -->
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="code" jdbcType="VARCHAR" property="code" />
-    <result column="person_liable" jdbcType="VARCHAR" property="personLiable" />
-    <result column="in_out_company" jdbcType="VARCHAR" property="inOutCompany" />
     <result column="in_out_time" jdbcType="TIMESTAMP" property="inOutTime" />
     <result column="value" jdbcType="DOUBLE" property="value" />
     <result column="person_liable" jdbcType="VARCHAR" property="personLiable" />
@@ -22,5 +20,6 @@
     <result column="ctime" jdbcType="TIMESTAMP" property="ctime" />
     <result column="utime" jdbcType="TIMESTAMP" property="utime" />
     <result column="tag" jdbcType="VARCHAR" property="tag" />
+    <result column="package_model" jdbcType="VARCHAR" property="packageModel" />
   </resultMap>
 </mapper>

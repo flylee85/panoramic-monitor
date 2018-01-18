@@ -1,5 +1,6 @@
 package com.monitor.api.materialintoinventory;
 
+import com.monitor.dto.materialintoinventory.PanoramicMaterialIntoInventoryDto;
 import com.monitor.model.materialintoinventory.PanoramicMaterialIntoInventory;
 
 import java.util.List;
@@ -30,6 +31,6 @@ public interface PanoramicMaterialIntoInventoryService extends Service<Panoramic
 	 * @param date
 	 * @return
 	 */
-	PanoramicMaterialIntoInventory findSummaryByDate(String code,String type,String date);
+	PanoramicMaterialIntoInventoryDto findSummaryByDate(String code,String type,String date);
 
 }

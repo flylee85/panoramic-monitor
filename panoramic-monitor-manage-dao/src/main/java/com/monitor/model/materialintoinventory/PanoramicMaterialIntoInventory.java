@@ -94,6 +94,12 @@ public class PanoramicMaterialIntoInventory {
     private String tag;
 
     /**
+     * 包装袋型号
+     */
+    @Column(name = "package_model")
+    private String packageModel;
+
+    /**
      * 获取ID
      *
      * @return id - ID
@@ -361,5 +367,23 @@ public class PanoramicMaterialIntoInventory {
      */
     public void setTag(String tag) {
         this.tag = tag;
+    }
+
+    /**
+     * 获取包装袋型号
+     *
+     * @return package_model - 包装袋型号
+     */
+    public String getPackageModel() {
+        return packageModel;
+    }
+
+    /**
+     * 设置包装袋型号
+     *
+     * @param packageModel 包装袋型号
+     */
+    public void setPackageModel(String packageModel) {
+        this.packageModel = packageModel;
     }
 }
