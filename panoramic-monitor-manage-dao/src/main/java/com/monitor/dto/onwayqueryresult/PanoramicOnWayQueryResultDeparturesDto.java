@@ -8,14 +8,14 @@
  * @author fgh
  *
  */
-package com.monitor.dto.onwayquerydepartures;
+package com.monitor.dto.onwayqueryresult;
 
 import com.cloud.model.BaseObject;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
 
-public class PanoramicOnWayQueryDeparturesDto extends BaseObject {
+public class PanoramicOnWayQueryResultDeparturesDto extends BaseObject {
 
     /**
      *

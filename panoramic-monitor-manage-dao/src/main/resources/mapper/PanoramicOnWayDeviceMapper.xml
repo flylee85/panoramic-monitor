@@ -5,7 +5,8 @@
     <!--
       WARNING - @mbg.generated
     -->
-    <id column="device_no" jdbcType="VARCHAR" property="deviceNo" />
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="device_no" jdbcType="VARCHAR" property="deviceNo" />
     <result column="device_type" jdbcType="INTEGER" property="deviceType" />
     <result column="bind" jdbcType="BIT" property="bind" />
     <result column="online_status" jdbcType="BIT" property="onlineStatus" />
@@ -14,5 +15,7 @@
     <result column="lat" jdbcType="DOUBLE" property="lat" />
     <result column="gps_time" jdbcType="TIMESTAMP" property="gpsTime" />
     <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="ctime" jdbcType="TIMESTAMP" property="ctime" />
+    <result column="utime" jdbcType="TIMESTAMP" property="utime" />
   </resultMap>
 </mapper>

@@ -6,6 +6,9 @@ import javax.persistence.*;
 @Table(name = "panoramic_on_way_device")
 public class PanoramicOnWayDevice {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+
     @Column(name = "device_no")
     private String deviceNo;
 
@@ -27,6 +30,24 @@ public class PanoramicOnWayDevice {
     private Date gpsTime;
 
     private String address;
+
+    private Date ctime;
+
+    private Date utime;
+
+    /**
+     * @return id
+     */
+    public Integer getId() {
+        return id;
+    }
+
+    /**
+     * @param id
+     */
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     /**
      * @return device_no
@@ -152,5 +173,33 @@ public class PanoramicOnWayDevice {
      */
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    /**
+     * @return ctime
+     */
+    public Date getCtime() {
+        return ctime;
+    }
+
+    /**
+     * @param ctime
+     */
+    public void setCtime(Date ctime) {
+        this.ctime = ctime;
+    }
+
+    /**
+     * @return utime
+     */
+    public Date getUtime() {
+        return utime;
+    }
+
+    /**
+     * @param utime
+     */
+    public void setUtime(Date utime) {
+        this.utime = utime;
     }
 }

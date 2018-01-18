@@ -23,10 +23,10 @@ import com.monitor.model.onwaydevice.PanoramicOnWayDevice;
 @Repository("onWayDeviceMapper")
 public interface PanoramicOnWayDeviceMapper extends Mapper<PanoramicOnWayDevice> {
 	
-	@Insert("insert into panoramic.panoramic_on_way_device " + 
+	@Insert("insert into panoramic_on_way_device " + 
 			"	(device_no, device_type, bind, online_status, battery, lng, lat, gps_time, address )" + 
 			"	values" + 
-			"	(\'${deviceno}\', \'${devicetype}\', \'${bind}\', \'${onlinestatus}\', \'${battery}\', \'${lng}\', \'${lat}\', \'${gpstime}\', \'${address}\') ")
+			"	(\'${deviceno}\', ${devicetype}, ${bind}, ${onlinestatus}, ${battery}, ${lng}, ${lat}, \'${gpstime}\', \'${address}\') ")
 	
     Boolean addDeviceData(@Param("deviceno") String ordero
     		,@Param("devicetype") Integer devicetype
@@ -70,5 +70,12 @@ public interface PanoramicOnWayDeviceMapper extends Mapper<PanoramicOnWayDevice>
      */
 	@Select("select Count(0) from panoramic_on_way_device where bind = 1")
 	Integer getBindCount();
+	
+
+	 /**
+    * 验证是否存在
+    */
+	@Select(" select count(0)  from panoramic_on_way_device where device_no = \'${deviceno}\'")
+	Integer isExistDevice(@Param("deviceno") String deviceno);
 	
 }

@@ -8,10 +8,9 @@
  * @author fgh
  *
  */
-package com.monitor.dto.onwayqueryorder;
+package com.monitor.dto.onwayqueryresult;
 
 import com.cloud.model.BaseObject;
-import com.monitor.dto.onwayquerydepartures.PanoramicOnWayQueryDeparturesDto;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
@@ -21,7 +20,7 @@ import java.util.List;
  * @author fgh
  * 	G7订单相关查询
  */
-public class PanoramicOnWayQueryOrderDto extends BaseObject {
+public class PanoramicOnWayQueryResultOrderDto {
 
     /**
      *
@@ -131,7 +130,7 @@ public class PanoramicOnWayQueryOrderDto extends BaseObject {
     /**
      * departures
      */
-    private List<PanoramicOnWayQueryDeparturesDto> departures;
+    private List<PanoramicOnWayQueryResultDeparturesDto> departures;
 
 
     /**
@@ -590,7 +589,7 @@ public class PanoramicOnWayQueryOrderDto extends BaseObject {
      *
      * @return departures - Departures
      */
-    public List<PanoramicOnWayQueryDeparturesDto> getDepartures() {
+    public List<PanoramicOnWayQueryResultDeparturesDto> getDepartures() {
         return departures;
     }
 
@@ -599,13 +598,9 @@ public class PanoramicOnWayQueryOrderDto extends BaseObject {
      *
      * @param departures Departures
      */
-    public void setDepartures(List<PanoramicOnWayQueryDeparturesDto> departures) {
+    public void setDepartures(List<PanoramicOnWayQueryResultDeparturesDto> departures) {
         this.departures = departures;
     }
 
 
-    @Override
-    public Serializable realId() {
-        return null;
-    }
 }

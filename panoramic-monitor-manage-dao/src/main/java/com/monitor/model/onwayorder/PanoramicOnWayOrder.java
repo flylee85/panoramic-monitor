@@ -6,6 +6,9 @@ import javax.persistence.*;
 @Table(name = "panoramic_on_way_order")
 public class PanoramicOnWayOrder {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+
     @Column(name = "order_no")
     private String orderNo;
 
@@ -53,6 +56,20 @@ public class PanoramicOnWayOrder {
     private Date fromTime;
 
     private String deleted;
+
+    /**
+     * @return id
+     */
+    public Integer getId() {
+        return id;
+    }
+
+    /**
+     * @param id
+     */
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     /**
      * @return order_no

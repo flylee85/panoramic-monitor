@@ -31,8 +31,8 @@ public interface PanoramicOnWayResultMapper extends Mapper<PanoramicOnWayResultD
 			" on t1.order_no = t4.order_no " + 
 			" left join panoramic_on_way_departure t5 " + 
 			" on t4.departure_id = t5.departure_id " + 
-			" where T1.current_status =${currentstatus} and t5.start_time >= \'${startdate}\' and t5.start_time <= \'${enddate}\' order by t5.start_time desc ")
-	   List<PanoramicOnWayResultDto> getOnWayResult(@Param("currentstatus") Integer currentstatus,@Param("startdate") String startdate,@Param("enddate") String enddate);
+			" where T1.current_status =${currentstatus} and \'${strdate}\' order by t5.start_time desc ")
+	   List<PanoramicOnWayResultDto> getOnWayResult(@Param("currentstatus") Integer currentstatus,@Param("strdate") String strdate);
 	
 
 	

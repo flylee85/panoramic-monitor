@@ -37,4 +37,12 @@ public class PanoramicOnWayRegularGetDataController {
 		onWayRegularGetDataService.getNewOrderData();
         return ResultCode.SUCCESS;
     }
+	
+	
+
+	@GetMapping("/addDeviceData")
+    public ResultCode<Void> getDeviceData() {
+		onWayRegularGetDataService.addDeviceData();
+        return ResultCode.SUCCESS;
+    }
 }

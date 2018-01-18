@@ -5,7 +5,8 @@
     <!--
       WARNING - @mbg.generated
     -->
-    <id column="order_no" jdbcType="VARCHAR" property="orderNo" />
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="order_no" jdbcType="VARCHAR" property="orderNo" />
     <result column="user_order_no" jdbcType="VARCHAR" property="userOrderNo" />
     <result column="send_address" jdbcType="VARCHAR" property="sendAddress" />
     <result column="send_name" jdbcType="VARCHAR" property="sendName" />
