@@ -28,7 +28,6 @@ public class Cache<K, V> {
     }
 
     /**
-     * TODO
      *
      * @throws InterruptedException
      * @author:summer
@@ -73,7 +72,6 @@ public class Cache<K, V> {
             try {
                 Thread.sleep(300);
             } catch (Exception e) {
-                // TODO: handle exception
             }
         }
     }
