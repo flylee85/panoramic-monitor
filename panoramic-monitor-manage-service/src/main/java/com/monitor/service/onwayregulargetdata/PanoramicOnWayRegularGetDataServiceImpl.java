@@ -7,6 +7,7 @@
  */
 package com.monitor.service.onwayregulargetdata;
 
+
 import java.io.BufferedReader;
 
 
@@ -35,6 +36,7 @@ import com.cloud.core.ServiceException;
 import com.cloud.util.DateUtil;
 import com.cloud.util.LoggerUtils;
 import com.cloud.util.TLogger;
+import com.cloud.util.StringUtil;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.monitor.api.onwayregulargetdata.PanoramicOnWayRegularGetDataService;
 import com.monitor.dto.onwayquery.PanoramicOnWayQueryDto;
@@ -44,6 +46,7 @@ import com.monitor.mapper.onwayorder.PanoramicOnWayOrderMapper;
 import tk.mybatis.mapper.entity.Condition;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 
 @Service("onWayRegularGetDataService")
 @Transactional(readOnly = true, rollbackFor = ServiceException.class)
@@ -77,28 +80,20 @@ public class PanoramicOnWayRegularGetDataServiceImpl extends AbstractService<Pan
 	    	java.util.Date date=new java.util.Date();  
 	    	String createtimeLt =  sdf.format(date);
 	    	
-	    	
-	    	PanoramicOnWayQueryDto m = new PanoramicOnWayQueryDto();
-	    	m.setCreateTimeGe(startTime);
-	    	m.setCreateTimeLt(createtimeLt);
-	    	m.setFields("orderno,sebindstatus");
-	    	m.setOrgCode(orgcode);
-	    	
-	    	String data = JSON.toJSONString(m);
-	        //String data = "{\"createtimeGe\":\"" + startTime + "\",\"createtimeLt\":\""+createtimeLt+"\",\"orgcode\":\""+orgcode+"\",\"fields\":\"orderno,sebindstatus\"}";
-	    
+	    	JSONObject jsonObject = new JSONObject();
+	    	jsonObject.put("createtimeGe", startTime);
+	    	jsonObject.put("createtimeLt", createtimeLt);
+	    	jsonObject.put("fields", "orderno,sebindstatus");
+	    	jsonObject.put("orgcode", orgcode);
+
+	    	String data = jsonObject.toString();
+//	        String data = "{\"createtimeGe\":\"" + startTime + "\",\"createtimeLt\":\""+createtimeLt+"\",\"orgcode\":\""+orgcode+"\",\"fields\":\"orderno,sebindstatus\"}";
+
+	    	data = StringEscapeUtils.unescapeJava(data);
 	        DB_LOGGER.warn(data);
 	        
 	
-	       // String param = getParam(method,data);
-	        //param.replaceAll("\\\\","");
-
-	        String timestamp = createtimeLt;  
-	        String mae =  app_secret + "app_key" + app_key + "data" + data + "method" + method + "timestamp" + timestamp + app_secret;
-
-	        DB_LOGGER.warn(mae);
-	        String sign = MD5Encode(mae);
-	        String param =  "method=" + method + "&timestamp=" + timestamp + "&app_key=" + app_key + "&sign=" + sign + "&data=" + data;
+	        String param = getParam(method,data);
 
 	        DB_LOGGER.warn(param);
 	        String s=convert(sendPost(url,param));
@@ -113,7 +108,7 @@ public class PanoramicOnWayRegularGetDataServiceImpl extends AbstractService<Pan
         String mae =  app_secret + "app_key" + app_key + "data" + data + "method" + method + "timestamp" + timestamp + app_secret;
 
         DB_LOGGER.warn(mae);
-        String sign = MD5Encode(mae);
+        String sign = StringUtil.md5(mae,32);
         String param =  "method=" + method + "&timestamp=" + timestamp + "&app_key=" + app_key + "&sign=" + sign + "&data=" + data;
         
 		return param;
@@ -179,58 +174,6 @@ public class PanoramicOnWayRegularGetDataServiceImpl extends AbstractService<Pan
         return result;
     }
     
-    private final static String[] hexDigits = {"0", "1", "2", "3", "4", "5", "6", "7",
-            "8", "9", "a", "b", "c", "d", "e", "f"};
-
- 
-
-    /**
-     * MD5缂栫爜
-     * @param origin 鍘熷瀛楃涓�
-     * @return 缁忚繃MD5鍔犲瘑涔嬪悗鐨勭粨鏋�
-     */
-    public static String MD5Encode(String origin) {
-        String resultString = null;
-        try {
-            resultString = origin;
-            MessageDigest md = MessageDigest.getInstance("MD5");
-            md.update(resultString.getBytes("UTF-8"));
-            resultString = byteArrayToHexString(md.digest());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return resultString;
-    }
-    
-    
-    /**
-     * 杞崲瀛楄妭鏁扮粍涓�16杩涘埗瀛椾覆
-     * @param b 瀛楄妭鏁扮粍
-     * @return 16杩涘埗瀛椾覆
-     */
-    public static String byteArrayToHexString(byte[] b) {
-        StringBuilder resultSb = new StringBuilder();
-        for (byte aB : b) {
-            resultSb.append(byteToHexString(aB));
-        }
-        return resultSb.toString();
-    }
-
-    /**
-     * 杞崲byte鍒�16杩涘埗
-     * @param b 瑕佽浆鎹㈢殑byte
-     * @return 16杩涘埗鏍煎紡
-     */
-    private static String byteToHexString(byte b) {
-        int n = b;
-        if (n < 0) {
-            n = 256 + n;
-        }
-        int d1 = n / 16;
-        int d2 = n % 16;
-        return hexDigits[d1] + hexDigits[d2];
-    }
-
     
     public String convert(String utfString){
         StringBuilder sb = new StringBuilder();

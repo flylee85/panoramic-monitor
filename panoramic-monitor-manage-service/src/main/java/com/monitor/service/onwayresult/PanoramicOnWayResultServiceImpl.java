@@ -30,8 +30,8 @@ public class PanoramicOnWayResultServiceImpl extends AbstractService<PanoramicOn
     
     @Override
     @Transactional(propagation = Propagation.NOT_SUPPORTED, rollbackFor = Exception.class)
-    public List<PanoramicOnWayResultDto> getOnWayResult(Integer currentstatus){
-    	 List<PanoramicOnWayResultDto>  recordList = onWayResultMapper.getOnWayResult(currentstatus);
+    public List<PanoramicOnWayResultDto> getOnWayResult(Integer currentstatus,String startDate,String endDate){
+    	 List<PanoramicOnWayResultDto>  recordList = onWayResultMapper.getOnWayResult(currentstatus,startDate,endDate);
     	 return (null == recordList || recordList.size() == 0) ? null :recordList;
     }
     
@@ -40,7 +40,7 @@ public class PanoramicOnWayResultServiceImpl extends AbstractService<PanoramicOn
     @Transactional(propagation = Propagation.NOT_SUPPORTED, rollbackFor = Exception.class)
     public Integer getOverDayCount(){
     	Integer OverDayCount  = onWayResultMapper.getOverDayCount();
-    	 return OverDayCount;
+    	return OverDayCount;
     }
 
 }

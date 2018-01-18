@@ -17,7 +17,7 @@ public interface PanoramicOnWayResultService extends Service<PanoramicOnWayResul
 	 /**
      * 获取在途物资一览
      */
-	List<PanoramicOnWayResultDto> getOnWayResult(Integer currentstatus);
+	List<PanoramicOnWayResultDto> getOnWayResult(Integer currentstatus,String startDate,String endDate );
 	
 	 /**
      * 获取在途超时物资数
