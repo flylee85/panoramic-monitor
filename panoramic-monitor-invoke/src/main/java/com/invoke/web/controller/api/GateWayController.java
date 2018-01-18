@@ -13,9 +13,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Map;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.SynchronousQueue;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author summer api对外接口网关
@@ -24,29 +29,19 @@ import java.util.Map;
 @RestController
 public class GateWayController {
     protected static final transient TLogger DB_LOGGER = LoggerUtils.getLogger(GateWayController.class);
+    private ThreadPoolExecutor executor;
+
+    @PostConstruct
+    public void init() {
+        BlockingQueue<Runnable> taskQueue = new SynchronousQueue<>();
+        executor = new ThreadPoolExecutor(5, 10000, 60, TimeUnit.SECONDS, taskQueue);
+        executor.allowCoreThreadTimeOut(false);
+    }
 
     @RequestMapping("/gateway")
-    public HttpResult getApiAuth(@RequestParam Map<String, String> params, HttpServletRequest req,
-                                 HttpServletResponse resp) {
-        if (null == params || params.size() == 0) {
-            params = WebUtils.getRequestMap(req);
-        }
-        StringBuffer sb = new StringBuffer();
-        String method = params.get("method") + "";
-        String biz_content = params.get("biz_content");
-        Map bizMap = JsonUtils.readJsonToMap(biz_content);
-        if (null != bizMap && bizMap.size() > 0) {
-            bizMap.forEach((k, v) -> {
-                sb.append(v + "/");
-            });
-        }
-        try {
-            req.getRequestDispatcher(method + "/" + sb.deleteCharAt(sb.length() - 1).toString()).forward(req, resp);
-        } catch (Exception e) {
-            DB_LOGGER.error("转发失败");
-            HttpResult.getFailure("接口调度失败", 500, JsonUtils.writeMapToJson(params));
-        }
-        return null;
+    public void getApiAuth(@RequestParam Map<String, String> params, HttpServletRequest req,
+                           HttpServletResponse resp) {
+        executor.execute(new UpdateTask(params, req, resp));
     }
 
     @RequestMapping("/gateway/apiAuthFailure")
@@ -89,5 +84,47 @@ public class GateWayController {
         // HttpUtils.getUrlAsString(BaseWebUtils.getRequestNamePortPath(req)
         // + ApiConfigure.QUERYURL + "?token=" + JsonUtils.writeMapToJson(params));
         return null;
+    }
+
+    private void gateway(Map<String, String> params, HttpServletRequest req,
+                         HttpServletResponse resp) {
+        if (null == params || params.size() == 0) {
+            params = WebUtils.getRequestMap(req);
+        }
+        StringBuffer sb = new StringBuffer();
+        String method = params.get("method") + "";
+        String biz_content = params.get("biz_content");
+        Map bizMap = JsonUtils.readJsonToMap(biz_content);
+        if (null != bizMap && bizMap.size() > 0) {
+            bizMap.forEach((k, v) -> {
+                sb.append(v + "/");
+            });
+        }
+        try {
+            req.getRequestDispatcher(method + "/" + sb.deleteCharAt(sb.length() - 1).toString()).forward(req, resp);
+        } catch (Exception e) {
+            DB_LOGGER.error("转发失败");
+            HttpResult.getFailure("接口调度失败", 500, JsonUtils.writeMapToJson(params));
+        }
+        return;
+    }
+
+    private class UpdateTask implements Runnable {
+        private Map<String, String> params;
+        private HttpServletRequest req;
+        private HttpServletResponse resp;
+
+
+        public UpdateTask(Map<String, String> params, HttpServletRequest req,
+                          HttpServletResponse resp) {
+            this.params = params;
+            this.req = req;
+            this.resp = resp;
+        }
+
+        @Override
+        public void run() {
+            gateway(params, req, resp);
+        }
     }
 }
