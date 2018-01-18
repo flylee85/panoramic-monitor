@@ -1,7 +1,6 @@
 package com.monitor.dto.sparepartsintoinventory;
 
 import com.cloud.model.BaseObject;
-import lombok.Data;
 
 import java.io.Serializable;
 
@@ -10,7 +9,6 @@ import java.io.Serializable;
  *
  * @author xuegang
  */
-@Data
 public class PanoramicSparePartsIntoInventoryDto extends BaseObject {
 
     private static final long serialVersionUID = 1L;
@@ -30,19 +28,19 @@ public class PanoramicSparePartsIntoInventoryDto extends BaseObject {
         return null;
     }
 
-	public String getName() {
-		return name;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public double getSummary() {
-		return summary;
-	}
+    public double getSummary() {
+        return summary;
+    }
 
-	public void setSummary(double summary) {
-		this.summary = summary;
-	}
+    public void setSummary(double summary) {
+        this.summary = summary;
+    }
 }

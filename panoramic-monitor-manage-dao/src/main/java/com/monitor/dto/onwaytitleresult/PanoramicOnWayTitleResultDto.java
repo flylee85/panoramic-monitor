@@ -1,31 +1,34 @@
 /**
- * 
+ * @author fgh
+ * @author fgh
+ * @author fgh
+ * @author fgh
  */
 /**
  * @author fgh
  *
  */
 package com.monitor.dto.onwaytitleresult;/**
- * 
+ *
  */
+
+import com.cloud.model.BaseObject;
+
+import java.io.Serializable;
+
 /**
  * @author fgh
  *
  */
 
-import java.util.Date;
+public class PanoramicOnWayTitleResultDto extends BaseObject{
 
-import javax.persistence.Column;
-
-public class PanoramicOnWayTitleResultDto  {
-    
     private Integer allcount;
-    
+
     private Integer bindcount;
-    
+
     private Integer overdaycount;
 
-    
 
     /**
      * @return allcount
@@ -41,7 +44,6 @@ public class PanoramicOnWayTitleResultDto  {
         this.allcount = allcount;
     }
 
-    
 
     /**
      * @return bindcount
@@ -56,7 +58,7 @@ public class PanoramicOnWayTitleResultDto  {
     public void setBindCount(Integer bindcount) {
         this.bindcount = bindcount;
     }
-    
+
 
     /**
      * @return overdaycount
@@ -66,9 +68,14 @@ public class PanoramicOnWayTitleResultDto  {
     }
 
     /**
-     * @param OverDayCount
+     * @param
      */
     public void setOverDayCount(Integer overdaycount) {
         this.overdaycount = overdaycount;
+    }
+
+    @Override
+    public Serializable realId() {
+        return null;
     }
 }

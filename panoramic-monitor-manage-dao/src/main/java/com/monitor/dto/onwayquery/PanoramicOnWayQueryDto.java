@@ -1,5 +1,9 @@
 /**
- * 
+ * @author fgh
+ * @author fgh
+ * @author fgh
+ * @author fgh
+ * @author fgh
  */
 /**
  * @author fgh
@@ -7,31 +11,33 @@
  */
 package com.monitor.dto.onwayquery;
 
-import java.sql.Timestamp;
+import com.cloud.model.BaseObject;
 
-public class PanoramicOnWayQueryDto  {
+import java.io.Serializable;
+
+public class PanoramicOnWayQueryDto extends BaseObject {
 
     /**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+     *
+     */
+    private static final long serialVersionUID = 1L;
     /**
      * createtimeGe
      */
-	private String createtimeGe;
+    private String createtimeGe;
     /**
      * createtimeLt
      */
-	private String createtimeLt;
+    private String createtimeLt;
     /**
      * fields
      */
-	private String fields;
-	/**
+    private String fields;
+    /**
      * orgcode
      */
-	private String orgcode;
-	
+    private String orgcode;
+
 
     /**
      * 获取OrgCode
@@ -86,7 +92,7 @@ public class PanoramicOnWayQueryDto  {
     public void setCreateTimeLt(String createtimeLt) {
         this.createtimeLt = createtimeLt;
     }
-    
+
 
     /**
      * 获取Fields
@@ -105,6 +111,10 @@ public class PanoramicOnWayQueryDto  {
     public void setFields(String fields) {
         this.fields = fields;
     }
-    
-	
+
+
+    @Override
+    public Serializable realId() {
+        return null;
+    }
 }

@@ -1,14 +1,11 @@
 package com.monitor.dto.exceptionrecord;
 
-import lombok.Data;
-
 import java.io.Serializable;
 import java.util.Date;
 
 /**
  * @author summer
  */
-@Data
 public class PanoramicExceptionRecordDto implements Serializable {
     /**
      *
@@ -75,4 +72,99 @@ public class PanoramicExceptionRecordDto implements Serializable {
      */
     private String relatedPersonLog;
 
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getAlarmItem() {
+        return alarmItem;
+    }
+
+    public void setAlarmItem(String alarmItem) {
+        this.alarmItem = alarmItem;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
+    public Integer getDeleteFlag() {
+        return deleteFlag;
+    }
+
+    public void setDeleteFlag(Integer deleteFlag) {
+        this.deleteFlag = deleteFlag;
+    }
+
+    public String getAlarmContent() {
+        return alarmContent;
+    }
+
+    public void setAlarmContent(String alarmContent) {
+        this.alarmContent = alarmContent;
+    }
+
+    public Date getAlarmTime() {
+        return alarmTime;
+    }
+
+    public void setAlarmTime(Date alarmTime) {
+        this.alarmTime = alarmTime;
+    }
+
+    public String getAssociatedPerson() {
+        return associatedPerson;
+    }
+
+    public void setAssociatedPerson(String associatedPerson) {
+        this.associatedPerson = associatedPerson;
+    }
+
+    public Date getCtime() {
+        return ctime;
+    }
+
+    public void setCtime(Date ctime) {
+        this.ctime = ctime;
+    }
+
+    public Date getUtime() {
+        return utime;
+    }
+
+    public void setUtime(Date utime) {
+        this.utime = utime;
+    }
+
+    public Date getDtime() {
+        return dtime;
+    }
+
+    public void setDtime(Date dtime) {
+        this.dtime = dtime;
+    }
+
+    public String getOperator() {
+        return operator;
+    }
+
+    public void setOperator(String operator) {
+        this.operator = operator;
+    }
+
+    public String getRelatedPersonLog() {
+        return relatedPersonLog;
+    }
+
+    public void setRelatedPersonLog(String relatedPersonLog) {
+        this.relatedPersonLog = relatedPersonLog;
+    }
 }

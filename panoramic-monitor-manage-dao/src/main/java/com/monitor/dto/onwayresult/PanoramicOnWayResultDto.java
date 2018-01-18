@@ -7,12 +7,15 @@
  */
 package com.monitor.dto.onwayresult;
 
+import com.cloud.model.BaseObject;
+
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Id;
 
-public class PanoramicOnWayResultDto  {
+public class PanoramicOnWayResultDto  extends BaseObject {
 	@Id
     @Column(name = "order_no")
     private String orderNo;
@@ -136,9 +139,14 @@ public class PanoramicOnWayResultDto  {
     }
 
     /**
-     * @param overday
+     * @param
      */
     public void setUseDay(Integer useday) {
         this.useday = useday;
+    }
+
+    @Override
+    public Serializable realId() {
+        return null;
     }
 }
