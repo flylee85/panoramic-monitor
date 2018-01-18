@@ -60,9 +60,14 @@ public interface PanoramicOnWayDeviceMapper extends Mapper<PanoramicOnWayDevice>
 		    		,@Param("address") String address
 		    		,@Param("deviceno") String ordero);
 	
+	 /**
+     * 获取所有设备
+     */
 	@Select("select * from panoramic_on_way_device")
 	List<PanoramicOnWayDevice> getDeviceList();
-	
+	 /**
+     * 获取设备绑定数
+     */
 	@Select("select Count(0) from panoramic_on_way_device where bind = 1")
 	Integer getBindCount();
 	

@@ -23,8 +23,6 @@ public class PanoramicOnWayResultDto  {
     
     private String address;
     
-    @Column(name = "request_receive_time")
-    private Date requestReceiveTime;
 
 
     @Column(name = "start_time")
@@ -82,19 +80,6 @@ public class PanoramicOnWayResultDto  {
      */
     public void setAddress(String address) {
         this.address = address;
-    }
-    /**
-     * @return request_receive_time
-     */
-    public Date getRequestReceiveTime() {
-        return requestReceiveTime;
-    }
-
-    /**
-     * @param requestReceiveTime
-     */
-    public void setRequestReceiveTime(Date requestReceiveTime) {
-        this.requestReceiveTime = requestReceiveTime;
     }
     
 

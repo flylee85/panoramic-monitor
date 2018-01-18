@@ -46,10 +46,10 @@ public class PanoramicOnWayWebController{
     private PanoramicOnWayDeviceService onWayDeviceService;
     
     @ApiOperation(value = "分页查询所有物资", notes = "分页查询所有物资")
-    @GetMapping(value = {"/getOnWayResult/{currentstatus}/{page}/{size}"})
-    public ResultCode<PageInfo<PanoramicOnWayResultDto>> getOnWayResult(@PathVariable("currentstatus") Integer currentstatus,@PathVariable("page") Integer page,@PathVariable("size") Integer size) {
+    @GetMapping(value = {"/getOnWayResult/{currentstatus}/{page}/{size}/{startdate}/{enddate}"})
+    public ResultCode<PageInfo<PanoramicOnWayResultDto>> getOnWayResult(@PathVariable("currentstatus") Integer currentstatus,@PathVariable("page") Integer page,@PathVariable("size") Integer size,@PathVariable("startdate") String startdate, @PathVariable("enddate") String enddate) {
         PageHelper.startPage(page, size);
-        List<PanoramicOnWayResultDto> list = onWayResultService.getOnWayResult(currentstatus);
+        List<PanoramicOnWayResultDto> list = onWayResultService.getOnWayResult(currentstatus,startdate + " 00:00:00", enddate + " 23:59:59");
         PageInfo<PanoramicOnWayResultDto> pageInfo = new PageInfo<>(list);
         return ResultCode.getSuccessReturn(pageInfo);
     }
