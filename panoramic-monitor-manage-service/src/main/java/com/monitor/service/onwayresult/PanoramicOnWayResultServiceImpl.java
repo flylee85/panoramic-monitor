@@ -40,7 +40,7 @@ public class PanoramicOnWayResultServiceImpl extends AbstractService<PanoramicOn
     @Transactional(propagation = Propagation.NOT_SUPPORTED, rollbackFor = Exception.class)
     public Integer getOverDayCount(){
     	Integer OverDayCount  = onWayResultMapper.getOverDayCount();
-    	 return OverDayCount;
+    	return OverDayCount;
     }
 
 }

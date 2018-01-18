@@ -87,9 +87,9 @@ public class PanoramicOnWayRegularGetDataServiceImpl extends AbstractService<Pan
 	    	jsonObject.put("orgcode", orgcode);
 
 	    	String data = jsonObject.toString();
+//	        String data = "{\"createtimeGe\":\"" + startTime + "\",\"createtimeLt\":\""+createtimeLt+"\",\"orgcode\":\""+orgcode+"\",\"fields\":\"orderno,sebindstatus\"}";
+
 	    	data = StringEscapeUtils.unescapeJava(data);
-	        //String data = "{\"createtimeGe\":\"" + startTime + "\",\"createtimeLt\":\""+createtimeLt+"\",\"orgcode\":\""+orgcode+"\",\"fields\":\"orderno,sebindstatus\"}";
-	    
 	        DB_LOGGER.warn(data);
 	        
 	
