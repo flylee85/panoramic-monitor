@@ -29,7 +29,7 @@ import java.util.concurrent.TimeUnit;
 @RestController
 public class GateWayController {
     protected static final transient TLogger DB_LOGGER = LoggerUtils.getLogger(GateWayController.class);
-    private ThreadPoolExecutor executor;
+    private volatile ThreadPoolExecutor executor;
 
     @PostConstruct
     public void init() {
