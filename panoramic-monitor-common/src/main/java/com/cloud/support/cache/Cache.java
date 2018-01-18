@@ -1,5 +1,8 @@
 package com.cloud.support.cache;
 
+import com.cloud.util.LoggerUtils;
+import com.cloud.util.TLogger;
+
 import java.util.Random;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.DelayQueue;
@@ -11,8 +14,8 @@ import java.util.concurrent.TimeUnit;
  * 具有过期时间的缓存设计
  */
 public class Cache<K, V> {
-
-    public ConcurrentHashMap<K, V> map = new ConcurrentHashMap<K, V>();
+    private static final transient TLogger DB_LOGGER = LoggerUtils.getLogger(Cache.class);
+    public ConcurrentHashMap<K, V> map = new ConcurrentHashMap<K, V>(16);
     public DelayQueue<DelayedItem<K>> queue = new DelayQueue<DelayedItem<K>>();
 
 
@@ -28,7 +31,6 @@ public class Cache<K, V> {
     }
 
     /**
-     *
      * @throws InterruptedException
      * @author:summer
      */
@@ -67,11 +69,12 @@ public class Cache<K, V> {
             DelayedItem<K> delayedItem = queue.poll();
             if (delayedItem != null) {
                 map.remove(delayedItem.getT());
-                System.out.println(System.nanoTime() + " remove " + delayedItem.getT() + " from cache");
+                DB_LOGGER.warn(System.nanoTime() + " remove " + delayedItem.getT() + " from cache");
             }
             try {
                 Thread.sleep(300);
             } catch (Exception e) {
+                DB_LOGGER.error(System.nanoTime() + " remove 失败 " + delayedItem.getT() + " from cache");
             }
         }
     }
