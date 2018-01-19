@@ -4,9 +4,13 @@ import com.cloud.filter.ThrowExceptionFilter;
 import com.cloud.util.LoggerUtils;
 import com.cloud.util.TLogger;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.security.SecurityAutoConfiguration;
 import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.authentication.AuthenticationEventPublisher;
+import org.springframework.security.authentication.DefaultAuthenticationEventPublisher;
 
 /**
  * API 服务网关
@@ -14,6 +18,7 @@ import org.springframework.context.annotation.Bean;
  * @author summer
  */
 @SpringBootApplication
+@EnableAutoConfiguration(exclude = {SecurityAutoConfiguration.class})
 @EnableZuulProxy
 public class ZuulApplication {
     private static final transient TLogger DB_LOGGER = LoggerUtils.getLogger(ZuulApplication.class);
@@ -33,7 +38,12 @@ public class ZuulApplication {
         // "${version}/${name}");
         // }
     }
-
+    
+    @Bean
+    public AuthenticationEventPublisher authenticationEventPublisher() {
+        return new DefaultAuthenticationEventPublisher();
+    }
+    
     @Bean
     public ThrowExceptionFilter throwExceptionFilter() {
         return new ThrowExceptionFilter();
