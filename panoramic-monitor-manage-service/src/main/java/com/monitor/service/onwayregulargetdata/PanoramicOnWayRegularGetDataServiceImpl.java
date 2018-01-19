@@ -175,6 +175,8 @@ public class PanoramicOnWayRegularGetDataServiceImpl extends AbstractService<Pan
 			        }
 			        totalCount = jsonResult.getTotalCount();
 			        
+		        }else {
+		        	break;
 		        }
     		}
 	}
