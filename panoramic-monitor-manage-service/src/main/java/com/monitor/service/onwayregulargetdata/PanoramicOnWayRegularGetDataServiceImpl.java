@@ -193,26 +193,26 @@ public class PanoramicOnWayRegularGetDataServiceImpl extends AbstractService<Pan
 					        		     }
 					        		}
 				        		}else {
-				        			res = onWayOrderMapper.updateOrderData( order.getUserOrderNo(), sendaddress, order.getSName(), order.getSPhone(), receiveaddress, order.getRName(), order.getRPhone(), order.getRDateTime(), order.getCreateTime(), order.getUpdateTime(), order.getCurrentStatus(), order.getCurrentStatusType(), order.getOrderNo(), order.getFromOrgCode(), order.getFromTime(), order.getDeleted(),order.getOrderNo());
-				        			if(!res) {
-					        			isloop = false;
-					        			break;
-					        		}
-				        			if(order.getDepartures() != null && !order.getDepartures().equals("")) {
-					        			List<PanoramicOnWayQueryResultDeparturesDto> listDepartures = JSON.parseArray(order.getDepartures(),PanoramicOnWayQueryResultDeparturesDto.class) ;
-					        		     if(listDepartures != null && listDepartures.size() > 0) {
-					        		    		for (PanoramicOnWayQueryResultDeparturesDto  departures : listDepartures) {
-					        		    			res = onWayDepartureMapper.addDepartureData(departures.getDepartureId(), departures.getGStartTime(),departures.getGArriveTime(), departures.getPostman(), departures.getPostmanPhone());
-					        		    			
-					        		    			onWayDepartureMapper.deleteOrderDeparturelate(order.getOrderNo());
-					        		    			onWayDepartureMapper.addOrderDepartureLate(order.getOrderNo(), departures.getDepartureId());
-					        		    			
-					        		    			onWayDeviceMapper.deleteOrderDevicelate(order.getOrderNo());
-					        		    			onWayDeviceMapper.addOrderDeviceLate(order.getOrderNo(), departures.getGpsNo());
-					        		    			
-					        		    		}
-					        		     }
-					        		}
+//				        			res = onWayOrderMapper.updateOrderData( order.getUserOrderNo(), sendaddress, order.getSName(), order.getSPhone(), receiveaddress, order.getRName(), order.getRPhone(), order.getRDateTime(), order.getCreateTime(), order.getUpdateTime(), order.getCurrentStatus(), order.getCurrentStatusType(), order.getOrderNo(), order.getFromOrgCode(), order.getFromTime(), order.getDeleted(),order.getOrderNo());
+//				        			if(!res) {
+//					        			isloop = false;
+//					        			break;
+//					        		}
+//				        			if(order.getDepartures() != null && !order.getDepartures().equals("")) {
+//					        			List<PanoramicOnWayQueryResultDeparturesDto> listDepartures = JSON.parseArray(order.getDepartures(),PanoramicOnWayQueryResultDeparturesDto.class) ;
+//					        		     if(listDepartures != null && listDepartures.size() > 0) {
+//					        		    		for (PanoramicOnWayQueryResultDeparturesDto  departures : listDepartures) {
+//					        		    			res = onWayDepartureMapper.addDepartureData(departures.getDepartureId(), departures.getGStartTime(),departures.getGArriveTime(), departures.getPostman(), departures.getPostmanPhone());
+//					        		    			
+//					        		    			onWayDepartureMapper.deleteOrderDeparturelate(order.getOrderNo());
+//					        		    			onWayDepartureMapper.addOrderDepartureLate(order.getOrderNo(), departures.getDepartureId());
+//					        		    			
+//					        		    			onWayDeviceMapper.deleteOrderDevicelate(order.getOrderNo());
+//					        		    			onWayDeviceMapper.addOrderDeviceLate(order.getOrderNo(), departures.getGpsNo());
+//					        		    			
+//					        		    		}
+//					        		     }
+//					        		}
 				        		}
 				        		
 				        	}
