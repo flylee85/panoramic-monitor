@@ -31,7 +31,8 @@ public interface PanoramicProductOfflineMeasurementMapper extends Mapper<Panoram
     		"WHERE\n" + 
     		"	in_or_out = 0\n" + 
     		"AND delete_flag = 1\n" + 
-    		"AND f_id = 2\n" + 
+    		"AND f_id = 2\n" +
+    		"GROUP BY code,name" +
     		"")
     List<PanoramicProductOfflineMeasurement> listProductOfflineCategory();
 }
