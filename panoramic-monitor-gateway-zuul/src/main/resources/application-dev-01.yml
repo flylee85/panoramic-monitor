@@ -1,9 +1,11 @@
 server:
-  port: 8888         # 指定该zuul实例的端口
+  port: 6002         # 指定该zuul实例的端口
 security:
   user:
     name: user
     password: user
+  basic:
+    enabled: false
 spring:
   application:
     name: monitor-zuul    # 项目名称尽量用小写

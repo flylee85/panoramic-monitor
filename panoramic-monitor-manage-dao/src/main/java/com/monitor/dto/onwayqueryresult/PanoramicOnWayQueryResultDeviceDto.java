@@ -8,7 +8,7 @@
  * @author fgh
  *
  */
-package com.monitor.dto.onwayquerydevice;
+package com.monitor.dto.onwayqueryresult;
 
 import com.cloud.model.BaseObject;
 
@@ -20,7 +20,7 @@ import java.util.List;
  * @author fgh
  * 	G7设备相关查询
  */
-public class PanoramicOnWayQueryDeviceDto extends BaseObject {
+public class PanoramicOnWayQueryResultDeviceDto extends BaseObject {
 
     /**
      * Dtype
@@ -33,11 +33,11 @@ public class PanoramicOnWayQueryDeviceDto extends BaseObject {
     /**
      * Bind
      */
-    private Boolean bind;
+    private Integer bind;
     /**
      * OnlineStatus
      */
-    private Boolean onlinestatus;
+    private Integer onlinestatus;
     /**
      * Battery
      */
@@ -107,7 +107,7 @@ public class PanoramicOnWayQueryDeviceDto extends BaseObject {
      *
      * @return bind - Bind
      */
-    public Boolean getBind() {
+    public Integer getBind() {
         return bind;
     }
 
@@ -116,7 +116,7 @@ public class PanoramicOnWayQueryDeviceDto extends BaseObject {
      *
      * @param bind Bind
      */
-    public void setBind(Boolean bind) {
+    public void setBind(Integer bind) {
         this.bind = bind;
     }
 
@@ -126,7 +126,7 @@ public class PanoramicOnWayQueryDeviceDto extends BaseObject {
      *
      * @return onlinestatus - OnlineStatus
      */
-    public Boolean getOnlineStatus() {
+    public Integer getOnlineStatus() {
         return onlinestatus;
     }
 
@@ -135,7 +135,7 @@ public class PanoramicOnWayQueryDeviceDto extends BaseObject {
      *
      * @param onlinestatus OnlineStatus
      */
-    public void setOnlineStatus(Boolean onlinestatus) {
+    public void setOnlineStatus(Integer onlinestatus) {
         this.onlinestatus = onlinestatus;
     }
 

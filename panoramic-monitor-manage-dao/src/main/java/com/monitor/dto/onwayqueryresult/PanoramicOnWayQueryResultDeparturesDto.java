@@ -8,14 +8,14 @@
  * @author fgh
  *
  */
-package com.monitor.dto.onwayquerydepartures;
+package com.monitor.dto.onwayqueryresult;
 
 import com.cloud.model.BaseObject;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
 
-public class PanoramicOnWayQueryDeparturesDto extends BaseObject {
+public class PanoramicOnWayQueryResultDeparturesDto extends BaseObject {
 
     /**
      *
@@ -41,6 +41,10 @@ public class PanoramicOnWayQueryDeparturesDto extends BaseObject {
      * PostmanPhone
      */
     private String postmanphone;
+    /**
+     * gpsno
+     */
+    private String gpsno;
 
 
     /**
@@ -137,6 +141,24 @@ public class PanoramicOnWayQueryDeparturesDto extends BaseObject {
         this.postmanphone = postmanphone;
     }
 
+
+    /**
+     * 获取GpsNo
+     *
+     * @return gpsno - GpsNo
+     */
+    public String getGpsNo() {
+        return gpsno;
+    }
+
+    /**
+     * 设置GpsNo
+     *
+     * @param gpsno GpsNo
+     */
+    public void setGpsNo(String gpsno) {
+        this.gpsno = gpsno;
+    }
 
     @Override
     public Serializable realId() {

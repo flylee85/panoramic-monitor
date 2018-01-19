@@ -5,11 +5,14 @@
     <!--
       WARNING - @mbg.generated
     -->
-    <id column="departure_id" jdbcType="VARCHAR" property="departureId" />
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="departure_id" jdbcType="VARCHAR" property="departureId" />
     <result column="start_time" jdbcType="TIMESTAMP" property="startTime" />
     <result column="arrive_time" jdbcType="TIMESTAMP" property="arriveTime" />
     <result column="postman" jdbcType="VARCHAR" property="postman" />
     <result column="postman_phone" jdbcType="VARCHAR" property="postmanPhone" />
     <result column="device_no" jdbcType="VARCHAR" property="deviceNo" />
+    <result column="ctime" jdbcType="TIMESTAMP" property="ctime" />
+    <result column="utime" jdbcType="TIMESTAMP" property="utime" />
   </resultMap>
 </mapper>

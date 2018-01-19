@@ -8,10 +8,9 @@
  * @author fgh
  *
  */
-package com.monitor.dto.onwayqueryorder;
+package com.monitor.dto.onwayqueryresult;
 
 import com.cloud.model.BaseObject;
-import com.monitor.dto.onwayquerydepartures.PanoramicOnWayQueryDeparturesDto;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
@@ -21,7 +20,7 @@ import java.util.List;
  * @author fgh
  * 	G7订单相关查询
  */
-public class PanoramicOnWayQueryOrderDto extends BaseObject {
+public class PanoramicOnWayQueryResultOrderDto {
 
     /**
      *
@@ -98,11 +97,15 @@ public class PanoramicOnWayQueryOrderDto extends BaseObject {
     /**
      * RDateTime
      */
-    private Timestamp rdatetime;
+    private String rdatetime;
     /**
      * UpdateTime
      */
-    private Timestamp updatetime;
+    private String updatetime;
+    /**
+     * createtime
+     */
+    private String createtime;
     /**
      * CurrentStatus
      */
@@ -126,12 +129,12 @@ public class PanoramicOnWayQueryOrderDto extends BaseObject {
     /**
      * FromTime
      */
-    private Timestamp fromtime;
+    private String fromtime;
 
     /**
      * departures
      */
-    private List<PanoramicOnWayQueryDeparturesDto> departures;
+    private String departures;
 
 
     /**
@@ -446,7 +449,7 @@ public class PanoramicOnWayQueryOrderDto extends BaseObject {
      *
      * @return rdatetime - RDateTime
      */
-    public Timestamp getRDateTime() {
+    public String getRDateTime() {
         return rdatetime;
     }
 
@@ -455,7 +458,7 @@ public class PanoramicOnWayQueryOrderDto extends BaseObject {
      *
      * @param rdatetime RDateTime
      */
-    public void setRDateTime(Timestamp rdatetime) {
+    public void setRDateTime(String rdatetime) {
         this.rdatetime = rdatetime;
     }
 
@@ -464,18 +467,39 @@ public class PanoramicOnWayQueryOrderDto extends BaseObject {
      *
      * @return updatetime - UpdateTime
      */
-    public Timestamp getUpdateTime() {
+    public String getUpdateTime() {
         return updatetime;
     }
 
     /**
      * 设置UpdateTime
      *
-     * @param updatetime UpdateTime
+     * @param createtime UpdateTime
      */
-    public void setUpdateTime(Timestamp updatetime) {
+    public void setUpdateTime(String updatetime) {
         this.updatetime = updatetime;
     }
+    
+
+
+    /**
+     * 获取CreateTime
+     *
+     * @return createtime - CreateTime
+     */
+    public String getCreateTime() {
+        return createtime;
+    }
+
+    /**
+     * 设置CreateTime
+     *
+     * @param createtime CreateTime
+     */
+    public void setCreateTime(String createtime) {
+        this.createtime = createtime;
+    }
+    
 
     /**
      * 获取CurrentStatus
@@ -572,7 +596,7 @@ public class PanoramicOnWayQueryOrderDto extends BaseObject {
      *
      * @return fromtime - FromTime
      */
-    public Timestamp getFromTime() {
+    public String getFromTime() {
         return fromtime;
     }
 
@@ -581,7 +605,7 @@ public class PanoramicOnWayQueryOrderDto extends BaseObject {
      *
      * @param fromtime FromTime
      */
-    public void setFromTime(Timestamp fromtime) {
+    public void setFromTime(String fromtime) {
         this.fromtime = fromtime;
     }
 
@@ -590,7 +614,7 @@ public class PanoramicOnWayQueryOrderDto extends BaseObject {
      *
      * @return departures - Departures
      */
-    public List<PanoramicOnWayQueryDeparturesDto> getDepartures() {
+    public String getDepartures() {
         return departures;
     }
 
@@ -599,13 +623,9 @@ public class PanoramicOnWayQueryOrderDto extends BaseObject {
      *
      * @param departures Departures
      */
-    public void setDepartures(List<PanoramicOnWayQueryDeparturesDto> departures) {
+    public void setDepartures(String departures) {
         this.departures = departures;
     }
 
 
-    @Override
-    public Serializable realId() {
-        return null;
-    }
 }

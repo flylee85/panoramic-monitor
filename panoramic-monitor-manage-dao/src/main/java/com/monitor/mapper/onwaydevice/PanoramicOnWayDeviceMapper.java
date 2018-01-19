@@ -11,6 +11,7 @@ import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.List;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
@@ -23,10 +24,10 @@ import com.monitor.model.onwaydevice.PanoramicOnWayDevice;
 @Repository("onWayDeviceMapper")
 public interface PanoramicOnWayDeviceMapper extends Mapper<PanoramicOnWayDevice> {
 	
-	@Insert("insert into panoramic.panoramic_on_way_device " + 
+	@Insert("insert into panoramic_on_way_device " + 
 			"	(device_no, device_type, bind, online_status, battery, lng, lat, gps_time, address )" + 
 			"	values" + 
-			"	(\'${deviceno}\', \'${devicetype}\', \'${bind}\', \'${onlinestatus}\', \'${battery}\', \'${lng}\', \'${lat}\', \'${gpstime}\', \'${address}\') ")
+			"	(\'${deviceno}\', ${devicetype}, ${bind}, ${onlinestatus}, ${battery}, ${lng}, ${lat}, \'${gpstime}\', \'${address}\') ")
 	
     Boolean addDeviceData(@Param("deviceno") String ordero
     		,@Param("devicetype") Integer devicetype
@@ -38,7 +39,7 @@ public interface PanoramicOnWayDeviceMapper extends Mapper<PanoramicOnWayDevice>
     		,@Param("gpstime") Timestamp gpstime
     		,@Param("address") String address);
 	
-	@Update("update panoramic.panoramic_on_way_device" + 
+	@Update("update panoramic_on_way_device" + 
 			"	set" + 
 			"	device_type = ${device_type} ," + 
 			"	bind = ${bind}," + 
@@ -70,5 +71,23 @@ public interface PanoramicOnWayDeviceMapper extends Mapper<PanoramicOnWayDevice>
      */
 	@Select("select Count(0) from panoramic_on_way_device where bind = 1")
 	Integer getBindCount();
+	
+
+	 /**
+    * 验证是否存在
+    */
+	@Select(" select count(0)  from panoramic_on_way_device where device_no = \'${deviceno}\'")
+	Integer isExistDevice(@Param("deviceno") String deviceno);
+	
+
+	@Insert(" insert into panoramic_on_way_order_device_relationship " + 
+			"	(order_no, device_no, ctime ) " + 
+			"	values (\'${orderno}\',\'${deviceno}\', now() )" )
+	
+	void addOrderDeviceLate(@Param("orderno") String orderno,@Param("deviceno") String deviceno);
+	
+
+	@Delete("delete panoramic_on_way_order_device_relationship where order = \'${orderno}\' ")
+	void deleteOrderDevicelate(@Param("orderno") String orderno);
 	
 }

@@ -30,8 +30,12 @@ public class PanoramicOnWayResultServiceImpl extends AbstractService<PanoramicOn
     
     @Override
     @Transactional(propagation = Propagation.NOT_SUPPORTED, rollbackFor = Exception.class)
-    public List<PanoramicOnWayResultDto> getOnWayResult(Integer currentstatus,String startDate,String endDate){
-    	 List<PanoramicOnWayResultDto>  recordList = onWayResultMapper.getOnWayResult(currentstatus,startDate,endDate);
+    public List<PanoramicOnWayResultDto> getOnWayResult(Integer currentstatus){
+    	String strdate = "";
+    	if(currentstatus == 2){
+    		strdate = " and timestampdiff(month,t5.start_time,now()) = 1 ";
+    	}
+    	 List<PanoramicOnWayResultDto>  recordList = onWayResultMapper.getOnWayResult(currentstatus,strdate);
     	 return (null == recordList || recordList.size() == 0) ? null :recordList;
     }
     
