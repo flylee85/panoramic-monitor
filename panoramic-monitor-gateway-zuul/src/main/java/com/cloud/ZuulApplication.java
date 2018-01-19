@@ -1,6 +1,6 @@
 package com.cloud;
 
-import com.cloud.filter.ThrowExceptionFilter;
+import com.cloud.filter.error.ThrowExceptionFilter;
 import com.cloud.util.LoggerUtils;
 import com.cloud.util.TLogger;
 import org.springframework.boot.SpringApplication;
