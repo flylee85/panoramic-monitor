@@ -79,7 +79,7 @@ public class PanoramicProductOfflineMeasurementServiceImpl extends AbstractServi
         condition.createCriteria().andCondition(
                 "	code = '" + code + "'"
                 	+	" AND f_id=2 AND delete_flag=1"
-                +	" AND utime > '" + dateStart + "'"
+                +	" AND utime >= '" + dateStart + "'"
                 +	" AND utime < '" + dateEnd + "'"
                 +   " ");
         List<PanoramicProductOfflineMeasurement> offlineMeasurementList = 

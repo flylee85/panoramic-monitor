@@ -17,4 +17,26 @@
     <result column="operator" jdbcType="VARCHAR" property="operator" />
     <result column="f_id" jdbcType="VARCHAR" property="fId" />
   </resultMap>
+  
+  <select id="selectSummaryConsumptionByCondition" resultType ="com.monitor.model.realtimeconsumption.PanoramicRealTimeConsumption">
+  <![CDATA[
+  	select 
+  		sum(value) as value,
+  		name,
+  		utime,
+  		f_id,
+  		ctime,
+  		delete_flag
+  	from
+  		panoramic_real_time_consumption
+  	where
+  		substring(code, 1, 12) = #{code} 
+		AND f_id=2 
+		AND delete_flag=1 
+		AND value > 0  
+		AND utime >= #{dateBefore}
+		AND utime < #{dateEnd}
+  ]]>
+  </select>
+  
 </mapper>

@@ -55,7 +55,7 @@ public interface PanoramicSparePartsMaterialsMapper extends Mapper<PanoramicSpar
 			"GROUP BY\n" + 
 			"	NAME\n" + 
 			"ORDER BY\n" + 
-			"	sum(inventory_value) DESC\n" + 
+			"	inventory_value DESC\n" + 
 			"LIMIT 10")
 	List<PanoramicSparePartsMaterials> listSummaryByDate(@Param("date") Timestamp date,@Param("nextdate") Timestamp nextdate);
 	
@@ -68,6 +68,7 @@ public interface PanoramicSparePartsMaterialsMapper extends Mapper<PanoramicSpar
 	@Select("SELECT\n" + 
 			"	NAME ,\n" +
 			"	reference_price AS referencePrice ,\n" + 
+			"	unit,\n" +
 			"	inventory\n" +
 			"FROM\n" + 
 			"	panoramic_spare_parts_materials\n" + 
@@ -90,6 +91,7 @@ public interface PanoramicSparePartsMaterialsMapper extends Mapper<PanoramicSpar
 	@Select("SELECT\n" + 
 			"	NAME ,\n" +
 			"	reference_price AS referencePrice ,\n" + 
+			"	unit,\n" +
 			"	inventory\n" +
 			"FROM\n" + 
 			"	panoramic_spare_parts_materials\n" + 
@@ -98,6 +100,7 @@ public interface PanoramicSparePartsMaterialsMapper extends Mapper<PanoramicSpar
 			"AND f_id = 2\n" + 
 			"AND ctime >= #{date}\n" +
 			"AND ctime <  #{nextdate}\n" +
+			"AND inventory > 0\n" +
 			"ORDER BY\n" + 
 			"	inventory\n" + 
 			"LIMIT 10")

@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
 
 import com.cloud.core.Mapper;
+import com.monitor.dto.materialintoinventory.PanoramicMaterialIntoInventoryDto;
 import com.monitor.model.materialintoinventory.PanoramicMaterialIntoInventory;
 
 /**
@@ -85,7 +86,9 @@ public interface PanoramicMaterialIntoInventoryMapper extends Mapper<PanoramicMa
 	 * @return
 	 */
 	@Select("SELECT\n" + 
-			"	round(sum(VALUE),2) as value,\n" + 
+			"	round(sum(case when upper(package_model) like concat('%','50KG','%') then value else 0 end),2) as summary50kg,\n" + 
+			"	round(sum(case when package_model = '吨' then value else 0 end),2) as summary1000kg,\n" + 
+			"	round(sum(value),2) as summary,\n" +
 			"	max(utime) as utime\n" + 
 			"FROM\n" + 
 			"	panoramic_material_into_inventory\n" + 
@@ -93,5 +96,5 @@ public interface PanoramicMaterialIntoInventoryMapper extends Mapper<PanoramicMa
 			"	in_out_type = #{type}\n" + 
 			"AND CODE = #{code}\n" +
 			"AND DATE_FORMAT(in_out_time , '%Y-%m-%d') = #{date}")
-	PanoramicMaterialIntoInventory findSummaryByDate(@Param("code") String code, @Param("type") String type,@Param("date") String date);
+	PanoramicMaterialIntoInventoryDto findSummaryByDate(@Param("code") String code, @Param("type") String type,@Param("date") String date);
 }

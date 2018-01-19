@@ -6,6 +6,8 @@ import com.github.pagehelper.PageInfo;
 import com.monitor.model.materialintoinventory.PanoramicMaterialIntoInventory;
 import io.swagger.annotations.ApiOperation;
 import com.monitor.api.materialintoinventory.PanoramicMaterialIntoInventoryService;
+import com.monitor.dto.materialintoinventory.PanoramicMaterialIntoInventoryDto;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
@@ -65,11 +67,11 @@ public class PanoramicMaterialIntoInventoryController{
     
     @ApiOperation(value = "当日入出库总量以及最新更新时间", notes = "仓库监管-原料库 当日入出库")
     @GetMapping("/summary/{code}/{type}/{date}")
-    public ResultCode<PanoramicMaterialIntoInventory> findSummaryByDate(
+    public ResultCode<PanoramicMaterialIntoInventoryDto> findSummaryByDate(
     					@PathVariable("code") String code,
     					@PathVariable("type") String type,
     					@PathVariable("date") String date) {
-        PanoramicMaterialIntoInventory panoramicMaterialIntoInventory = panoramicMaterialIntoInventoryService.findSummaryByDate(code,type,date);
+    	PanoramicMaterialIntoInventoryDto panoramicMaterialIntoInventory = panoramicMaterialIntoInventoryService.findSummaryByDate(code,type,date);
         return ResultCode.getSuccessReturn(panoramicMaterialIntoInventory);
     }
 }

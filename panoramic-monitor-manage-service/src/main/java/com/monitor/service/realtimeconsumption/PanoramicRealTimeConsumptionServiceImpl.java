@@ -18,7 +18,6 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import tk.mybatis.mapper.entity.Condition;
 
-import static org.hamcrest.CoreMatchers.nullValue;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -46,11 +45,14 @@ public class PanoramicRealTimeConsumptionServiceImpl extends AbstractService<Pan
     @Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
     public void realtimeConsumptionSummaryTask(String name, String code, String dateBefore, String dateEnd) {
         // 先查出来，再去更新
-        Condition condition = new Condition(PanoramicRealTimeConsumption.class, false);
-        condition.createCriteria().andCondition(
-                "  substring(code, 1, 12) = '" + code + "' AND f_id=2 AND delete_flag=1 "
-                + " AND utime > '" + dateBefore + "' AND utime < '" + dateEnd + "'");
-        List<PanoramicRealTimeConsumption> consumptionList = realTimeConsumptionMapper.selectByCondition(condition);
+//        Condition condition = new Condition(PanoramicRealTimeConsumption.class, false);
+//        condition.createCriteria().andCondition(
+//                "  substring(code, 1, 12) = '" + code + "' AND f_id=2 AND delete_flag=1 AND value > 0 "
+//                + " AND utime >= '" + dateBefore + "' AND utime < '" + dateEnd + "'");
+//        List<PanoramicRealTimeConsumption> consumptionList = realTimeConsumptionMapper.selectByCondition(condition);
+        
+    		PanoramicRealTimeConsumption result = realTimeConsumptionMapper.selectSummaryConsumptionByCondition(code, dateBefore, dateEnd);
+    		
         PanoramicRealTimeConsumption record = new PanoramicRealTimeConsumption();
         record.setCode(code);
         record.setName(name);
@@ -62,23 +64,35 @@ public class PanoramicRealTimeConsumptionServiceImpl extends AbstractService<Pan
         record.setUnit(StringUtils.containsIgnoreCase(code, "0004A4000009") ? "度" : "吨");
         record.setDeleteFlag(1);
         final double[] sumValue = {0.0};
-        if (null != consumptionList && consumptionList.size() > 0) {
-            consumptionList.forEach(e -> {
-                sumValue[0] += e.getValue();
-                record.setUtime(e.getUtime());
-                record.setDtime(null);
-                record.setOperator("auto_task");
-                record.setfId(e.getfId());
-                record.setName(e.getName());
-                record.setDeleteFlag(e.getDeleteFlag());
-                record.setCtime(e.getCtime());
-                record.setId(null);
-            });
+//        if (null != consumptionList && consumptionList.size() > 0) {
+//            consumptionList.forEach(e -> {
+//                sumValue[0] += e.getValue();
+//                record.setUtime(e.getUtime());
+//                record.setDtime(null);
+//                record.setOperator("auto_task");
+//                record.setfId(e.getfId());
+//                record.setName(e.getName());
+//                record.setDeleteFlag(e.getDeleteFlag());
+//                record.setCtime(e.getCtime());
+//                record.setId(null);
+//            });
+//        }
+        if(null != result) {
+  	      record.setUtime(result.getUtime());
+  	      record.setDtime(null);
+  	      record.setOperator("auto_task");
+  	      record.setfId(result.getfId());
+  	      record.setName(result.getName());
+  	      record.setDeleteFlag(result.getDeleteFlag());
+  	      record.setCtime(result.getCtime());
+  	      record.setId(null);       	
         }
+	      
         PanoramicRealTimeConsumptionGather selectOne = realTimeConsumptionGatherMapper.selectByGatherTime(code, dateBefore);
         Optional<PanoramicRealTimeConsumptionGather> one = Optional.ofNullable(selectOne);
         if (one.isPresent()) {
-        	selectOne.setValue(sumValue[0] );
+        	//selectOne.setValue(sumValue[0] );
+        	selectOne.setValue(result != null? result.getValue():0.0);
         	selectOne.setUtime(DateUtil.getCurFullTimestamp());
         	selectOne.setCtime(selectOne.getUtime());
         	selectOne.setOperator("auto_task_update");
