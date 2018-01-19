@@ -18,6 +18,10 @@ public interface PanoramicOnWayRegularGetDataService extends Service<PanoramicOn
      * 获取新订单数据
      */
 	void getNewOrderData();
+	 /**
+     * 更新未完成的订单数据
+     */
+	void updateOrderData();
 	
 	/**
      * 获取设备数据

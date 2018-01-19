@@ -97,11 +97,15 @@ public class PanoramicOnWayQueryResultOrderDto {
     /**
      * RDateTime
      */
-    private Timestamp rdatetime;
+    private String rdatetime;
     /**
      * UpdateTime
      */
-    private Timestamp updatetime;
+    private String updatetime;
+    /**
+     * createtime
+     */
+    private String createtime;
     /**
      * CurrentStatus
      */
@@ -125,12 +129,12 @@ public class PanoramicOnWayQueryResultOrderDto {
     /**
      * FromTime
      */
-    private Timestamp fromtime;
+    private String fromtime;
 
     /**
      * departures
      */
-    private List<PanoramicOnWayQueryResultDeparturesDto> departures;
+    private String departures;
 
 
     /**
@@ -445,7 +449,7 @@ public class PanoramicOnWayQueryResultOrderDto {
      *
      * @return rdatetime - RDateTime
      */
-    public Timestamp getRDateTime() {
+    public String getRDateTime() {
         return rdatetime;
     }
 
@@ -454,7 +458,7 @@ public class PanoramicOnWayQueryResultOrderDto {
      *
      * @param rdatetime RDateTime
      */
-    public void setRDateTime(Timestamp rdatetime) {
+    public void setRDateTime(String rdatetime) {
         this.rdatetime = rdatetime;
     }
 
@@ -463,18 +467,39 @@ public class PanoramicOnWayQueryResultOrderDto {
      *
      * @return updatetime - UpdateTime
      */
-    public Timestamp getUpdateTime() {
+    public String getUpdateTime() {
         return updatetime;
     }
 
     /**
      * 设置UpdateTime
      *
-     * @param updatetime UpdateTime
+     * @param createtime UpdateTime
      */
-    public void setUpdateTime(Timestamp updatetime) {
+    public void setUpdateTime(String updatetime) {
         this.updatetime = updatetime;
     }
+    
+
+
+    /**
+     * 获取CreateTime
+     *
+     * @return createtime - CreateTime
+     */
+    public String getCreateTime() {
+        return createtime;
+    }
+
+    /**
+     * 设置CreateTime
+     *
+     * @param createtime CreateTime
+     */
+    public void setCreateTime(String createtime) {
+        this.createtime = createtime;
+    }
+    
 
     /**
      * 获取CurrentStatus
@@ -571,7 +596,7 @@ public class PanoramicOnWayQueryResultOrderDto {
      *
      * @return fromtime - FromTime
      */
-    public Timestamp getFromTime() {
+    public String getFromTime() {
         return fromtime;
     }
 
@@ -580,7 +605,7 @@ public class PanoramicOnWayQueryResultOrderDto {
      *
      * @param fromtime FromTime
      */
-    public void setFromTime(Timestamp fromtime) {
+    public void setFromTime(String fromtime) {
         this.fromtime = fromtime;
     }
 
@@ -589,7 +614,7 @@ public class PanoramicOnWayQueryResultOrderDto {
      *
      * @return departures - Departures
      */
-    public List<PanoramicOnWayQueryResultDeparturesDto> getDepartures() {
+    public String getDepartures() {
         return departures;
     }
 
@@ -598,7 +623,7 @@ public class PanoramicOnWayQueryResultOrderDto {
      *
      * @param departures Departures
      */
-    public void setDepartures(List<PanoramicOnWayQueryResultDeparturesDto> departures) {
+    public void setDepartures(String departures) {
         this.departures = departures;
     }
 

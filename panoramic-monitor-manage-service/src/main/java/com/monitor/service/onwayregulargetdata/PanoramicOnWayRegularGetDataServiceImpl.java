@@ -44,12 +44,15 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.monitor.api.onwayregulargetdata.PanoramicOnWayRegularGetDataService;
 import com.monitor.dto.onwayquery.PanoramicOnWayQueryDeviceDto;
 import com.monitor.dto.onwayquery.PanoramicOnWayQueryOrderDto;
+import com.monitor.dto.onwayqueryresult.PanoramicOnWayQueryResultDeparturesDto;
 import com.monitor.dto.onwayqueryresult.PanoramicOnWayQueryResultDeviceDto;
 import com.monitor.dto.onwayqueryresult.PanoramicOnWayQueryResultOrderDto;
 import com.monitor.dto.onwayqueryresult.PanoramicOnWayQueryResultDto;
 import com.monitor.dto.onwayqueryresult.PanoramicOnWayQueryResultMessageDto;
+import com.monitor.mapper.onwaydeparture.PanoramicOnWayDepartureMapper;
 import com.monitor.mapper.onwaydevice.PanoramicOnWayDeviceMapper;
 import com.monitor.mapper.onwayorder.PanoramicOnWayOrderMapper;
+import com.monitor.model.onwayorder.PanoramicOnWayOrder;
 
 import tk.mybatis.mapper.entity.Condition;
 
@@ -75,7 +78,10 @@ public class PanoramicOnWayRegularGetDataServiceImpl extends AbstractService<Pan
    @Autowired
    @Qualifier("onWayOrderMapper")
    private PanoramicOnWayOrderMapper onWayOrderMapper;
-   
+
+   @Autowired
+   @Qualifier("onWayDepartureMapper")
+   private PanoramicOnWayDepartureMapper onWayDepartureMapper;
 
    @Autowired
    @Qualifier("onWayDeviceMapper")
@@ -84,55 +90,211 @@ public class PanoramicOnWayRegularGetDataServiceImpl extends AbstractService<Pan
 	@Override
     @Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 	public void getNewOrderData()  {
+		try {
 			String startTime = onWayOrderMapper.getStartTime();
-	        if(startTime == null || !startTime.equals("")) {
-	        	startTime = "2018-01-15 00:00:00";
+	        if(startTime == null || startTime.equals("")) {
+	        	startTime = "2017-10-01 00:00:00";
 	        }
 	
 	    	String method = "order.order.getOrderList";
 	    	
 
-			SimpleDateFormat sdf= new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-			String createtimeLt = null ;
-			try {
-				Date date;
-				date = sdf.parse(startTime);
-				Calendar calendar = Calendar.getInstance();
-				calendar.setTime(date);
-				calendar.add(Calendar.DAY_OF_MONTH, 3);// 今天+3天
-				date=calendar.getTime(); 
-		    	SimpleDateFormat sdf2=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");  
-		    	createtimeLt =  sdf.format(date);
-			} catch (ParseException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
-			 
-	    	
-	    	PanoramicOnWayQueryOrderDto mQuery = new PanoramicOnWayQueryOrderDto();
-	   // 	mQuery.setCreateTime(startTime);
-	    	mQuery.setCreatetimeGe(startTime);
-	    	mQuery.setCreatetimeLt(createtimeLt);
 	    	List<String> listString = new ArrayList();
 	    	listString.add("orderno");
 	    	listString.add("sebindstatus");
+	    	listString.add("userorderno");
+	    	listString.add("scompany");
+	    	listString.add("sprovince");
+	    	listString.add("scity");
+	    	listString.add("sdistricts");
+	    	listString.add("slocation");
+	    	listString.add("sname");
+	    	listString.add("rcompany");
+	    	listString.add("rprovince");
+	    	listString.add("rcity");
+	    	listString.add("rdistricts");
+	    	listString.add("rlocation");
+	    	listString.add("rname");
+	    	listString.add("rphone");
+	    	listString.add("rdatetime");
+	    	listString.add("updatetime");
+	    	listString.add("createtime");
+	    	listString.add("currentstatus");
+	    	listString.add("currenttranstype");
+	    	listString.add("orgcode");
+	    	listString.add("deleted");
+	    	listString.add("fromorgcode");
+	    	listString.add("fromtime");
+	    	listString.add("departures");
+	    	
+	    	Date dtNow = new Date(); 
+			SimpleDateFormat sdf= new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			Date dtStartTime =  sdf.parse(startTime);
+	    	while(dtStartTime.before(dtNow)) {
+				Calendar calendar = Calendar.getInstance();
+				calendar.setTime(dtStartTime);
+				calendar.add(Calendar.DAY_OF_MONTH, 3);// 今天+3天
+				Date date=calendar.getTime(); 
+			    String createtimeLt =  sdf.format(date);
+				
+				
+				
+	    		int totalCount = 1;
+
+	    		int pageNo = 0;
+	    		Boolean isloop = true;
+	    		while(pageNo * pageSize < totalCount) {
+	    			if(!isloop) {
+	    				break;
+	    			}
+	    			pageNo += 1;
+			    	PanoramicOnWayQueryOrderDto mQuery = new PanoramicOnWayQueryOrderDto();
+			    	mQuery.setCreatetimeGe(startTime);
+			    	mQuery.setCreatetimeLt(createtimeLt);
+			    	mQuery.setFields(listString);
+			    	mQuery.setOrgcode(orgcode);
+			    	mQuery.setPageNo(pageNo);
+			    	mQuery.setPageSize(pageSize);
+			    	String data = JSON.toJSONString(mQuery);
+			        String param = getParam(method,data);
+			        String s=sendPost(url,param);
+			        DB_LOGGER.warn(s);
+		
+			        PanoramicOnWayQueryResultMessageDto jsonMessage =JSON.parseObject(s,PanoramicOnWayQueryResultMessageDto.class);
+			    	if(jsonMessage.getCode() == 0) {
+			        	
+				        PanoramicOnWayQueryResultDto jsonResult = JSON.parseObject(jsonMessage.getData(),PanoramicOnWayQueryResultDto.class);
+				        List<PanoramicOnWayQueryResultOrderDto> listOrder =JSON.parseArray(jsonResult.getResult(),PanoramicOnWayQueryResultOrderDto.class) ;
+				        
+				        
+				        if(listOrder != null && listOrder.size() > 0) {
+				        	for (PanoramicOnWayQueryResultOrderDto  order : listOrder) {
+				        		String sendaddress = order.getSProvince() == null ? "" :  order.getSProvince()  + order.getSCity() == null ? "" :  order.getSCity() +order.getSDistricts() == null ? "" :  order.getSDistricts() +order.getSLocation() == null ? "" :  order.getSLocation() + order.getSCompany() == null ? "" :  order.getSCompany();
+				        		String receiveaddress = order.getRProvince() == null ? "" :  order.getSProvince() + order.getSProvince()== null ? "" :  order.getRCity() + order.getRDistricts() == null ? "" :  order.getRDistricts() + order.getRLocation() == null ? "" :  order.getRLocation() + order.getRCompany() == null ? "" :  order.getRCompany();
+				        		Integer count = onWayOrderMapper.isExistOrder(order.getOrderNo());
+				        		Boolean res = false;
+				        		if(count == 0) {
+					        		res = onWayOrderMapper.addOrderData(order.getOrderNo(), order.getUserOrderNo(), sendaddress, order.getSName(), order.getSPhone(), receiveaddress, order.getRName(), order.getRPhone(), order.getRDateTime(), order.getCreateTime(), order.getUpdateTime(), order.getCurrentStatus(), order.getCurrentStatusType(), order.getOrderNo(), order.getFromOrgCode(), order.getFromTime(), order.getDeleted());
+					        		
+					        		if(!res) {
+					        			isloop = false;
+					        			break;
+					        		}
+					        		
+					        		if(order.getDepartures() != null && !order.getDepartures().equals("")) {
+					        			List<PanoramicOnWayQueryResultDeparturesDto> listDepartures = JSON.parseArray(order.getDepartures(),PanoramicOnWayQueryResultDeparturesDto.class) ;
+					        		     if(listDepartures != null && listDepartures.size() > 0) {
+					        		    		for (PanoramicOnWayQueryResultDeparturesDto  departures : listDepartures) {
+					        		    			res = onWayDepartureMapper.addDepartureData(departures.getDepartureId(), departures.getGStartTime(),departures.getGArriveTime(), departures.getPostman(), departures.getPostmanPhone());
+					        		    			onWayDepartureMapper.addOrderDepartureLate(order.getOrderNo(), departures.getDepartureId());
+					        		    			onWayDeviceMapper.addOrderDeviceLate(order.getOrderNo(), departures.getGpsNo());
+					        		    			
+					        		    		}
+					        		     }
+					        		}
+				        		}else {
+				        			res = onWayOrderMapper.updateOrderData( order.getUserOrderNo(), sendaddress, order.getSName(), order.getSPhone(), receiveaddress, order.getRName(), order.getRPhone(), order.getRDateTime(), order.getCreateTime(), order.getUpdateTime(), order.getCurrentStatus(), order.getCurrentStatusType(), order.getOrderNo(), order.getFromOrgCode(), order.getFromTime(), order.getDeleted(),order.getOrderNo());
+				        			if(!res) {
+					        			isloop = false;
+					        			break;
+					        		}
+				        			if(order.getDepartures() != null && !order.getDepartures().equals("")) {
+					        			List<PanoramicOnWayQueryResultDeparturesDto> listDepartures = JSON.parseArray(order.getDepartures(),PanoramicOnWayQueryResultDeparturesDto.class) ;
+					        		     if(listDepartures != null && listDepartures.size() > 0) {
+					        		    		for (PanoramicOnWayQueryResultDeparturesDto  departures : listDepartures) {
+					        		    			res = onWayDepartureMapper.addDepartureData(departures.getDepartureId(), departures.getGStartTime(),departures.getGArriveTime(), departures.getPostman(), departures.getPostmanPhone());
+					        		    			
+					        		    			onWayDepartureMapper.deleteOrderDeparturelate(order.getOrderNo());
+					        		    			onWayDepartureMapper.addOrderDepartureLate(order.getOrderNo(), departures.getDepartureId());
+					        		    			
+					        		    			onWayDeviceMapper.deleteOrderDevicelate(order.getOrderNo());
+					        		    			onWayDeviceMapper.addOrderDeviceLate(order.getOrderNo(), departures.getGpsNo());
+					        		    			
+					        		    		}
+					        		     }
+					        		}
+				        		}
+				        		
+				        	}
+				        }
+				        totalCount = jsonResult.getTotalCount();
+			        }
+		    	}
+	    		
+	    		startTime = createtimeLt;
+	    		dtStartTime =  sdf.parse(startTime);
+	    	}
+		}
+		catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+
+	   
+	@Override
+    @Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
+	public void updateOrderData()  {
+		try {
+//			Integer pageNo = 1;
+//			List<PanoramicOnWayOrder> listSourceOrder = onWayOrderMapper.getUnfinishOrder();
+//			
+//			
+//			
+//			int num = 0;
+//			for (PanoramicOnWayOrder sourceOrder : listSourceOrder) {
+//				num = num+1; // 每次循环加1.    
+//			}
+	
+	    	String method = "order.order.getOrderList";
+	    	
+
+	    	List<String> listString = new ArrayList();
+	    	listString.add("orderno");
+	    	listString.add("sebindstatus");
+	    	listString.add("userorderno");
+	    	listString.add("scompany");
+	    	listString.add("sprovince");
+	    	listString.add("scity");
+	    	listString.add("sdistricts");
+	    	listString.add("slocation");
+	    	listString.add("sname");
+	    	listString.add("rcompany");
+	    	listString.add("rprovince");
+	    	listString.add("rcity");
+	    	listString.add("rdistricts");
+	    	listString.add("rlocation");
+	    	listString.add("rname");
+	    	listString.add("rphone");
+	    	listString.add("rdatetime");
+	    	listString.add("updatetime");
+	    	listString.add("createtime");
+	    	listString.add("currentstatus");
+	    	listString.add("currenttranstype");
+	    	listString.add("orgcode");
+	    	listString.add("deleted");
+	    	listString.add("fromorgcode");
+	    	listString.add("fromtime");
+	    	listString.add("departures");
+	    	
+
+	    	PanoramicOnWayQueryOrderDto mQuery = new PanoramicOnWayQueryOrderDto();
 	    	mQuery.setFields(listString);
 	    	mQuery.setOrgcode(orgcode);
-
+	    	mQuery.setPageNo(1);
+	    	mQuery.setPageSize(pageSize);
 	    	String data = JSON.toJSONString(mQuery);
-	    	
-//	        String data = "{\"createtimeGe\":\"" + startTime + "\",\"createtimeLt\":\""+createtimeLt+"\",\"orgcode\":\""+orgcode+"\",\"fields\":\"orderno,sebindstatus\"}";
-	    	//data = getDecodeJSONStr(data);
-	        DB_LOGGER.warn(data);
-	        
-	        
 	        String param = getParam(method,data);
-	        param =param.replace('\"', '"');
-	        //param = StringEscapeUtils.unescapeJava(param);
-	        DB_LOGGER.warn(param);
 	        String s=sendPost(url,param);
 	        DB_LOGGER.warn(s);
+	    	
+	    	
+		}
+		catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	@Override
@@ -155,7 +317,7 @@ public class PanoramicOnWayRegularGetDataServiceImpl extends AbstractService<Pan
 		        
 		        if(jsonMessage.getCode() == 0) {
 		        	
-			        PanoramicOnWayQueryResultDto<PanoramicOnWayQueryResultDeviceDto> jsonResult = JSON.parseObject(jsonMessage.getData(),PanoramicOnWayQueryResultDto.class);
+			        PanoramicOnWayQueryResultDto jsonResult = JSON.parseObject(jsonMessage.getData(),PanoramicOnWayQueryResultDto.class);
 			        List<PanoramicOnWayQueryResultDeviceDto> listDevice =JSON.parseArray(jsonResult.getResult(),PanoramicOnWayQueryResultDeviceDto.class) ;
 			        
 			        if(listDevice != null && listDevice.size() > 0) {
@@ -168,7 +330,7 @@ public class PanoramicOnWayRegularGetDataServiceImpl extends AbstractService<Pan
 			        		if(count == 0) {
 			        			Boolean res =onWayDeviceMapper.addDeviceData(Device.getDeviceNo(), Device.getDType(), Device.getBind(), Device.getOnlineStatus(),0 ,String.valueOf( Device.getLng()) == null ? 0 :Device.getLng(), String.valueOf(Device.getLat()) == null ? 0 :Device.getLat(), Device.getGpsTime(), Device.getAddress());
 			        		}else {
-			        			Boolean res =onWayDeviceMapper.updateDeviceData( Device.getDType(), Device.getBind(), Device.getOnlineStatus(),String.valueOf(Device.getBattery()) == null ? 0 :Device.getBattery() ,String.valueOf( Device.getLng()) == null ? 0 :Device.getLng(), String.valueOf(Device.getLat()) == null ? 0 :Device.getLat(), Device.getGpsTime(), Device.getAddress(),Device.getDeviceNo());
+			        			Boolean res =onWayDeviceMapper.updateDeviceData(Device.getDType(), Device.getBind(), Device.getOnlineStatus(),String.valueOf(Device.getBattery()) == null ? 0 :Device.getBattery() ,String.valueOf( Device.getLng()) == null ? 0 :Device.getLng(), String.valueOf(Device.getLat()) == null ? 0 :Device.getLat(), Device.getGpsTime(), Device.getAddress(),Device.getDeviceNo());
 			        		}
 			        		
 			        	}
@@ -258,22 +420,5 @@ public class PanoramicOnWayRegularGetDataServiceImpl extends AbstractService<Pan
     
     
     
-    
-    public String convert(String utfString){
-    	 DB_LOGGER.warn(utfString);
-        StringBuilder sb = new StringBuilder();
-        int i = -1;
-        int pos = 0;
-         
-        while((i=utfString.indexOf("\\u", pos)) != -1){
-            sb.append(utfString.substring(pos, i));
-            if(i+5 < utfString.length()){
-                pos = i+6;
-                sb.append((char)Integer.parseInt(utfString.substring(i+2, i+6), 16));
-            }
-        }
-         
-        return sb.toString();
-    }
   
 }

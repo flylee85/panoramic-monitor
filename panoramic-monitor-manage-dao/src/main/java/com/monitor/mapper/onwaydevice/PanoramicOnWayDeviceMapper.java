@@ -11,6 +11,7 @@ import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.List;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
@@ -38,7 +39,7 @@ public interface PanoramicOnWayDeviceMapper extends Mapper<PanoramicOnWayDevice>
     		,@Param("gpstime") Timestamp gpstime
     		,@Param("address") String address);
 	
-	@Update("update panoramic.panoramic_on_way_device" + 
+	@Update("update panoramic_on_way_device" + 
 			"	set" + 
 			"	device_type = ${device_type} ," + 
 			"	bind = ${bind}," + 
@@ -77,5 +78,16 @@ public interface PanoramicOnWayDeviceMapper extends Mapper<PanoramicOnWayDevice>
     */
 	@Select(" select count(0)  from panoramic_on_way_device where device_no = \'${deviceno}\'")
 	Integer isExistDevice(@Param("deviceno") String deviceno);
+	
+
+	@Insert(" insert into panoramic_on_way_order_device_relationship " + 
+			"	(order_no, device_no, ctime ) " + 
+			"	values (\'${orderno}\',\'${deviceno}\', now() )" )
+	
+	void addOrderDeviceLate(@Param("orderno") String orderno,@Param("deviceno") String deviceno);
+	
+
+	@Delete("delete panoramic_on_way_order_device_relationship where order = \'${orderno}\' ")
+	void deleteOrderDevicelate(@Param("orderno") String orderno);
 	
 }
