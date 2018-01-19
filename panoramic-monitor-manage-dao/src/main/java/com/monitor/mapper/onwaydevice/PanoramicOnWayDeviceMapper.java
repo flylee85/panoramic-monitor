@@ -90,4 +90,11 @@ public interface PanoramicOnWayDeviceMapper extends Mapper<PanoramicOnWayDevice>
 	@Delete("delete panoramic_on_way_order_device_relationship where order = \'${orderno}\' ")
 	void deleteOrderDevicelate(@Param("orderno") String orderno);
 	
+
+	 /**
+    * 获取所有设备数量
+    */
+	@Select("select Count(*) from panoramic_on_way_device")
+	Integer getDeviceCount();
+	
 }

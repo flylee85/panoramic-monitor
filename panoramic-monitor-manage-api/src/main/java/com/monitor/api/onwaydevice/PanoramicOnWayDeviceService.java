@@ -28,4 +28,11 @@ public interface PanoramicOnWayDeviceService extends Service<PanoramicOnWayDevic
 	 */
 	Integer getBindCount();
 	
+
+	
+	 /**
+    * 获取所有设备数量
+    */
+	Integer getDeviceCount();
+	
 }

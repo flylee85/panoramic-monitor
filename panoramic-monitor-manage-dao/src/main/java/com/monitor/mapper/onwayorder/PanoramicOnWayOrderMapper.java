@@ -86,7 +86,7 @@ public interface PanoramicOnWayOrderMapper extends Mapper<PanoramicOnWayOrder> {
     		,@Param("fromorgcode") String fromorgcode
     		,@Param("fromtime") String fromtime
     		,@Param("deleted") String deleted
-    		,@Param("ordero") String ordero);
+    		,@Param("orderno") String orderno);
 	
 	@Select(" Select date_format(max(ctime) ,'%Y-%m-%d %T')  from panoramic_on_way_order  ")
 	String getStartTime();
@@ -99,7 +99,7 @@ public interface PanoramicOnWayOrderMapper extends Mapper<PanoramicOnWayOrder> {
 	Integer isExistOrder(@Param("order_no") String order_no);
 	
 
-	@Select("select * from panoramic_on_way_order where current_status <> 2 order by ctime ")
-	List<PanoramicOnWayOrder> getUnfinishOrder();
+	@Select("select order_no from panoramic_on_way_order where current_status <> 2 order by ctime ")
+	List<String> getUnfinishOrderNo();
 	
 }
