@@ -40,12 +40,6 @@ public class PanoramicProductOfflineMeasurement {
     private String code;
 
     /**
-     * 进出库类型（1：进库; 0：出库）
-     */
-    @Column(name = "in_or_out")
-    private Integer inOrOut;
-
-    /**
      * 单位
      */
     private String unit;
@@ -170,24 +164,6 @@ public class PanoramicProductOfflineMeasurement {
      */
     public void setCode(String code) {
         this.code = code;
-    }
-
-    /**
-     * 获取进出库类型（1：进库; 0：出库）
-     *
-     * @return in_or_out - 进出库类型（1：进库; 0：出库）
-     */
-    public Integer getInOrOut() {
-        return inOrOut;
-    }
-
-    /**
-     * 设置进出库类型（1：进库; 0：出库）
-     *
-     * @param inOrOut 进出库类型（1：进库; 0：出库）
-     */
-    public void setInOrOut(Integer inOrOut) {
-        this.inOrOut = inOrOut;
     }
 
     /**
