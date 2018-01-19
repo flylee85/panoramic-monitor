@@ -29,8 +29,7 @@ public interface PanoramicProductOfflineMeasurementMapper extends Mapper<Panoram
     		"FROM\n" + 
     		"	panoramic_product_offline_measurement\n" + 
     		"WHERE\n" + 
-    		"	in_or_out = 0\n" + 
-    		"AND delete_flag = 1\n" + 
+    		" delete_flag = 1\n" + 
     		"AND f_id = 2\n" +
     		"GROUP BY code,name" +
     		"")
