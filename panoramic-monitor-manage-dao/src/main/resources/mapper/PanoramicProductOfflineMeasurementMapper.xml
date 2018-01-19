@@ -10,7 +10,6 @@
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="value" jdbcType="VARCHAR" property="value" />
     <result column="code" jdbcType="VARCHAR" property="code" />
-    <result column="in_or_out" jdbcType="INTEGER" property="inOrOut" />
     <result column="unit" jdbcType="VARCHAR" property="unit" />
     <result column="delete_flag" jdbcType="INTEGER" property="deleteFlag" />
     <result column="ctime" jdbcType="TIMESTAMP" property="ctime" />
