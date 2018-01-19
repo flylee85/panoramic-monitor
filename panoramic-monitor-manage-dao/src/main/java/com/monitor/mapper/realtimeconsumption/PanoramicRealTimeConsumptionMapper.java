@@ -21,7 +21,18 @@ public interface PanoramicRealTimeConsumptionMapper extends Mapper<PanoramicReal
      *
      * @return
      */
-    @Select("SELECT SUBSTRING(CODE, 1, 12) CODE ,NAME FROM PANORAMIC_REAL_TIME_CONSUMPTION AS B GROUP BY CODE")
+    @Select("SELECT SUBSTRING(CODE,1,12) AS CODE,NAME FROM PANORAMIC_REAL_TIME_CONSUMPTION  GROUP BY CODE,NAME")
     List<PanoramicRealTimeConsumption> listRealTimeConsumptionCategory();
     
+    /**
+     * 时间段内数据统计
+     * @param code
+     * @param dateBefore
+     * @param dateEnd
+     * @return
+     */
+    PanoramicRealTimeConsumption selectSummaryConsumptionByCondition(
+    		@Param("code") String code,
+    		@Param("dateBefore") String dateBefore,
+    		@Param("dateEnd") String dateEnd);
 }
