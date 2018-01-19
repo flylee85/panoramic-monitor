@@ -55,7 +55,7 @@ public interface PanoramicSparePartsMaterialsMapper extends Mapper<PanoramicSpar
 			"GROUP BY\n" + 
 			"	NAME\n" + 
 			"ORDER BY\n" + 
-			"	sum(inventory_value) DESC\n" + 
+			"	inventory_value DESC\n" + 
 			"LIMIT 10")
 	List<PanoramicSparePartsMaterials> listSummaryByDate(@Param("date") Timestamp date,@Param("nextdate") Timestamp nextdate);
 	
