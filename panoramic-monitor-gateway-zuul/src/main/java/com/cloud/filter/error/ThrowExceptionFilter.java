@@ -1,4 +1,4 @@
-package com.cloud.filter;
+package com.cloud.filter.error;
 
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;

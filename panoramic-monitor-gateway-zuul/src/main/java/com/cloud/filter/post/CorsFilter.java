@@ -1,4 +1,4 @@
-package com.cloud.filter;
+package com.cloud.filter.post;
 
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
@@ -7,12 +7,13 @@ import javax.servlet.http.HttpServletRequest;
 
 /**
  * @author summer
+ * 后置过滤器
  */
-public class AccessFilter extends ZuulFilter {
+public class CorsFilter extends ZuulFilter {
 
     @Override
     public String filterType() {
-        return "pre";
+        return "post";
     }
 
     @Override
@@ -39,5 +40,17 @@ public class AccessFilter extends ZuulFilter {
         }
         return null;
     }
-
+//    @Bean
+//	public FilterRegistrationBean corsFilter() {
+//		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+//		CorsConfiguration config = new CorsConfiguration();
+//		config.setAllowCredentials(true);
+//		config.addAllowedOrigin("*");
+//		config.addAllowedHeader("*");
+//		config.addAllowedMethod("*");
+//		source.registerCorsConfiguration("/**", config);
+//		FilterRegistrationBean bean = new FilterRegistrationBean(new CorsFilter(source));
+//		bean.setOrder(0);
+//		return bean;
+//	}
 }
