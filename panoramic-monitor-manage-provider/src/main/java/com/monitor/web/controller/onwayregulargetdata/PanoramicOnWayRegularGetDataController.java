@@ -35,6 +35,7 @@ public class PanoramicOnWayRegularGetDataController {
 	@GetMapping("/getNewOrderData")
     public ResultCode<Void> getNewOrderData() {
 		onWayRegularGetDataService.getNewOrderData();
+		onWayRegularGetDataService.updateOrderData();
         return ResultCode.SUCCESS;
     }
 	

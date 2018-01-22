@@ -46,11 +46,11 @@ public class PanoramicOnWayQueryOrderDto  {
 	}
 	
 
-	public String getOrdernoIn() {
+	public List<String> getOrdernoIn() {
 		return ordernoIn;
 	}
 
-	public void setOrdernoIn(String ordernoIn) {
+	public void setOrdernoIn(List<String> ordernoIn) {
 		this.ordernoIn = ordernoIn;
 	}
 	/**
@@ -64,7 +64,7 @@ public class PanoramicOnWayQueryOrderDto  {
 	/**
 	 * ordernoIn
 	 */
-	private String ordernoIn;
+	private List<String> ordernoIn;
 	/**
 	 * orgcode
 	 */

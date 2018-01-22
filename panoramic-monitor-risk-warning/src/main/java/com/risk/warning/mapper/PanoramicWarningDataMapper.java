@@ -66,7 +66,7 @@ public interface PanoramicWarningDataMapper extends Mapper<PanoramicWarningData>
     @Update("update panoramic_warning_data set status = 2 ,utime = now(),responsible_content= \'${responsiblecontent}\',responsible_name= \'${responsiblename}\' where id = ${id} and status = 1")
     Boolean finishDataByManual(@Param("responsiblecontent") String responsiblecontent,@Param("responsiblename") String responsiblename,@Param("id") Integer id);
     
-    @Select("Select distinct responsible_name from panoramic_warning_data ")
+    @Select("Select distinct responsible_name from panoramic_warning_data where  responsible_name is not null ")
     List<String> getResponsibleNameList();
     
     

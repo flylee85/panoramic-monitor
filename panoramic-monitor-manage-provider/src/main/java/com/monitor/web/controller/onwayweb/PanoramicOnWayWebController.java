@@ -61,12 +61,7 @@ public class PanoramicOnWayWebController{
     @GetMapping("/getTitleInfo")
     public ResultCode<PanoramicOnWayTitleResultDto> getTitleInfo() {
     	PanoramicOnWayTitleResultDto record = new PanoramicOnWayTitleResultDto();
-    	List<PanoramicOnWayDevice> list = onWayDeviceService.getDeviceList();
-    	if(list == null) {
-    		record.setAllCount(0);
-    	}else {
-    		record.setAllCount(list.size());
-    	}
+    	record.setAllCount(onWayDeviceService.getDeviceCount());
     	record.setBindCount(onWayDeviceService.getBindCount());
     	record.setOverDayCount(onWayResultService.getOverDayCount());
     	return ResultCode.getSuccessReturn(record);
