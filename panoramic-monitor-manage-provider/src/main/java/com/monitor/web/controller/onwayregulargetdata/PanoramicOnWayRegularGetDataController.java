@@ -36,6 +36,7 @@ public class PanoramicOnWayRegularGetDataController {
     public ResultCode<Void> getNewOrderData() {
 		onWayRegularGetDataService.getNewOrderData();
 		onWayRegularGetDataService.updateOrderData();
+		onWayRegularGetDataService.getOrderNodes();
         return ResultCode.SUCCESS;
     }
 	

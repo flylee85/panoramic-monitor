@@ -23,5 +23,9 @@
     <result column="from_org_code" jdbcType="VARCHAR" property="fromOrgCode" />
     <result column="from_time" jdbcType="TIMESTAMP" property="fromTime" />
     <result column="deleted" jdbcType="VARCHAR" property="deleted" />
+    <result column="device_no" jdbcType="VARCHAR" property="deviceNo" />
+    <result column="device_start_time" jdbcType="TIMESTAMP" property="deviceStartTime" />
+    <result column="device_last_time" jdbcType="TIMESTAMP" property="deviceLastTime" />
+    <result column="device_last_address" jdbcType="VARCHAR" property="deviceLastAddress" />
   </resultMap>
 </mapper>
