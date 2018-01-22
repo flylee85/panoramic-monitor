@@ -167,21 +167,6 @@ public class PanoramicOnWayRegularGetDataServiceImpl extends AbstractService<Pan
 					        			isloop = false;
 					        			break;
 					        		}
-					        		
-//					        		if(order.getDepartures() != null && !order.getDepartures().equals("")) {
-//					        			List<PanoramicOnWayQueryResultDeparturesDto> listDepartures = JSON.parseArray(order.getDepartures(),PanoramicOnWayQueryResultDeparturesDto.class) ;
-//					        		     if(listDepartures != null && listDepartures.size() > 0) {
-//					        		    		for (PanoramicOnWayQueryResultDeparturesDto  departures : listDepartures) {
-//					        		    			//添加Departure
-//					        		    			res = onWayDepartureMapper.addDepartureData(departures.getDepartureId(), departures.getGStartTime(),departures.getGArriveTime(), departures.getPostman(), departures.getPostmanPhone());
-//					        		    			//添加Order和Departure的关系
-//					        		    			onWayDepartureMapper.addOrderDepartureLate(order.getOrderNo(), departures.getDepartureId());
-//					        		    			//添加Order和Device的关系
-//					        		    			onWayDeviceMapper.addOrderDeviceLate(order.getOrderNo(), departures.getGpsNo());
-//					        		    			
-//					        		    		}
-//					        		     }
-//					        		}
 				        		}else {
 				        			//存在进行修改
 				        			res = onWayOrderMapper.updateOrderData( order.getUserOrderNo(), sendaddress, order.getSName(), order.getSPhone(), receiveaddress, order.getRName(), order.getRPhone(), order.getRDateTime(), order.getCreateTime(), order.getUpdateTime(), order.getCurrentStatus(), order.getCurrentStatusType(), order.getOrderNo(), order.getFromOrgCode(), order.getFromTime(), order.getDeleted(),order.getOrderNo());
@@ -190,24 +175,7 @@ public class PanoramicOnWayRegularGetDataServiceImpl extends AbstractService<Pan
 					        			isloop = false;
 					        			break;
 					        		}
-//				        			if(order.getDepartures() != null && !order.getDepartures().equals("")) {
-//					        			List<PanoramicOnWayQueryResultDeparturesDto> listDepartures = JSON.parseArray(order.getDepartures(),PanoramicOnWayQueryResultDeparturesDto.class) ;
-//					        		     if(listDepartures != null && listDepartures.size() > 0) {
-//					        		    		for (PanoramicOnWayQueryResultDeparturesDto  departures : listDepartures) {
-//					        		    			//添加Departure
-//					        		    			res = onWayDepartureMapper.addDepartureData(departures.getDepartureId(), departures.getGStartTime(),departures.getGArriveTime(), departures.getPostman(), departures.getPostmanPhone());
-//					        		    			//删除原有的Order和Departure的关系
-//					        		    			onWayDepartureMapper.deleteOrderDeparturelate(order.getOrderNo());
-//					        		    			//添加Order和Departure的关系
-//					        		    			onWayDepartureMapper.addOrderDepartureLate(order.getOrderNo(), departures.getDepartureId());
-//					        		    			//删除Order和Device的关系
-//					        		    			onWayDeviceMapper.deleteOrderDevicelate(order.getOrderNo());
-//					        		    			//添加Order和Device的关系
-//					        		    			onWayDeviceMapper.addOrderDeviceLate(order.getOrderNo(), departures.getGpsNo());
-//					        		    			
-//					        		    		}
-//					        		     }
-//					        		}
+
 				        		}
 				        		
 				        	}
@@ -281,25 +249,6 @@ public class PanoramicOnWayRegularGetDataServiceImpl extends AbstractService<Pan
 			        		if(count == 1) {
 			        			//对Order 进行修改
 			        			Boolean	res = onWayOrderMapper.updateOrderData( order.getUserOrderNo(), sendaddress, order.getSName(), order.getSPhone(), receiveaddress, order.getRName(), order.getRPhone(), order.getRDateTime(), order.getCreateTime(), order.getUpdateTime(), order.getCurrentStatus(), order.getCurrentStatusType(), order.getOrderNo(), order.getFromOrgCode(), order.getFromTime(), order.getDeleted(),order.getOrderNo());
-			        	
-//			        			if(order.getDepartures() != null && !order.getDepartures().equals("")) {
-//				        			List<PanoramicOnWayQueryResultDeparturesDto> listDepartures = JSON.parseArray(order.getDepartures(),PanoramicOnWayQueryResultDeparturesDto.class) ;
-//				        		     if(listDepartures != null && listDepartures.size() > 0) {
-//				        		    		for (PanoramicOnWayQueryResultDeparturesDto  departures : listDepartures) {
-//				        		    			//添加Departure
-//				        		    			res = onWayDepartureMapper.addDepartureData(departures.getDepartureId(), departures.getGStartTime(),departures.getGArriveTime(), departures.getPostman(), departures.getPostmanPhone());
-//				        		    			//删除原有的Order和Departure的关系
-//				        		    			onWayDepartureMapper.deleteOrderDeparturelate(order.getOrderNo());
-//				        		    			//添加Order和Departure的关系
-//				        		    			onWayDepartureMapper.addOrderDepartureLate(order.getOrderNo(), departures.getDepartureId());
-//				        		    			//删除Order和Device的关系
-//				        		    			onWayDeviceMapper.deleteOrderDevicelate(order.getOrderNo());
-//				        		    			//添加Order和Device的关系
-//				        		    			onWayDeviceMapper.addOrderDeviceLate(order.getOrderNo(), departures.getGpsNo());
-//				        		    			
-//				        		    		}
-//				        		     }
-//				        		}
 			        		}
 			        		
 			        	}
@@ -337,7 +286,6 @@ public class PanoramicOnWayRegularGetDataServiceImpl extends AbstractService<Pan
     		PanoramicOnWayQueryOrderNodesDto mQuery = new PanoramicOnWayQueryOrderNodesDto();
 	    	mQuery.setOrderno(listOrderNo);
 	    	mQuery.setPageSize(pageSize);
-	    	while(pageNo * pageSize < totalCount) {
     			pageNo += 1;
     	    	mQuery.setPageNo(pageNo);
 		    	String data = JSON.toJSONString(mQuery);
@@ -356,21 +304,21 @@ public class PanoramicOnWayRegularGetDataServiceImpl extends AbstractService<Pan
 			        
 			        if(listOrderNodes != null && listOrderNodes.size() > 0) {
 			        	for (PanoramicOnWayQueryResultOrderNodesDto  orderNode : listOrderNodes) {
-				        	List<PanoramicOnWayQueryResultMilestonesiotesDto> milestonesiotes = JSON.parseArray(orderNode.getMilestonesiotes(),PanoramicOnWayQueryResultMilestonesiotesDto.class);
-				            if(milestonesiotes != null && milestonesiotes.size() > 0) {
-					        	String deviceNo =  milestonesiotes.get(0).getMcode();
-					        	String startTime =  milestonesiotes.get(0).getMtime();
-					        	String lastTime = milestonesiotes.get(milestonesiotes.size()-1).getMtime();
-					        	String lastAddress = milestonesiotes.get(milestonesiotes.size()-1).getMname();
-					        	onWayOrderMapper.updateOrderNodes(deviceNo, startTime, lastTime, lastAddress, orderNode.getOrderNo());
-				            
-				            }
+			        		if(orderNode.getOrderNo() != null && !orderNode.getOrderNo().equals("")) {
+					        	String startTime = null;
+					        	String lastTime = null ;
+					        	String lastAddress = null;
+					        	List<PanoramicOnWayQueryResultMilestonesiotesDto> milestonesiotes = JSON.parseArray(orderNode.getMilestonesiotes(),PanoramicOnWayQueryResultMilestonesiotesDto.class);
+					            if(milestonesiotes != null && milestonesiotes.size() > 0) {
+						        	 startTime =  milestonesiotes.get(0).getMtime();
+						        	 lastTime = milestonesiotes.get(milestonesiotes.size()-1).getMtime();
+						        	 lastAddress = milestonesiotes.get(milestonesiotes.size()-1).getMaddress();
+					            
+					            }
+					        	onWayOrderMapper.updateOrderNodes(orderNode.getDeviceNo(), startTime, lastTime, lastAddress, orderNode.getOrderNo());
+			        		}
 			        	}
 			        }
-			
-			        //对总条数进行赋值
-			        //totalCount = jsonResult.getTotalCount();
-		        }
 	    	}
 		}
 		catch (Exception e) {

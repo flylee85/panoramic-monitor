@@ -26,7 +26,7 @@ public interface PanoramicWarningDataMapper extends Mapper<PanoramicWarningData>
     /**
      * 生成本地报警日志
      */
-    @Insert(" Insert into risk.panoramic_warning_data (factory_name,section_name,device_name,event_name,str_event,event_value,status,ctime,source_id,warn_configuration_id,level,is_send_email) values (\'${FactoryName}\',\'${SectionName}\',\'${DeviceName}\',\'${EventName}\',\'${StrEvent}\',${EventValue},${Status},\'${Ctime}\',${SourceID},${WarnConfigurationID},${Level},${IsSendEmail}) ")
+    @Insert(" Insert into panoramic_warning_data (factory_name,section_name,device_name,event_name,str_event,event_value,status,ctime,source_id,warn_configuration_id,level,is_send_email) values (\'${FactoryName}\',\'${SectionName}\',\'${DeviceName}\',\'${EventName}\',\'${StrEvent}\',${EventValue},${Status},\'${Ctime}\',${SourceID},${WarnConfigurationID},${Level},${IsSendEmail}) ")
     void addWarningSource(@Param("FactoryName") String factoryame,@Param("SectionName") String sectioname,@Param("DeviceName") String devicename,@Param("EventName") String eventname,@Param("StrEvent") String strevent,@Param("EventValue") Double eventvalue,@Param("Status") Integer status,@Param("Ctime") Timestamp ctime,@Param("SourceID") Integer sourceid,@Param("WarnConfigurationID") Integer warnconfigurationid,@Param("Level") Integer level,@Param("IsSendEmail") Boolean issendemail);
     
     /**

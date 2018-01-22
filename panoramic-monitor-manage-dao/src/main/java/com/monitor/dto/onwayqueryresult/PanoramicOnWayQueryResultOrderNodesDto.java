@@ -19,6 +19,11 @@ public class PanoramicOnWayQueryResultOrderNodesDto {
      */
     private String milestonesiotes;
 
+    /**
+     * deviceno
+     */
+    private String deviceno;
+
  
     
 
@@ -36,7 +41,7 @@ public class PanoramicOnWayQueryResultOrderNodesDto {
      *
      * @param orderno OrderNo
      */
-    public void setMaddress(String orderno) {
+    public void setOrderNo(String orderno) {
         this.orderno = orderno;
     }
     
@@ -61,6 +66,24 @@ public class PanoramicOnWayQueryResultOrderNodesDto {
         this.milestonesiotes = milestonesiotes;
     }
 
+
+    /**
+     * 获取DeviceNo
+     *
+     * @return deviceno - DeviceNo
+     */
+    public String getDeviceNo() {
+        return deviceno;
+    }
+
+    /**
+     * 设置DeviceNo
+     *
+     * @param deviceno DeviceNo
+     */
+    public void setDeviceNo(String deviceno) {
+        this.deviceno = deviceno;
+    }
 
   
     

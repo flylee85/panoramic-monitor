@@ -108,14 +108,14 @@ public interface PanoramicOnWayOrderMapper extends Mapper<PanoramicOnWayOrder> {
 	 /**
 	   * 获取最近一个月已经完成的或者未完成的订单号用来获取天眼最新的节点信息
 	 */
-	@Select("select order_no from panoramic_on_way_order  where (current_status = 2 and timestampdiff(Month,ctime,now())< 1) or current_status <> 2")
+	@Select("select order_no from panoramic_on_way_order where (current_status = 2 and timestampdiff(Day,utime,now()) < 3) or current_status <> 2 ")
 	List<String> getNeedUpdateDeviceOrderNo();
 	
 	@Update("update panoramic_on_way_order " + 
-			"set device_no = \'${deviceno}\', " + 
-			"device_start_time = \'${devicestarttime}\' , " + 
-			"device_last_time = \'${devicelasttime}\' , " + 
-			"device_last_address = \'${devicelastaddress}\'" + 
+			"set device_no = CASE \'${deviceno}\' WHEN '' THEN NULL ELSE \'${deviceno}\' END, " + 
+			"device_start_time = CASE \'${devicestarttime}\' WHEN '' THEN NULL ELSE \'${devicestarttime}\' END, "+ 
+			"device_last_time = CASE \'${devicelasttime}\' WHEN '' THEN NULL ELSE \'${devicelasttime}\' END, " + 
+			"device_last_address =  CASE \'${devicelastaddress}\' WHEN '' THEN NULL ELSE \'${devicelastaddress}\' END  " + 
 			"where order_no = \'${orderno}\' ")
 	void updateOrderNodes(@Param("deviceno") String deviceno,@Param("devicestarttime") String devicestarttime,@Param("devicelasttime") String devicelasttime,@Param("devicelastaddress") String devicelastaddress,@Param("orderno") String orderno);
 	
