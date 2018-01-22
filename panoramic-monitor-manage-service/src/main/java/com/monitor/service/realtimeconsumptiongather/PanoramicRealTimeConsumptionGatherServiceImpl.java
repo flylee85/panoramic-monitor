@@ -42,6 +42,12 @@ public class PanoramicRealTimeConsumptionGatherServiceImpl extends AbstractServi
 	 */
 	public static final String HG_01_XY_7500 = "HG01XY7500";
 	
+	/**
+	 * 磷矿粉 矿浆 12位编码
+	 */
+	public static final String HG_01_XY_750000 = "HG01XY750000";
+	public static final String HG_01_XY_751500 = "HG01XY751500";
+	
 	@Autowired
 	@Qualifier("inventoryEntryService")
 	PanoramicInventoryEntryService inventoryEntryService;
@@ -56,6 +62,11 @@ public class PanoramicRealTimeConsumptionGatherServiceImpl extends AbstractServi
 	@Transactional(propagation = Propagation.NOT_SUPPORTED, rollbackFor = Exception.class)
 	public List<PanoramicRealTimeConsumptionGather> listByCodeAndDate(String date, String code) {
 		Condition condition = new Condition(PanoramicRealTimeConsumptionGather.class, false);
+		
+		//实时显示的是矿浆的数据
+		if(HG_01_XY_750000.equalsIgnoreCase(code)) {
+			code = HG_01_XY_751500;
+		}
 		
 		condition.createCriteria()
 				.andCondition(" code ='" + code + "' and f_id=2 and delete_flag=1 and gather_time > '"
