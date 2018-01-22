@@ -312,7 +312,7 @@ public class PanoramicOnWayRegularGetDataServiceImpl extends AbstractService<Pan
 					            if(milestonesiotes != null && milestonesiotes.size() > 0) {
 						        	 startTime =  milestonesiotes.get(0).getMtime();
 						        	 lastTime = milestonesiotes.get(milestonesiotes.size()-1).getMtime();
-						        	 lastAddress = milestonesiotes.get(milestonesiotes.size()-1).getMaddress();
+						        	 lastAddress = milestonesiotes.get(milestonesiotes.size()-1).getMname();
 					            
 					            }
 					        	onWayOrderMapper.updateOrderNodes(orderNode.getDeviceNo(), startTime, lastTime, lastAddress, orderNode.getOrderNo());
@@ -357,16 +357,17 @@ public class PanoramicOnWayRegularGetDataServiceImpl extends AbstractService<Pan
 			        	for (PanoramicOnWayQueryResultDeviceDto  Device : listDevice) {
 			        		//判断DEvice在数据库里是否存在
 			        		Integer count = onWayDeviceMapper.isExistDevice(Device.getDeviceNo());
-				        	 
-			        		if(String.valueOf(Device.getBattery()) == null) {
-			        			Device.setBattery(0);
+				        	
+			        		Integer battery = 0;
+			        		if(Device.getBattery() != null && !Device.getBattery().equals("")) {
+			        			battery = Integer.parseInt(Device.getBattery());
 			        		}
 			        		if(count == 0) {
 			        			//不存在添加DEVICE
-			        			Boolean res =onWayDeviceMapper.addDeviceData(Device.getDeviceNo(), Device.getDType(), Device.getBind(), Device.getOnlineStatus(),0 ,String.valueOf( Device.getLng()) == null ? 0 :Device.getLng(), String.valueOf(Device.getLat()) == null ? 0 :Device.getLat(), Device.getGpsTime(), Device.getAddress());
+			        			Boolean res =onWayDeviceMapper.addDeviceData(Device.getDeviceNo(), Device.getDType(), Device.getBind(), Device.getOnlineStatus(),battery ,String.valueOf( Device.getLng()) == null ? 0 :Device.getLng(), String.valueOf(Device.getLat()) == null ? 0 :Device.getLat(), Device.getGpsTime(), Device.getAddress());
 			        		}else {
 			        			//存在 修改DEVICE
-			        			Boolean res =onWayDeviceMapper.updateDeviceData(Device.getDType(), Device.getBind(), Device.getOnlineStatus(),String.valueOf(Device.getBattery()) == null ? 0 :Device.getBattery() ,String.valueOf( Device.getLng()) == null ? 0 :Device.getLng(), String.valueOf(Device.getLat()) == null ? 0 :Device.getLat(), Device.getGpsTime(), Device.getAddress(),Device.getDeviceNo());
+			        			Boolean res =onWayDeviceMapper.updateDeviceData(Device.getDType(), Device.getBind(), Device.getOnlineStatus(),battery,String.valueOf( Device.getLng()) == null ? 0 :Device.getLng(), String.valueOf(Device.getLat()) == null ? 0 :Device.getLat(), Device.getGpsTime(), Device.getAddress(),Device.getDeviceNo());
 			        		}
 			        		
 			        	}

@@ -41,7 +41,7 @@ public class PanoramicOnWayQueryResultDeviceDto extends BaseObject {
     /**
      * Battery
      */
-    private Integer battery;
+    private String battery;
     /**
      * lng
      */
@@ -144,7 +144,7 @@ public class PanoramicOnWayQueryResultDeviceDto extends BaseObject {
      *
      * @return battery - Battery
      */
-    public Integer getBattery() {
+    public String getBattery() {
         return battery;
     }
 
@@ -153,7 +153,7 @@ public class PanoramicOnWayQueryResultDeviceDto extends BaseObject {
      *
      * @param battery Battery
      */
-    public void setBattery(Integer battery) {
+    public void setBattery(String battery) {
         this.battery = battery;
     }
 

@@ -41,16 +41,16 @@ public interface PanoramicOnWayDeviceMapper extends Mapper<PanoramicOnWayDevice>
 	
 	@Update("update panoramic_on_way_device" + 
 			"	set" + 
-			"	device_type = ${device_type} ," + 
+			"	device_type = ${devicetype} ," + 
 			"	bind = ${bind}," + 
-			"	online_status = ${online_status} ," + 
+			"	online_status = ${onlinestatus} ," + 
 			"	battery = ${battery} ," + 
 			"	lng = ${lng} ," + 
 			"	lat = ${lat} ," + 
-			"	gps_time = \'${gps_time}\'," + 
+			"	gps_time = \'${gpstime}\'," + 
 			"	address = \'${address}\'" + 
 			"	where" + 
-			"	device_no = \'${device_no}\' ")    
+			"	device_no = \'${deviceno}\' ")    
 	Boolean updateDeviceData(@Param("devicetype") Integer devicetype
 		    		,@Param("bind") Integer bind
 		    		,@Param("onlinestatus") Integer onlinestatus

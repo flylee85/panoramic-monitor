@@ -32,10 +32,12 @@ public class PanoramicOnWayResultServiceImpl extends AbstractService<PanoramicOn
     @Transactional(propagation = Propagation.NOT_SUPPORTED, rollbackFor = Exception.class)
     public List<PanoramicOnWayResultDto> getOnWayResult(Integer currentstatus){
     	String strdate = "";
-    	 	List<PanoramicOnWayResultDto> recordList = null;
+    	List<PanoramicOnWayResultDto> recordList = null;
     	if(currentstatus == 1){
+    		//获取在途信息
     	    recordList = onWayResultMapper.getOnWayResult();
     	}else if(currentstatus == 2) {
+    		//获取已完成的信息
     		recordList = onWayResultMapper.getOnWayFinishResult();
     	}
     	 return (null == recordList || recordList.size() == 0) ? null :recordList;
@@ -45,6 +47,7 @@ public class PanoramicOnWayResultServiceImpl extends AbstractService<PanoramicOn
     @Override
     @Transactional(propagation = Propagation.NOT_SUPPORTED, rollbackFor = Exception.class)
     public Integer getOverDayCount(){
+    	//获取超市数量
     	Integer OverDayCount  = onWayResultMapper.getOverDayCount();
     	return OverDayCount;
     }
