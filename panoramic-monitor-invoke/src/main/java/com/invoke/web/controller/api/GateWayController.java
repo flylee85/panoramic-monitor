@@ -34,7 +34,7 @@ public class GateWayController {
     @PostConstruct
     public void init() {
         BlockingQueue<Runnable> taskQueue = new SynchronousQueue<>();
-        executor = new ThreadPoolExecutor(5, 10000, 60, TimeUnit.SECONDS, taskQueue);
+        executor = new ThreadPoolExecutor(0, 100000, 60, TimeUnit.SECONDS, taskQueue);
         executor.allowCoreThreadTimeOut(false);
     }
 
