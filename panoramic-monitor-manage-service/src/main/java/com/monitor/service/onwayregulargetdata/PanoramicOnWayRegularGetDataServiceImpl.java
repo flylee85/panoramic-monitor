@@ -356,7 +356,7 @@ public class PanoramicOnWayRegularGetDataServiceImpl extends AbstractService<Pan
 			        
 			        if(listOrderNodes != null && listOrderNodes.size() > 0) {
 			        	for (PanoramicOnWayQueryResultOrderNodesDto  orderNode : listOrderNodes) {
-				        	List<PanoramicOnWayQueryResultMilestonesiotesDto> milestonesiotes = orderNode.getMilestonesiotes();
+				        	List<PanoramicOnWayQueryResultMilestonesiotesDto> milestonesiotes = JSON.parseArray(orderNode.getMilestonesiotes(),PanoramicOnWayQueryResultMilestonesiotesDto.class);
 				            if(milestonesiotes != null && milestonesiotes.size() > 0) {
 					        	String deviceNo =  milestonesiotes.get(0).getMcode();
 					        	String startTime =  milestonesiotes.get(0).getMtime();
