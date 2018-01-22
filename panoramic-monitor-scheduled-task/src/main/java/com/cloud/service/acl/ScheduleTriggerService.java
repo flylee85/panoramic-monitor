@@ -42,12 +42,11 @@ public class ScheduleTriggerService {
     @Qualifier("scheduleTriggerMapper")
     private ScheduleTriggerMapper scheduleTriggerMapper;
 
-    private ThreadPoolExecutor executor;
+    private static final  BlockingQueue<Runnable> taskQueue = new LinkedBlockingQueue<Runnable>();
+    private static volatile ThreadPoolExecutor executor = new ThreadPoolExecutor(1, 10, 300, TimeUnit.SECONDS, taskQueue);;
 
     @PostConstruct
     public void init() {
-        BlockingQueue<Runnable> taskQueue = new LinkedBlockingQueue<Runnable>();
-        executor = new ThreadPoolExecutor(1, 10, 300, TimeUnit.SECONDS, taskQueue);
         executor.allowCoreThreadTimeOut(false);
     }
 
