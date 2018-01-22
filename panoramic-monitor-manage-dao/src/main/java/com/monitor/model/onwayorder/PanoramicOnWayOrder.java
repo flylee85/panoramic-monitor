@@ -56,6 +56,19 @@ public class PanoramicOnWayOrder {
     private Date fromTime;
 
     private String deleted;
+    
+    @Column(name = "device_no")
+    private String deviceNo;
+
+    @Column(name = "device_start_time")
+    private Date deviceStartTime;
+
+
+    @Column(name = "device_last_time")
+    private Date deviceLastTime;
+    
+    @Column(name = "device_last_address")
+    private String deviceLastAddress;
 
     /**
      * @return id
@@ -308,4 +321,67 @@ public class PanoramicOnWayOrder {
     public void setDeleted(String deleted) {
         this.deleted = deleted;
     }
+    
+
+    /**
+     * @return device_no
+     */
+    public String getDeviceNo() {
+        return deviceNo;
+    }
+
+    /**
+     * @param deviceNo
+     */
+    public void setDeviceNo(String deviceNo) {
+        this.deviceNo = deviceNo;
+    }
+    
+
+    /**
+     * @return device_start_time
+     */
+    public Date getDeviceStartTime() {
+        return deviceStartTime;
+    }
+
+    /**
+     * @param deviceStartTime
+     */
+    public void setDeviceStartTime(Date deviceStartTime) {
+        this.deviceStartTime = deviceStartTime;
+    }
+    
+
+
+    /**
+     * @return device_last_time
+     */
+    public Date getDeviceLastTime() {
+        return deviceLastTime;
+    }
+
+    /**
+     * @param deviceStartTime
+     */
+    public void setDeviceLastTime(Date deviceLastTime) {
+        this.deviceLastTime = deviceLastTime;
+    }
+    
+
+
+    /**
+     * @return device_last_address
+     */
+    public String getDeviceLastAddress() {
+        return deviceLastAddress;
+    }
+
+    /**
+     * @param deviceLastAddress
+     */
+    public void setDeviceLastAddress(String deviceLastAddress) {
+        this.deviceLastAddress = deviceLastAddress;
+    }
+    
 }

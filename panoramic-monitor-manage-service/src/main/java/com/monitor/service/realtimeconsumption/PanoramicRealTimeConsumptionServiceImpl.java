@@ -20,6 +20,7 @@ import tk.mybatis.mapper.entity.Condition;
 
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -112,7 +113,7 @@ public class PanoramicRealTimeConsumptionServiceImpl extends AbstractService<Pan
             gather.setUnit(record.getUnit());
             gather.setDtime(record.getDtime());
             gather.setUtime(gather.getCtime());
-            gather.setValue(sumValue[0] );
+            gather.setValue(result != null? result.getValue():0.0);
             realTimeConsumptionGatherMapper.insert(gather);
         }
 
@@ -158,4 +159,32 @@ public class PanoramicRealTimeConsumptionServiceImpl extends AbstractService<Pan
             DB_LOGGER.warn("实时消耗数据汇总到汇总表{},出现异常" + e);
         }
     }
+
+	@Override
+	public void historyConsumptionSummaryTask(String dateFrom, String dateTo) {
+		
+		Date dateStart = DateUtil.getFormatDate(dateFrom);
+		Date dateEnd = DateUtil.getFormatDate(dateTo);
+		
+		//指定时间间隔
+		int daysBetween = DateUtil.getDaysBetweenDates(dateStart,dateEnd);
+		
+	    List<PanoramicRealTimeConsumption> consumptionCategoryList = this.listRealTimeConsumptionCategoryTask();
+	    if (null == consumptionCategoryList || consumptionCategoryList.size() == 0) {
+	        DB_LOGGER.warn("实时消耗表数据为空{}");
+	        return;
+	    }
+    
+		for (int i = 0; i <= daysBetween; i++) {
+			String dateTemp = DateUtil.getFormatDate(DateUtil.getDateBeforeOrAfter(dateStart,i));
+			for(int j = 0; j< 24;j++) {
+				String date1 = dateTemp.concat(String.format(" %02d", j));
+				String date2 = dateTemp.concat(String.format(" %02d", j+1));
+			    consumptionCategoryList.forEach((PanoramicRealTimeConsumption e) -> {
+			    		DB_LOGGER.warn("code:" + e.getCode() + "StartTime:" + date1 + "EndTime:" + date2);
+			        this.realtimeConsumptionSummaryTask(e.getName(), e.getCode(), date1, date2);
+			    });
+			}
+		}
+	}
 }
