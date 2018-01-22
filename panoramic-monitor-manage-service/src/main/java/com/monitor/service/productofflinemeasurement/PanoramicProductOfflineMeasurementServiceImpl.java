@@ -3,6 +3,7 @@ package com.monitor.service.productofflinemeasurement;
 import com.monitor.mapper.productofflinemeasurement.PanoramicProductOfflineMeasurementMapper;
 import com.monitor.mapper.realtimeconsumptiongather.PanoramicRealTimeConsumptionGatherMapper;
 import com.monitor.model.productofflinemeasurement.PanoramicProductOfflineMeasurement;
+import com.monitor.model.realtimeconsumption.PanoramicRealTimeConsumption;
 import com.monitor.model.realtimeconsumptiongather.PanoramicRealTimeConsumptionGather;
 import com.monitor.service.realtimeconsumption.PanoramicRealTimeConsumptionServiceImpl;
 import tk.mybatis.mapper.entity.Condition;
@@ -19,6 +20,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -67,6 +69,35 @@ public class PanoramicProductOfflineMeasurementServiceImpl extends AbstractServi
         }
 	}
 
+	@Override
+    @Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
+    public void historyConsumptionSummaryTask(String dateFrom,String dateTo) {
+            
+		Date dateStart = DateUtil.getFormatDate(dateFrom);
+		Date dateEnd = DateUtil.getFormatDate(dateTo);
+		
+		//指定时间间隔
+		int daysBetween = DateUtil.getDaysBetweenDates(dateStart,dateEnd);
+		
+		List<PanoramicProductOfflineMeasurement> productOfflineCategoryList = this.getListProductOfflineCategory();
+	    if (null == productOfflineCategoryList || productOfflineCategoryList.size() == 0) {
+	        DB_LOGGER.warn("产品下线表数据为空{}");
+	        return;
+	    }
+    
+		for (int i = 0; i <= daysBetween; i++) {
+			String dateTemp = DateUtil.getFormatDate(DateUtil.getDateBeforeOrAfter(dateStart,i));
+			for(int j = 0; j< 24;j++) {
+				String date1 = dateTemp.concat(String.format(" %02d", j));
+				String date2 = dateTemp.concat(String.format(" %02d", j+1));
+				productOfflineCategoryList.forEach((PanoramicProductOfflineMeasurement e) -> {
+			    		DB_LOGGER.warn("code:" + e.getCode() + "StartTime:" + date1 + "EndTime:" + date2);
+			        this.productOfflineSummaryTask(e.getName(), e.getCode(), date1, date2);
+			    });
+			}
+		}
+	}
+	
 	/**
 	 * 产品消耗数据实时汇总
 	 * @param name

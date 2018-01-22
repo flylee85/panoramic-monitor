@@ -24,9 +24,9 @@
   		sum(value) as value,
   		name,
   		utime,
-  		f_id,
+  		f_id as fId,
   		ctime,
-  		delete_flag
+  		delete_flag as deleteFlag
   	from
   		panoramic_real_time_consumption
   	where

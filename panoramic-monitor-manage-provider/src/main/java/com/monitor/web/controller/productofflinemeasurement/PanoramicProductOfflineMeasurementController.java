@@ -58,4 +58,11 @@ public class PanoramicProductOfflineMeasurementController extends AbstractAnnota
 	    	DB_LOGGER.warn("<--下线数据定时任务汇总  结束-->");
 	    return ResultCode.SUCCESS;
     }
+    
+    @ApiOperation(value = "消耗数据定时任务汇总", notes = "消耗数据定时任务汇总")
+    @GetMapping("/task/{dateFrom}/{dateEnd}")
+    public ResultCode<Void> task(@PathVariable String dateFrom, @PathVariable String dateEnd) {
+    		panoramicProductOfflineMeasurementService.historyConsumptionSummaryTask(dateFrom,dateEnd);
+        return ResultCode.SUCCESS;
+    }
 }
