@@ -62,6 +62,12 @@ public interface ManageFeignHystrixClient {
      */
     @RequestLine("POST /manage/product/offline/measurement/task")
     void productOfflineMeausurementSummaryTask();
+
+    /**
+     * 对接G7天眼系统获取数据定时
+     */
+    @RequestLine("POST /manage//onway/regular/get/data")
+    void regularGetOnWayDataTask();
     
     /**
      * @author summer
@@ -119,6 +125,12 @@ public interface ManageFeignHystrixClient {
 		@Override
 		public void productOfflineMeausurementSummaryTask() {
 			DB_LOGGER.warn("产品下线数据汇总刷新-调度risk-warning服务发生异常，进入fallback方法{},产品下线数据汇总刷新失败");
+            return;
+		}
+        
+		@Override
+		public void regularGetOnWayDataTask() {
+			DB_LOGGER.warn("对接G7天眼系统获取数据定时发生异常，进入fallback方法{},产品下线数据汇总刷新失败");
             return;
 		}
     }

@@ -33,10 +33,10 @@ public class PanoramicOnWayResultServiceImpl extends AbstractService<PanoramicOn
     public List<PanoramicOnWayResultDto> getOnWayResult(Integer currentstatus){
     	String strdate = "";
     	 	List<PanoramicOnWayResultDto> recordList = null;
-    	if(currentstatus == 2){
+    	if(currentstatus == 1){
+    	    recordList = onWayResultMapper.getOnWayResult();
+    	}else if(currentstatus == 2) {
     		recordList = onWayResultMapper.getOnWayFinishResult();
-    	}else {
-    	    recordList = onWayResultMapper.getOnWayResult(currentstatus);
     	}
     	 return (null == recordList || recordList.size() == 0) ? null :recordList;
     }

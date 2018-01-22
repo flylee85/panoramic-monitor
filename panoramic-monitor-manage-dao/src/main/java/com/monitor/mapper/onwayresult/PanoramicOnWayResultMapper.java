@@ -22,29 +22,11 @@ public interface PanoramicOnWayResultMapper extends Mapper<PanoramicOnWayResultD
 	 /**
      * 获取在途物资一览
      */
-	@Select(" select t1.order_no as orderNo,t1.receive_address as receiveAddress ,t3.address,t5.start_time as startTime,timestampdiff(day,t1.request_receive_time,now()) as overday,t5.arrive_time as arriveTime,timestampdiff(day,t5.start_time,t5.arrive_time) as useday from panoramic_on_way_order t1" + 
-			" left join panoramic_on_way_order_device_relationship t2 " + 
-			" on t1.order_no = t2.order_no " + 
-			" left join panoramic_on_way_device t3 " + 
-			" on t2.device_no = t3.device_no " + 
-			" left join panoramic_on_way_order_departure_relationship t4 " + 
-			" on t1.order_no = t4.order_no " + 
-			" left join panoramic_on_way_departure t5 " + 
-			" on t4.departure_id = t5.departure_id " + 
-			" where T1.current_status =${currentstatus}  order by t5.start_time desc ")
-	   List<PanoramicOnWayResultDto> getOnWayResult(@Param("currentstatus") Integer currentstatus);
+	@Select("select order_no as orderNo,receive_address as receiveAddress ,device_last_address as address,device_start_time as startTime,timestampdiff(day,device_start_time,now()) as useday from panoramic_on_way_order where current_status =1 order by device_last_time desc ")
+	   List<PanoramicOnWayResultDto> getOnWayResult(); 
 	
 	
-	@Select(" select t1.order_no as orderNo,t1.receive_address as receiveAddress ,t3.address,t5.start_time as startTime,timestampdiff(day,t1.request_receive_time,now()) as overday,t5.arrive_time as arriveTime,timestampdiff(day,t5.start_time,t5.arrive_time) as useday from panoramic_on_way_order t1" + 
-			" left join panoramic_on_way_order_device_relationship t2 " + 
-			" on t1.order_no = t2.order_no " + 
-			" left join panoramic_on_way_device t3 " + 
-			" on t2.device_no = t3.device_no " + 
-			" left join panoramic_on_way_order_departure_relationship t4 " + 
-			" on t1.order_no = t4.order_no " + 
-			" left join panoramic_on_way_departure t5 " + 
-			" on t4.departure_id = t5.departure_id " + 
-			" where T1.current_status =2  and timestampdiff(month,t1.utime,now()) < 1 order by t5.start_time desc ")
+	@Select(" select order_no as orderNo,receive_address as receiveAddress ,device_start_time as startTime,device_last_time as arriveTime,timestampdiff(day,device_start_time,device_last_time) as useday , timestampdiff(day,request_receive_time,now()) as overday from panoramic_on_way_order where current_status = 2  and timestampdiff(month,utime,now()) < 1 order by device_last_time desc ")
 	   List<PanoramicOnWayResultDto> getOnWayFinishResult();
 	
 
