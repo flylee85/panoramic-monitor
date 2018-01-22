@@ -47,7 +47,7 @@ public class PanoramicDataVerificationServiceImpl extends AbstractService<Panora
 		if(valueAuto == 0) {
 			bios = 0;
 		} else {
-			bios = new BigDecimal((valueAuto - valueManual)/ valueAuto).setScale(2,BigDecimal.ROUND_HALF_UP).doubleValue();
+			bios = new BigDecimal((valueAuto - valueManual) * 100/ valueAuto).setScale(2,BigDecimal.ROUND_HALF_UP).doubleValue();
 		}
 		
 		result.setValueAuto(new java.text.DecimalFormat("#0.00").format(valueAuto));
@@ -76,8 +76,7 @@ public class PanoramicDataVerificationServiceImpl extends AbstractService<Panora
 		if(valueAuto == 0) {
 			bios = 0;
 		} else {
-			bios = Math.round((valueAuto - valueManual)/ valueAuto * 10000)/100 ;
-			bios = new BigDecimal((valueAuto - valueManual)/ valueAuto).setScale(2,BigDecimal.ROUND_HALF_UP).doubleValue();
+			bios = new BigDecimal((valueAuto - valueManual) * 100/ valueAuto).setScale(2,BigDecimal.ROUND_HALF_UP).doubleValue();
 		}
 		
 		result.setValueAuto(new java.text.DecimalFormat("#0.00").format(valueAuto));
