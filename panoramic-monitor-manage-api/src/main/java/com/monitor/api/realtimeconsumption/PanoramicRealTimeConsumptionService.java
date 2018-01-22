@@ -32,5 +32,12 @@ public interface PanoramicRealTimeConsumptionService extends Service<PanoramicRe
      * @return
      */
 	void realTimeConsumptionSummaryTask();
+	
+	/**
+	 * 历史消耗数据补足
+	 * @param dateFrom
+	 * @param dateEnd
+	 */
+	void historyConsumptionSummaryTask(String dateFrom, String dateEnd);
     
 }

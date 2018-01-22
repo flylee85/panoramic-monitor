@@ -16,5 +16,12 @@ public interface PanoramicProductOfflineMeasurementService extends Service<Panor
      * @return
      */
 	void productOfflineMeasurementSummaryTask();
+	
+	/**
+	 * 产品下线历史数据任务
+	 * @param dateFrom
+	 * @param dateEnd
+	 */
+	void historyConsumptionSummaryTask(String dateFrom,String dateEnd);
 
 }
