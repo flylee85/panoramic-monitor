@@ -44,7 +44,7 @@ public class PanoramicIntoTheFactoryRecordsServiceImpl extends AbstractService<P
     @Transactional(propagation = Propagation.NOT_SUPPORTED, rollbackFor = Exception.class)
     public List<PanoramicIntoTheFactoryRecords> listByDate(String date) {
         Condition condition = new Condition(PanoramicIntoTheFactoryRecords.class, false);
-        condition.createCriteria().andCondition(" delete_flag=1  and status=1 and date_format(snapshot_time,'%Y%m%d') = date_format('" + date + "','%Y%m%d')");
+        condition.createCriteria().andCondition(" in_or_out = 0 and delete_flag=1  and status=1 and date_format(snapshot_time,'%Y%m%d') = date_format('" + date + "','%Y%m%d')");
         condition.setOrderByClause(" snapshot_time desc ");
         List<PanoramicIntoTheFactoryRecords> factoryRecords = intoTheFactoryRecordsMapper.selectByCondition(condition);
         return factoryRecords;
@@ -54,7 +54,7 @@ public class PanoramicIntoTheFactoryRecordsServiceImpl extends AbstractService<P
     @Transactional(propagation = Propagation.NOT_SUPPORTED, rollbackFor = Exception.class)
     public PanoramicIntoTheFactoryRecords findByDate(String date) {
         Condition condition = new Condition(PanoramicIntoTheFactoryRecords.class, false);
-        condition.createCriteria().andCondition(" delete_flag=1 and status=1  and date_format(snapshot_time,'%Y%m%d') = date_format('" + date + "','%Y%m%d') and err_msg is not null");
+        condition.createCriteria().andCondition(" in_or_out = 0 and delete_flag=1 and status=1  and date_format(snapshot_time,'%Y%m%d') = date_format('" + date + "','%Y%m%d') and err_msg is not null");
         condition.setOrderByClause(" snapshot_time desc ");
         List<PanoramicIntoTheFactoryRecords> factoryRecords = intoTheFactoryRecordsMapper.selectByCondition(condition);
         return (null == factoryRecords || factoryRecords.size() == 0) ? null : factoryRecords.get(0);
@@ -63,7 +63,7 @@ public class PanoramicIntoTheFactoryRecordsServiceImpl extends AbstractService<P
     @Override
     public Integer count(String date) {
         Condition condition = new Condition(PanoramicIntoTheFactoryRecords.class, false);
-        condition.createCriteria().andCondition(" delete_flag=1 and err_msg is not null and status=1 and date_format(snapshot_time,'%Y%m%d') = date_format('" + date + "','%Y%m%d') ");
+        condition.createCriteria().andCondition(" in_or_out = 0 and delete_flag=1 and err_msg is not null and status=1 and date_format(snapshot_time,'%Y%m%d') = date_format('" + date + "','%Y%m%d') ");
         Integer count = intoTheFactoryRecordsMapper.selectCountByCondition(condition);
         return count;
     }
