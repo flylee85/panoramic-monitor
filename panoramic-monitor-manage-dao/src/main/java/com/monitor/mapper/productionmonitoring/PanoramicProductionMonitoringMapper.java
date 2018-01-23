@@ -28,9 +28,9 @@ public interface PanoramicProductionMonitoringMapper extends Mapper<PanoramicPro
     		"		calcium_phosphate_acid_consumption ,\n" + 
     		"		2\n" + 
     		"	) AS cpac ,\n" + 
-    		"	round(coal_calcium_phosphate , 2) AS ccp ,\n" + 
-    		"	round(calcium_power_consumption , 2) AS cpc,\n" +
-    		"	round(power_consumption_of_calcium_phosphate , 2) AS pcc\n" +
+    		"	round(coal_calcium_phosphate , 3) AS ccp ,\n" + 
+    		"	round(calcium_power_consumption , 1) AS cpc,\n" +
+    		"	round(power_consumption_of_calcium_phosphate , 1) AS pcc\n" +
     		"FROM\n" + 
     		"	panoramic_production_monitoring\n" + 
     		"WHERE\n" + 
