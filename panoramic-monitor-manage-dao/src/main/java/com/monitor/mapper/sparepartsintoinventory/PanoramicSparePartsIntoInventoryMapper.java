@@ -72,7 +72,8 @@ public interface PanoramicSparePartsIntoInventoryMapper extends Mapper<Panoramic
 	 */
 	@Select("SELECT\n" + 
 			"	name,\n" +
-			"	round(sum(case when in_out_type  = 0 then value else 0 end)) as summary\n" + 
+			"	round(sum(case when in_out_type  = 0 then value else 0 end)) as summary,\n" + 
+			"	unit\n" +
 			"FROM\n" + 
 			"	panoramic_spare_parts_into_inventory\n" + 
 			"WHERE\n" + 

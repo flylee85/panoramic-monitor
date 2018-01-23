@@ -22,6 +22,11 @@ public class PanoramicSparePartsIntoInventoryDto extends BaseObject {
      * 入出库产品统计值
      */
     private double summary;
+    
+    /**
+     * 单位
+     */
+    private String unit;
 
     @Override
     public Serializable realId() {
@@ -43,4 +48,12 @@ public class PanoramicSparePartsIntoInventoryDto extends BaseObject {
     public void setSummary(double summary) {
         this.summary = summary;
     }
+
+	public String getUnit() {
+		return unit;
+	}
+
+	public void setUnit(String unit) {
+		this.unit = unit;
+	}
 }

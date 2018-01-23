@@ -15,11 +15,11 @@ import java.util.concurrent.TimeUnit;
  */
 public class Cache<K, V> {
     private static final transient TLogger DB_LOGGER = LoggerUtils.getLogger(Cache.class);
-    public ConcurrentHashMap<K, V> map = new ConcurrentHashMap<K, V>(16);
-    public DelayQueue<DelayedItem<K>> queue = new DelayQueue<DelayedItem<K>>();
+    private  ConcurrentHashMap<K, V> map = new ConcurrentHashMap<K, V>(16);
+    private  DelayQueue<DelayedItem<K>> queue = new DelayQueue<DelayedItem<K>>();
 
 
-    public Cache() {
+    private Cache() {
         Thread t = new Thread() {
             @Override
             public void run() {
@@ -28,6 +28,16 @@ public class Cache<K, V> {
         };
         t.setDaemon(true);
         t.start();
+    }
+
+    /**
+     * 利用工厂方法防止this在构造方法中溢出
+     * @return
+     */
+    public static Cache newInstance() {
+        Cache cache = new Cache();
+        return cache;
+
     }
 
     /**
