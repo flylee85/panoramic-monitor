@@ -74,7 +74,7 @@ public interface PanoramicMaterialIntoInventoryMapper extends Mapper<PanoramicMa
 			"AND CODE = #{code}\n" + 
 			"AND DATE_FORMAT(in_out_time , '%Y-%m-%d') = #{date}\n" + 
 			"ORDER BY\n" + 
-			"	in_out_time")
+			"	in_out_time desc")
 	List<PanoramicMaterialIntoInventory> findMaterialValue(
 			@Param("code") String code,@Param("type") String type,@Param("date") String date);
 	
