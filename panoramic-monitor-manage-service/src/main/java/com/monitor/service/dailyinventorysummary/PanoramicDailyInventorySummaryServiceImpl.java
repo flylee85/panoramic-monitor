@@ -3,7 +3,6 @@ package com.monitor.service.dailyinventorysummary;
 import com.cloud.core.AbstractService;
 import com.cloud.core.ServiceException;
 import com.cloud.util.DateUtil;
-import com.cloud.util.MathUtil;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.monitor.api.dailyinventorysummary.PanoramicDailyInventorySummaryService;
@@ -12,7 +11,6 @@ import com.monitor.api.productmaterials.PanoramicProductMaterialsService;
 import com.monitor.api.rawmaterials.PanoramicRawMaterialsService;
 import com.monitor.api.realtimeconsumptiongather.PanoramicRealTimeConsumptionGatherService;
 import com.monitor.mapper.dailyinventorysummary.PanoramicDailyInventorySummaryMapper;
-import com.monitor.mapper.realtimeconsumptiongather.PanoramicRealTimeConsumptionGatherMapper;
 import com.monitor.model.dailyinventorysummary.PanoramicDailyInventorySummary;
 import com.monitor.model.materialthresholdconfiguration.PanoramicMaterialThresholdConfiguration;
 import com.monitor.model.productmaterials.PanoramicProductMaterials;
@@ -26,10 +24,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import tk.mybatis.mapper.entity.Condition;
-
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+
 
 /**
  * @author summer 2017/11/21.
@@ -55,26 +53,39 @@ public class PanoramicDailyInventorySummaryServiceImpl extends AbstractService<P
     @Qualifier("realTimeConsumptionGatherService")
     private PanoramicRealTimeConsumptionGatherService realTimeConsumptionGatherService;
 
+    /**
+     * HG01XY750000 磷矿粉的平均消耗
+     */
+    static final String HG_01_XY_750000 = "HG01XY750000";
+    static final double average_750000 = 614;
+    
+    /**
+     * HG01XY750100 硫酸的平均消耗
+     */
+    static final String HG_01_XY_750100 = "HG01XY750100";
+    static final double average_750100 = 545;
+    
     @Override
     @Transactional(propagation = Propagation.NOT_SUPPORTED, rollbackFor = Exception.class)
     public Integer countUsable(String code, String date) {
     		//最近7天历史消耗量数据值获取
     		List<PanoramicRealTimeConsumptionGather> sum = realTimeConsumptionGatherService.findNumberdayData(code, 7, date);
-    		double sumSingle = 0.0;
+    		double avaerage = 0.0;
     		
-    		if (null != sum && sum.size() != 0) {
-    			//当前仓库存量值获取
-        		PanoramicDailyInventorySummary summary = queryByDateAndCode(code, date);
-        		if (Optional.ofNullable(summary).isPresent()) {
-        		  for(int i = 0;i < sum.size();i++) {
-        			  sumSingle = MathUtil.add(sumSingle, sum.get(i).getValue());
-        		  }
-              return Integer.parseInt(new java.text.DecimalFormat("0").format(summary.getValue() / sumSingle * sum.size()));
-        		}
-        		return null;
+    		//根据不同的原材料获取日平均消耗
+    		if(HG_01_XY_750000.equalsIgnoreCase(code)) {
+    			avaerage = average_750000;
     		} else {
-    			return null;
+    			avaerage = average_750100;
     		}
+    		
+    		PanoramicDailyInventorySummary summary = queryByDateAndCode(code, date);
+    		if (Optional.ofNullable(summary).isPresent()) {
+    			return Integer.parseInt(new java.text.DecimalFormat("0").format(summary.getValue() / avaerage * sum.size()));
+      	}
+    		
+    		return null;
+
     }
 
     @Override
