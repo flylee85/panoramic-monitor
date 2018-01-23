@@ -8,7 +8,7 @@
     <id column="ID" jdbcType="INTEGER" property="id" />
     <result column="t_id" jdbcType="VARCHAR" property="tId" />
     <result column="name" jdbcType="VARCHAR" property="name" />
-    <result column="value" jdbcType="VARCHAR" property="value" />
+    <result column="value" jdbcType="DOUBLE" property="value" />
     <result column="code" jdbcType="VARCHAR" property="code" />
     <result column="unit" jdbcType="VARCHAR" property="unit" />
     <result column="delete_flag" jdbcType="INTEGER" property="deleteFlag" />
@@ -18,4 +18,25 @@
     <result column="operator" jdbcType="VARCHAR" property="operator" />
     <result column="f_id" jdbcType="VARCHAR" property="fId" />
   </resultMap>
+  
+  <select id="selectSummaryConsumptionByCondition" resultType ="com.monitor.model.productofflinemeasurement.PanoramicProductOfflineMeasurement">
+  <![CDATA[
+  	select 
+  		sum(value) as value,
+  		name,
+  		utime,
+  		f_id as fId,
+  		ctime,
+  		delete_flag as deleteFlag
+  	from
+  		panoramic_product_offline_measurement
+  	where
+  		code = #{code} 
+		AND f_id=2 
+		AND delete_flag=1 
+		AND value > 0  
+		AND utime >= #{dateBefore}
+		AND utime < #{dateEnd}
+  ]]>
+  </select>
 </mapper>

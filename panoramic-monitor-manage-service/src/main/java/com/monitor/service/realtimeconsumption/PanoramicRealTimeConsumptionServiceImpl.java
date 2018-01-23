@@ -16,7 +16,6 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
-import tk.mybatis.mapper.entity.Condition;
 
 
 import java.util.ArrayList;
@@ -89,7 +88,7 @@ public class PanoramicRealTimeConsumptionServiceImpl extends AbstractService<Pan
   	      record.setId(null);       	
         }
 	      
-        PanoramicRealTimeConsumptionGather selectOne = realTimeConsumptionGatherMapper.selectByGatherTime(code, dateBefore);
+        PanoramicRealTimeConsumptionGather selectOne = realTimeConsumptionGatherMapper.selectByGatherTime(code, dateEnd);
         Optional<PanoramicRealTimeConsumptionGather> one = Optional.ofNullable(selectOne);
         if (one.isPresent()) {
         	//selectOne.setValue(sumValue[0] );
@@ -97,7 +96,7 @@ public class PanoramicRealTimeConsumptionServiceImpl extends AbstractService<Pan
         	selectOne.setUtime(DateUtil.getCurFullTimestamp());
         	selectOne.setCtime(selectOne.getUtime());
         	selectOne.setOperator("auto_task_update");
-        	selectOne.setGatherTime(dateBefore);
+        	selectOne.setGatherTime(dateEnd);
             realTimeConsumptionGatherMapper.updateByPrimaryKeySelective(selectOne);
         } else {
             PanoramicRealTimeConsumptionGather gather = new PanoramicRealTimeConsumptionGather();
@@ -105,7 +104,7 @@ public class PanoramicRealTimeConsumptionServiceImpl extends AbstractService<Pan
             gather.setName(name);
             gather.setDeleteFlag(record.getDeleteFlag());
             gather.setfId(record.getfId());
-            gather.setGatherTime(dateBefore);
+            gather.setGatherTime(dateEnd);
             gather.setId(null);
             gather.setCtime(DateUtil.getCurFullTimestamp());
             gather.setName(record.getName());
@@ -176,10 +175,12 @@ public class PanoramicRealTimeConsumptionServiceImpl extends AbstractService<Pan
 	    }
     
 		for (int i = 0; i <= daysBetween; i++) {
-			String dateTemp = DateUtil.getFormatDate(DateUtil.getDateBeforeOrAfter(dateStart,i));
+			Date dateTemp = DateUtil.getDateBeforeOrAfter(dateStart,i);
+			
 			for(int j = 0; j< 24;j++) {
-				String date1 = dateTemp.concat(String.format(" %02d", j));
-				String date2 = dateTemp.concat(String.format(" %02d", j+1));
+				String date1 =  DateUtil.dateBeforeOrAfterHoursStr(dateTemp,j);
+				String date2 =  DateUtil.dateBeforeOrAfterHoursStr(dateTemp,j + 1);
+				
 			    consumptionCategoryList.forEach((PanoramicRealTimeConsumption e) -> {
 			    		DB_LOGGER.warn("code:" + e.getCode() + "StartTime:" + date1 + "EndTime:" + date2);
 			        this.realtimeConsumptionSummaryTask(e.getName(), e.getCode(), date1, date2);

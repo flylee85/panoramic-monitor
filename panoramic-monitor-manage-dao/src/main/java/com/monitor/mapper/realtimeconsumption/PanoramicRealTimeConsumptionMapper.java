@@ -1,9 +1,7 @@
 package com.monitor.mapper.realtimeconsumption;
 
 import com.cloud.core.Mapper;
-import com.monitor.dto.realtimeconsumption.PanoramicRealTimeConsumptionDto;
 import com.monitor.model.realtimeconsumption.PanoramicRealTimeConsumption;
-
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;

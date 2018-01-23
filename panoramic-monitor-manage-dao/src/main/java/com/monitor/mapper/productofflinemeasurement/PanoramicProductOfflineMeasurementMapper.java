@@ -5,10 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
-
 import com.cloud.core.Mapper;
-import com.monitor.dto.productmaterials.PanoramicProductMaterialsDto;
-import com.monitor.dto.realtimeconsumption.PanoramicRealTimeConsumptionDto;
 import com.monitor.model.productofflinemeasurement.PanoramicProductOfflineMeasurement;
 
 /**
@@ -34,4 +31,16 @@ public interface PanoramicProductOfflineMeasurementMapper extends Mapper<Panoram
     		"GROUP BY code,name" +
     		"")
     List<PanoramicProductOfflineMeasurement> listProductOfflineCategory();
+    
+    /**
+     * 时间段内数据统计
+     * @param code
+     * @param dateBefore
+     * @param dateEnd
+     * @return
+     */
+    PanoramicProductOfflineMeasurement selectSummaryConsumptionByCondition(
+    		@Param("code") String code,
+    		@Param("dateBefore") String dateBefore,
+    		@Param("dateEnd") String dateEnd);
 }
