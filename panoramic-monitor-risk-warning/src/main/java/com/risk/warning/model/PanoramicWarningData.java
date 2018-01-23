@@ -1,516 +1,276 @@
 package com.risk.warning.model;
 
-import com.cloud.model.BaseObject;
-
+import java.util.Date;
 import javax.persistence.*;
-import java.io.Serializable;
-import java.sql.Timestamp;
 
-/**
- * @author summer
- */
-@Table(name = "PanoramicSystemWarningSourceData")
-public class PanoramicWarningData extends BaseObject {
-	/**
-    *
-    */
-   private static final long serialVersionUID = 1L;
-   
+@Table(name = "panoramic_warning_data")
+public class PanoramicWarningData {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
-   /**
-    * ID
-    */
-   @Id
-   @GeneratedValue(strategy = GenerationType.IDENTITY)
-   private Integer id;
-   /**
-    * EventName
-    */
-   private String event_name;
-   /**
-    * StrEvent
-    */
-   private String str_event;
-   /**
-    * EventValue
-    */
-   private Double event_value;
-   /**
-    * Status
-    */
-   private Integer status;
-   /**
-    * Ctime
-    */
-   private Timestamp  ctime;
-   /**
-    * Utime
-    */
-   private Timestamp  utime;
-   /**
-    * SourceID
-    */
-   private Integer source_id;
-   /**
-    * Level
-    */
-   private Integer level;
-   /**
-    * WarningName
-    */
-   private String warning_name;
-   /**
-    * FactoryName
-    */
-   private String factory_name;
-   /**
-    * SectionName
-    */
-   private String section_name;
-   /**
-    * DeviceName
-    */
-   private String device_name;
-   /**
-    * WarnConfigurationID
-    */
-   private Integer warn_configuration_id;
-   /**
-    * MaxValue
-    */
-   private Double max_value;
-   /**
-    * MinValue
-    */
-   private Double min_value;
-   
-   /**
-    * LogicType
-    */
-   private Integer logic_type;
-   /**
-    * MaxLevel
-    */
-   private Integer max_level;
-   /**
-    * DayCount
-    */
-   private Integer day_count;
-   
-   /**
-    * ResponsibleContent
-    */
-   private String responsible_content;
-   
-   /**
-    * ResponsibleName
-    */
-   private String responsible_name;
-   
-   
-   
-   /**
-    * 获取ID
-    * 
-    * @return id -ID
-    */
-   public Integer getId() {
-	   return id;
-   }
+    @Column(name = "factory_name")
+    private String factoryName;
 
-   /**
-    * 设置ID
-    *
-    * @param id ID
-    */
-   public void setId(Integer id) {
-	   this.id = id;
-   }
+    @Column(name = "section_name")
+    private String sectionName;
 
-   /**
-    * 获取EventName
-    * 
-    * @return event_name -EventName
-    */
-   public String getEventName() {
-	   return event_name;
-   }
+    @Column(name = "device_name")
+    private String deviceName;
 
-   /**
-    * 设置ID
-    *
-    * @param eventname EventName
-    */
-   public void setEventName(String eventname) {
-	   this.event_name = eventname;
-   }
+    @Column(name = "event_name")
+    private String eventName;
 
-   /**
-    * 获取StrEvent
-    * 
-    * @return str_event -StrEvent
-    */
-   public String getStrEvent() {
-	   return str_event;
-   }
-   
-   /**
-    * 设置StrEvent
-    *
-    * @param strevent StrEvent
-    */
-   public void setStrEvent(String strevent) {
-	   this.str_event = strevent;
-   }
-   
-   /**
-    * 获取EventValue
-    * 
-    * @return event_value -EventValue
-    */
-   public Double getEventValue() {
-	   return event_value;
-   }
+    @Column(name = "str_event")
+    private String strEvent;
 
-   /**
-    * 设置EventValue
-    *
-    * @param eventvalue EventValue
-    */
-   public void setEventValue(Double eventvalue) {
-	   this.event_value = eventvalue;
-   }
+    @Column(name = "event_value")
+    private Double eventValue;
 
-   /**
-    * 获取Status
-    * 
-    * @return status -Status
-    */
-   public Integer getStatus() {
-	   return status;
-   }
+    private Integer status;
 
-   /**
-    * 设置Status
-    *
-    * @param status Status
-    */
-   public void SetStatus(Integer status) {
-	   this.status = status;
-   }
-   
-   /**
-    * 获取Ctime
-    * 
-    * @return ctime -Ctime
-    */
-   public Timestamp getCtime() {
-	   return ctime;
-   }
-   
-   /**
-    * 设置Ctime
-    *
-    * @param ctime Ctime
-    */
-   public void setCtime(Timestamp ctime) {
-	   this.ctime = ctime;
-   }
+    private Date ctime;
 
-   
-   /**
-    * 获取Utime
-    * 
-    * @return utime -Utime
-    */
-   public Timestamp getUtime() {
-	   return utime;
-   }
-   
-   /**
-    * 设置Utime
-    *
-    * @param utime Utime
-    */
-   public void setUtime(Timestamp utime) {
-	   this.utime = utime;
-   }
-   
-   /**
-    * 获取SourceId
-    * 
-    * @return source_id -SourceId
-    */
-   public Integer getSourceId() {
-	   return source_id;
-   }
-   
-   /**
-    * 设置SourceId
-    *
-    * @param sourceid SourceId
-    */
-   public void setSourceId(Integer sourceid) {
-	   this.source_id = sourceid;
-   }
-   
+    private Date utime;
 
-   /**
-    * 获取WarnConfigurationID
-    *
-    * @return warn_configuration_id - WarnConfigurationID
-    */
-   public Integer getWarnConfigurationID() {
-       return warn_configuration_id;
-   }
+    @Column(name = "source_id")
+    private Integer sourceId;
 
-   /**
-    * 设置WarnConfigurationID
-    *
-    * @param warnconfigurationid WarnConfigurationID
-    */
-   public void setWarnConfigurationID(Integer warnconfigurationid) {
-       this.warn_configuration_id = warnconfigurationid;
-   } 
-   
-   /**
-    * 获取Level
-    *
-    * @return level - Level
-    */
-   public Integer getLevel() {
-	   return level;
-   }
-   
-   /**
-    * 设置Level
-    *
-    * @param level Level
-    */
-   public void SetLevel(Integer level) {
-	   this.level = level;
-   }
+    @Column(name = "warn_configuration_id")
+    private Integer warnConfigurationId;
 
-   /**
-    * 获取Warningname
-    *
-    * @return warning_name - Warningname
-    */
-   public String getWarningname() {
-	   return warning_name;
-   }
+    private Integer level;
 
-   /**
-    * 设置Warningname
-    *
-    * @param warningname Warningname
-    */
-   public void setWarningname(String warningname) {
-	   this.warning_name = warningname;
-   }
-   
+    @Column(name = "is_send_email")
+    private Boolean isSendEmail;
 
-   
-   /**
-    * 获取FactoryName
-    *
-    * @return factory_name - FactoryName
-    */
-   public String getFactoryName() {
-   		return factory_name;    	
-   }
-   
+    @Column(name = "responsible_content")
+    private String responsibleContent;
 
-   /**
-    * 设置FactoryName
-    *
-    * @param warningname FactoryName
-    */
-   public void setFactoryName(String factoryname) {
-       this.factory_name = factoryname;
-   } 
-   
-   /**
-    * 获取SectionName
-    *
-    * @return section_name - SectionName
-    */
-   public String getSectionName() {
-   		return section_name;    	
-   }
-   
+    @Column(name = "responsible_name")
+    private String responsibleName;
 
-   /**
-    * 设置SectionName
-    *
-    * @param sectionname SectionName
-    */
-   public void setSectionName(String sectionname) {
-       this.section_name = sectionname;
-   } 
+    /**
+     * @return id
+     */
+    public Integer getId() {
+        return id;
+    }
 
-   /**
-    * 获取DeviceName
-    *
-    * @return device_name - DeviceName
-    */
-   public String getDeviceName() {
-   		return device_name;    	
-   }
-   
+    /**
+     * @param id
+     */
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-   /**
-    * 设置DeviceName
-    *
-    * @param devicename DeviceName
-    */
-   public void setDeviceName(String devicename) {
-       this.device_name = devicename;
-   } 
-   
+    /**
+     * @return factory_name
+     */
+    public String getFactoryName() {
+        return factoryName;
+    }
 
-   /**
-    * 获取MaxValue
-    *
-    * @return max_value - MaxValue
-    */
-   public Double getMaxValue() {
-   		return max_value;    	
-   }
-   
+    /**
+     * @param factoryName
+     */
+    public void setFactoryName(String factoryName) {
+        this.factoryName = factoryName;
+    }
 
-   /**
-    * 设置MaxValue
-    *
-    * @param maxvalue MaxValue
-    */
-   public void setMaxValue(Double maxvalue) {
-       this.max_value = maxvalue;
-   } 
+    /**
+     * @return section_name
+     */
+    public String getSectionName() {
+        return sectionName;
+    }
 
-   
-   /**
-    * 获取MinValue
-    *
-    * @return min_value - MinValue
-    */
-   public Double getMinValue() {
-   		return min_value;    	
-   }
-   
+    /**
+     * @param sectionName
+     */
+    public void setSectionName(String sectionName) {
+        this.sectionName = sectionName;
+    }
 
-   /**
-    * 设置MinValue
-    *
-    * @param minvalue MinValue
-    */
-   public void setMinValue(Double minvalue) {
-       this.min_value = minvalue;
-   } 
+    /**
+     * @return device_name
+     */
+    public String getDeviceName() {
+        return deviceName;
+    }
 
+    /**
+     * @param deviceName
+     */
+    public void setDeviceName(String deviceName) {
+        this.deviceName = deviceName;
+    }
 
-   /**
-    * 获取LogicType
-    *
-    * @return logic_type - LogicType
-    */
-   public Integer getLogicType() {
-   	return logic_type;    	
-   }
-   
+    /**
+     * @return event_name
+     */
+    public String getEventName() {
+        return eventName;
+    }
 
+    /**
+     * @param eventName
+     */
+    public void setEventName(String eventName) {
+        this.eventName = eventName;
+    }
 
-   /**
-    * 设置LogicType
-    *
-    * @param logictype LogicType
-    */
-   public void setLogicType(Integer logictype) {
-       this.logic_type = logictype;
-   } 
-   
+    /**
+     * @return str_event
+     */
+    public String getStrEvent() {
+        return strEvent;
+    }
 
-   /**
-    * 获取MaxLevel
-    *
-    * @return max_level - MaxLevel
-    */
-   public Integer getMaxLevel() {
-   	return max_level;    	
-   }
-   
+    /**
+     * @param strEvent
+     */
+    public void setStrEvent(String strEvent) {
+        this.strEvent = strEvent;
+    }
 
+    /**
+     * @return event_value
+     */
+    public Double getEventValue() {
+        return eventValue;
+    }
 
-   /**
-    * 设置MaxLevel
-    *
-    * @param maxlevel MaxLevel
-    */
-   public void setMaxLevel(Integer maxlevel) {
-       this.max_level = maxlevel;
-   } 
-   
+    /**
+     * @param eventValue
+     */
+    public void setEventValue(Double eventValue) {
+        this.eventValue = eventValue;
+    }
 
-   /**
-    * 获取DayCount
-    *
-    * @return day_count - DayCount
-    */
-   public Integer getDayCount() {
-   	return day_count;    	
-   }
-   
+    /**
+     * @return status
+     */
+    public Integer getStatus() {
+        return status;
+    }
 
+    /**
+     * @param status
+     */
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
 
-   /**
-    * 设置DayCount
-    *
-    * @param daycount DayCount
-    */
-   public void setDayCount(Integer daycount) {
-       this.day_count = daycount;
-   } 
+    /**
+     * @return ctime
+     */
+    public Date getCtime() {
+        return ctime;
+    }
 
-   /**
-    * 获取ResponsibleContent
-    *
-    * @return return_content - ResponsibleContent
-    */
-   public String getResponsibleContent() {
-   		return responsible_content;    	
-   }
-   
+    /**
+     * @param ctime
+     */
+    public void setCtime(Date ctime) {
+        this.ctime = ctime;
+    }
 
-   /**
-    * 设置ResponsibleContent
-    *
-    * @param responsiblecontent ResponsibleContent
-    */
-   public void setResponsibleContent(String responsiblecontent) {
-       this.responsible_content = responsiblecontent;
-   } 
+    /**
+     * @return utime
+     */
+    public Date getUtime() {
+        return utime;
+    }
 
-   /**
-    * 获取ResponsibleName
-    *
-    * @return responsible_name - ResponsibleName
-    */
-   public String getResponsibleName() {
-   		return responsible_name;    	
-   }
-   
+    /**
+     * @param utime
+     */
+    public void setUtime(Date utime) {
+        this.utime = utime;
+    }
 
-   /**
-    * 设置ResponsibleName
-    *
-    * @param responsiblename ResponsibleName
-    */
-   public void setResponsibleName(String responsiblename) {
-       this.responsible_name = responsiblename;
-   } 
-   
-    @Override
-    public Serializable realId() {
-        return null;
+    /**
+     * @return source_id
+     */
+    public Integer getSourceId() {
+        return sourceId;
+    }
+
+    /**
+     * @param sourceId
+     */
+    public void setSourceId(Integer sourceId) {
+        this.sourceId = sourceId;
+    }
+
+    /**
+     * @return warn_configuration_id
+     */
+    public Integer getWarnConfigurationId() {
+        return warnConfigurationId;
+    }
+
+    /**
+     * @param warnConfigurationId
+     */
+    public void setWarnConfigurationId(Integer warnConfigurationId) {
+        this.warnConfigurationId = warnConfigurationId;
+    }
+
+    /**
+     * @return level
+     */
+    public Integer getLevel() {
+        return level;
+    }
+
+    /**
+     * @param level
+     */
+    public void setLevel(Integer level) {
+        this.level = level;
+    }
+
+    /**
+     * @return is_send_email
+     */
+    public Boolean getIsSendEmail() {
+        return isSendEmail;
+    }
+
+    /**
+     * @param isSendEmail
+     */
+    public void setIsSendEmail(Boolean isSendEmail) {
+        this.isSendEmail = isSendEmail;
+    }
+
+    /**
+     * @return responsible_content
+     */
+    public String getResponsibleContent() {
+        return responsibleContent;
+    }
+
+    /**
+     * @param responsibleContent
+     */
+    public void setResponsibleContent(String responsibleContent) {
+        this.responsibleContent = responsibleContent;
+    }
+
+    /**
+     * @return responsible_name
+     */
+    public String getResponsibleName() {
+        return responsibleName;
+    }
+
+    /**
+     * @param responsibleName
+     */
+    public void setResponsibleName(String responsibleName) {
+        this.responsibleName = responsibleName;
     }
 }

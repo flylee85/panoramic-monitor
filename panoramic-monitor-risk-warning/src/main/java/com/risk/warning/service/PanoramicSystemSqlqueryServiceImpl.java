@@ -10,13 +10,13 @@ import com.cloud.core.ServiceException;
 import com.cloud.util.LoggerUtils;
 import com.cloud.util.TLogger;
 import com.risk.warning.api.PanoramicSystemSqlqueryService;
+import com.risk.warning.dto.PanoramicSystemSqlqueryDto;
+import com.risk.warning.dto.PanoramicWarningDataDto;
 import com.risk.warning.mapper.PanoramicSystemSqlqueryMapper;
 import com.risk.warning.mapper.PanoramicWarningReceiverMapper;
 import com.risk.warning.mapper.PanoramicWarningDataMapper;
-import com.risk.warning.model.PanoramicSystemSqlquery;
 import com.risk.warning.model.PanoramicWarningReceiver;
 import com.risk.warning.web.controller.PanoramicRealTimeScanWarningDataController;
-import com.risk.warning.model.PanoramicWarningData;
 
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
@@ -36,7 +36,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service("panoramicSystemSqlqueryService")
 @Transactional(readOnly = true, rollbackFor = ServiceException.class)
-public class PanoramicSystemSqlqueryServiceImpl extends AbstractService<PanoramicSystemSqlquery>  implements PanoramicSystemSqlqueryService {
+public class PanoramicSystemSqlqueryServiceImpl extends AbstractService<PanoramicSystemSqlqueryDto>  implements PanoramicSystemSqlqueryService {
 	private static final transient TLogger DB_LOGGER = LoggerUtils.getLogger(PanoramicSystemSqlqueryServiceImpl.class);
     @Autowired
     @Qualifier("systemSqlqueryMapper")
@@ -46,29 +46,31 @@ public class PanoramicSystemSqlqueryServiceImpl extends AbstractService<Panorami
     @Qualifier("warningDataMapper")
     private PanoramicWarningDataMapper warningDataMapper;
     
+
+    
     @Override
     @Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
     public void realTimeScanWarningDataTask() {
-    	 try {
+//    	 try {
              //查询出数据库中需要执行的SQL语句
-             List<PanoramicSystemSqlquery> QueryList = systemSqlqueryMapper.getStrSqlQuery();
+             List<PanoramicSystemSqlqueryDto> QueryList = systemSqlqueryMapper.getStrSqlQuery();
 	 		   	if (QueryList != null) {
- 	   			for (PanoramicSystemSqlquery warningquery : QueryList) {
+ 	   			for (PanoramicSystemSqlqueryDto warningquery : QueryList) {
  	   				//更新最后扫描数据的时间
  	   				systemSqlqueryMapper.updateLastexcuteTime(warningquery.getWarnConfigurationID());
  	   				
- 	   				SimpleDateFormat sdf =   new SimpleDateFormat( " yyyy-MM-dd HH:mm:ss " );
- 	   				List<PanoramicWarningData> WarningSourceList = warningDataMapper.GetSourceData(warningquery.getQuerySql(),sdf.format(warningquery.getLastExecuteTime()));
+ 	   				//SimpleDateFormat sdf =   new SimpleDateFormat( "yyyy-MM-dd HH:mm:ss" ); 
+ 	   				List<PanoramicWarningDataDto> WarningSourceList = warningDataMapper.GetSourceData(warningquery.getQuerySql(),warningquery.getLastExecuteTime());
  	   				
  	   				//更新SQL语句执行时间
  	   				if(WarningSourceList != null) {
- 	   					for (PanoramicWarningData  SourceData : WarningSourceList) {
+ 	   					for (PanoramicWarningDataDto  SourceData : WarningSourceList) {
  	   						Boolean issendemail = false;
  	   						if(warningquery.getLogicType() == 2 ||  warningquery.getLogicType() == 3) {
  	   							//查询报警数据库离是否存在昨天的报警数据
- 	   							List<PanoramicWarningData> ListData = warningDataMapper.getLastWarningDataByConfigurationID(4,warningquery.getWarnConfigurationID());
+ 	   							List<PanoramicWarningDataDto> ListData = warningDataMapper.getLastWarningDataByConfigurationID(4,warningquery.getWarnConfigurationID());
  	   							if(ListData != null && ListData.size() > 0) {
- 	   							PanoramicWarningData lastData = ListData.get(0);
+ 	   							PanoramicWarningDataDto lastData = ListData.get(0);
  	   								//判断需要不需要提升报警等级
  	   								if(lastData.getDayCount() == 1 && lastData.getMaxLevel() > lastData.getLevel()) {
  	   									//插入报警等级提升之后的数据
@@ -96,8 +98,8 @@ public class PanoramicSystemSqlqueryServiceImpl extends AbstractService<Panorami
  	   				}
                 }
              }
-         } catch (Exception e) {
-         	DB_LOGGER.warn("操作异常!");
-         }
+//         } catch (Exception e) {
+//         	DB_LOGGER.warn("操作异常!");
+//         }
     }
 }

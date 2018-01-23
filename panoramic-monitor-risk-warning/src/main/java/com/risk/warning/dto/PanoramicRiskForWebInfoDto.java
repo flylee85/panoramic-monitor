@@ -1,11 +1,11 @@
-package com.risk.warning.model;
+package com.risk.warning.dto;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
 
 import com.cloud.model.BaseObject;
 
-public class PanoramicRiskForWebInfo extends BaseObject {
+public class PanoramicRiskForWebInfoDto  {
     /**
     *
     */
@@ -221,9 +221,4 @@ public class PanoramicRiskForWebInfo extends BaseObject {
 
    
 
-	@Override
-	public Serializable realId() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 }

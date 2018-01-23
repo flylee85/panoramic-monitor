@@ -16,7 +16,7 @@ import com.cloud.api.vo.ResultCode;
 import com.cloud.util.LoggerUtils;
 import com.cloud.util.TLogger;
 import com.risk.warning.api.PanoramicWarningReceiverService;
-import com.risk.warning.model.PanoramicSystemSqlquery;
+import com.risk.warning.dto.PanoramicSystemSqlqueryDto;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;

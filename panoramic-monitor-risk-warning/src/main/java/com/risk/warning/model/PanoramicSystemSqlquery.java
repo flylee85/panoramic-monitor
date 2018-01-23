@@ -1,165 +1,92 @@
 package com.risk.warning.model;
 
-import com.cloud.model.BaseObject;
-
-import javax.persistence.*;
-import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.*;
 
-/**
- * @author 
- */
-@Table(name = "PanoramicSystemSqlquery")
-public class PanoramicSystemSqlquery extends BaseObject {
-    /**
-     *
-     */
-    private static final long serialVersionUID = 1L;
+@Table(name = "panoramic_system_sqlquery")
+public class PanoramicSystemSqlquery {
     @Id
-    /**
-     * WarnConfigurationID
-     */
-    private Integer warn_configuration_id;
+    @Column(name = "warn_configuration_id")
+    private Integer warnConfigurationId;
+
+    @Column(name = "query_sql")
+    private String querySql;
+
+    private Boolean available;
+
+    @Column(name = "interval_time")
+    private Integer intervalTime;
+
+    @Column(name = "last_excute_time")
+    private Date lastExcuteTime;
 
     /**
-     * QuerySql
+     * @return warn_configuration_id
      */
-    private String query_sql;
-
-    /**
-     * Available
-     */
-    private Integer available;
-
-    /**
-     * IntervalTime
-     */
-    private Integer interval_time;
-
-    /**
-     * LastExecuteTime
-     */
-    private Date last_excute_time;
-    
-    /**
-     * LogicType
-     */
-    private Integer logic_type;
-
-    /**
-     * 获取WarnConfigurationID
-     *
-     * @return warn_configuration_id - warnconfigurationid
-     */
-    public Integer getWarnConfigurationID() {
-        return warn_configuration_id;
+    public Integer getWarnConfigurationId() {
+        return warnConfigurationId;
     }
 
     /**
-     * 设置WarnConfigurationID
-     *
-     * @param WarnConfigurationID WarnConfigurationID
+     * @param warnConfigurationId
      */
-    public void setWarnConfigurationID(Integer warnconfigurationid) {
-        this.warn_configuration_id = warnconfigurationid;
-    } 
+    public void setWarnConfigurationId(Integer warnConfigurationId) {
+        this.warnConfigurationId = warnConfigurationId;
+    }
 
     /**
-     * 获取QuerySql
-     *
-     * @return query_sql - querysql
+     * @return query_sql
      */
     public String getQuerySql() {
-    	return query_sql;
+        return querySql;
     }
 
     /**
-     * 设置QuerySql
-     *
-     * @param querysql QuerySql
+     * @param querySql
      */
-    public void setQuerySql(String querysql) {
-    	this.query_sql = querysql;
+    public void setQuerySql(String querySql) {
+        this.querySql = querySql;
     }
 
     /**
-     * 获取Available
-     *
-     * @return Available - available
+     * @return available
      */
-    public Integer getAvailable() {
-    	return available;
+    public Boolean getAvailable() {
+        return available;
     }
 
     /**
-     * 设置Available
-     *
-     * @param available Available
+     * @param available
      */
-    public void setAvailable(Integer available) {
-    	this.available = available;
+    public void setAvailable(Boolean available) {
+        this.available = available;
     }
 
     /**
-     * 获取IntervalTime
-     *
-     * @return interval_time - intervaltime
+     * @return interval_time
      */
     public Integer getIntervalTime() {
-    	return interval_time;
+        return intervalTime;
     }
-    
-    /**
-     * 设置IntervalTime
-     *
-     * @param intervaltime IntervalTime
-     */
-    public void setIntervalTime(Integer intervaltime) {
-    	this.interval_time = intervaltime;
-    }
-    
-    /**
-     * 获取LastExecuteTime
-     *
-     * @return last_excute_time - lastexecutetime
-     */
-    public Date getLastExecuteTime() {
-    	return last_excute_time;
-    }
-    
-    /**
-     * 设置LastExecuteTime
-     *
-     * @param lastexecutetime LastExecuteTime
-     */
-    public void setLastExecuteTime(Date lastexecutetime) {
-    	this.last_excute_time = lastexecutetime;
-    } 
-    
-
 
     /**
-     * 获取LogicType
-     *
-     * @return logic_type - LogicType
+     * @param intervalTime
      */
-    public Integer getLogicType() {
-    	return logic_type;    	
+    public void setIntervalTime(Integer intervalTime) {
+        this.intervalTime = intervalTime;
     }
-    
-
 
     /**
-     * 设置LogicType
-     *
-     * @param logictype LogicType
+     * @return last_excute_time
      */
-    public void setLogicType(Integer logictype) {
-        this.logic_type = logictype;
-    } 
-    
-    @Override
-    public Serializable realId() {
-        return null;
+    public Date getLastExcuteTime() {
+        return lastExcuteTime;
+    }
+
+    /**
+     * @param lastExcuteTime
+     */
+    public void setLastExcuteTime(Date lastExcuteTime) {
+        this.lastExcuteTime = lastExcuteTime;
     }
 }

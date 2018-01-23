@@ -10,13 +10,13 @@ import com.cloud.core.ServiceException;
 import com.cloud.util.LoggerUtils;
 import com.cloud.util.TLogger;
 import com.risk.warning.api.PanoramicWarningReceiverService;
+import com.risk.warning.dto.PanoramicEmailSendInfoDto;
+import com.risk.warning.dto.PanoramicWarningDataDto;
 import com.risk.warning.mapper.PanoramicWarningReceiverMapper;
 import com.risk.warning.mapper.PanoramicWarningDataMapper;
 import com.risk.warning.mapper.PanoramicEmailSendInfoMapper;
 import com.risk.warning.model.PanoramicWarningReceiver;
 import com.sun.mail.util.MailSSLSocketFactory;
-import com.risk.warning.model.PanoramicEmailSendInfo;
-import com.risk.warning.model.PanoramicWarningData;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -66,9 +66,9 @@ public class PanoramicWarningReceiverServiceImpl extends AbstractService<Panoram
     public void regularlDealWarningData() {
     	 try {
     		//获取未处理的预警数据
-    		 List<PanoramicWarningData> ListWarningData = warningDataMapper.getDealWarningData();
+    		 List<PanoramicWarningDataDto> ListWarningData = warningDataMapper.getDealWarningData();
     			if(ListWarningData != null) {
-	   					for (PanoramicWarningData  SourceData : ListWarningData) {
+	   					for (PanoramicWarningDataDto  SourceData : ListWarningData) {
 	   						//获取发送邮件对象
 	   						List<PanoramicWarningReceiver> listReceiver = warningReceiverMapper.getDataByWarningConfigurationID(SourceData.getWarnConfigurationID(),SourceData.getLevel());
 	   						if(listReceiver != null) {
@@ -104,7 +104,7 @@ public class PanoramicWarningReceiverServiceImpl extends AbstractService<Panoram
     @Value("${Email.Config.mailContent}")
     private String mailContent;
     
-    private void sendEmail(List<PanoramicWarningReceiver> listReceiver,PanoramicWarningData  SourceData )  {
+    private void sendEmail(List<PanoramicWarningReceiver> listReceiver,PanoramicWarningDataDto  SourceData )  {
   	  // 1. 创建一封邮件
         // 指定发送邮件的主机为本机
         //String host = "smtp.163.com";  
@@ -148,7 +148,7 @@ public class PanoramicWarningReceiverServiceImpl extends AbstractService<Panoram
 
         
         for (PanoramicWarningReceiver Receiver : listReceiver) {
-        	PanoramicEmailSendInfo sendInfo = new PanoramicEmailSendInfo();
+        	PanoramicEmailSendInfoDto sendInfo = new PanoramicEmailSendInfoDto();
         	sendInfo.setReceiverName(Receiver.getUserName());
         	sendInfo.setReceiverEmail(Receiver.getEmail());
         	sendInfo.setWarningSourceID(SourceData.getId());

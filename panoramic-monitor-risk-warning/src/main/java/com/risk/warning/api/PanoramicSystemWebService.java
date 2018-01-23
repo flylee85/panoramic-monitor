@@ -10,13 +10,14 @@ package com.risk.warning.api;
 import java.util.List;
 
 import com.cloud.core.Service;
-import com.risk.warning.model.PanoramicRiskForWebInfo;
-import com.risk.warning.model.PanoramicWarningData;
+import com.risk.warning.dto.PanoramicEmailSendInfoDto;
+import com.risk.warning.dto.PanoramicRiskForWebInfoDto;
+import com.risk.warning.dto.PanoramicWarningDataDto;
 /**
  * @author 
  */
 
-public interface PanoramicSystemWebService extends Service<PanoramicWarningData> {
+public interface PanoramicSystemWebService extends Service<PanoramicWarningDataDto> {
     
 	
 	/**
@@ -26,7 +27,7 @@ public interface PanoramicSystemWebService extends Service<PanoramicWarningData>
      * @param endDate
      * @return
      */
-	List<PanoramicRiskForWebInfo> getRiskListByDate(String startDate,String endDate,Integer status, String name);
+	List<PanoramicRiskForWebInfoDto> getRiskListByDate(String startDate,String endDate,Integer status, String name);
 	
 	/**
      * 手动解除预警信息

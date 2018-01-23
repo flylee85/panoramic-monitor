@@ -1,217 +1,171 @@
 package com.risk.warning.model;
 
-import java.io.Serializable;
-import java.sql.Timestamp;
+import java.util.Date;
+import javax.persistence.*;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
-import com.cloud.model.BaseObject;
-/**
- * @author 
- */
-@Table(name = "panoramic_system_EmailSendInfo")
-public class PanoramicEmailSendInfo extends BaseObject {
-
-    /**
-     *
-     */
-    private static final long serialVersionUID = 1L;
-    /**
-     * ID
-     */
+@Table(name = "panoramic_email_send_info")
+public class PanoramicEmailSendInfo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    
-    /**
-     * ReceiveNname
-     */
-    private String receiver_name;
+
+    @Column(name = "receiver_name")
+    private String receiverName;
+
+    @Column(name = "receiver_email")
+    private String receiverEmail;
 
     /**
-     * ReceiverEmail
+     * 规则表主键ID
      */
-    private String receiver_email;
+    @Column(name = "warning_source_id")
+    private Integer warningSourceId;
 
     /**
-     * WarningSourceID
+     * 发送情况 1：成功 2:失败
      */
-    private Integer warning_source_id;
+    @Column(name = "send_status")
+    private Integer sendStatus;
 
     /**
-     * SendStatus 
-     * 1：成功 2:失败
-     */
-    private Integer send_status;
-    
-    /**
-     * Reason
-     */
-    private String return_content;
-
-    /**
-     * SendTime
-     */
-    private Timestamp send_time;
-    
-    /**
-     * Reason
+     * 发送失败理由
      */
     private String reason;
-    
+
     /**
-     * 获取ID
-     *
-     * @return id - ID
+     * 发送时间
+     */
+    @Column(name = "send_time")
+    private Date sendTime;
+
+    @Column(name = "return_content")
+    private String returnContent;
+
+    /**
+     * @return id
      */
     public Integer getId() {
         return id;
     }
 
     /**
-     * 设置ID
-     *
-     * @param id ID
+     * @param id
      */
     public void setId(Integer id) {
         this.id = id;
-    } 
-    
+    }
+
     /**
-     * 获取ReceiverName
-     *
-     * @return receiver_name - ReceiverName
+     * @return receiver_name
      */
     public String getReceiverName() {
-    	return receiver_name;
+        return receiverName;
     }
 
     /**
-     * 设置ReceiverName
-     *
-     * @param receivername ReceiverName
+     * @param receiverName
      */
-    public void setReceiverName(String receivername) {
-    	this.receiver_name = receivername;
+    public void setReceiverName(String receiverName) {
+        this.receiverName = receiverName;
     }
-    
+
     /**
-     * 获取ReceiverEmail
-     *
-     * @return receiver_email - ReceiverEmail
+     * @return receiver_email
      */
     public String getReceiverEmail() {
-    	return receiver_email;
+        return receiverEmail;
     }
 
     /**
-     * 设置ReceiverEmail
-     *
-     * @param receiveremail ReceiverEmail
+     * @param receiverEmail
      */
-    public void setReceiverEmail(String receiveremail) {
-    	this.receiver_email = receiveremail;
+    public void setReceiverEmail(String receiverEmail) {
+        this.receiverEmail = receiverEmail;
     }
 
-    
     /**
-     * 获取WarningSourceID
+     * 获取规则表主键ID
      *
-     * @return warning_source_id - WarningSourceID
+     * @return warning_source_id - 规则表主键ID
      */
-    public Integer getWarningSourceID() {
-    	return warning_source_id;
+    public Integer getWarningSourceId() {
+        return warningSourceId;
     }
 
-
     /**
-     * 设置WarningSourceID
+     * 设置规则表主键ID
      *
-     * @param warningsourceid WarningSourceID
+     * @param warningSourceId 规则表主键ID
      */
-    public void setWarningSourceID(Integer warningsourceid) {
-    	this.warning_source_id = warningsourceid;
+    public void setWarningSourceId(Integer warningSourceId) {
+        this.warningSourceId = warningSourceId;
     }
 
     /**
-     * 获取SendStatus
+     * 获取发送情况 1：成功 2:失败
      *
-     * @return send_status - SendStatus
+     * @return send_status - 发送情况 1：成功 2:失败
      */
     public Integer getSendStatus() {
-    	return send_status;
+        return sendStatus;
     }
 
     /**
-     * 设置SendStatus
+     * 设置发送情况 1：成功 2:失败
      *
-     * @param sendstatus SendStatus
+     * @param sendStatus 发送情况 1：成功 2:失败
      */
-    public void setSendStatus(Integer sendstatus) {
-    	this.send_status = sendstatus;
+    public void setSendStatus(Integer sendStatus) {
+        this.sendStatus = sendStatus;
     }
 
     /**
-     * 获取Reason
+     * 获取发送失败理由
      *
-     * @return reason - Reason
+     * @return reason - 发送失败理由
      */
     public String getReason() {
-    	return reason;
+        return reason;
     }
 
     /**
-     * 设置Reason
+     * 设置发送失败理由
      *
-     * @param reason Reason
+     * @param reason 发送失败理由
      */
     public void setReason(String reason) {
-    	this.reason = reason;
+        this.reason = reason;
     }
 
-
     /**
-     * 获取SendTime
+     * 获取发送时间
      *
-     * @return sendtime - SendTime
+     * @return send_time - 发送时间
      */
-    public Timestamp getSendTime() {
-    	return send_time;
+    public Date getSendTime() {
+        return sendTime;
     }
 
-
     /**
-     * 设置SendTime
+     * 设置发送时间
      *
-     * @param sendtime SendTime
+     * @param sendTime 发送时间
      */
-    public void setSendTime(Timestamp sendtime) {
-    	this.send_time = sendtime;
+    public void setSendTime(Date sendTime) {
+        this.sendTime = sendTime;
     }
+
     /**
-     * 获取ReturnContent
-     *
-     * @return return_content - ReturnContent
+     * @return return_content
      */
     public String getReturnContent() {
-    	return return_content;
+        return returnContent;
     }
 
     /**
-     * 设置ReturnContent
-     *
-     * @param returncontent ReturnContent
+     * @param returnContent
      */
-    public void setReturnContent(String returncontent) {
-    	this.return_content = returncontent;
-    }
-    
-    
-    @Override
-    public Serializable realId() {
-        return null;
+    public void setReturnContent(String returnContent) {
+        this.returnContent = returnContent;
     }
 }

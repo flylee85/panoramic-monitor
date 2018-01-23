@@ -4,6 +4,7 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
 import com.cloud.core.Mapper;
+import com.cloud.support.datasource.DataSource;
 import com.monitor.dto.dataverification.PanoramicDataVerificationDto;
 import com.monitor.model.dataverification.PanoramicDataVerification;
 
@@ -33,6 +34,7 @@ public interface PanoramicDataVerificationMapper extends Mapper<PanoramicDataVer
 			"	INTERVAL - DAY(#{date}) + 1 DAY " + 
 			") " + 
 			"AND #{date}")
+	
 	Double findThisMonthAutoSummary(@Param("code") String code,@Param("date") String date);
 
 	/**

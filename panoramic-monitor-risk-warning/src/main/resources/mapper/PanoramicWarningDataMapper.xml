@@ -11,7 +11,7 @@
     <result column="device_name" jdbcType="VARCHAR" property="deviceName" />
     <result column="event_name" jdbcType="VARCHAR" property="eventName" />
     <result column="str_event" jdbcType="VARCHAR" property="strEvent" />
-    <result column="event_value" jdbcType="DOUBLE" property="eventValue" />
+    <result column="event_value" jdbcType="VARCHAR" property="eventValue" />
     <result column="status" jdbcType="INTEGER" property="status" />
     <result column="ctime" jdbcType="TIMESTAMP" property="ctime" />
     <result column="utime" jdbcType="TIMESTAMP" property="utime" />
