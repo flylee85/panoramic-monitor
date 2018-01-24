@@ -63,7 +63,7 @@ Email:
     host: smtp.exmail.qq.com
     port: 465
     address: risk-warning@newhope-data.com
-    password: Risk@1234
+    password: Nhd@1234
     needSSL : true
     mailContent : 您好，%s%s%s  %s = %s 超出阈值(%s,%s),触发%d级预警  请登录PC端 192.168.1.105:8088 查看预警处理结果
     

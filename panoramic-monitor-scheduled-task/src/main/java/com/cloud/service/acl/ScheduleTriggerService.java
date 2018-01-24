@@ -33,16 +33,17 @@ public class ScheduleTriggerService {
      * 获取锁的最大延迟时间（s）
      */
     private static final int DELAY = 10;
-    private static final BlockingQueue<Runnable> taskQueue = new LinkedBlockingQueue<Runnable>();
+    private static final ReentrantLock LOCK = new ReentrantLock();
     ;
-    private static volatile ThreadPoolExecutor executor = new ThreadPoolExecutor(1, 10, 300, TimeUnit.SECONDS, taskQueue);
-    private final ReentrantLock lock = new ReentrantLock();
     @Autowired
     private Scheduler scheduler;
+
     @Autowired
     @Qualifier("scheduleTriggerMapper")
     private ScheduleTriggerMapper scheduleTriggerMapper;
-    ;
+
+    private static final  BlockingQueue<Runnable> taskQueue = new LinkedBlockingQueue<Runnable>();
+    private static volatile ThreadPoolExecutor executor = new ThreadPoolExecutor(1, 10, 300, TimeUnit.SECONDS, taskQueue);;
 
     @PostConstruct
     public void init() {
@@ -72,12 +73,11 @@ public class ScheduleTriggerService {
     }
 
     private void updateScheduledTask(Object obj) {
-        final ReentrantLock lock = this.lock;
         if (!(obj instanceof ScheduleTrigger)) {
             return;
         }
         try {
-            if (lock.tryLock(DELAY, TimeUnit.SECONDS)) {
+            if (LOCK.tryLock(DELAY, TimeUnit.SECONDS)) {
                 ScheduleTrigger scheduleJob = (ScheduleTrigger) obj;
                 String status = scheduleJob.getStatus();
                 TriggerKey triggerKey = TriggerKey.triggerKey(scheduleJob.getJobName(), scheduleJob.getJobGroup());
@@ -101,7 +101,7 @@ public class ScheduleTriggerService {
                     } catch (Exception e) {
                         logger.error("执行任务调度出现异常ClassNotFoundException {}", e);
                     } finally {
-                        lock.unlock();
+                        LOCK.unlock();
                     }
                 } else {
                     // 如果是禁用，从quartz中删除这条任务
@@ -124,7 +124,7 @@ public class ScheduleTriggerService {
                         }
                     } catch (Exception e) {
                     } finally {
-                        lock.unlock();
+                        LOCK.unlock();
                     }
                 }
             }
