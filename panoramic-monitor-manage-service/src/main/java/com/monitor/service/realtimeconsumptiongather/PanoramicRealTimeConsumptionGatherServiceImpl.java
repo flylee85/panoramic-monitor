@@ -70,7 +70,7 @@ public class PanoramicRealTimeConsumptionGatherServiceImpl extends AbstractServi
 		
 		condition.createCriteria()
 				.andCondition(" code ='" + code + "' and f_id=2 and delete_flag=1 and gather_time > '"
-						+ DateUtil.parseTimestamp(date.concat(" 07:00"), "yyyy-MM-dd HH:mm") + "' and  gather_time < '"
+						+ DateUtil.parseTimestamp(date.concat(" 08:00"), "yyyy-MM-dd HH:mm") + "' and  gather_time < '"
 						+ DateUtil.parseTimestamp(DateUtil.getSpecifiedDayBefor(date, -1).concat(" 08:00"), "yyyy-MM-dd HH:mm") + "'");
 		condition.setOrderByClause(" gather_time asc ");
 		List<PanoramicRealTimeConsumptionGather> recordList = realTimeConsumptionGatherMapper

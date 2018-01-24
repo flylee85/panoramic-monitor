@@ -69,7 +69,6 @@ public class PanoramicDailyInventorySummaryServiceImpl extends AbstractService<P
     @Transactional(propagation = Propagation.NOT_SUPPORTED, rollbackFor = Exception.class)
     public Integer countUsable(String code, String date) {
     		//最近7天历史消耗量数据值获取
-    		List<PanoramicRealTimeConsumptionGather> sum = realTimeConsumptionGatherService.findNumberdayData(code, 7, date);
     		double avaerage = 0.0;
     		
     		//根据不同的原材料获取日平均消耗
@@ -81,7 +80,7 @@ public class PanoramicDailyInventorySummaryServiceImpl extends AbstractService<P
     		
     		PanoramicDailyInventorySummary summary = queryByDateAndCode(code, date);
     		if (Optional.ofNullable(summary).isPresent()) {
-    			return Integer.parseInt(new java.text.DecimalFormat("0").format(summary.getValue() / avaerage * sum.size()));
+    			return Integer.parseInt(new java.text.DecimalFormat("0").format(summary.getValue() / avaerage));
       	}
     		
     		return null;
