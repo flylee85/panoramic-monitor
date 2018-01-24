@@ -74,7 +74,7 @@ public class PanoramicSystemSqlqueryServiceImpl extends AbstractService<Panorami
  	   								//判断需要不需要提升报警等级
  	   								if(lastData.getDayCount() == 1 && lastData.getMaxLevel() > lastData.getLevel()) {
  	   									//插入报警等级提升之后的数据
- 	   									warningDataMapper.addWarningSource(lastData.getFactoryName(),lastData.getSectionName(),lastData.getDeviceName(),  lastData.getEventName(),lastData.getStrEvent(), lastData.getEventValue(), lastData.getStatus(),lastData.getCtime(),lastData.getSourceId(),lastData.getWarnConfigurationID(),lastData.getLevel() + 1,issendemail);	
+ 	   									warningDataMapper.addWarningSource(lastData.getFactoryName(),lastData.getSectionName(),lastData.getDeviceName(),  lastData.getEventName(),lastData.getStrEvent(), lastData.getEventValue(), lastData.getStatus(),lastData.getCreateTime(),lastData.getSourceId(),lastData.getWarnConfigurationID(),lastData.getLevel() + 1,issendemail);	
  	   								}
  	   								if(ListData.size() < 5) {
  	   									issendemail = true;
@@ -82,7 +82,7 @@ public class PanoramicSystemSqlqueryServiceImpl extends AbstractService<Panorami
  	   							}
  	   						}
  	   						//扫描出的预警数据插入预警数据库
- 	   						warningDataMapper.addWarningSource(SourceData.getFactoryName(),SourceData.getSectionName(),SourceData.getDeviceName(),  SourceData.getEventName(),SourceData.getStrEvent(), SourceData.getEventValue(), SourceData.getStatus(),SourceData.getCtime(),SourceData.getSourceId(),warningquery.getWarnConfigurationID(),1,issendemail);
+ 	   						warningDataMapper.addWarningSource(SourceData.getFactoryName(),SourceData.getSectionName(),SourceData.getDeviceName(),  SourceData.getEventName(),SourceData.getStrEvent(), SourceData.getEventValue(), SourceData.getStatus(),SourceData.getCreateTime(),SourceData.getSourceId(),warningquery.getWarnConfigurationID(),1,issendemail);
  	   						
  	   					}
  	   					if(warningquery.getLogicType() == 1) {

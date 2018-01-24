@@ -45,12 +45,12 @@ public interface PanoramicWarningDataMapper extends Mapper<PanoramicWarningDataD
     
 
     //自动完成不需要发送EMAIL的预警信息
-    @Update(" update panoramic_warning_data T1 INNER JOIN panoramic_system_configurationnew T2 ON T1.warn_configuration_id = T2.id  set T1.status = 2 ,T1.utime = T1.ctime,T1.responsible_content = '自动解除预警',T1.responsible_name = '系统自动解除预警' where T1.status = 1 and T1.warn_configuration_id = ${WarnConfigurationID} ")
+    @Update(" UPDATE panoramic_warning_data T1 SET T1.status = 2 ,T1.utime = T1.ctime,T1.responsible_content = '自动解除预警',T1.responsible_name = '系统自动解除预警'  where T1.status = 1 and T1.warn_configuration_id = ${WarnConfigurationID} ")
     void finishDataForNoSendEmail(@Param("WarnConfigurationID") Integer warnconfigurationid);
     
     
     //自动完成发送EMAIL预警信息
-    @Update("update panoramic_warning_data T1 INNER JOIN panoramic_system_configurationnew T2 ON T1.warn_configuration_id = T2.id set T1.status = 2 ,T1.utime = now(),T1.responsible_content = '系统自动解除预警',T1.responsible_name = '系统自动解除预警' where T1.status = 1 and T1.warn_configuration_id = ${WarnConfigurationID} and T1.ctime <= now()")
+    @Update("update panoramic_warning_data T1 set T1.status = 2 ,T1.utime = now(),T1.responsible_content = '系统自动解除预警',T1.responsible_name = '系统自动解除预警' where T1.status = 1 and T1.warn_configuration_id = ${WarnConfigurationID} and T1.ctime <= now()")
     void finishDataForSendEmail(@Param("WarnConfigurationID") Integer warnconfigurationid);
     
     //根据时间获取预警信息一览
@@ -59,7 +59,7 @@ public interface PanoramicWarningDataMapper extends Mapper<PanoramicWarningDataD
     
     
     //获取某一类型的报警数据库离的倒数几天
-    @Select("Select T1.factory_name,T1.section_name,T1.device_name,T1.event_name,T1.str_event,T1.event_value,T1.status,T1.ctime,T1.source_id,T1.warn_configuration_id,T1.level,T1.is_send_email,T2.max_level,TIMESTAMPDIFF(day,T1.ctime,now()) as day_count from panoramic_warning_data T1 left join panoramic_system_configurationnew T2 on T1.warn_configuration_id = T2.id where TIMESTAMPDIFF(day,T1.ctime,now()) >= ${DataCount} and T1.status = 1 and T1.warn_configuration_id =  ${WarnConfigurationID} order by T1.ctime desc,T1.status desc")
+    @Select("Select T1.factory_name,T1.section_name,T1.device_name,T1.event_name,T1.str_event,T1.event_value,T1.status,T1.ctime as createtime,T1.source_id,T1.warn_configuration_id,T1.level,T1.is_send_email,T2.max_level,TIMESTAMPDIFF(day,T1.ctime,now()) as day_count from panoramic_warning_data T1 left join panoramic_system_configurationnew T2 on T1.warn_configuration_id = T2.id where TIMESTAMPDIFF(day,T1.ctime,now()) >= ${DataCount} and T1.status = 1 and T1.warn_configuration_id =  ${WarnConfigurationID} order by T1.ctime desc,T1.status desc")
     List<PanoramicWarningDataDto> getLastWarningDataByConfigurationID(@Param("DataCount") Integer daycount,@Param("WarnConfigurationID") Integer warnconfigurationid);
     
     //手动解除预警数据

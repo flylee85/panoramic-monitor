@@ -51,7 +51,7 @@ public class PanoramicSystemConfigurationnewServiceImpl extends AbstractService<
             
          	if (QueryList != null) {
          		for (PanoramicSystemConfigurationnew configuration : QueryList) {
-         			String strSql = "Select ''%s'' as FactoryName , ''%s'' as SectionName, %s as DeviceName , ''%s'' as EventName,''%s'' as StrEvent, %s as EventValue,1 as Status,%s as Ctime,%d as WarnConfigurationID,1 as Level,%s as SourceID from %s where (%s > %f OR %s < %f)   %s and %s>= ";
+         			String strSql = "Select ''%s'' as FactoryName , ''%s'' as SectionName, %s as DeviceName , ''%s'' as EventName,''%s'' as StrEvent, %s as EventValue,1 as Status,%s as createtime,%d as WarnConfigurationID,1 as Level,%s as SourceID from %s where (%s > %f OR %s < %f)   %s and %s>= ";
          	   
          			String strDeviceName = configuration.getDeviceName();
          			String strCondition = "";

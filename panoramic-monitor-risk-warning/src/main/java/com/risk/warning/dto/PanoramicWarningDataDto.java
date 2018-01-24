@@ -39,13 +39,13 @@ public class PanoramicWarningDataDto {
     */
    private Integer status;
    /**
-    * Ctime
+    * Createtime
     */
-   private String  ctime;
+   private String  createtime;
    /**
-    * Utime
+    * updatetime
     */
-   private String  utime;
+   private String  updatetime;
    /**
     * SourceID
     */
@@ -199,31 +199,31 @@ public class PanoramicWarningDataDto {
    }
    
    /**
-    * 获取Ctime
+    * 获取createtime
     * 
-    * @return ctime -Ctime
+    * @return createtime -createtime
     */
-   public String getCtime() {
-	   return ctime;
+   public String getCreateTime() {
+	   return createtime;
    }
    
    /**
-    * 设置Ctime
+    * 设置createtime
     *
-    * @param ctime Ctime
+    * @param createtime Ctime
     */
-   public void setCtime(String ctime) {
-	   this.ctime = ctime;
+   public void setCreateTime(String createtime) {
+	   this.createtime = createtime;
    }
 
    
    /**
-    * 获取Utime
+    * 获取updatetime
     * 
-    * @return utime -Utime
+    * @return updatetime -updatetime
     */
-   public String getUtime() {
-	   return utime;
+   public String getUpdateTime() {
+	   return updatetime;
    }
    
    /**
@@ -231,8 +231,8 @@ public class PanoramicWarningDataDto {
     *
     * @param utime Utime
     */
-   public void setUtime(String utime) {
-	   this.utime = utime;
+   public void setUpdateTime(String updatetime) {
+	   this.updatetime = updatetime;
    }
    
    /**
