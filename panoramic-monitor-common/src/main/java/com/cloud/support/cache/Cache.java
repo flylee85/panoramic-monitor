@@ -66,7 +66,7 @@ public class Cache<K, V> {
     }
 
     public void put(K k, V v, long liveTime) {
-        V v2 = map.put(k, v);
+        V v2 = map.putIfAbsent(k, v);
         DelayedItem<K> tmpItem = new DelayedItem<K>(k, liveTime);
         if (v2 != null) {
             queue.remove(tmpItem);
