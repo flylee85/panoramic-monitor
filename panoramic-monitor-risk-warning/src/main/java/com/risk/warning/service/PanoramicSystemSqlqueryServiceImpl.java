@@ -51,7 +51,7 @@ public class PanoramicSystemSqlqueryServiceImpl extends AbstractService<Panorami
     @Override
     @Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
     public void realTimeScanWarningDataTask() {
-//    	 try {
+    	 try {
              //查询出数据库中需要执行的SQL语句
              List<PanoramicSystemSqlqueryDto> QueryList = systemSqlqueryMapper.getStrSqlQuery();
 	 		   	if (QueryList != null) {
@@ -98,8 +98,8 @@ public class PanoramicSystemSqlqueryServiceImpl extends AbstractService<Panorami
  	   				}
                 }
              }
-//         } catch (Exception e) {
-//         	DB_LOGGER.warn("操作异常!");
-//         }
+         } catch (Exception e) {
+         	DB_LOGGER.warn("操作异常!");
+         }
     }
 }
