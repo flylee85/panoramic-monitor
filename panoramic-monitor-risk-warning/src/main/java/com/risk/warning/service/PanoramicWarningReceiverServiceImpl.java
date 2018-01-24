@@ -75,6 +75,7 @@ public class PanoramicWarningReceiverServiceImpl extends AbstractService<Panoram
 	   							//发送邮件
 	   							sendEmail(listReceiver,SourceData);
 	   						}
+	   						warningDataMapper.updatewarningSourceStatus(SourceData.getId());
 	   					}
 	   				}
          } catch (Exception e) {
@@ -165,7 +166,7 @@ public class PanoramicWarningReceiverServiceImpl extends AbstractService<Panoram
 	            // 5. Content: 邮件正文（可以使用html标签）
 
 	            DecimalFormat decimalFormat = new DecimalFormat("###################.###########");  
-	            mailContent=  String.format(mailContent,SourceData.getFactoryName(),SourceData.getSectionName(),SourceData.getDeviceName(),SourceData.getEventName(),SourceData.getEventValue() ,decimalFormat.format(SourceData.getMinValue()), decimalFormat.format(SourceData.getMaxValue()) , SourceData.getLevel());
+	            mailContent=  String.format(mailContent,SourceData.getFactoryName(),SourceData.getSectionName(),SourceData.getDeviceName(),SourceData.getEventName(),decimalFormat.format(SourceData.getEventValue()) ,decimalFormat.format(SourceData.getMinValue()), decimalFormat.format(SourceData.getMaxValue()) , SourceData.getLevel());
 	            
 	            message.setContent(mailContent, "text/html;charset=UTF-8");
 	
@@ -189,9 +190,6 @@ public class PanoramicWarningReceiverServiceImpl extends AbstractService<Panoram
 	        	sendInfo.setReason(String.valueOf(e));
 	        }finally {
 	        	emailSendInfoMapper.addSendInfo(sendInfo.getReceiverName(),sendInfo.getReceiverEmail(),sendInfo.getWarningSourceID(),sendInfo.getSendStatus(),sendInfo.getReason());
-	        	if(sendInfo.getSendStatus() == 1) {
-	        		warningDataMapper.updatewarningSourceStatus(SourceData.getId());
-	        	}
 	        }
         }
     }
