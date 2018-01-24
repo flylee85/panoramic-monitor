@@ -39,6 +39,12 @@ public class PanoramicMaterialIntoInventory {
     private Double value;
 
     /**
+     * 包装袋型号
+     */
+    @Column(name = "package_model")
+    private String packageModel;
+
+    /**
      * 责任人
      */
     @Column(name = "person_liable")
@@ -94,10 +100,9 @@ public class PanoramicMaterialIntoInventory {
     private String tag;
 
     /**
-     * 包装袋型号
+     * 成品对象
      */
-    @Column(name = "package_model")
-    private String packageModel;
+    private String product;
 
     /**
      * 获取ID
@@ -187,6 +192,24 @@ public class PanoramicMaterialIntoInventory {
      */
     public void setValue(Double value) {
         this.value = value;
+    }
+
+    /**
+     * 获取包装袋型号
+     *
+     * @return package_model - 包装袋型号
+     */
+    public String getPackageModel() {
+        return packageModel;
+    }
+
+    /**
+     * 设置包装袋型号
+     *
+     * @param packageModel 包装袋型号
+     */
+    public void setPackageModel(String packageModel) {
+        this.packageModel = packageModel;
     }
 
     /**
@@ -370,20 +393,20 @@ public class PanoramicMaterialIntoInventory {
     }
 
     /**
-     * 获取包装袋型号
+     * 获取成品对象
      *
-     * @return package_model - 包装袋型号
+     * @return product - 成品对象
      */
-    public String getPackageModel() {
-        return packageModel;
+    public String getProduct() {
+        return product;
     }
 
     /**
-     * 设置包装袋型号
+     * 设置成品对象
      *
-     * @param packageModel 包装袋型号
+     * @param product 成品对象
      */
-    public void setPackageModel(String packageModel) {
-        this.packageModel = packageModel;
+    public void setProduct(String product) {
+        this.product = product;
     }
 }

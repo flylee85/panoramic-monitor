@@ -3,7 +3,6 @@ package com.monitor.service.productofflinemeasurement;
 import com.monitor.mapper.productofflinemeasurement.PanoramicProductOfflineMeasurementMapper;
 import com.monitor.mapper.realtimeconsumptiongather.PanoramicRealTimeConsumptionGatherMapper;
 import com.monitor.model.productofflinemeasurement.PanoramicProductOfflineMeasurement;
-import com.monitor.model.realtimeconsumption.PanoramicRealTimeConsumption;
 import com.monitor.model.realtimeconsumptiongather.PanoramicRealTimeConsumptionGather;
 import com.monitor.service.realtimeconsumption.PanoramicRealTimeConsumptionServiceImpl;
 import tk.mybatis.mapper.entity.Condition;
@@ -86,10 +85,11 @@ public class PanoramicProductOfflineMeasurementServiceImpl extends AbstractServi
 	    }
     
 		for (int i = 0; i <= daysBetween; i++) {
-			String dateTemp = DateUtil.getFormatDate(DateUtil.getDateBeforeOrAfter(dateStart,i));
+			Date dateTemp = DateUtil.getDateBeforeOrAfter(dateStart,i);
+			
 			for(int j = 0; j< 24;j++) {
-				String date1 = dateTemp.concat(String.format(" %02d", j));
-				String date2 = dateTemp.concat(String.format(" %02d", j+1));
+				String date1 =  DateUtil.dateBeforeOrAfterHoursStr(dateTemp,j);
+				String date2 =  DateUtil.dateBeforeOrAfterHoursStr(dateTemp,j + 1);
 				productOfflineCategoryList.forEach((PanoramicProductOfflineMeasurement e) -> {
 			    		DB_LOGGER.warn("code:" + e.getCode() + "StartTime:" + date1 + "EndTime:" + date2);
 			        this.productOfflineSummaryTask(e.getName(), e.getCode(), date1, date2);
@@ -105,21 +105,14 @@ public class PanoramicProductOfflineMeasurementServiceImpl extends AbstractServi
 	 * @param date
 	 */
 	private void productOfflineSummaryTask(String name, String code, String dateStart, String dateEnd ) {
-				
-        Condition condition = new Condition(PanoramicProductOfflineMeasurement.class, false);
-        condition.createCriteria().andCondition(
-                "	code = '" + code + "'"
-                	+	" AND f_id=2 AND delete_flag=1"
-                +	" AND utime >= '" + dateStart + "'"
-                +	" AND utime < '" + dateEnd + "'"
-                +   " ");
-        List<PanoramicProductOfflineMeasurement> offlineMeasurementList = 
-        		panoramicProductOfflineMeasurementMapper.selectByCondition(condition);
+
+        PanoramicProductOfflineMeasurement result = 
+        		panoramicProductOfflineMeasurementMapper.selectSummaryConsumptionByCondition(code, dateStart, dateEnd);
         
         PanoramicProductOfflineMeasurement record = new PanoramicProductOfflineMeasurement();
         record.setCode(code);
         record.setName(name);
-        record.setValue(String.valueOf("0.0"));
+        record.setValue(0.0);
         record.setCtime(DateUtil.getCurFullTimestamp());
         record.setId(null);
         record.setOperator("auto_task");
@@ -127,36 +120,34 @@ public class PanoramicProductOfflineMeasurementServiceImpl extends AbstractServi
         record.setUnit("吨");
         record.setDeleteFlag(1);
         
-        final double[] sumValue = {0.0};
-        if (null != offlineMeasurementList && offlineMeasurementList.size() > 0) {
-        	offlineMeasurementList.forEach(e -> {
-                sumValue[0] += Double.valueOf(e.getValue()).doubleValue();
-                record.setUtime(e.getUtime());
-                record.setDtime(null);
-                record.setOperator(e.getOperator());
-                record.setfId(e.getfId());
-                record.setName(e.getName());
-                record.setDeleteFlag(e.getDeleteFlag());
-                record.setCtime(e.getCtime());
-                record.setId(null);
-            });
-        }
-        PanoramicRealTimeConsumptionGather selectOne = realTimeConsumptionGatherMapper.selectByGatherTime(code, dateStart);
+        if(null != result) {
+    	      record.setUtime(result.getUtime());
+    	      record.setDtime(null);
+    	      record.setOperator("auto_task");
+    	      record.setfId(result.getfId());
+    	      record.setName(result.getName());
+    	      record.setDeleteFlag(result.getDeleteFlag());
+    	      record.setCtime(result.getCtime());
+    	      record.setId(null);       	
+          }
+        
+        PanoramicRealTimeConsumptionGather selectOne = realTimeConsumptionGatherMapper.selectByGatherTime(code, dateEnd);
         Optional<PanoramicRealTimeConsumptionGather> one = Optional.ofNullable(selectOne);
         if (one.isPresent()) {
-        	selectOne.setValue(sumValue[0] );
-        	selectOne.setUtime(DateUtil.getCurFullTimestamp());
-        	selectOne.setCtime(selectOne.getUtime());
-        	selectOne.setOperator("auto_task_update");
-        	selectOne.setGatherTime(dateStart);
-            realTimeConsumptionGatherMapper.updateByPrimaryKeySelective(selectOne);
+//        	selectOne.setValue(sumValue[0] );
+	        	selectOne.setValue(result != null? result.getValue():0.0);
+	        	selectOne.setUtime(DateUtil.getCurFullTimestamp());
+	        	selectOne.setCtime(selectOne.getUtime());
+	        	selectOne.setOperator("auto_task_update");
+	        	selectOne.setGatherTime(dateEnd);
+	        realTimeConsumptionGatherMapper.updateByPrimaryKeySelective(selectOne);
         } else {
             PanoramicRealTimeConsumptionGather gather = new PanoramicRealTimeConsumptionGather();
             gather.setCode(code);
             gather.setName(name);
             gather.setDeleteFlag(record.getDeleteFlag());
             gather.setfId(record.getfId());
-            gather.setGatherTime(dateStart);
+            gather.setGatherTime(dateEnd);
             gather.setId(null);
             gather.setCtime(DateUtil.getCurFullTimestamp());
             gather.setName(record.getName());
@@ -164,7 +155,7 @@ public class PanoramicProductOfflineMeasurementServiceImpl extends AbstractServi
             gather.setUnit(record.getUnit());
             gather.setDtime(record.getDtime());
             gather.setUtime(gather.getCtime());
-            gather.setValue(sumValue[0] );
+            gather.setValue(result != null? result.getValue():0.0);
             realTimeConsumptionGatherMapper.insert(gather);
         }
 	}

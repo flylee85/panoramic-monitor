@@ -24,7 +24,7 @@ public class PanoramicSparePartsIntoInventoryDto extends BaseObject {
     private double summary;
     
     /**
-     * 单位
+     * 单位值
      */
     private String unit;
 

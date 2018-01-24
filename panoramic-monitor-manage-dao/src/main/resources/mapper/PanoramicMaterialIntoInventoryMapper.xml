@@ -10,6 +10,7 @@
     <result column="code" jdbcType="VARCHAR" property="code" />
     <result column="in_out_time" jdbcType="TIMESTAMP" property="inOutTime" />
     <result column="value" jdbcType="DOUBLE" property="value" />
+    <result column="package_model" jdbcType="VARCHAR" property="packageModel" />
     <result column="person_liable" jdbcType="VARCHAR" property="personLiable" />
     <result column="in_out_company" jdbcType="VARCHAR" property="inOutCompany" />
     <result column="mat_type" jdbcType="INTEGER" property="matType" />
@@ -20,6 +21,6 @@
     <result column="ctime" jdbcType="TIMESTAMP" property="ctime" />
     <result column="utime" jdbcType="TIMESTAMP" property="utime" />
     <result column="tag" jdbcType="VARCHAR" property="tag" />
-    <result column="package_model" jdbcType="VARCHAR" property="packageModel" />
+    <result column="product" jdbcType="VARCHAR" property="product" />
   </resultMap>
 </mapper>

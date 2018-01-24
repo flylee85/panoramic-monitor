@@ -32,7 +32,7 @@ public class PanoramicProductOfflineMeasurement {
     /**
      * 值
      */
-    private String value;
+    private Double value;
 
     /**
      * 物料编码
@@ -135,7 +135,7 @@ public class PanoramicProductOfflineMeasurement {
      *
      * @return value - 值
      */
-    public String getValue() {
+    public Double getValue() {
         return value;
     }
 
@@ -144,7 +144,7 @@ public class PanoramicProductOfflineMeasurement {
      *
      * @param value 值
      */
-    public void setValue(String value) {
+    public void setValue(Double value) {
         this.value = value;
     }
 
