@@ -3,6 +3,7 @@ package com.monitor.service.dailyinventorysummary;
 import com.cloud.core.AbstractService;
 import com.cloud.core.ServiceException;
 import com.cloud.util.DateUtil;
+import com.cloud.util.MathUtil;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.monitor.api.dailyinventorysummary.PanoramicDailyInventorySummaryService;
@@ -24,6 +25,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import tk.mybatis.mapper.entity.Condition;
+
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -80,11 +83,10 @@ public class PanoramicDailyInventorySummaryServiceImpl extends AbstractService<P
     		
     		PanoramicDailyInventorySummary summary = queryByDateAndCode(code, date);
     		if (Optional.ofNullable(summary).isPresent()) {
-    			return Integer.parseInt(new java.text.DecimalFormat("0").format(summary.getValue() / avaerage));
+    			return Integer.valueOf((int)MathUtil.divide(summary.getValue(), avaerage));
       	}
     		
     		return null;
-
     }
 
     @Override

@@ -134,10 +134,8 @@ public class PanoramicProductOfflineMeasurementServiceImpl extends AbstractServi
         PanoramicRealTimeConsumptionGather selectOne = realTimeConsumptionGatherMapper.selectByGatherTime(code, dateEnd);
         Optional<PanoramicRealTimeConsumptionGather> one = Optional.ofNullable(selectOne);
         if (one.isPresent()) {
-//        	selectOne.setValue(sumValue[0] );
 	        	selectOne.setValue(result != null? result.getValue():0.0);
 	        	selectOne.setUtime(DateUtil.getCurFullTimestamp());
-	        	selectOne.setCtime(selectOne.getUtime());
 	        	selectOne.setOperator("auto_task_update");
 	        	selectOne.setGatherTime(dateEnd);
 	        realTimeConsumptionGatherMapper.updateByPrimaryKeySelective(selectOne);
