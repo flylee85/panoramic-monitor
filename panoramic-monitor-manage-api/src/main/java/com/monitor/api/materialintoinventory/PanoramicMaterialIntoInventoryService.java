@@ -1,6 +1,7 @@
 package com.monitor.api.materialintoinventory;
 
 import com.monitor.dto.materialintoinventory.PanoramicMaterialIntoInventoryDto;
+import com.monitor.dto.materialintoinventory.PanoramicMaterialIntoInventoryListDto;
 import com.monitor.model.materialintoinventory.PanoramicMaterialIntoInventory;
 
 import java.util.List;
@@ -22,7 +23,7 @@ public interface PanoramicMaterialIntoInventoryService extends Service<Panoramic
 	 * @param date
 	 * @return
 	 */
-	List<PanoramicMaterialIntoInventory> findMaterialValue(String code, String type, String date);
+	List<PanoramicMaterialIntoInventoryListDto> findMaterialValue(String code, String type, String date);
 	
 	/**
 	 * 当日入出库总量以及最新更新时间

@@ -7,6 +7,7 @@ import com.monitor.model.materialintoinventory.PanoramicMaterialIntoInventory;
 import io.swagger.annotations.ApiOperation;
 import com.monitor.api.materialintoinventory.PanoramicMaterialIntoInventoryService;
 import com.monitor.dto.materialintoinventory.PanoramicMaterialIntoInventoryDto;
+import com.monitor.dto.materialintoinventory.PanoramicMaterialIntoInventoryListDto;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -52,16 +53,16 @@ public class PanoramicMaterialIntoInventoryController{
     
     @ApiOperation(value = "当日出入库查询", notes = "指定代码，日期，出入库信息查询出入库信息")
 	@GetMapping("/{code}/{type}/{date}/{page}/{size}")
-	public ResultCode<PageInfo<PanoramicMaterialIntoInventory>> findMaterialValue(
+	public ResultCode<PageInfo<PanoramicMaterialIntoInventoryListDto>> findMaterialValue(
 					@PathVariable("code") String code,
 					@PathVariable("type") String type,
 					@PathVariable("date") String date,
 					@PathVariable("page") Integer page,
 					@PathVariable("size") Integer size) {
     		PageHelper.startPage(page, size);
-    		List<PanoramicMaterialIntoInventory> result = 
+    		List<PanoramicMaterialIntoInventoryListDto> result = 
         		panoramicMaterialIntoInventoryService.findMaterialValue(code,type,date);
-        PageInfo<PanoramicMaterialIntoInventory> pageInfo = new PageInfo<>(result);
+        PageInfo<PanoramicMaterialIntoInventoryListDto> pageInfo = new PageInfo<>(result);
         return ResultCode.getSuccessReturn(pageInfo);
     } 
     

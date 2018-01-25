@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.cloud.core.Mapper;
 import com.monitor.dto.materialintoinventory.PanoramicMaterialIntoInventoryDto;
+import com.monitor.dto.materialintoinventory.PanoramicMaterialIntoInventoryListDto;
 import com.monitor.model.materialintoinventory.PanoramicMaterialIntoInventory;
 
 /**
@@ -64,7 +65,7 @@ public interface PanoramicMaterialIntoInventoryMapper extends Mapper<PanoramicMa
 	 */
 	@Select("SELECT\n" + 
 			"	in_out_time as inOutTime,\n" + 
-			"	round(VALUE , 2) as value,\n" + 
+			"	round(VALUE ,2) as value,\n" + 
 			"	person_liable as personLiable,\n" + 
 			"	in_out_company as inOutCompany\n" + 
 			"FROM\n" + 
@@ -75,7 +76,7 @@ public interface PanoramicMaterialIntoInventoryMapper extends Mapper<PanoramicMa
 			"AND DATE_FORMAT(in_out_time , '%Y-%m-%d') = #{date}\n" + 
 			"ORDER BY\n" + 
 			"	in_out_time desc")
-	List<PanoramicMaterialIntoInventory> findMaterialValue(
+	List<PanoramicMaterialIntoInventoryListDto> findMaterialValue(
 			@Param("code") String code,@Param("type") String type,@Param("date") String date);
 	
 	/**

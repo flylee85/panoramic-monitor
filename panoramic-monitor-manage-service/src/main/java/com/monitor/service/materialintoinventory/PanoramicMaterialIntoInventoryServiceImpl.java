@@ -4,6 +4,7 @@ import com.monitor.mapper.materialintoinventory.PanoramicMaterialIntoInventoryMa
 import com.monitor.model.materialintoinventory.PanoramicMaterialIntoInventory;
 import com.monitor.api.materialintoinventory.PanoramicMaterialIntoInventoryService;
 import com.monitor.dto.materialintoinventory.PanoramicMaterialIntoInventoryDto;
+import com.monitor.dto.materialintoinventory.PanoramicMaterialIntoInventoryListDto;
 import com.cloud.core.AbstractService;
 import com.cloud.core.ServiceException;
 
@@ -29,9 +30,9 @@ public class PanoramicMaterialIntoInventoryServiceImpl extends AbstractService<P
     private PanoramicMaterialIntoInventoryMapper panoramicMaterialIntoInventoryMapper;
 
 	@Override
-	public List<PanoramicMaterialIntoInventory> findMaterialValue(String code, String type, String date) {
+	public List<PanoramicMaterialIntoInventoryListDto> findMaterialValue(String code, String type, String date) {
 		
-		List<PanoramicMaterialIntoInventory> result = 
+		List<PanoramicMaterialIntoInventoryListDto> result = 
 				panoramicMaterialIntoInventoryMapper.findMaterialValue(code,type,date) ;
 		
 		return result;
