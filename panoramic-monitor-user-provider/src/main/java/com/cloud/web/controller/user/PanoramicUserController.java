@@ -23,16 +23,16 @@ public class PanoramicUserController {
     @Qualifier("userService")
     private PanoramicUserService panoramicUserService;
 
-    @PostMapping
-    public ResultCode<PanoramicUser> add(PanoramicUser panoramicUser) {
-        panoramicUserService.save(panoramicUser);
-        return ResultCode.getSuccessReturn(panoramicUser);
-    }
-
     @DeleteMapping("/{id}")
     public ResultCode<PanoramicUser> delete(@PathVariable Integer id) {
         panoramicUserService.deleteById(id);
         return ResultCode.getSuccessMap();
+    }
+
+    @PostMapping
+    public ResultCode<PanoramicUser> add(PanoramicUser panoramicUser) {
+        panoramicUserService.save(panoramicUser);
+        return ResultCode.getSuccessReturn(panoramicUser);
     }
 
     @PutMapping

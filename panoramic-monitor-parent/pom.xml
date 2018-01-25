@@ -20,7 +20,7 @@
 		<spring.boot.version>1.5.4.RELEASE</spring.boot.version>
 		<spring-cloud-dependencies.version>Dalston.SR2</spring-cloud-dependencies.version>
 
-		<jackson2.version>2.6.5</jackson2.version>
+		<jackson2-version>2.6.5</jackson2-version>
 		<apache.httpcomponents.client.version>4.3.6</apache.httpcomponents.client.version>
 		<!-- need changed the well version if need -->
 		<apache.httpcomponents.core.version>4.3.3</apache.httpcomponents.core.version>
@@ -148,19 +148,19 @@
 			<dependency>
 				<groupId>com.fasterxml.jackson.core</groupId>
 				<artifactId>jackson-core</artifactId>
-				<version>${jackson2.version}</version>
+				<version>${jackson2-version}</version>
 				<scope>${dependency.common}</scope>
 			</dependency>
 			<dependency>
 				<groupId>com.fasterxml.jackson.core</groupId>
 				<artifactId>jackson-databind</artifactId>
-				<version>${jackson2.version}</version>
+				<version>${jackson2-version}</version>
 				<scope>${dependency.common}</scope>
 			</dependency>
 			<dependency>
 				<groupId>com.fasterxml.jackson.core</groupId>
 				<artifactId>jackson-annotations</artifactId>
-				<version>${jackson2.version}</version>
+				<version>${jackson2-version}</version>
 				<scope>${dependency.common}</scope>
 			</dependency>
 			<dependency>
@@ -171,29 +171,29 @@
 			<dependency>
 				<groupId>com.fasterxml.jackson.jaxrs</groupId>
 				<artifactId>jackson-jaxrs-base</artifactId>
-				<version>${jackson2.version}</version>
+				<version>${jackson2-version}</version>
 				<scope>${dependency.common}</scope>
 			</dependency>
 			<dependency>
 				<groupId>com.fasterxml.jackson.jaxrs</groupId>
 				<artifactId>jackson-jaxrs-json-provider</artifactId>
-				<version>${jackson2.version}</version>
+				<version>${jackson2-version}</version>
 				<scope>${dependency.common}</scope>
 			</dependency>
 			<dependency>
 				<groupId>com.fasterxml.jackson.dataformat</groupId>
 				<artifactId>jackson-dataformat-smile</artifactId>
-				<version>${jackson2.version}</version>
+				<version>${jackson2-version}</version>
 			</dependency>
 			<dependency>
 				<groupId>com.fasterxml.jackson.dataformat</groupId>
 				<artifactId>jackson-dataformat-cbor</artifactId>
-				<version>${jackson2.version}</version>
+				<version>${jackson2-version}</version>
 			</dependency>
 			<dependency>
 				<groupId>com.fasterxml.jackson.dataformat</groupId>
 				<artifactId>jackson-dataformat-yaml</artifactId>
-				<version>${jackson2.version}</version>
+				<version>${jackson2-version}</version>
 			</dependency>
 			<!-- jackson序列化包 end -->
 
@@ -585,7 +585,8 @@
 	</dependencies>
 	<modules>
 		<module>../panoramic-monitor-common</module>
-		<module>../panoramic-monitor-discovery-eureka</module>
+		<module>../panoramic-monitor-master-eureka-discovery</module>
+		<module>../panoramic-monitor-slave-eureka-discovery</module>
 		<module>../panoramic-monitor-test</module>
 		<module>../panoramic-monitor-config-server</module>
 		<module>../panoramic-monitor-config-client</module>
