@@ -180,13 +180,13 @@ public class PanoramicWarningReceiverServiceImpl extends AbstractService<Panoram
 	        	sendInfo.setSendStatus(1);
 	        } catch (MessagingException e) {
 	        	sendInfo.setSendStatus(2);
-	        	sendInfo.setReason(String.valueOf(e));
+	        	sendInfo.setReason(ChangeErrorCode(String.valueOf(e)));
 	        } catch (UnsupportedEncodingException e) {
 	        	sendInfo.setSendStatus(2);
-	        	sendInfo.setReason(String.valueOf(e));
+	        	sendInfo.setReason(ChangeErrorCode(String.valueOf(e)));
 	        } catch (IOException e) {
 	        	sendInfo.setSendStatus(2);
-	        	sendInfo.setReason(String.valueOf(e));
+	        	sendInfo.setReason(ChangeErrorCode(String.valueOf(e)));
 	        }finally {
 	        	emailSendInfoMapper.addSendInfo(sendInfo.getReceiverName(),sendInfo.getReceiverEmail(),sendInfo.getWarningSourceID(),sendInfo.getSendStatus(),sendInfo.getReason());
 	        	if(sendInfo.getSendStatus() == 1) {
@@ -194,6 +194,35 @@ public class PanoramicWarningReceiverServiceImpl extends AbstractService<Panoram
 	        	}
 	        }
         }
+    }
+    
+    
+    private String ChangeErrorCode(String errorMessage) {
+    	String result = "";
+    	if(errorMessage.indexOf("440") > -1) {
+    		result = "440 收件地址错误";
+    	}else if(errorMessage.indexOf("445") > -1) {
+    		result = "445  服务被封锁";
+    	}else if(errorMessage.indexOf("451") > -1) {
+    		result = "451  无法解析";
+    	}else if(errorMessage.indexOf("452") > -1) {
+    		result = "452  系统空间不足";
+    	}else if(errorMessage.indexOf("501") > -1) {
+    		result = "501  收件人不存在";
+    	}else if(errorMessage.indexOf("505") > -1) {
+    		result = "505 Smtp服务器需要认证";
+    	}else if(errorMessage.indexOf("535") > -1) {
+    		result = "535  发件箱验证错误";
+    	}else if(errorMessage.indexOf("550") > -1) {
+    		result = "550 Smtp服务器信息错误";
+    	}else if(errorMessage.indexOf("551") > -1) {
+    		result = "551 Smtp服务器发送被限制";
+    	}else if(errorMessage.indexOf("553") > -1) {
+    		result = "553 Smtp服务器邮件地址不正确";
+    	}else if(errorMessage.indexOf("554") > -1) {
+    		result = "554  因政策原因拒绝";
+    	}	
+    	return result; 
     }
     	
     
