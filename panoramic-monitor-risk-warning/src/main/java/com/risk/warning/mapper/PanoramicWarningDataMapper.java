@@ -54,7 +54,7 @@ public interface PanoramicWarningDataMapper extends Mapper<PanoramicWarningDataD
     void finishDataForSendEmail(@Param("WarnConfigurationID") Integer warnconfigurationid);
     
     //根据时间获取预警信息一览
-    @Select(" select T1.id, case T1.status when 1 then '未解除' when 2 then '已解除' else '' end as status_name,T2.warning_name,concat(T1.factory_name,T1.section_name,T1.device_name,T1.event_name,'=',T1.event_value,' 超出阈值(',T2.min_value,',',T2.max_value,')') as warning_content,T1.ctime,T1.responsible_name as receiver_name,T1.responsible_content as return_content,T1.utime,T1.Level from panoramic_warning_data T1 left join panoramic_system_configurationnew T2 on T1.warn_configuration_id = T2.id where T1.ctime >= \'${StartDate}\' and T1.ctime <= \'${EndDate}\' ${strWhere}  order by T1.status desc ,T1.ctime desc")
+    @Select(" select T1.id, case T1.status when 1 then '未解除' when 2 then '已解除' else '' end as status_name,T2.warning_name,concat(T1.factory_name,T1.section_name,T1.device_name,T1.event_name,'=',T1.event_value,' 超出阈值(',T2.min_value,',',T2.max_value,')') as warning_content,T1.ctime,T1.responsible_name as receiver_name,T1.responsible_content as return_content,T1.utime,T1.Level from panoramic_warning_data T1 left join panoramic_system_configurationnew T2 on T1.warn_configuration_id = T2.id where T1.ctime >= \'${StartDate}\' and T1.ctime <= \'${EndDate}\' ${strWhere}  order by T1.ctime desc ,T1.status desc")
     List<PanoramicRiskForWebInfoDto> getRiskListByDate(@Param("StartDate") String startdate,@Param("EndDate") String enddate,@Param("strWhere") String strWhere);
     
     
