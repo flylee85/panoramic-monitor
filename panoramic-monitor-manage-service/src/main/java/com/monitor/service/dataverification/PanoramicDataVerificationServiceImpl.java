@@ -6,10 +6,11 @@ import com.monitor.api.dataverification.PanoramicDataVerificationService;
 import com.monitor.dto.dataverification.PanoramicDataVerificationDto;
 import com.cloud.core.AbstractService;
 import com.cloud.core.ServiceException;
-
+import com.cloud.util.LoggerUtils;
+import com.cloud.util.TLogger;
 import java.math.BigDecimal;
-
-import org.apache.commons.lang3.StringUtils;
+import java.text.DecimalFormat;
+import java.text.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -25,7 +26,10 @@ import org.springframework.transaction.annotation.Transactional;
 @Service("dataVerificationService")
 @Transactional(readOnly = true, rollbackFor = ServiceException.class)
 public class PanoramicDataVerificationServiceImpl extends AbstractService<PanoramicDataVerification> implements PanoramicDataVerificationService {
-    @Autowired
+    
+	private static final transient TLogger DB_LOGGER = LoggerUtils.getLogger(PanoramicDataVerificationServiceImpl.class);
+	
+	@Autowired
     @Qualifier("dataVerificationMapper")
     private PanoramicDataVerificationMapper panoramicDataVerificationMapper;
 	
@@ -89,9 +93,17 @@ public class PanoramicDataVerificationServiceImpl extends AbstractService<Panora
 	@Override
 	public PanoramicDataVerificationDto findContentByDate(String code, String date) {
 		
-		PanoramicDataVerificationDto result = new PanoramicDataVerificationDto();
+		PanoramicDataVerificationDto result = panoramicDataVerificationMapper.findContentByDate(date,code);
 		
-		result = panoramicDataVerificationMapper.findContentByDate(date,code);
+		if(result != null) {
+			String bios = result.getBias();
+			
+			try {
+				result.setBias(String.valueOf(new DecimalFormat().parse(bios).doubleValue() * 100));
+			} catch (ParseException e) {
+				DB_LOGGER.warn("数据校验值有异常" + e);
+			}
+		}
 		
 		return result;
 	}
