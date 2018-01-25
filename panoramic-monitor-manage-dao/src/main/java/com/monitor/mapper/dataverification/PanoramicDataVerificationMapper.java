@@ -102,7 +102,7 @@ public interface PanoramicDataVerificationMapper extends Mapper<PanoramicDataVer
 	@Select("SELECT\n" + 
 			"	format(value_auto,2) as valueAuto,\n" + 
 			"	format(value_manual,2) as valueManual,\n" + 
-			"	format(bias*100,2) as bias \n" + 
+			"	format(convert(bias*100,decimal),2) as bias \n" + 
 			"FROM\n" + 
 			"	panoramic_data_verification\n" + 
 			"WHERE\n" + 
