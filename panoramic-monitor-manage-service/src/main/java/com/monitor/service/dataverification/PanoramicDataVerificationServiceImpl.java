@@ -99,7 +99,7 @@ public class PanoramicDataVerificationServiceImpl extends AbstractService<Panora
 			String bios = result.getBias();
 			
 			try {
-				result.setBias(String.valueOf(new DecimalFormat().parse(bios).doubleValue() * 100));
+				result.setBias(String.valueOf(new java.text.DecimalFormat("#0.00").format(new DecimalFormat().parse(bios).doubleValue() * 100)));
 			} catch (ParseException e) {
 				DB_LOGGER.warn("数据校验值有异常" + e);
 			}
