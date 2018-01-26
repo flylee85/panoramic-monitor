@@ -9,72 +9,75 @@ import java.io.Serializable;
  */
 public class Productionmonitoringinfo extends BaseObject {
 
-    /**
+	private static final long serialVersionUID = 1L;
+
+	/**
      * 磷钙矿耗
      */
-    private double cpoc;
-
-    public double getCpoc() {
-        return cpoc;
-    }
-
-    public void setCpoc(double cpoc) {
-        this.cpoc = cpoc;
-    }
-
-    public double getCpac() {
-        return cpac;
-    }
-
-    public void setCpac(double cpac) {
-        this.cpac = cpac;
-    }
-
-    public double getCcp() {
-        return ccp;
-    }
-
-    public void setCcp(double ccp) {
-        this.ccp = ccp;
-    }
-
-    public double getCpc() {
-        return cpc;
-    }
-
-    public void setCpc(double cpc) {
-        this.cpc = cpc;
-    }
-
-    public double getPcc() {
-        return pcc;
-    }
-
-    public void setPcc(double pcc) {
-        this.pcc = pcc;
-    }
+    private String cpoc;
 
     /**
      * 磷钙酸耗
      */
-    private double cpac;
+    private String cpac;
 
     /**
      * 磷钙煤耗
      */
-    private double ccp;
+    private String ccp;
 
     /**
      * 普钙电耗
      */
-    private double cpc;
+    private String cpc;
+    
     /**
      * 磷钙电耗
      */
-    private double pcc;
+    private String pcc;
 
     @Override
     public Serializable realId() {
         return null;
+    }
+    
+    public String getCpoc() {
+        return cpoc;
+    }
+
+    public void setCpoc(String cpoc) {
+        this.cpoc = cpoc;
+    }
+
+    public String getCpac() {
+        return cpac;
+    }
+
+    public void setCpac(String cpac) {
+        this.cpac = cpac;
+    }
+
+    public String getCcp() {
+        return ccp;
+    }
+
+    public void setCcp(String ccp) {
+        this.ccp = ccp;
+    }
+
+    public String getCpc() {
+        return cpc;
+    }
+
+    public void setCpc(String cpc) {
+        this.cpc = cpc;
+    }
+
+    public String getPcc() {
+        return pcc;
+    }
+
+    public void setPcc(String pcc) {
+        this.pcc = pcc;
     }
 }
