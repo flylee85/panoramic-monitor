@@ -55,13 +55,18 @@ public class PanoramicSystemConfigurationnewServiceImpl extends AbstractService<
          	   
          			String strDeviceName = configuration.getDeviceName();
          			String strCondition = "";
+         			String strDateEvent = "";
          			switch(configuration.getLogicType()) {
          				case 1:
+         					strDateEvent= configuration.getStrDateEvent();
          					break;
          				case 2:
+         					strDateEvent= "DATE_ADD("  +configuration.getStrDateEvent()  +",INTERVAL 1 DAY)";
          					strDeviceName = "''" + strDeviceName +  "''";
          					break;
          				case 3:
+
+         					strDateEvent= "DATE_ADD("  +configuration.getStrDateEvent()  +",INTERVAL 1 DAY)";
          					strDeviceName = "''" + strDeviceName +  "''";
          					strCondition = " and %s = ''%s'' ";
          					strCondition = String.format(strCondition, configuration.getStrSubEvent(),configuration.getStrSubEventValue());
@@ -71,7 +76,7 @@ public class PanoramicSystemConfigurationnewServiceImpl extends AbstractService<
          					break;
          			}
          			
-         			strSql = String.format(strSql, configuration.getFactoryName(),configuration.getSectionName(),strDeviceName,configuration.getSubName(),configuration.getStrEvent(),configuration.getStrEvent(),configuration.getStrDateEvent(),configuration.getId(),"id",configuration.getDataBaseTable(),configuration.getStrEvent(),configuration.getMaxValue(),configuration.getStrEvent(),configuration.getMinValue(),strCondition,configuration.getStrDateEvent());
+         			strSql = String.format(strSql, configuration.getFactoryName(),configuration.getSectionName(),strDeviceName,configuration.getSubName(),configuration.getStrEvent(),configuration.getStrEvent(),configuration.getStrDateEvent(),configuration.getId(),"id",configuration.getDataBaseTable(),configuration.getStrEvent(),configuration.getMaxValue(),configuration.getStrEvent(),configuration.getMinValue(),strCondition,strDateEvent);
 
                  	DB_LOGGER.warn(strSql);
          			systemSqlqueryMapper.addStrSqlQuery(configuration.getId(), strSql, configuration.getIntervaltime());
