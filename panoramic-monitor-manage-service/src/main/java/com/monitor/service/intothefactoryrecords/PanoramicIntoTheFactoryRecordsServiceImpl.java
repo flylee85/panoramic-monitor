@@ -8,6 +8,7 @@ import com.cloud.util.TLogger;
 import com.google.common.collect.Lists;
 import com.monitor.api.exceptionrecord.PanoramicExceptionRecordService;
 import com.monitor.api.intothefactoryrecords.PanoramicIntoTheFactoryRecordsService;
+import com.monitor.dto.intothefactoryrecords.PanoramicIntoTheFactoryDto;
 import com.monitor.mapper.intothefactoryrecords.PanoramicIntoTheFactoryRecordsMapper;
 import com.monitor.model.exceptionrecord.PanoramicExceptionRecord;
 import com.monitor.model.intothefactoryrecords.PanoramicIntoTheFactoryRecords;
@@ -42,11 +43,8 @@ public class PanoramicIntoTheFactoryRecordsServiceImpl extends AbstractService<P
 
     @Override
     @Transactional(propagation = Propagation.NOT_SUPPORTED, rollbackFor = Exception.class)
-    public List<PanoramicIntoTheFactoryRecords> listByDate(String date) {
-        Condition condition = new Condition(PanoramicIntoTheFactoryRecords.class, false);
-        condition.createCriteria().andCondition(" in_or_out = 0 and delete_flag=1  and status=1 and date_format(snapshot_time,'%Y%m%d') = date_format('" + date + "','%Y%m%d')");
-        condition.setOrderByClause(" snapshot_time desc ");
-        List<PanoramicIntoTheFactoryRecords> factoryRecords = intoTheFactoryRecordsMapper.selectByCondition(condition);
+    public List<PanoramicIntoTheFactoryDto> listByDate(String date) {
+        List<PanoramicIntoTheFactoryDto> factoryRecords = intoTheFactoryRecordsMapper.selectIntoFactoryList(date);
         return factoryRecords;
     }
 

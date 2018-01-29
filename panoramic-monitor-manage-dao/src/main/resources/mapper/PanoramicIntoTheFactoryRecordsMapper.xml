@@ -25,4 +25,25 @@
     <result column="in_or_out" jdbcType="INTEGER" property="inOrOut" />
     <result column="operator" jdbcType="VARCHAR" property="operator" />
   </resultMap>
+  
+  <select id="selectIntoFactoryList" resultType ="com.monitor.dto.intothefactoryrecords.PanoramicIntoTheFactoryDto" parameterType="String">
+	<![CDATA[
+		SELECT 
+			in_time as inTime,
+			out_time as outTime,
+			name,
+			number_plate as numberPlate,
+			convert(net_weight,char) as netWeight,
+			convert(tare,char) as tare
+		FROM
+			panoramic_into_the_factory_records
+		WHERE
+			 in_or_out = 0 
+			AND delete_flag=1  
+			AND status=1 
+			AND date_format(snapshot_time,'%Y%m%d') = date_format( #{date},'%Y%m%d')
+		ORDER BY
+		 	snapshot_time desc
+	]]>
+ </select>
 </mapper>

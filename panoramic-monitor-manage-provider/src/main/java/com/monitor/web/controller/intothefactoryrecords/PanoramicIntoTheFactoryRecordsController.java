@@ -4,6 +4,7 @@ import com.cloud.api.vo.ResultCode;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.monitor.api.intothefactoryrecords.PanoramicIntoTheFactoryRecordsService;
+import com.monitor.dto.intothefactoryrecords.PanoramicIntoTheFactoryDto;
 import com.monitor.model.intothefactoryrecords.PanoramicIntoTheFactoryRecords;
 import com.monitor.web.controller.base.AbstractAnnotationController;
 
@@ -68,10 +69,10 @@ public class PanoramicIntoTheFactoryRecordsController extends AbstractAnnotation
 
     @ApiOperation(value = "出厂信息查询接口", notes = "分页查询所有出厂信息")
     @GetMapping("/{date}/{page}/{size}")
-    public ResultCode<PageInfo<PanoramicIntoTheFactoryRecords>> listByDate(@PathVariable("date") String date, @PathVariable("page") Integer page, @PathVariable("size") Integer size) {
+    public ResultCode<PageInfo<PanoramicIntoTheFactoryDto>> listByDate(@PathVariable("date") String date, @PathVariable("page") Integer page, @PathVariable("size") Integer size) {
         PageHelper.startPage(page, size);
-        List<PanoramicIntoTheFactoryRecords> list = intoTheFactoryRecordsService.listByDate(date);
-        PageInfo<PanoramicIntoTheFactoryRecords> pageInfo = new PageInfo<>(list);
+        List<PanoramicIntoTheFactoryDto> list = intoTheFactoryRecordsService.listByDate(date);
+        PageInfo<PanoramicIntoTheFactoryDto> pageInfo = new PageInfo<>(list);
         return ResultCode.getSuccessReturn(pageInfo);
     }
 }

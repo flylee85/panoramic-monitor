@@ -1,6 +1,7 @@
 package com.monitor.api.intothefactoryrecords;
 
 import com.cloud.core.Service;
+import com.monitor.dto.intothefactoryrecords.PanoramicIntoTheFactoryDto;
 import com.monitor.model.intothefactoryrecords.PanoramicIntoTheFactoryRecords;
 
 import java.util.List;
@@ -19,7 +20,7 @@ public interface PanoramicIntoTheFactoryRecordsService extends Service<Panoramic
      * @param date
      * @return
      */
-    List<PanoramicIntoTheFactoryRecords> listByDate(String date);
+    List<PanoramicIntoTheFactoryDto> listByDate(String date);
 
     /**
      * 查询最新一条记录
