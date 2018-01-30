@@ -57,7 +57,7 @@ public class PanoramicSparePartsMaterialsController {
         return ResultCode.getSuccessReturn(panoramicSparePartsMaterials);
     } 
     
-    @ApiOperation(value = "当日库存总货值", notes = "仓库监管-备品备件库货值总量")
+    @ApiOperation(value = "当日库存货值明细", notes = "仓库监管-备品备件库货值明细")
     @GetMapping("/summary/detail/{date}")
     public ResultCode<List<PanoramicSparePartsMaterials>> listSummaryByDate(@PathVariable("date") String date) {
         List<PanoramicSparePartsMaterials> listPanoramicSparePartsMaterials = panoramicSparePartsMaterialsService.listSummaryByDate(date);

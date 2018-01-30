@@ -42,7 +42,7 @@ public interface PanoramicSparePartsMaterialsMapper extends Mapper<PanoramicSpar
 	 */
 	@Select("SELECT\n" + 
 			"	name,\n" +
-			"	inventory,\n" +
+			"	Round(inventory,0) as inventory,\n" +
 			"	reference_price as referencePrice,\n" + 
 			"	inventory_value as inventoryValue\n" + 
 			"FROM\n" + 
