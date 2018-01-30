@@ -68,15 +68,15 @@ public class PanoramicSystemSqlqueryServiceImpl extends AbstractService<Panorami
  	   						Boolean issendemail = false;
  	   						if(warningquery.getLogicType() == 2 ||  warningquery.getLogicType() == 3) {
  	   							//查询报警数据库离是否存在昨天的报警数据
- 	   							List<PanoramicWarningDataDto> ListData = warningDataMapper.getLastWarningDataByConfigurationID(4,warningquery.getWarnConfigurationID());
+ 	   							List<PanoramicWarningDataDto> ListData = warningDataMapper.getLastWarningDataByConfigurationID(4,warningquery.getWarnConfigurationID(),SourceData.getCreateTime());
  	   							if(ListData != null && ListData.size() > 0) {
- 	   							PanoramicWarningDataDto lastData = ListData.get(0);
+ 	   								PanoramicWarningDataDto lastData = ListData.get(0);
  	   								//判断需要不需要提升报警等级
- 	   								if(lastData.getDayCount() == 1 && lastData.getMaxLevel() > lastData.getLevel()) {
+ 	   								if(ListData.size() == 1 && lastData.getDayCount() == 1 && lastData.getMaxLevel() > lastData.getLevel()) {
  	   									//插入报警等级提升之后的数据
  	   									warningDataMapper.addWarningSource(lastData.getFactoryName(),lastData.getSectionName(),lastData.getDeviceName(),  lastData.getEventName(),lastData.getStrEvent(), lastData.getEventValue(), lastData.getStatus(),lastData.getCreateTime(),lastData.getSourceId(),lastData.getWarnConfigurationID(),lastData.getLevel() + 1,issendemail);	
  	   								}
- 	   								if(ListData.size() < 5) {
+ 	   								if(ListData.size() <= 5) {
  	   									issendemail = true;
  	   								}
  	   							}

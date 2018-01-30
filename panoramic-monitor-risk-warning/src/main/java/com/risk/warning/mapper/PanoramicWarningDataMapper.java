@@ -59,8 +59,8 @@ public interface PanoramicWarningDataMapper extends Mapper<PanoramicWarningDataD
     
     
     //获取某一类型的报警数据库离的倒数几天
-    @Select("Select T1.factory_name,T1.section_name,T1.device_name,T1.event_name,T1.str_event,T1.event_value,T1.status,T1.ctime as createtime,T1.source_id,T1.warn_configuration_id,T1.level,T1.is_send_email,T2.max_level,TIMESTAMPDIFF(day,T1.ctime,now()) as day_count from panoramic_warning_data T1 left join panoramic_system_configurationnew T2 on T1.warn_configuration_id = T2.id where TIMESTAMPDIFF(day,T1.ctime,now()) >= ${DataCount} and T1.status = 1 and T1.warn_configuration_id =  ${WarnConfigurationID} order by T1.ctime desc,T1.status desc")
-    List<PanoramicWarningDataDto> getLastWarningDataByConfigurationID(@Param("DataCount") Integer daycount,@Param("WarnConfigurationID") Integer warnconfigurationid);
+    @Select("Select T1.factory_name,T1.section_name,T1.device_name,T1.event_name,T1.str_event,T1.event_value,T1.status,T1.ctime as createtime,T1.source_id,T1.warn_configuration_id,T1.level,T1.is_send_email,T2.max_level,TIMESTAMPDIFF(day,T1.ctime,\'${lastTime}\') as day_count from panoramic_warning_data T1 left join panoramic_system_configurationnew T2 on T1.warn_configuration_id = T2.id where TIMESTAMPDIFF(day,T1.ctime,\'${lastTime}\') <= ${DataCount} and T1.status = 1 and T1.warn_configuration_id =  ${WarnConfigurationID} order by T1.ctime desc,T1.status desc")
+    List<PanoramicWarningDataDto> getLastWarningDataByConfigurationID(@Param("DataCount") Integer daycount,@Param("WarnConfigurationID") Integer warnconfigurationid,@Param("lastTime") String lastTime);
     
     //手动解除预警数据
     @Update("update panoramic_warning_data set status = 2 ,utime = now(),responsible_content= \'${responsiblecontent}\',responsible_name= \'${responsiblename}\' where id = ${id} and status = 1")
