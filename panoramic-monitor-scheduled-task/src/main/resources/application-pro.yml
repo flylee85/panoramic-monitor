@@ -6,7 +6,8 @@ security:
   user:
     name: user
     password: user
-
+  basic:
+    enabled: false
 quartzConfig: quartz-pro.properties
 feign:  # 必须配置开启断路器,默认false
    hystrix:
@@ -21,7 +22,7 @@ ribbon:
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://user:user@panoramic.neweplatform.com:8761/eureka/,http://user:user@panoramic.neweplatform.com:8762/eureka/   # 指定注册中心的地址
+      defaultZone: http://user:user@www.neweplatform.com:8761/eureka/,http://user:user@www.neweplatform.com:8762/eureka/   # 指定注册中心的地址
   instance:
     preferIpAddress: true
 #    hostname : discovery   # 指定主机名时候通过主机名访问,否则通过ip地址
@@ -30,8 +31,8 @@ spring:
     name: monitor-service-task    # 项目名称尽量用小写
   datasource:
     url: jdbc:mysql://rm-bp1d2s03ka9b803602o.mysql.rds.aliyuncs.com:3306/scheduled-task?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true
-    username: xinyiroot
-    password: root
+    username: panoramicroot
+    password: Newgrading@2018
     driverClassName: com.mysql.jdbc.Driver
     initialSize: 5
     minIdle: 5

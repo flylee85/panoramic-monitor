@@ -27,6 +27,7 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -40,7 +41,7 @@ import java.util.List;
  * Spring MVC 配置
  */
 @Configuration
-@ComponentScan(basePackages={"com.cloud","com.panoramic","com"})
+@ComponentScan(basePackages = {"com.cloud", "com.panoramic", "com"})
 public class WebMvcConfigurer extends WebMvcConfigurerAdapter {
 
     private final Logger logger = LoggerFactory.getLogger(WebMvcConfigurer.class);
@@ -118,27 +119,14 @@ public class WebMvcConfigurer extends WebMvcConfigurerAdapter {
         super.addResourceHandlers(registry);
     }
 
-    //测试
-    public class LoginInterceptor extends HandlerInterceptorAdapter {
-
-        @Override
-        public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
-                throws Exception {
-            
-            response.setHeader("Access-Control-Allow-Headers", "X-Requested-With, accept, content-type, xxxx");
-            response.setHeader("Access-Control-Allow-Methods", "GET, HEAD, POST, PUT, DELETE, TRACE, OPTIONS, PATCH");
-            response.setHeader("Access-Control-Allow-Origin", "*");  
-           
-            
-            return true;
-        }
-    }
-    
     //添加拦截器
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         //接口签名认证拦截器，该签名认证比较简单，实际项目中建议使用Json Web Token代替。
         //开发环境忽略签名认证
+        if (StringUtils.contains(env, ProfilesConstant.PROFILES_PRO)) {
+            return;
+        }
         if (!StringUtils.contains(env, ProfilesConstant.PROFILES_DEV)) {
             registry.addInterceptor(new HandlerInterceptorAdapter() {
                 @Override
@@ -158,6 +146,7 @@ public class WebMvcConfigurer extends WebMvcConfigurerAdapter {
                 }
             });
         }
+
     }
 
     private void responseResult(HttpServletResponse response, ResultCode result) {
@@ -225,5 +214,21 @@ public class WebMvcConfigurer extends WebMvcConfigurerAdapter {
         }
 
         return ip;
+    }
+
+    //测试
+    public class LoginInterceptor extends HandlerInterceptorAdapter {
+
+        @Override
+        public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
+                throws Exception {
+
+            response.setHeader("Access-Control-Allow-Headers", "X-Requested-With, accept, content-type, xxxx");
+            response.setHeader("Access-Control-Allow-Methods", "GET, HEAD, POST, PUT, DELETE, TRACE, OPTIONS, PATCH");
+            response.setHeader("Access-Control-Allow-Origin", "*");
+
+
+            return true;
+        }
     }
 }

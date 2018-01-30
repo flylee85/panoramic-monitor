@@ -21,7 +21,7 @@ eureka:
     registerWithEureka: false
     fetchRegistry: false
     serviceUrl:
-      defaultZone: http://user:user@panoramic.neweplatform.com:8762/eureka/
+      defaultZone: http://user:user@www.neweplatform.com:8762/eureka/
 #spring:
 # devtools:
 #    restart:

@@ -21,7 +21,7 @@ eureka:
     registerWithEureka: true
     fetchRegistry: true
     serviceUrl:
-      defaultZone: http://user:user@${eureka.instance.hostname}:8761/eureka/,http://user:user@${eureka.instance.hostname}:8762/eureka/
+      defaultZone: http://user:user@${eureka.instance.hostname}:8762/eureka/
 #spring:
 # devtools:
 #    restart:
