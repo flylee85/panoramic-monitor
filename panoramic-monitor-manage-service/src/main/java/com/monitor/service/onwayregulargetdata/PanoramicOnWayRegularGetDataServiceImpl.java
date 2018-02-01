@@ -311,8 +311,12 @@ public class PanoramicOnWayRegularGetDataServiceImpl extends AbstractService<Pan
 					        	List<PanoramicOnWayQueryResultMilestonesiotesDto> milestonesiotes = JSON.parseArray(orderNode.getMilestonesiotes(),PanoramicOnWayQueryResultMilestonesiotesDto.class);
 					            if(milestonesiotes != null && milestonesiotes.size() > 0) {
 						        	 startTime =  milestonesiotes.get(0).getMtime();
-						        	 lastTime = milestonesiotes.get(milestonesiotes.size()-1).getMtime();
-						        	 lastAddress = milestonesiotes.get(milestonesiotes.size()-1).getMname();
+						        	 for(PanoramicOnWayQueryResultMilestonesiotesDto model : milestonesiotes ) {
+						        		 if(model.getMtime() != null && !model.getMtime().equals("")) {
+						        			 lastTime = model.getMtime();
+						        			 lastAddress =model.getMaddress();
+						        		 }
+						        	 }
 					            
 					            }
 					        	onWayOrderMapper.updateOrderNodes(orderNode.getDeviceNo(), startTime, lastTime, lastAddress, orderNode.getOrderNo());

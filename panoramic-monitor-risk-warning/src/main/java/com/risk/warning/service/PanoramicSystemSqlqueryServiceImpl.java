@@ -57,13 +57,11 @@ public class PanoramicSystemSqlqueryServiceImpl extends AbstractService<Panorami
 	 		   	if (QueryList != null) {
  	   			for (PanoramicSystemSqlqueryDto warningquery : QueryList) {
  	   				//更新最后扫描数据的时间
- 	   				systemSqlqueryMapper.updateLastexcuteTime(warningquery.getWarnConfigurationID());
  	   				
- 	   				//SimpleDateFormat sdf =   new SimpleDateFormat( "yyyy-MM-dd HH:mm:ss" ); 
  	   				List<PanoramicWarningDataDto> WarningSourceList = warningDataMapper.GetSourceData(warningquery.getQuerySql(),warningquery.getLastExecuteTime());
  	   				
  	   				//更新SQL语句执行时间
- 	   				if(WarningSourceList != null) {
+ 	   				if(WarningSourceList != null && WarningSourceList.size() > 0 ) {
  	   					for (PanoramicWarningDataDto  SourceData : WarningSourceList) {
  	   						Boolean issendemail = false;
  	   						if(warningquery.getLogicType() == 2 ||  warningquery.getLogicType() == 3) {
@@ -96,6 +94,8 @@ public class PanoramicSystemSqlqueryServiceImpl extends AbstractService<Panorami
  	   						warningDataMapper.finishDataForSendEmail(warningquery.getWarnConfigurationID());
  	   					}
  	   				}
+ 	   				//更新最后执行时间
+ 	   				systemSqlqueryMapper.updateLastexcuteTime(warningquery.getWarnConfigurationID());
                 }
              }
          } catch (Exception e) {

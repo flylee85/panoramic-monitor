@@ -22,11 +22,11 @@ public interface PanoramicOnWayResultMapper extends Mapper<PanoramicOnWayResultD
 	 /**
      * 获取在途物资一览
      */
-	@Select("select order_no as orderNo,receive_address as receiveAddress ,device_last_address as address,device_start_time as startTime,timestampdiff(day,device_start_time,now()) as useday from panoramic_on_way_order where current_status =1 order by device_last_time desc ")
+	@Select("SELECT order_no AS orderNo,receive_address AS receiveAddress ,device_last_address AS address,IFNULL(device_start_time,ctime) AS startTime,TIMESTAMPDIFF(DAY,IFNULL(device_start_time,ctime),NOW()) AS useday FROM panoramic_on_way_order WHERE current_status =1 ORDER BY device_last_time DESC ")
 	   List<PanoramicOnWayResultDto> getOnWayResult(); 
 	
 	
-	@Select(" select order_no as orderNo,receive_address as receiveAddress ,device_start_time as startTime,device_last_time as arriveTime,timestampdiff(day,device_start_time,device_last_time) as useday , timestampdiff(day,request_receive_time,now()) as overday from panoramic_on_way_order where current_status = 2  and timestampdiff(month,utime,now()) < 1 order by device_last_time desc ")
+	@Select(" SELECT order_no AS orderNo,receive_address AS receiveAddress ,IFNULL(device_start_time,ctime) AS startTime,utime AS arriveTime,TIMESTAMPDIFF(DAY,IFNULL(device_start_time,ctime),utime) AS useday , TIMESTAMPDIFF(DAY,request_receive_time,NOW()) AS overday FROM panoramic_on_way_order WHERE current_status = 2  AND TIMESTAMPDIFF(MONTH,utime,NOW()) <3 ORDER BY device_last_time DESC ")
 	   List<PanoramicOnWayResultDto> getOnWayFinishResult();
 	
 
